@@ -1,4 +1,4 @@
-package com.backend.sever.answer.Dto;
+package com.backend.sever.answer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

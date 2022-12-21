@@ -1,7 +1,7 @@
-package com.backend.sever.answer.Controller;
+package com.backend.sever.answer.controller;
 
-import com.backend.sever.answer.Dto.AnswerPostDto;
-import com.backend.sever.answer.Dto.AnswerResponseDto;
+import com.backend.sever.answer.dto.AnswerPostDto;
+import com.backend.sever.answer.dto.AnswerResponseDto;
 import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.answer.mapper.AnswerMapper;
 import com.backend.sever.answer.service.AnswerService;
