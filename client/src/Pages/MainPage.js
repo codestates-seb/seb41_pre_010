@@ -10,7 +10,7 @@ const dummyData = [
       profileImage: "testURL", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
-    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
     createdAt: "Year/Month/Day/Hour/Minute", //String
     modifiedAt: "Year/Month/Day/Hour/Minute", //String
     vote: 0, //Number
@@ -30,7 +30,7 @@ const dummyData = [
       profileImage: "testURL", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
-    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
     createdAt: "Year/Month/Day/Hour/Minute", //String
     modifiedAt: "Year/Month/Day/Hour/Minute", //String
     vote: 0, //Number
@@ -50,8 +50,7 @@ const dummyData = [
       profileImage: "testURL", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
-    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
-    createdAt: "Year/Month/Day/Hour/Minute", //String
+    body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
     modifiedAt: "Year/Month/Day/Hour/Minute", //String
     vote: 0, //Number
     answers: 0, //Number
@@ -70,8 +69,7 @@ const dummyData = [
       profileImage: "testURL", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
-    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
-    createdAt: "Year/Month/Day/Hour/Minute", //String
+    body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
     modifiedAt: "Year/Month/Day/Hour/Minute", //String
     vote: 0, //Number
     answers: 0, //Number
@@ -90,8 +88,7 @@ const dummyData = [
       profileImage: "testURL", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
-    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
-    createdAt: "Year/Month/Day/Hour/Minute", //String
+    body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
     modifiedAt: "Year/Month/Day/Hour/Minute", //String
     vote: 0, //Number
     answers: 0, //Number
@@ -125,7 +122,10 @@ function MainPage() {
             return (
               <div className="Question_Container">
                 <div className="Question_Info">
-                  Vote: {el.vote} Answers: {el.answers}
+                  <span className="Question_Votes">Votes: {el.vote}</span>
+                  <span className="Question_Answers">
+                    Answers: {el.answers}
+                  </span>
                 </div>
                 <div className="Question_Content">
                   <div className="Question_Title">{el.title}</div>

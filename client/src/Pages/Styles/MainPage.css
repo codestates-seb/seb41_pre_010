@@ -44,11 +44,27 @@
 }
 
 .Question_Container {
+  display: flex;
   width: 100%;
   height: 125px;
   padding: 15px;
   border: 1px solid black;
   background-color: rgb(234, 127, 255);
+}
+
+.Question_Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 90px;
+  margin-right: 20px;
+}
+
+.Question_Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: calc(1024px - 110px);
 }
 
 .Questions_Pagination_Container {
