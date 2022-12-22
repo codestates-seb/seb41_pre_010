@@ -29,7 +29,7 @@ public class AnswerController {
         return new ResponseEntity(answerResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/{answer-id}/edit")
+    @PutMapping("/{answer-id}")
     public ResponseEntity putAnswer(@RequestBody AnswerPutDto answerPutDto,
                                     @PathVariable ("answer-id") long answerId) {
         answerPutDto.setAnswerId(answerId);
