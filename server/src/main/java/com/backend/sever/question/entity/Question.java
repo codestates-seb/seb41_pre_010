@@ -1,14 +1,20 @@
 package com.backend.sever.question.entity;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.bookmark.entity.Bookmark;
+import com.backend.sever.comments.entity.Comments;
+import com.backend.sever.questionTag.entity.QuestionTag;
+import com.backend.sever.vote.entity.Vote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,4 +41,19 @@ public class Question {
 
     @Column(nullable = false)
     private int view;
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Vote> vote = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<QuestionTag> questionTag = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Comments> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Answer> Answer = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Bookmark> bookmark = new ArrayList<>();
 }

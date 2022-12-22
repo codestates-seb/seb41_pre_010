@@ -1,5 +1,8 @@
 package com.backend.sever.comments.entity;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.question.entity.Question;
+import com.backend.sever.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,4 +31,13 @@ public class Comments {
     @LastModifiedDate
     @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
+
+    @ManyToOne
+    private Question question;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Answer answer;
 }

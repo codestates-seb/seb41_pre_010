@@ -1,5 +1,8 @@
 package com.backend.sever.bookmark.entity;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.question.entity.Question;
+import com.backend.sever.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,5 +27,14 @@ public class Bookmark {
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Question question;
+
+    @ManyToOne
+    private Answer answer;
 
 }

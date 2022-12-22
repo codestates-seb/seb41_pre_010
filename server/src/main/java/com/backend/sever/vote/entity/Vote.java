@@ -1,5 +1,6 @@
 package com.backend.sever.vote.entity;
 
+import com.backend.sever.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,4 +18,7 @@ public class Vote {
 
     @Column(nullable = false)
     private int voteCount;
+
+    @ManyToOne
+    private Question question;
 }

@@ -1,13 +1,17 @@
 package com.backend.sever.user.entity;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.bookmark.entity.Bookmark;
+import com.backend.sever.comments.entity.Comments;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -36,4 +40,13 @@ public class User {
 
     @Column(length = 100)
     private String about;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Comments> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Answer> answer = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Bookmark> bookmark = new ArrayList<>();
 }
