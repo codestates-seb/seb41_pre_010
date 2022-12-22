@@ -3,6 +3,7 @@ import SignUp from "./Pages/SignUp";
 import Login from "./Pages/Login";
 import MainPage from "./Pages/MainPage";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import EditPage from "./Pages/EditPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/questions" element={<MainPage />} />
         <Route path="/users/signup" element={<SignUp />} />
         <Route path="/users/islogin" element={<Login />} />
+        <Route path="/questions/0/edit" element={<EditPage />} />
       </Routes>
     </BrowserRouter>
   );
