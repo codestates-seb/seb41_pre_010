@@ -1,12 +1,21 @@
+.MainPage_Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .Header {
   width: 100%;
   height: 60px;
   background-color: black;
 }
 
-.MainPage_Container {
-  width: 100%;
+.Questions_Container {
+  width: 1024px;
   height: calc(100vh - 338px);
+  background-color: lightblue;
 }
 
 .Footer {
