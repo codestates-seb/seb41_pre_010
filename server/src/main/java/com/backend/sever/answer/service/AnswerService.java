@@ -22,7 +22,11 @@ public class AnswerService {
     }
 
     public Answer updateAnswer(Answer answer) {
-        return null;
+        Answer findAnswer = findAnswer(answer.getAnswerId());
+
+        Answer updateAnswer = beanUtils.copyNonNullProperties(answer, findAnswer);
+
+        return answerRepository.save(updateAnswer);
     }
 
     public Answer findAnswer(long answerId) {
