@@ -38,32 +38,26 @@ export default function Question() {
             <div className="Main_Text_Container">
               <aside className="Main_Text_Aside">아이콘자리</aside>
               <div className="Main_Text_Content">
-                <span>
-                  React Router v5.1.0 with hooks React Router v4 With v4 of
-                  React Router, there are three approaches that you can take to
-                  programmatic routing within components. Use the withRouter
-                  higher-order component. Use composition and render a Use the
-                  context. React Router is mostly a wrapper around the history
-                  library. history handles interaction with the browser's
-                  window.history for you with its browser and hash histories. It
-                  also provides a memory history which is useful for
-                  environments that don't have a global history. This is
-                  particularly useful in mobile app development (react-native)
-                  and unit testing with Node. A history instance has two methods
-                  for navigating: push and replace. If you think of the history
-                  as an array of visited locations, push will add a new location
-                  to the array and replace will replace the current location in
-                  the array with the new one. Typically you will want to use the
-                  push method when you are navigating. In earlier versions of
-                  React Router, you had to create your own history instance, but
-                  in v4 the and components will create a browser, hash, and
-                  memory instances for you. React Router makes the properties
-                  and methods of the history instance associated with your
-                  router available through the context, under the router object.
-                </span>
+                <span>본문자리</span>
               </div>
             </div>
-                <div className="Tag_Section">ddddd</div>
+            <div className="Tag_Section">
+              <button className="Tag_Button">React</button>
+            </div>
+            {/* 상태값에 따른 조건부 설정 예정 */}
+            <div className="Contour_Line" />
+            {/* 질문 여부에 따른 조건부 설정 예정 */}
+            <div className="Answers_Container">
+              <h2>Answer</h2>
+              <div className="Main_Text_Container">
+                <aside className="Main_Text_Aside">아이콘자리</aside>
+                <div className="Main_Text_Content">
+                  <span>본문자리</span>
+                </div>
+              </div>
+              {/* 상태값에 따른 조건부 설정 예정 */}
+              <div className="Contour_Line" />
+            </div>
           </div>
         </div>
       </main>
