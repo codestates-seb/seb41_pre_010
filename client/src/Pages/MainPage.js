@@ -21,7 +21,7 @@ function MainPage() {
         <div className="Questions_List_Container">
           {dummyData.map((el) => {
             return (
-              <div className="Question_Container">
+              <div className="Question_Container" key={el.questionId}>
                 <div className="Question_Info">
                   <span className="Question_Votes">Votes: {el.vote}</span>
                   <span className="Question_Answers">
