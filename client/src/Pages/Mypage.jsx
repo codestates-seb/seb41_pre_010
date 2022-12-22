@@ -1,6 +1,14 @@
 import "./Styles/Mypage.css";
 
-const dummyData = [
+const dummyDataProfile = {
+  userId: 0, //Number
+  profileImage:
+    "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
+  displayName: " 안녕하세요 테스트입니다", //String
+  title: "test로 시작한 타이틀입니다", //String
+};
+
+const dummyDataInfo = [
   {
     question: [
       {
@@ -110,17 +118,20 @@ const UserProfile = () => {
     <div className="Mypage_UserProfile_Container">
       <div className="Mypage_UserProfile_Content">
         <img
-          src={
-            "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg"
-          }
+          src={dummyDataProfile.profileImage}
           className="Mypage_UserProfile_Image"
           width={50}
           height={50}
           alt="TestImage"
         />
         <div className="Mypage_UserProfile_Info_Container">
-          <div className="Mypage_UserProfile_UserName">username</div>
-          <div className="Mypage_UserProfile_Title"> title</div>
+          <div className="Mypage_UserProfile_UserName">
+            {dummyDataProfile.displayName}
+          </div>
+          <div className="Mypage_UserProfile_Title">
+            {" "}
+            {dummyDataProfile.title}
+          </div>
         </div>
       </div>
       <button className="Mypage_UserProfile_EditButton">Edit profile</button>
@@ -143,7 +154,7 @@ const ListContainerOne = () => {
       <div className="Mypage_Questions_Container">
         <div className="Mypage_Title"> Questions</div>
         <div className="Mypage_ListContents">
-          {dummyData[0].question.map((el) => {
+          {dummyDataInfo[0].question.map((el) => {
             return (
               <ul key={el.questionId}>
                 <li>
@@ -157,7 +168,7 @@ const ListContainerOne = () => {
       <div className="Mypage_Answers_Container">
         <div className="Mypage_Title">Answers</div>
         <div className="Mypage_ListContents">
-          {dummyData[1].answer.map((el) => {
+          {dummyDataInfo[1].answer.map((el) => {
             return (
               <ul key={el.answerId}>
                 <li>
@@ -178,7 +189,7 @@ const ListContainerTwo = () => {
       <div className="Mypage_Tag_Container">
         <div className="Mypage_Title">Top Tags</div>
         <div className="Mypage_Tag_ListContents">
-          {dummyData[3].tag.map((el) => {
+          {dummyDataInfo[3].tag.map((el) => {
             return <ul key={el.tagId}>{<li>{el.tagName}</li>}</ul>;
           })}
         </div>
@@ -187,7 +198,7 @@ const ListContainerTwo = () => {
         <div className="Mypage_BookMark_List_Container">
           <div className="Mypage_Title">book mark</div>
           <div className="Mypage_BookMark_ListContents">
-            {dummyData[2].bookmark[0].question.map((el) => {
+            {dummyDataInfo[2].bookmark[0].question.map((el) => {
               return (
                 <ul key={el.questionId}>
                   <li>{el.title}</li>
@@ -199,7 +210,7 @@ const ListContainerTwo = () => {
         <div className="Mypage_BookMark_List_Container">
           <div className="Mypage_Title">book mark</div>
           <div className="Mypage_BookMark_ListContents">
-            {dummyData[2].bookmark[1].answer.map((el) => {
+            {dummyDataInfo[2].bookmark[1].answer.map((el) => {
               return <ul key={el.answerId}>{<li>{el.title} </li>}</ul>;
             })}
           </div>
