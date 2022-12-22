@@ -194,26 +194,25 @@ const ListContainerTwo = () => {
           })}
         </div>
       </div>
-      <div className="Mypage_BookMark_Container">
-        <div className="Mypage_BookMark_List_Container">
-          <div className="Mypage_Title">book mark</div>
-          <div className="Mypage_BookMark_ListContents">
-            {dummyDataInfo[2].bookmark[0].question.map((el) => {
-              return (
-                <ul key={el.questionId}>
-                  <li>{el.title}</li>
-                </ul>
-              );
-            })}
-          </div>
+
+      <div className="Mypage_BookMark_List_Container">
+        <div className="Mypage_Title">book mark</div>
+        <div className="Mypage_BookMark_ListContents">
+          {dummyDataInfo[2].bookmark[0].question.map((el) => {
+            return (
+              <ul key={el.questionId}>
+                <li>{el.title}</li>
+              </ul>
+            );
+          })}
         </div>
-        <div className="Mypage_BookMark_List_Container">
-          <div className="Mypage_Title">book mark</div>
-          <div className="Mypage_BookMark_ListContents">
-            {dummyDataInfo[2].bookmark[1].answer.map((el) => {
-              return <ul key={el.answerId}>{<li>{el.title} </li>}</ul>;
-            })}
-          </div>
+      </div>
+      <div className="Mypage_BookMark_List_Container">
+        <div className="Mypage_Title">book mark</div>
+        <div className="Mypage_BookMark_ListContents">
+          {dummyDataInfo[2].bookmark[1].answer.map((el) => {
+            return <ul key={el.answerId}>{<li>{el.title} </li>}</ul>;
+          })}
         </div>
       </div>
     </div>

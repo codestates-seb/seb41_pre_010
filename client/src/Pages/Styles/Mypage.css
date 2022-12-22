@@ -78,7 +78,7 @@
 
 .Mypage_ListContents {
   background-color: violet;
-  margin-top: 30px;
+  margin: 30px auto;
   width: 95%;
   height: 80%;
   border: 1px solid black;
@@ -104,15 +104,8 @@
   background-color: rgb(255, 0, 208);
 }
 
-.Mypage_BookMark_Container {
-  display: flex;
-  justify-content: space-between;
-  background-color: blue;
-  width: 60%;
-}
-
 .Mypage_BookMark_List_Container {
   width: 50%;
   background-color: aliceblue;
-  margin: 15px;
+  margin-left: 15px;
 }
