@@ -1,0 +1,24 @@
+.EditPage_Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header {
+  width: 100%;
+  height: 60px;
+  background-color: black;
+}
+
+.Edit_Container {
+  width: 100%;
+  background-color: moccasin;
+}
+
+.Footer {
+  width: 100%;
+  height: 278px;
+  background-color: black;
+}
