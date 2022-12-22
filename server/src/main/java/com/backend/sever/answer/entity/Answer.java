@@ -3,6 +3,8 @@ package com.backend.sever.answer.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,9 +21,11 @@ public class Answer {
     @Column(nullable = false,length = 5000)
     private String body;
 
-    @Column(nullable = false)
+    @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(nullable = false)
+    @LastModifiedDate
+    @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 }
