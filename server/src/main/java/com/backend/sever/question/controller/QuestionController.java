@@ -1,6 +1,8 @@
 package com.backend.sever.question.controller;
 
 import com.backend.sever.question.dto.QuestionPostDto;
+import com.backend.sever.question.entity.Question;
+import com.backend.sever.question.mapper.QuestionMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,8 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1/questions")
 public class QuestionController {
+    private final QuestionMapper mapper;
+
+    public QuestionController(QuestionMapper mapper) {
+        this.mapper = mapper;
+    }
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
+        Question question = mapper.questionPostDtoToQuestion(questionPostDto);
 
         return new ResponseEntity<> (HttpStatus.CREATED);
     }
