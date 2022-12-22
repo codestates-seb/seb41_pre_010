@@ -10,7 +10,7 @@ public class QuestionService {
     public QuestionService(QuestionRepository questionRepository) {
         this.questionRepository = questionRepository;
     }
-    private Question createQuestion(Question question) {
+    public Question createQuestion(Question question) {
         return questionRepository.save(question);
     }
 }
