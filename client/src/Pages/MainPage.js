@@ -1,6 +1,109 @@
 import React from "react";
 import "./Styles/MainPage.css";
 
+const dummyData = [
+  {
+    questionId: 0, //Number
+    user: {
+      userId: 0, //Number
+      displayName: "Kimcoding", //String
+      profileImage: "testURL", //String
+    },
+    title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
+    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    createdAt: "Year/Month/Day/Hour/Minute", //String
+    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    vote: 0, //Number
+    answers: 0, //Number
+    tags: [
+      {
+        tagId: 0, //Number
+        tagName: "test", //String
+      },
+    ],
+  },
+  {
+    questionId: 1, //Number
+    user: {
+      userId: 0, //Number
+      displayName: "LeeHacker", //String
+      profileImage: "testURL", //String
+    },
+    title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
+    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    createdAt: "Year/Month/Day/Hour/Minute", //String
+    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    vote: 0, //Number
+    answers: 0, //Number
+    tags: [
+      {
+        tagId: 0, //Number
+        tagName: "test", //String
+      },
+    ],
+  },
+  {
+    questionId: 2, //Number
+    user: {
+      userId: 0, //Number
+      displayName: "ABCDE", //String
+      profileImage: "testURL", //String
+    },
+    title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
+    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    createdAt: "Year/Month/Day/Hour/Minute", //String
+    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    vote: 0, //Number
+    answers: 0, //Number
+    tags: [
+      {
+        tagId: 0, //Number
+        tagName: "test", //String
+      },
+    ],
+  },
+  {
+    questionId: 3, //Number
+    user: {
+      userId: 0, //Number
+      displayName: "HIHI", //String
+      profileImage: "testURL", //String
+    },
+    title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
+    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    createdAt: "Year/Month/Day/Hour/Minute", //String
+    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    vote: 0, //Number
+    answers: 0, //Number
+    tags: [
+      {
+        tagId: 0, //Number
+        tagName: "test", //String
+      },
+    ],
+  },
+  {
+    questionId: 4, //Number
+    user: {
+      userId: 0, //Number
+      displayName: "Bye", //String
+      profileImage: "testURL", //String
+    },
+    title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
+    body: "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttest", //String
+    createdAt: "Year/Month/Day/Hour/Minute", //String
+    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    vote: 0, //Number
+    answers: 0, //Number
+    tags: [
+      {
+        tagId: 0, //Number
+        tagName: "test", //String
+      },
+    ],
+  },
+];
+
 function MainPage() {
   return (
     <div className="MainPage_Container">
@@ -18,12 +121,21 @@ function MainPage() {
           </div>
         </div>
         <div className="Questions_List_Container">
-          <div className="Question_Container"></div>
-          <div className="Question_Container"></div>
-          <div className="Question_Container"></div>
-          <div className="Question_Container"></div>
-          <div className="Question_Container"></div>
-          <div className="Question_Container"></div>
+          {dummyData.map((el) => {
+            return (
+              <div className="Question_Container">
+                <div className="Question_Info">
+                  Vote: {el.vote} Answers: {el.answers}
+                </div>
+                <div className="Question_Content">
+                  <div className="Question_Title">{el.title}</div>
+                  <div className="Question_Bddy">{el.body}</div>
+                  <div className="Question_Tag">{el.tags[0].tagName}</div>
+                  <div className="Question_UserInfo">{el.user.displayName}</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
         <div className="Questions_Pagination_Container"></div>
       </main>
