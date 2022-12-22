@@ -1,10 +1,28 @@
 package com.backend.sever.bookmark.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
 
-//@Entity
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Entity
 public class Bookmark {
-//    @Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long bookmarkId;
+
+    @Column(nullable = false)
+    private int bookmarkCount;
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }

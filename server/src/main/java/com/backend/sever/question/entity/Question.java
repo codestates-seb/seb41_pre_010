@@ -34,6 +34,5 @@ public class Question {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column(nullable = false)
-    @ColumnDefault("0")
     private int view;
 }
