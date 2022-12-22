@@ -1,5 +1,6 @@
 package com.backend.sever.comments.controller;
 
+import com.backend.sever.comments.dto.CommentsPutDto;
 import com.backend.sever.comments.dto.CommentsResponseDto;
 import com.backend.sever.comments.dto.CommentsPostDto;
 import com.backend.sever.comments.entity.Comments;
@@ -42,9 +43,25 @@ public class CommentsController {
             @PathVariable("comments-id") @Positive long commentsId){
         CommentsResponseDto commentsResponse = commentsMapper.commentsToCommentsResponseDto(commentsService.findComments(commentsId));
 
-        return new ResponseEntity<>("commentsResponse" , HttpStatus.OK);
+        return new ResponseEntity<>(commentsResponse , HttpStatus.OK);
 
     }
+
+    @PutMapping("/{comments-id}")
+    public ResponseEntity putComments(
+            @RequestBody CommentsPutDto commentsPutDto,
+            @PathVariable("comments-id") long commentsId){
+
+        commentsPutDto.setCommentsId(commentsId);
+        Comments comments = commentsService.updateComments(commentsMapper.commentsPutDtoComments(commentsPutDto));
+
+        CommentsResponseDto commentsResponseDto = commentsMapper.commentsToCommentsResponseDto(comments);
+
+        return new ResponseEntity(commentsResponseDto , HttpStatus.OK);
+
+    }
+
+
 
 
 
