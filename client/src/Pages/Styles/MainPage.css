@@ -43,7 +43,7 @@
   background-color: cyan;
 }
 
-.Question_Container {
+.Main_Page_Question_Container {
   display: flex;
   width: 100%;
   height: 125px;
@@ -52,7 +52,7 @@
   background-color: rgb(234, 127, 255);
 }
 
-.Question_Info {
+.Main_Page_Question_Info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
