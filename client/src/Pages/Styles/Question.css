@@ -1,0 +1,15 @@
+.Question_Container{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  background-color: blueviolet;
+}
+
+.Question_Content_Container{
+  height: 100%;
+  width: 1024px;
+  background-color: pink;
+  padding: 15px;
+}
