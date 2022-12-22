@@ -1,6 +1,8 @@
 package com.backend.sever.vote.entity;
 
+import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.question.entity.Question;
+import com.backend.sever.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,5 +22,14 @@ public class Vote {
     private int voteCount;
 
     @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
     private Question question;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "ANSWER_ID")
+    private Answer answer;
 }

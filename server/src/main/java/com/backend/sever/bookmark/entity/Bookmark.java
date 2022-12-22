@@ -29,12 +29,15 @@ public class Bookmark {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
     @ManyToOne
+    @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
 
 }

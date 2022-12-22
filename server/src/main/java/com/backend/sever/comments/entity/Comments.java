@@ -33,11 +33,14 @@ public class Comments {
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
     @ManyToOne
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "ANSWER_ID")
     private Answer answer;
 }

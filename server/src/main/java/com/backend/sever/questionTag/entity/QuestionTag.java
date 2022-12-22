@@ -18,8 +18,10 @@ public class QuestionTag {
     private Long questionTagId;
 
     @ManyToOne
+    @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
     @ManyToOne
+    @JoinColumn(name = "TAG_ID")
     private Tag tag;
 }
