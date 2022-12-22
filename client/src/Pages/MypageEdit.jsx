@@ -14,6 +14,7 @@ const MypageEdit = () => {
       <header className="Header"></header>
       <main className="Mypage_Container">
         <UserProfile />
+        <UserInfoEdit />
       </main>
       <footer className="Footer"></footer>
     </>
@@ -42,6 +43,20 @@ const UserProfile = () => {
         </div>
       </div>
       <button className="Mypage_UserProfile_EditButton">Edit profile</button>
+    </div>
+  );
+};
+
+const UserInfoEdit = () => {
+  return (
+    <div className="MypageEdit_UserInfoEdit_Container">
+      <div className="MypageEdit_UserInfoEdit_Text_Container">
+        <div className="MypageEdit_UserInfoEdit_Title">Edit your profile</div>
+      </div>
+      <div className="MypageEdit_UserInfoEdit_SecondText_Container">
+        <div className="MypageEdit_UserInfoEdit_Title">Public information</div>
+      </div>
+      <div className="MypageEdit_UserInfoEdit_Form_Container"></div>
     </div>
   );
 };

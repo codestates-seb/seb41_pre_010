@@ -59,3 +59,40 @@
   height: 50px;
   margin: 20px 10px;
 }
+
+.MypageEdit_UserInfoEdit_Container {
+  background-color: red;
+  margin: 70px auto;
+  min-width: 600px;
+  max-width: 900px;
+  width: 60%;
+  height: 70%;
+  padding: 15px;
+}
+
+.MypageEdit_UserInfoEdit_Text_Container {
+  width: 80%;
+  margin: auto;
+  border-bottom: 1px solid gray;
+  padding-bottom: 15px;
+  background-color: white;
+}
+.MypageEdit_UserInfoEdit_SecondText_Container {
+  width: 80%;
+  margin: auto;
+  height: 50px;
+  padding-top: 15px;
+  margin-top: 10px;
+  background-color: aqua;
+}
+.MypageEdit_UserInfoEdit_Title {
+  font-size: 20px;
+}
+
+.MypageEdit_UserInfoEdit_Form_Container {
+  width: 80%;
+  height: 85%;
+  margin: auto;
+  background-color: white;
+  border: 1px solid gray;
+}
