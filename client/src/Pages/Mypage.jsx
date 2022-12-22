@@ -1,86 +1,85 @@
 import "./Styles/Mypage.css";
 
 const dummyDataProfile = {
-  userId: 0, //Number
+  userId: 0,
   profileImage:
-    "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
-  displayName: " 안녕하세요 테스트입니다", //String
-  title: "test로 시작한 타이틀입니다", //String
+    "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg",
+  displayName: " 안녕하세요 테스트입니다",
+  title: "test로 시작한 타이틀입니다",
 };
 
 const dummyDataInfo = [
   {
     question: [
       {
-        questionId: 0, //Number
-        title: "Find out whether Chrome console is open", //String
-        createdAt: "2022/10/20/13:10", //String
-        modifiedAt: "Year/Month/Day/Hour/Minute", //String
-        vote: 0, //Number
+        questionId: 0,
+        title: "Find out whether Chrome console is open",
+        createdAt: "2022/10/20/13:10",
+        modifiedAt: "Year/Month/Day/Hour/Minute",
+        vote: 0,
       },
       {
-        questionId: 1, //Number
-        title: "Find out whether Chrome console is open", //String
-        createdAt: "2022/10/20/13:10", //String
-        modifiedAt: "Year/Month/Day/Hour/Minute", //String
-        vote: 0, //Number
+        questionId: 1,
+        title: "Find out whether Chrome console is open",
+        createdAt: "2022/10/20/13:10",
+        modifiedAt: "Year/Month/Day/Hour/Minute",
+        vote: 0,
       },
     ],
   },
   {
     answer: [
       {
-        answerId: 0, //Number
-        title: "Find out whether Chrome console is open", //String
-        createdAt: "2022/10/20/13:10", //String
-        modifiedAt: "Year/Month/Day/Hour/Minute", //String
-        vote: 0, //Number
+        answerId: 0,
+        title: "Find out whether Chrome console is open",
+        createdAt: "2022/10/20/13:10",
+        modifiedAt: "Year/Month/Day/Hour/Minute",
+        vote: 0,
       },
       {
-        answerId: 1, //Number
-        title: "Find out whether Chrome console is open", //String
-        createdAt: "2022/10/20/13:10", //String
-        modifiedAt: "Year/Month/Day/Hour/Minute", //String
-        vote: 0, //Number
+        answerId: 1,
+        title: "Find out whether Chrome console is open",
+        createdAt: "2022/10/20/13:10",
+        modifiedAt: "Year/Month/Day/Hour/Minute",
+        vote: 0,
       },
       {
-        answerId: 2, //Number
-        title: "test3", //String
-        createdAt: "Year/Month/Day/Hour/Minute", //String
-        modifiedAt: "Year/Month/Day/Hour/Minute", //String
-        vote: 0, //Number
+        answerId: 2,
+        title: "test3",
+        createdAt: "Year/Month/Day/Hour/Minute",
+        modifiedAt: "Year/Month/Day/Hour/Minute",
+        vote: 0,
       },
     ],
   },
   {
-    /////	[{question:[{q:1},{q:2},{q:3}]},{answer:[{a:1},{a:2}]}] ///
     bookmark: [
       {
         question: [
           {
-            questionId: 0, //Number
-            title: "Find out whether Chrome console is open", //String
-            createdAt: "2022/10/20/13:10", //String
-            modifiedAt: "Year/Month/Day/Hour/Minute", //String
-            vote: 0, //Number
+            questionId: 0,
+            title: "Find out whether Chrome console is open",
+            createdAt: "2022/10/20/13:10",
+            modifiedAt: "Year/Month/Day/Hour/Minute",
+            vote: 0,
           },
           {
-            questionId: 1, //Number
-            title: "Find out whether Chrome console is open", //String
-            createdAt: "2022/10/20/13:10", //String
-            modifiedAt: "Year/Month/Day/Hour/Minute", //String
-            vote: 0, //Number
+            questionId: 1,
+            title: "Find out whether Chrome console is open",
+            createdAt: "2022/10/20/13:10",
+            modifiedAt: "Year/Month/Day/Hour/Minute",
+            vote: 0,
           },
         ],
       },
       {
         answer: [
           {
-            answerId: 0, //Number
-            title: "Find out whether Chrome console is open", //String
-            createdAt: "2022/10/20/13:10", //String
-            modifiedAt: "Year/Month/Day/Hour/Minute", //String
-            vote: 0, //Number
+            answerId: 0,
+            title: "Find out whether Chrome console is open",
+            createdAt: "2022/10/20/13:10",
+            modifiedAt: "Year/Month/Day/Hour/Minute",
+            vote: 0,
           },
         ],
       },
@@ -89,12 +88,12 @@ const dummyDataInfo = [
   {
     tag: [
       {
-        tagId: 0, //Number
-        tagName: "test", //String
+        tagId: 0,
+        tagName: "test",
       },
       {
-        tagId: 1, //Number
-        tagName: "test2", //String
+        tagId: 1,
+        tagName: "test2",
       },
     ],
   },
@@ -129,7 +128,6 @@ const UserProfile = () => {
             {dummyDataProfile.displayName}
           </div>
           <div className="Mypage_UserProfile_Title">
-            {" "}
             {dummyDataProfile.title}
           </div>
         </div>
@@ -142,13 +140,13 @@ const UserProfile = () => {
 const UserInfo = () => {
   return (
     <>
-      <ListContainerOne />
-      <ListContainerTwo />
+      <FirstRowContainer />
+      <SecondRowContainer />
     </>
   );
 };
 
-const ListContainerOne = () => {
+const FirstRowContainer = () => {
   return (
     <div className="Mypage_List_Container">
       <div className="Mypage_Questions_Container">
@@ -183,7 +181,7 @@ const ListContainerOne = () => {
   );
 };
 
-const ListContainerTwo = () => {
+const SecondRowContainer = () => {
   return (
     <div className="Mypage_List_Container">
       <div className="Mypage_Tag_Container">
