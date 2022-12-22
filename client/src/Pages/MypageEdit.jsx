@@ -56,7 +56,29 @@ const UserInfoEdit = () => {
       <div className="MypageEdit_UserInfoEdit_SecondText_Container">
         <div className="MypageEdit_UserInfoEdit_Title">Public information</div>
       </div>
-      <div className="MypageEdit_UserInfoEdit_Form_Container"></div>
+      <div className="MypageEdit_UserInfoEdit_Form_Container">
+        <div className="MypageEdit_UserInfoEdit_FormImage_Container">
+          <div>Profile image</div>
+          <img
+            src={dummyDataProfile.profileImage}
+            width={165}
+            height={165}
+            alt="test"
+          />
+        </div>
+        <div className="MypageEdit_UserInfoEdit_FormName_Container">
+          <div>Display name</div>
+          <input />
+        </div>
+        <div className="MypageEdit_UserInfoEdit_FormTitle_Container">
+          <div>Title</div>
+          <input />
+        </div>
+        <div className="MypageEdit_UserInfoEdit_FormButton_Container">
+          <button>프로필 저장</button>
+          <button>취소</button>
+        </div>
+      </div>
     </div>
   );
 };

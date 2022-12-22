@@ -66,7 +66,7 @@
   min-width: 600px;
   max-width: 900px;
   width: 60%;
-  height: 70%;
+  height: 700px;
   padding: 15px;
 }
 
@@ -77,6 +77,7 @@
   padding-bottom: 15px;
   background-color: white;
 }
+
 .MypageEdit_UserInfoEdit_SecondText_Container {
   width: 80%;
   margin: auto;
@@ -91,8 +92,31 @@
 
 .MypageEdit_UserInfoEdit_Form_Container {
   width: 80%;
-  height: 85%;
-  margin: auto;
+  height: 550px;
+  margin: 0 auto;
   background-color: white;
   border: 1px solid gray;
+}
+
+.MypageEdit_UserInfoEdit_FormImage_Container {
+  width: 100%;
+  height: 40%;
+  background-color: greenyellow;
+}
+
+.MypageEdit_UserInfoEdit_FormName_Container {
+  width: 100%;
+  height: 20%;
+  background-color: pink;
+}
+.MypageEdit_UserInfoEdit_FormTitle_Container {
+  width: 100%;
+  height: 20%;
+  background-color: greenyellow;
+}
+.MypageEdit_UserInfoEdit_FormButton_Container {
+  width: 100%;
+  height: 10%;
+  padding-top: 30px;
+  background-color: darkcyan;
 }
