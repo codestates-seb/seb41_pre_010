@@ -38,7 +38,21 @@ function MainPage() {
             );
           })}
         </div>
-        <div className="Questions_Pagination_Container"></div>
+        <div className="Questions_Pagination_Container">
+          <div className="Page_Number_Container">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+          </div>
+          <div className="Per_Page_Container">
+            <button>10</button>
+            <button>15</button>
+            <button>30</button>
+            <span> Per Page</span>
+          </div>
+        </div>
       </main>
       <footer className="Footer"></footer>
     </div>
