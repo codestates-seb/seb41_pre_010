@@ -1,9 +1,11 @@
+h1{
+  margin: 0;
+}
 .Question_Container{
   display: flex;
   justify-content: center;
   height: 100%;
   width: 100%;
-  margin: 0 auto;
   background-color: blueviolet;
 }
 
@@ -12,4 +14,64 @@
   width: 1024px;
   background-color: pink;
   padding: 15px;
+}
+
+.Title_Container{
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid gray;
+}
+
+.Title_Contents{
+  width: 80%;
+}
+
+.Ask_Question_Button_Container{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Ask_Question_Button{
+  padding: 10px;
+  width: 103px;
+  height: 37px;
+  background-color: hsl(206,100%,52%);
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  color: white;
+}
+
+.Wright_Data_Info{
+  position: relative;
+  right: 70px;
+  top: 7px;
+}
+
+.Modify_Icon{
+  position: relative;
+  left: 149px;
+  bottom: 35px;
+  font-size: 24px;
+}
+
+.Main_Text_Container{
+  display: flex;
+}
+
+.Main_Text_Aside{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(99, 99, 151);
+  height: 100%;
+}
+
+.Main_Text_Content{
+  width: 86%;
+  background-color: antiquewhite;
+}
+
+.Tag_Section{
+  margin-left: 70px;
 }
