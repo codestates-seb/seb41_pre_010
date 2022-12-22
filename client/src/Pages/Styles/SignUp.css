@@ -11,7 +11,7 @@
 }
 
 .SignUp_Content{
-  width: 267px;
+  width: 290px;
   height: 390px;
   border: 1px solid gray;
   background-color: aquamarine;
@@ -24,7 +24,7 @@
 
 .User_Info_Enter_Container{
   background-color: bisque;
-  width: 219px;
+  width: 239px;
   height: 80%;
   position: absolute;
   top: 50%;
