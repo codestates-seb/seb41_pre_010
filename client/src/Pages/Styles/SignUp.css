@@ -11,8 +11,8 @@
 }
 
 .SignUp_Content{
-  width: 300px;
-  height: 450px;
+  width: 267px;
+  height: 390px;
   border: 1px solid gray;
   background-color: aquamarine;
   position: absolute;
@@ -24,7 +24,7 @@
 
 .User_Info_Enter_Container{
   background-color: bisque;
-  width: 80%;
+  width: 219px;
   height: 80%;
   position: absolute;
   top: 50%;
@@ -33,25 +33,48 @@
   padding: 15px 20px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .Display_Name_Container{
   display: flex;
   flex-direction: column;
+  height: 59px;
 }
 
 .Email_Container{
   display: flex;
   flex-direction: column;
+  height: 59px;
 }
 
 .Password_Container{
   display: flex;
   flex-direction: column;
+  height: 59px;
 }
 
 .Footer{
   width: 100%;
   height: 278px;
   background-color: black;
+}
+
+.SignUp_Button{
+  padding: 10px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Accout_Have_Message{
+  position: absolute;
+  top: 77%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
