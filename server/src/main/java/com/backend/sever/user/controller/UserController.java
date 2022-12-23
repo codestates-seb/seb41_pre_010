@@ -1,14 +1,13 @@
 package com.backend.sever.user.controller;
 
+import com.backend.sever.user.dto.UserPutDto;
 import com.backend.sever.user.dto.UserResponseDto;
+import com.backend.sever.user.entity.User;
 import com.backend.sever.user.mapper.UserMapper;
 import com.backend.sever.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -24,6 +23,17 @@ public class UserController {
     @GetMapping("/{user-id}/userprofile")
     public ResponseEntity getUser(@PathVariable("user-id") long userId) {
         UserResponseDto userResponse = userMapper.userToUserResponseDto(userService.findUser(userId));
+
+        return new ResponseEntity(userResponse, HttpStatus.OK);
+    }
+
+    @PutMapping("/{user-id}/userprofile")
+    public ResponseEntity putUser(@PathVariable("user-id") long userId,
+                                  @RequestBody UserPutDto userPutDto) {
+        userPutDto.setUserId(userId);
+        User user = userService.updateUser(userMapper.userPutToDtoToUser(userPutDto));
+        //값 확인용 response 데이터 추후 삭제 예정
+        UserResponseDto userResponse = userMapper.userToUserResponseDto(user);
 
         return new ResponseEntity(userResponse, HttpStatus.OK);
     }
