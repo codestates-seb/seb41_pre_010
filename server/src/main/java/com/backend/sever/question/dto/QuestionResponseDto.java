@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class QuestionPostDto {
+public class QuestionResponseDto {
     private String title;
     private String body;
     private List<Tag> tags;
