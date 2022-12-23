@@ -20,3 +20,22 @@
   justify-content: space-evenly;
   width: calc(1024px - 110px);
 }
+
+.Main_Page_Question_Title {
+  color: rgb(0, 116, 204);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.Main_Page_Question_Title:hover {
+  color: rgb(10, 149, 255);
+}
+
+.Main_Page_Question_Body {
+  font-size: 0.7rem;
+  color: rgb(59, 64, 69);
+}
+
+.Main_Page_Question_UserInfo {
+  text-align: right;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Styles/QuestionContainer.css";
+import { TagButton } from "./Button";
 
 function QuestionContainer(props) {
   const {
@@ -29,13 +30,18 @@ function QuestionContainer(props) {
         <div className="Main_Page_Question_Body">{body}</div>
         <div className="Main_Page_Question_Tag">
           {tags.map((tag) => {
-            return <span key={tag.tagId}>{tag.tagName}</span>;
+            return (
+              <TagButton fontSize="0.5rem" key={tag.tagId}>
+                {tag.tagName}
+              </TagButton>
+            );
           })}
         </div>
-        <span className="Main_Page_Question_UserInfo">
+        <div className="Main_Page_Question_UserInfo">
+          <img></img>
           <a href={`/users/${user.userId}/userprofile`}>{user.displayName}</a>
-          {modifiedAt || createdAt}
-        </span>
+          <span>{modifiedAt || createdAt}</span>
+        </div>
       </div>
     </div>
   );
