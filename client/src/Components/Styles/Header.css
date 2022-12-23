@@ -37,13 +37,19 @@
   display: block;
   padding: 0.6em 0.7em;
   line-height: 1px;
-  border: 1px solid hsl(210, 8%, 75%);
+  border: 1px solid hsl(209, 13%, 39%);
   border-radius: 3px;
+  padding-left: 30px;
+  background-image: url("../../../public/image/search_icon.png");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 9px center;
 }
 
 .MainHeader_Search_Input:focus {
-  border-color: hsl(206, 90%, 69.5%);
-  box-shadow: 0 1px 2px #add8e6, 0 1px 4px #add8e6, 0 2px 8px #add8e6;
+  outline: none;
+  border-color: rgb(89, 164, 222);
+  box-shadow: rgb(217, 234, 247) 0px 1px 4px, rgb(217, 234, 247) 0px 0px 0px 4px;
 }
 
 .MainHeader_UserInfo_Container {
