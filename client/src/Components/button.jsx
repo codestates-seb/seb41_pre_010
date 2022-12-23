@@ -3,7 +3,7 @@ import styled from "styled-components";
 const WhiteButton = styled.button`
   margin: 5px; // to be deleted!!!!!!!
   width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  height: ${(props) => (props.height ? props.height : "30px")};
   font-size: ${(props) => props.fontSize};
   border: 1px solid rgb(234, 236, 237);
   border-radius: 3px;
@@ -38,4 +38,15 @@ const BlueButton = styled(WhiteButton)`
   }
 `;
 
-export { WhiteButton, OrangeButton, BlueButton };
+const BlueWhiteButton = styled(WhiteButton)`
+  color: rgb(0, 116, 204);
+  border: 1px solid rgb(255, 255, 255);
+
+  &:hover {
+    background-color: rgb(240, 248, 255);
+    border-color: rgb(0, 116, 204);
+    border: 1px solid rgb(240, 248, 255);
+  }
+`;
+
+export { WhiteButton, OrangeButton, BlueButton, BlueWhiteButton };
