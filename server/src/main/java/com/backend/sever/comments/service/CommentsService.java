@@ -50,7 +50,6 @@ public class CommentsService {
     }
 
     // 업데이트
-
     public Comments updateComments(Comments comments){
 
         Comments findComments = findComments(comments.getCommentsId());
@@ -68,6 +67,5 @@ public class CommentsService {
         commnetsRepository.delete(findComments);
 
     }
-
 
 }

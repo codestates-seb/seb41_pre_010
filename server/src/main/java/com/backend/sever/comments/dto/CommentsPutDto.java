@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class CommentsPutDto {
-
     private long commentsId;
 
     private String body;
