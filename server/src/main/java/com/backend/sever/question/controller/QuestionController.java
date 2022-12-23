@@ -23,9 +23,8 @@ public class QuestionController {
     }
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
-        Question question = mapper.questionPostDtoToQuestion(questionPostDto);
-        Question createdQuestion = questionService.createQuestion(question);
+        Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
 
-        return new ResponseEntity<> (createdQuestion, HttpStatus.CREATED);
+        return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.CREATED);
     }
 }

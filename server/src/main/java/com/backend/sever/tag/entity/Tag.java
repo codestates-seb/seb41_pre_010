@@ -23,4 +23,11 @@ public class Tag {
 
     @OneToMany(mappedBy = "tag", cascade = CascadeType.PERSIST)
     private List<QuestionTag> questionTag = new ArrayList<>();
+
+    // <QuestionResponse Stub용 코드> 시작
+    public Tag(long tagId, String tagName) {
+        this.tagId = tagId;
+        this.tagName = tagName;
+    }
+    // 끝
 }
