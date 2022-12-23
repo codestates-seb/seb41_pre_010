@@ -42,7 +42,7 @@ public class User {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(length = 100)
-    private String about;
+    private String title;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
@@ -60,10 +60,11 @@ public class User {
     private List<Question> questions = new ArrayList<>();
 
     //스텁으로 인한 생성
-    public User(String profileImage, String displayName, String email, String password) {
+
+    public User(String profileImage, String displayName, String email, String title) {
         this.profileImage = profileImage;
         this.displayName = displayName;
         this.email = email;
-        this.password = password;
+        this.title = title;
     }
 }
