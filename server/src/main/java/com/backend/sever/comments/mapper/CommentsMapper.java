@@ -16,5 +16,4 @@ public interface CommentsMapper {
 
     CommentsResponseDto commentsToCommentsResponseDto(Comments comments);
 
-
 }

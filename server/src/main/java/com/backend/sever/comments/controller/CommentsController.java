@@ -36,7 +36,6 @@ public class CommentsController {
         return new ResponseEntity(commentsResponse, HttpStatus.OK);
     }
 
-
     @GetMapping("/{comments-id}/edit")
     public  ResponseEntity getComments(
             @PathVariable("comments-id") @Positive long commentsId){

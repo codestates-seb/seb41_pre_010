@@ -28,7 +28,6 @@ public class CommentsService {
     }
 
 
-
     // 코멘트 찾기 던지기
     public Comments findComments (long commentId){
 
