@@ -1,0 +1,84 @@
+.MainPage_Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header {
+  width: 100%;
+  height: 60px;
+  background-color: black;
+}
+
+.Questions_Container {
+  width: 1024px;
+  height: calc(100% - 338px);
+  background-color: lightblue;
+}
+
+.Questions_Title_Container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  height: 50px;
+  background-color: aquamarine;
+}
+
+.Questions_SubTitle_Container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  height: 50px;
+  background-color: lightcoral;
+}
+
+.Questions_List_Container {
+  width: 100%;
+  background-color: cyan;
+}
+
+.Main_Page_Question_Container {
+  display: flex;
+  width: 100%;
+  height: 125px;
+  padding: 15px;
+  border: 1px solid black;
+  background-color: rgb(234, 127, 255);
+}
+
+.Main_Page_Question_Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 90px;
+  margin-right: 20px;
+}
+
+.Question_Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: calc(1024px - 110px);
+}
+
+.Questions_Pagination_Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+  height: 100px;
+  background-color: rgb(165, 127, 255);
+}
+
+.Footer {
+  width: 100%;
+  height: 278px;
+  background-color: black;
+}

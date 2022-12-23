@@ -1,0 +1,133 @@
+h1{
+  margin: 0;
+}
+.Question_Container{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: blueviolet;
+}
+
+.Question_Content_Container{
+  height: 100%;
+  width: 1024px;
+  background-color: pink;
+  padding: 15px;
+}
+
+.Title_Container{
+  display: flex;
+  border-bottom: 2px solid hsl(210,8%,90%);
+}
+
+.Title_Contents{
+  width: 80%;
+}
+
+.Ask_Question_Button_Container{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Ask_Question_Button{
+  padding: 10px;
+  width: 103px;
+  height: 37px;
+  background-color: hsl(206,100%,52%);
+  border: none;
+  border-radius: 5px;
+  font-size: 13px;
+  color: white;
+}
+
+.Wright_Data_Info{
+  position: relative;
+  right: 70px;
+  top: 7px;
+}
+
+.Modify_Icon{
+  position: relative;
+  left: 149px;
+  bottom: 35px;
+  font-size: 24px;
+}
+
+.Main_Text_Container{
+  margin-top: 20px;
+  display: flex;
+}
+
+.Main_Text_Aside{
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(99, 99, 151);
+  height: 100%;
+}
+
+.Main_Text_Content{
+  width: 86%;
+  background-color: antiquewhite;
+}
+
+.Answer_User_Profil_Container{
+display: flex;
+justify-content: flex-end;
+margin-top: 30px;
+margin-right: 70px;
+}
+
+.Answer_User_Image{
+  width: 42px;
+}
+
+.Tag_Section{
+  margin-left: 70px;
+  margin-top: 20px;
+}
+
+.Tag_Button{
+  font-size: 12px;
+  color: hsl(205,47%,42%);
+  background-color: hsl(205,46%,92%);
+  border-radius: 4px;
+  border: none;
+  padding: 4px 6px;
+}
+
+.Contour_Line{
+  margin-top: 20px;
+  border-bottom: 2px solid hsl(210,8%,90%);
+}
+
+.Comment_Contour_Line{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 83%;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.Comment_Container{
+  display: flex;
+  justify-content: center;
+}
+
+.Add_Comment{
+  margin-left: 70px;
+  margin-top: 15px;
+}
+
+.Comment_Add_Button{
+  background-color: white;
+  border: none;
+  color: hsl(210,8%,55%);
+  opacity: .8;
+  padding: 0 3px 2px;
+}
+
+.Submit_Clear_Container{
+  margin: 20px 0;
+}
