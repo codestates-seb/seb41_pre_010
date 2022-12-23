@@ -5,6 +5,8 @@ import com.backend.sever.user.entity.User;
 import com.backend.sever.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -16,10 +18,9 @@ public class UserService {
     }
 
     public User findUser(long userId) {
-        //스텁으로 진행
-        User stubUser = new User(1L,"이미지url stub","유저 닉네임 stub","유저 email stub","유저 title stub");
+        User findUser = verifiedUser(userId);
 
-        return stubUser;
+        return findUser;
     }
 
     public User updateUser(User user) {
@@ -27,6 +28,13 @@ public class UserService {
 
         User updateUser = beanUtils.copyNonNullProperties(user, findUser);
 
-        return updateUser;
+        return userRepository.save(updateUser);
+    }
+
+    public User verifiedUser(long userId) {
+        Optional<User> findUser = userRepository.findById(userId);
+
+        return findUser.orElseThrow(() ->
+                new RuntimeException());
     }
 }
