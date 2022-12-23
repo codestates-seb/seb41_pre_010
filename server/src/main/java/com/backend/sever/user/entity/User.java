@@ -62,11 +62,11 @@ public class User {
     //스텁으로 인한 생성
 
 
-    public User(Long userId, String profileImage, String displayName, String email, String title) {
-        this.userId = userId;
+    public User(String profileImage, String displayName, String email, String password, String title) {
         this.profileImage = profileImage;
         this.displayName = displayName;
         this.email = email;
+        this.password = password;
         this.title = title;
     }
 }
