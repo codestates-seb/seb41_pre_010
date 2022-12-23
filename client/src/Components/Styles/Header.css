@@ -17,7 +17,6 @@
 .MainHeader_Logo_Container {
   height: 100%;
   width: 20%;
-  min-width: 166px;
   display: flex;
   justify-content: center;
 }
@@ -25,7 +24,6 @@
 .MainHeader_Input_Container {
   height: 100%;
   width: 55%;
-  min-width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +57,6 @@
 .MainHeader_UserInfo_Container {
   height: 100%;
   width: 25%;
-  min-width: 120px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -89,6 +86,4 @@
 .MainHeader_Button_Container {
   height: 100%;
   width: 20%;
-  min-width: 120px;
-  background-color: yellow;
 }

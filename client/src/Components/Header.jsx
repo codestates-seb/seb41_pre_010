@@ -67,7 +67,16 @@ const LoggedIn = () => {
 };
 
 const LoggedOut = () => {
-  return <div className="MainHeader_Button_Container"></div>;
+  return (
+    <div className="MainHeader_Button_Container">
+      <OrangeButton width="65px" height="40px">
+        LogIn
+      </OrangeButton>
+      <OrangeButton width="65px" height="40px">
+        SignUp
+      </OrangeButton>
+    </div>
+  );
 };
 
 const Header = () => {
