@@ -1,6 +1,7 @@
 package com.backend.sever.question.controller;
 
 import com.backend.sever.question.dto.QuestionPostDto;
+import com.backend.sever.question.dto.QuestionPutDto;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.mapper.QuestionMapper;
 import com.backend.sever.question.service.QuestionService;
