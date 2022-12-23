@@ -1,4 +1,5 @@
 import React from "react";
+import "./Styles/QuestionContainer.css";
 
 function QuestionContainer(props) {
   const {
@@ -22,10 +23,10 @@ function QuestionContainer(props) {
         <a className="Question_Title" href={`/questions/${questionId}`}>
           {title}
         </a>
-        <div className="Question_Bddy">{body}</div>
+        <div className="Question_Body">{body}</div>
         <div className="Question_Tag">
           {tags.map((tag) => {
-            return <span>{tag.tagName}</span>;
+            return <span key={tag.tagId}>{tag.tagName}</span>;
           })}
         </div>
         <span className="Question_UserInfo">
