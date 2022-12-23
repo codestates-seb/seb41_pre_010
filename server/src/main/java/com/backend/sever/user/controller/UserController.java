@@ -27,6 +27,7 @@ public class UserController {
         return new ResponseEntity(userResponse, HttpStatus.OK);
     }
 
+    @GetMapping("/{user-id}/userinfo")
     public ResponseEntity getUserInfo(@PathVariable("user-id") long userId) {
         return null;
     }
