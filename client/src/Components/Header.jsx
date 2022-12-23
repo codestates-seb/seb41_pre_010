@@ -10,14 +10,13 @@ const Header = () => {
           <img
             src={"image/logo-stackoverflow.png"}
             width={150}
-            height={47}
+            height={"auto"}
             alt="stackoverflow-logo"
           />
         </Link>
       </div>
-
       <div className="MainHeader_Input_Container">
-        <input aria-label="Search" />
+        <input className="MainHeader_Search_Input" aria-label="Search" />
       </div>
       {isLogin ? (
         <div className="MainHeader_UserInfo_Container">user</div>
