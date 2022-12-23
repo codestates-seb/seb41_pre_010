@@ -18,15 +18,9 @@ public class UserService {
     }
 
     public User findUser(long userId) {
-        //스텁으로 진행
-        User stubUser = new User("이미지url stub","유저닉네임 stub","유저email stub","유저password stub","유저title stub");
-        User stubUser2 = new User("이미지url stub","휴먼A","humanA@gmail.com","1234","휴먼A입니다");
-        User stubUser3 = new User("이미지url stub","휴먼B","humanB@gmail.com","1234","휴먼N입니다");
-        User stubUser4 = new User("이미지url stub","휴먼C","humanC@gmail.com","1234","휴먼C입니다");
+        User findUser = verifiedUser(userId);
 
-
-
-        return null;
+        return findUser;
     }
 
     public User updateUser(User user) {
