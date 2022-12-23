@@ -4,7 +4,6 @@ import "./Styles/SignUp.css";
 export default function SignUp() {
   return (
     <>
-      <header className="Header"></header>
       <main>
         <div className="SignUp_Container">
           <div className="SignUp_Content">

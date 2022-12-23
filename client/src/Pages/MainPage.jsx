@@ -5,7 +5,6 @@ import { dummyData } from "../DummyData";
 function MainPage() {
   return (
     <div className="MainPage_Container">
-      <header className="Header"></header>
       <main className="Questions_Container">
         <div className="Questions_Title_Container">
           <h1>모든 질문</h1>
@@ -23,7 +22,9 @@ function MainPage() {
             return (
               <div className="Main_Page_Question_Container" key={el.questionId}>
                 <div className="Main_Page_Question_Info">
-                  <span className="Main_Page_Question_Votes">Votes: {el.vote}</span>
+                  <span className="Main_Page_Question_Votes">
+                    Votes: {el.vote}
+                  </span>
                   <span className="Main_Page_Question_Answers">
                     Answers: {el.answers}
                   </span>
