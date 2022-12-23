@@ -58,4 +58,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Question> questions = new ArrayList<>();
+
+    //스텁으로 인한 생성
+    public User(String profileImage, String displayName, String email, String password) {
+        this.profileImage = profileImage;
+        this.displayName = displayName;
+        this.email = email;
+        this.password = password;
+    }
 }
