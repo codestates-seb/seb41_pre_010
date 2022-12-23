@@ -11,7 +11,7 @@
 
 .MainHeader_Logo_Container {
   height: 100%;
-  width: 25%;
+  width: 20%;
   min-width: 166px;
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@
 
 .MainHeader_Input_Container {
   height: 100%;
-  width: 40%;
+  width: 46%;
   min-width: 200px;
   display: flex;
   align-items: center;
@@ -28,8 +28,22 @@
 }
 
 .MainHeader_Search_Input {
-  width: 80%;
-  height: 50%;
+  width: 98.5%;
+  height: 69%;
+  border-color: hsl(210, 8%, 75%);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: rgb(234, 236, 237);
+  color: hsl(210, 8%, 25%);
+  display: block;
+  padding: 0.6em 0.7em;
+  line-height: 1px;
+  border: 1px solid hsl(210, 8%, 75%);
+  border-radius: 3px;
+}
+
+.MainHeader_Search_Input:focus {
+  border-color: hsl(206, 90%, 69.5%);
+  box-shadow: 0 1px 2px #add8e6, 0 1px 4px #add8e6, 0 2px 8px #add8e6;
 }
 
 .MainHeader_UserInfo_Container {

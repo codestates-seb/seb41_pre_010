@@ -1,6 +1,7 @@
 import "./Styles/Header.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   return (
@@ -16,7 +17,11 @@ const Header = () => {
         </Link>
       </div>
       <div className="MainHeader_Input_Container">
-        <input className="MainHeader_Search_Input" aria-label="Search" />
+        <input
+          className="MainHeader_Search_Input"
+          aria-label="Search"
+          placeholder="Search..."
+        />
       </div>
       {isLogin ? (
         <div className="MainHeader_UserInfo_Container">user</div>
