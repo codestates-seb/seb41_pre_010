@@ -49,4 +49,17 @@ const BlueWhiteButton = styled(WhiteButton)`
   }
 `;
 
-export { WhiteButton, OrangeButton, BlueButton, BlueWhiteButton };
+const TagButton = styled(WhiteButton)`
+  border: 1px solid rgb(225, 236, 244);
+  background-color: rgb(225, 236, 244);
+  color: rgb(57, 115, 157);
+  box-shadow: none;
+
+  &:hover {
+    background-color: rgb(208, 227, 241);
+    border-color: rgb(208, 227, 241);
+    color: rgb(44, 88, 119);
+  }
+`;
+
+export { WhiteButton, OrangeButton, BlueButton, BlueWhiteButton, TagButton };
