@@ -1,12 +1,13 @@
 import "./Styles/Header.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { OrangeButton } from "./button";
 
 const dummyDataProfile = {
   userId: 0,
   profileImage:
     "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg",
-  displayName: " 안녕하세요 테스트입니다",
+  displayName: "테스트닉네임",
 };
 
 const Logo = () => {
@@ -37,7 +38,32 @@ const SearchInput = () => {
 };
 
 const LoggedIn = () => {
-  return <div className="MainHeader_UserInfo_Container">user</div>;
+  return (
+    <div className="MainHeader_UserInfo_Container">
+      <div className="MainHeader_UserInfo_Profile">
+        <Link to={`/users/mypage/${dummyDataProfile.userId}`}>
+          <img
+            className="MainHeader_UserProfileImage"
+            src={dummyDataProfile.profileImage}
+            alt="profileImage"
+            width={40}
+            height={40}
+          />
+        </Link>
+        <span className="MainHeader_UserInfo_DisplayName">
+          <Link to={`/users/mypage/${dummyDataProfile.userId}`}>
+            {dummyDataProfile.displayName.length >= 7
+              ? dummyDataProfile.displayName.substr(0, 7) + "..."
+              : dummyDataProfile.displayName}
+            님
+          </Link>
+        </span>
+      </div>
+      <OrangeButton width="65px" height="40px">
+        Logout
+      </OrangeButton>
+    </div>
+  );
 };
 
 const LoggedOut = () => {
@@ -45,12 +71,14 @@ const LoggedOut = () => {
 };
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   return (
     <header className="MainHeader">
-      <Logo />
-      <SearchInput />
-      {isLogin ? <LoggedIn /> : <LoggedOut />}
+      <div className="MainHeader_Contents_Container">
+        <Logo />
+        <SearchInput />
+        {isLogin ? <LoggedIn /> : <LoggedOut />}
+      </div>
     </header>
   );
 };
