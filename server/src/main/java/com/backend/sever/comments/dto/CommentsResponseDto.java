@@ -16,6 +16,4 @@ public class CommentsResponseDto {
 
     private LocalDateTime modifiedAt;
 
-
-
 }
