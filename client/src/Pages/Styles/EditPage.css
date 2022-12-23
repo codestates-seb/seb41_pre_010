@@ -1,0 +1,87 @@
+.EditPage_Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header {
+  width: 100%;
+  height: 60px;
+  background-color: black;
+}
+
+.Edit_Container {
+  width: 1024px;
+  background-color: moccasin;
+}
+
+.Title_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  background-color: lightpink;
+}
+
+.Title {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.Title_Input {
+  width: calc(1024px - 30px);
+}
+
+.Body_Container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 400px;
+  padding: 15px;
+  background-color: lightseagreen;
+}
+
+.Edit_Input {
+  width: calc(1024px - 30px);
+  height: 320px;
+}
+
+.Preview_Container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+  background-color: cornflowerblue;
+}
+
+.Preview {
+  width: calc(1024px - 30px);
+}
+
+.Tags_Container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  background-color: cornsilk;
+}
+
+.Buttons_Container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  background-color: azure;
+}
+
+.Footer {
+  width: 100%;
+  height: 278px;
+  background-color: black;
+}
