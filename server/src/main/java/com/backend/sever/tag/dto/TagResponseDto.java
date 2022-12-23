@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TagResponseDto {
-    long tagId;
-    String tagName;
+    private long tagId;
+    private String tagName;
 
     // --- Stub 데이터 생성용 생성자 ---
     public TagResponseDto(long tagId, String tagName) {

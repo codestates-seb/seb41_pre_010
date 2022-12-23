@@ -92,7 +92,6 @@ export default function Question() {
           </div>
         </div>
       </main>
-      <footer className="Footer" />
     </>
   );
 }

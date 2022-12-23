@@ -54,7 +54,6 @@ function MainPage() {
           </div>
         </div>
       </main>
-      <footer className="Footer"></footer>
     </div>
   );
 }
