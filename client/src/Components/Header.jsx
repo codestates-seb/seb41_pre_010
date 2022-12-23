@@ -15,9 +15,9 @@ const Logo = () => {
     <div className="MainHeader_Logo_Container">
       <Link to="/">
         <img
-          src={"image/logo-stackoverflow.png"}
+          src={"/image/logo-stackoverflow.png"}
           width={150}
-          height={"auto"}
+          height={30}
           alt="stackoverflow-logo"
         />
       </Link>
