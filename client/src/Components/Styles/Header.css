@@ -1,5 +1,15 @@
-.Header {
+.MainHeader {
   width: 100%;
   height: 60px;
-  background-color: black;
+  /* background-color: black; */
+}
+
+.MainHeader_Logo_Container {
+}
+.MainHeader_Input_Container {
+}
+
+.MainHeader_UserInfo_Container {
+}
+.MainHeader_Button_Container {
 }
