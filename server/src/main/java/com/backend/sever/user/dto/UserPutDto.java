@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class UserPutDto {
+    private long userId;
     private String displayName;
     private String title;
 }
