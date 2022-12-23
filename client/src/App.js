@@ -23,6 +23,7 @@ function App() {
           <Route path="/questions/:questionId/edit" element={<EditPage />} />
           <Route path={"/users/mypage/:userId"} element={<Mypage />} />
           <Route path={"/users/mypage/edit/:userId"} element={<MypageEdit />} />
+          <Route path={"/search"} element={<></>} />
         </Routes>
       </BrowserRouter>
       <Footer />

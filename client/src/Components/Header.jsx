@@ -26,21 +26,24 @@ const Logo = () => {
 };
 
 const SearchInput = ({ navigate }) => {
-  const [text, setText] = useState();
-  const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-      navigate(`/search?${text}`);
-    }
-  };
+  const [text, setText] = useState("");
+
   return (
-    <form className="MainHeader_Input_Container">
+    <form
+      className="MainHeader_Input_Container"
+      action={"/search"}
+      role="search"
+      method="GET"
+    >
       <input
+        type="text"
         className="MainHeader_Search_Input"
         aria-label="Search"
         placeholder="Search..."
+        value={text}
         onChange={(e) => setText(e.target.value)}
-        onKeyPress={handleOnKeyPress}
       />
+      <input type="hidden" name="q" value={text} />
     </form>
   );
 };
