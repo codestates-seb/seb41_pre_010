@@ -8,8 +8,8 @@ export const dummyData = [
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
-    createdAt: "Year/Month/Day/Hour/Minute", //String
-    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    createdAt: "2022/12/23 13:22", //String
+    modifiedAt: "2022/12/25 13:32", //String
     vote: 0, //Number
     answers: 0, //Number
     tags: [
@@ -28,8 +28,8 @@ export const dummyData = [
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
-    createdAt: "Year/Month/Day/Hour/Minute", //String
-    modifiedAt: "Year/Month/Day/Hour/Minute", //String
+    createdAt: "2022/12/23 13:22", //String
+    modifiedAt: null, //String
     vote: 0, //Number
     answers: 0, //Number
     tags: [
@@ -48,8 +48,8 @@ export const dummyData = [
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
-    modifiedAt: "Year/Month/Day/Hour/Minute", //String
-    vote: 0, //Number
+    createdAt: "2022/12/23 13:22", //String
+    modifiedAt: null, //String    vote: 0, //Number
     answers: 0, //Number
     tags: [
       {
@@ -67,8 +67,8 @@ export const dummyData = [
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
-    modifiedAt: "Year/Month/Day/Hour/Minute", //String
-    vote: 0, //Number
+    createdAt: "2022/12/23 13:22", //String
+    modifiedAt: null, //String    vote: 0, //Number
     answers: 0, //Number
     tags: [
       {
@@ -86,8 +86,8 @@ export const dummyData = [
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
-    modifiedAt: "Year/Month/Day/Hour/Minute", //String
-    vote: 0, //Number
+    createdAt: "2022/12/23 13:22", //String
+    modifiedAt: "2022/12/31 13:22", //String    vote: 0, //Number
     answers: 0, //Number
     tags: [
       {

@@ -7,13 +7,13 @@ import Mypage from "./Pages/Mypage";
 import MypageEdit from "./Pages/MypageEdit";
 import EditPage from "./Pages/EditPage";
 import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+// import Header from "./Components/Header";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/question/:questionId" element={<Question />} />
