@@ -1,6 +1,6 @@
 import "./Styles/Header.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OrangeButton } from "./button";
 
 const dummyDataProfile = {
@@ -66,13 +66,22 @@ const LoggedIn = () => {
   );
 };
 
-const LoggedOut = () => {
+const LoginRequired = () => {
+  const navigate = useNavigate();
   return (
     <div className="MainHeader_Button_Container">
-      <OrangeButton width="65px" height="40px">
+      <OrangeButton
+        width="70px"
+        height="40px"
+        onClick={() => navigate("/users/islogin")}
+      >
         LogIn
       </OrangeButton>
-      <OrangeButton width="65px" height="40px">
+      <OrangeButton
+        width="70px"
+        height="40px"
+        onClick={() => navigate("/users/signup")}
+      >
         SignUp
       </OrangeButton>
     </div>
@@ -80,13 +89,13 @@ const LoggedOut = () => {
 };
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <header className="MainHeader">
       <div className="MainHeader_Contents_Container">
         <Logo />
         <SearchInput />
-        {isLogin ? <LoggedIn /> : <LoggedOut />}
+        {isLogin ? <LoggedIn /> : <LoginRequired />}
       </div>
     </header>
   );
