@@ -27,6 +27,10 @@ public class UserController {
         return new ResponseEntity(userResponse, HttpStatus.OK);
     }
 
+    public ResponseEntity getUserInfo(@PathVariable("user-id") long userId) {
+        return null;
+    }
+
     @PutMapping("/{user-id}/userprofile")
     public ResponseEntity putUser(@PathVariable("user-id") long userId,
                                   @RequestBody UserPutDto userPutDto) {
