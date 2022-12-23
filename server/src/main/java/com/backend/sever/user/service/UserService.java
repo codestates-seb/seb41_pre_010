@@ -14,7 +14,7 @@ public class UserService {
 
     public User findUser(long userId) {
         //스텁으로 진행
-        User stubUser = new User(1L,"이미지url","유저 닉네임","유저 email","유저 title");
+        User stubUser = new User(1L,"이미지url stub","유저 닉네임 stub","유저 email stub","유저 title stub");
 
         return stubUser;
     }
