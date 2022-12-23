@@ -1,0 +1,9 @@
+.Tag_Button{
+  font-size: 12px;
+  color: hsl(205,47%,42%);
+  background-color: hsl(205,46%,92%);
+  border-radius: 4px;
+  border: none;
+  padding: 4px 6px;
+  text-decoration-line: none;
+}
