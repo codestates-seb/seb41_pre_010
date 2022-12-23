@@ -36,4 +36,11 @@ public class UserService {
 
         return userRepository.save(updateUser);
     }
+
+    public User verifiedUser(long userId) {
+        Optional<User> findUser = userRepository.findById(userId);
+
+        return findUser.orElseThrow(() ->
+                new RuntimeException());
+    }
 }
