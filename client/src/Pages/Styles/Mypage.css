@@ -1,0 +1,111 @@
+.Header {
+  width: 100%;
+  height: 60px;
+  background-color: black;
+}
+
+.Footer {
+  width: 100%;
+  height: 278px;
+  background-color: black;
+}
+
+.Mypage_Container {
+  height: 1000px;
+  background-color: aquamarine;
+  border: 1px solid gray;
+}
+
+.Mypage_UserProfile_Container {
+  width: 70%;
+  min-width: 600px;
+  max-width: 1000px;
+  height: 150px;
+  background-color: rgb(66, 66, 100);
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Mypage_UserProfile_Content {
+  background-color: rgb(255, 0, 204);
+  display: flex;
+  flex-grow: 1;
+}
+
+.Mypage_UserProfile_Image {
+  width: 96px;
+  height: 96px;
+  margin: 16px 16px;
+}
+
+.Mypage_UserProfile_Info_Container {
+  width: 400px;
+}
+
+.Mypage_UserProfile_UserName {
+  width: 80%;
+  height: 50%;
+  background-color: blue;
+}
+
+.Mypage_UserProfile_Title {
+  background-color: wheat;
+  width: 100%;
+  height: 50%;
+}
+
+.Mypage_UserProfile_EditButton {
+  background-color: green;
+  height: 50px;
+  margin: 20px 10px;
+}
+
+.Mypage_List_Container {
+  margin: 40px auto;
+  width: 80%;
+  height: 30%;
+  min-width: 1200px;
+  max-width: 1400px;
+  background-color: red;
+  display: flex;
+  padding: 15px 15px;
+}
+
+.Mypage_Title {
+  background-color: rgb(189, 189, 218);
+}
+
+.Mypage_ListContents {
+  background-color: violet;
+  margin: 30px auto;
+  width: 95%;
+  height: 80%;
+  border: 1px solid black;
+}
+
+.Mypage_Answers_Container {
+  background-color: rgb(255, 0, 208);
+  width: 50%;
+  min-width: auto;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.Mypage_Questions_Container {
+  min-width: auto;
+  background-color: blue;
+  width: 50%;
+  height: 100%;
+}
+
+.Mypage_Tag_Container {
+  width: 40%;
+  background-color: rgb(255, 0, 208);
+}
+
+.Mypage_BookMark_List_Container {
+  width: 50%;
+  background-color: aliceblue;
+  margin-left: 15px;
+}

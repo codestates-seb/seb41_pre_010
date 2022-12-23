@@ -51,9 +51,15 @@
 }
 
 .Preview_Container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 400px;
+  padding: 15px;
   background-color: cornflowerblue;
+}
+
+.Preview {
+  width: calc(1024px - 30px);
 }
 
 .Tags_Container {

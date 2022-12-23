@@ -1,8 +1,9 @@
-package com.backend.sever.answer.entity;
+package com.backend.sever.question.entity;
 
+import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.bookmark.entity.Bookmark;
 import com.backend.sever.comments.entity.Comments;
-import com.backend.sever.question.entity.Question;
+import com.backend.sever.questionTag.entity.QuestionTag;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.vote.entity.Vote;
 import lombok.Getter;
@@ -20,12 +21,15 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Answer {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long answerId;
+    private Long questionId;
 
-    @Column(nullable = false,length = 5000)
+    @Column(length = 50, nullable = false)
+    private String title;
+
+    @Column(length = 1500, nullable = false)
     private String body;
 
     @CreatedDate
@@ -36,20 +40,25 @@ public class Answer {
     @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
+    @Column(nullable = false)
+    private int view;
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Vote> votes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<QuestionTag> questionTags = new ArrayList<>();
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
-    private List<Bookmark> bookmarks = new ArrayList<>();
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Answer> Answers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
-    private List<Vote> votes = new ArrayList<>();
+    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    private List<Bookmark> bookmarks = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "QUESTION_ID")
-    private Question question;
 }

@@ -14,7 +14,13 @@ function EditPage() {
           <span className="Title">Body</span>
           <textarea className="Edit_Input" />
         </div>
-        <div className="Preview_Container"></div>
+        <div className="Preview_Container">
+          <span className="Title">Preview</span>
+          <div className="Preview">
+            {`인풋창에 쓴 내용의 미리보기
+            Preview 컨테이너도 작성한 내용에 따라서 유동적으로 움직일 예정입니다`}
+          </div>
+        </div>
         <div className="Tags_Container"></div>
         <div className="Buttons_Container"></div>
       </div>
