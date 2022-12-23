@@ -3,15 +3,19 @@
   height: 60px;
   display: flex;
   justify-content: center;
-  /* background-color: black; */
+  background-color: rgb(248, 249, 249);
+  border-top: 2px solid rgb(224, 130, 37);
 }
 
 .MainHeader_Logo_Container {
-  background-color: red;
   height: 100%;
   width: 20%;
   min-width: 166px;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
+
 .MainHeader_Input_Container {
   height: 100%;
   width: 50%;
@@ -25,6 +29,7 @@
   background-color: purple;
   min-width: 120px;
 }
+
 .MainHeader_Button_Container {
   height: 100%;
   width: 20%;
