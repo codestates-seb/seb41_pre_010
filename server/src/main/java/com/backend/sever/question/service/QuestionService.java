@@ -26,8 +26,7 @@ public class QuestionService {
     }
 
     public Question updateQuestion(Question question) {
-        Optional<Question> findQuestion = questionRepository.findById(question.getQuestionId());
-        Question verifiedQuestion = verifyQuestion(findQuestion);
+        Question verifiedQuestion = verifyQuestion(questionRepository.findById(question.getQuestionId()));
         Question updatedQuestion = customBeanUtils.copyNonNullProperties(question, verifiedQuestion);
 
         return questionRepository.save(updatedQuestion);
