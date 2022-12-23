@@ -6,7 +6,7 @@ function EditPage() {
     <div className="EditPage_Container">
       <header className="Header"></header>
       <div className="Edit_Container">
-        <div className="Title_Container">
+        <div className="Edit_Title_Container">
           <span className="Title">Title</span>
           <input className="Title_Input" />
         </div>

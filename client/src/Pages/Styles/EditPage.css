@@ -17,7 +17,7 @@
   background-color: moccasin;
 }
 
-.Title_Container {
+.Edit_Title_Container {
   display: flex;
   flex-direction: column;
   justify-content: center;
