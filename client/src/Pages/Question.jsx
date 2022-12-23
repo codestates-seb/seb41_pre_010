@@ -55,8 +55,39 @@ export default function Question() {
                   <span>본문자리</span>
                 </div>
               </div>
+              <div className="Answer_User_Profil_Container">
+                <div className="Answer_Contents">
+                  <div className="Answer_CreateAt">
+                    <span>2022/12/22/14:50</span>
+                    <span>✍🏻</span>
+                  </div>
+                  <div className="Answer_User_Profil">
+                    <img
+                      className="Answer_User_Image"
+                      src="https://pbs.twimg.com/profile_images/1497881718971273220/1ANhWWRq_400x400.jpg"
+                    />
+                    <span>김태연</span>
+                  </div>
+                </div>
+                {/* <div className="Answer_ModifyAt"></div> 조건부 랜더링예정 */}
+              </div>
+              <div className="Comment_Container">
+                <div className="Comment_Contour_Line">
+                  <span>코멘트 내용입니다</span>
+                </div>
+              </div>
+              <div className="Add_Comment">
+                <button className="Comment_Add_Button">Add a Comment</button>
+              </div>
               {/* 상태값에 따른 조건부 설정 예정 */}
               <div className="Contour_Line" />
+              <div className="Your_Answer_Container">
+                <h2>Your Answer</h2>
+                <div>Answer작성창 부분</div>
+                <div className="Submit_Clear_Container">
+                  <button>Post Yout Answer</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

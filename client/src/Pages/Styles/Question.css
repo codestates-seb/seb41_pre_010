@@ -72,6 +72,17 @@ h1{
   background-color: antiquewhite;
 }
 
+.Answer_User_Profil_Container{
+display: flex;
+justify-content: flex-end;
+margin-top: 30px;
+margin-right: 70px;
+}
+
+.Answer_User_Image{
+  width: 42px;
+}
+
 .Tag_Section{
   margin-left: 70px;
   margin-top: 20px;
@@ -89,4 +100,34 @@ h1{
 .Contour_Line{
   margin-top: 20px;
   border-bottom: 2px solid hsl(210,8%,90%);
+}
+
+.Comment_Contour_Line{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  width: 83%;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.Comment_Container{
+  display: flex;
+  justify-content: center;
+}
+
+.Add_Comment{
+  margin-left: 70px;
+  margin-top: 15px;
+}
+
+.Comment_Add_Button{
+  background-color: white;
+  border: none;
+  color: hsl(210,8%,55%);
+  opacity: .8;
+  padding: 0 3px 2px;
+}
+
+.Submit_Clear_Container{
+  margin: 20px 0;
 }
