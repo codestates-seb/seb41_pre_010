@@ -35,7 +35,6 @@ export default function SignUp() {
           </span>
         </div>
       </main>
-      <footer className="Footer"></footer>
     </>
   );
 }
