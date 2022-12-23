@@ -47,7 +47,7 @@ public class QuestionController {
     public ResponseEntity deleteQuestion(@PathVariable("question-id") long questionId) {
         questionService.deleteQuestion(questionId);
 
-        return new ResponseEntity<> (HttpStatus.NO_CONTENT);
+        return new ResponseEntity<> (HttpStatus.OK);
     }
 
 }
