@@ -25,15 +25,23 @@ const Logo = () => {
   );
 };
 
-const SearchInput = () => {
+const SearchInput = ({ navigate }) => {
+  const [text, setText] = useState();
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/search?${text}`);
+    }
+  };
   return (
-    <div className="MainHeader_Input_Container">
+    <form className="MainHeader_Input_Container">
       <input
         className="MainHeader_Search_Input"
         aria-label="Search"
         placeholder="Search..."
+        onChange={(e) => setText(e.target.value)}
+        onKeyPress={handleOnKeyPress}
       />
-    </div>
+    </form>
   );
 };
 
@@ -66,8 +74,7 @@ const LoggedIn = () => {
   );
 };
 
-const LoginRequired = () => {
-  const navigate = useNavigate();
+const LoginRequired = ({ navigate }) => {
   return (
     <div className="MainHeader_Button_Container">
       <OrangeButton
@@ -89,13 +96,14 @@ const LoginRequired = () => {
 };
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   return (
     <header className="MainHeader">
       <div className="MainHeader_Contents_Container">
         <Logo />
-        <SearchInput />
-        {isLogin ? <LoggedIn /> : <LoginRequired />}
+        <SearchInput navigate={navigate} />
+        {isLogin ? <LoggedIn /> : <LoginRequired navigate={navigate} />}
       </div>
     </header>
   );
