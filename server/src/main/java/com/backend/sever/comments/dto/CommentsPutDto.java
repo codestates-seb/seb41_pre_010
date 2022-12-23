@@ -1,14 +1,18 @@
 package com.backend.sever.comments.dto;
 
-
+import com.backend.sever.comments.entity.Comments;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class CommentsPostDto {
+public class CommentsPutDto {
+    private long commentsId;
+
     private String body;
+
+
 }

@@ -1,0 +1,19 @@
+.Project_Member_Info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Project_Member_Container{
+  display: flex;
+  justify-content: space-around;
+  background-color: black;
+  width: 100%;
+  height: 230px;
+  align-items: center;
+}
+
+.Member_Contour_Line{
+  border-top: 1px solid hsl(210,8%,65%);
+  margin: 3px;
+}
