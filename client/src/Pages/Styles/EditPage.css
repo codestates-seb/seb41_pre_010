@@ -72,8 +72,11 @@
 }
 
 .Buttons_Container {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100px;
+  padding: 15px;
   background-color: azure;
 }
 

@@ -25,7 +25,10 @@ function EditPage() {
           <span className="Title">Tags</span>
           <input className="Tags_Input" />
         </div>
-        <div className="Buttons_Container"></div>
+        <div className="Buttons_Container">
+          <button className="Save_Edit">Save edits</button>
+          <button className="Cancel_Edit">Cancel</button>
+        </div>
       </div>
       <footer className="Footer"></footer>
     </div>
