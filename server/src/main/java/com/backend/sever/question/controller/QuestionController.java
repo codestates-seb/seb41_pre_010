@@ -1,6 +1,7 @@
 package com.backend.sever.question.controller;
 
 import com.backend.sever.question.dto.QuestionPostDto;
+import com.backend.sever.question.dto.QuestionPutDto;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.mapper.QuestionMapper;
 import com.backend.sever.question.service.QuestionService;
@@ -30,6 +31,16 @@ public class QuestionController {
         Question question = questionService.findQuestion(questionId);
 
         return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.OK);
+    }
+
+    @PutMapping("/{question-id}")
+    public ResponseEntity putQuestion(@PathVariable("question-id") long questionId,
+                                      @RequestBody QuestionPutDto questionPutDto) {
+        Question question = mapper.questionPutDtoToQuestion(questionPutDto);
+        question.setQuestionId(questionId);
+        Question updatedQuestion = questionService.updateQuestion(question);
+
+        return new ResponseEntity<> (mapper.questionToQuestionResponseDto(updatedQuestion), HttpStatus.OK);
     }
 
 }
