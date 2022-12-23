@@ -103,10 +103,12 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   return (
     <header className="MainHeader">
-      <div className="MainHeader_Contents_Container">
-        <Logo />
-        <SearchInput navigate={navigate} />
-        {isLogin ? <LoggedIn /> : <LoginRequired navigate={navigate} />}
+      <div className="MainHeader_Container">
+        <div className="MainHeader_Contents_Container">
+          <Logo />
+          <SearchInput navigate={navigate} />
+          {isLogin ? <LoggedIn /> : <LoginRequired navigate={navigate} />}
+        </div>
       </div>
     </header>
   );
