@@ -16,4 +16,15 @@ const WhiteButton = styled.button`
   }
 `;
 
-export default WhiteButton;
+const OrangeButton = styled(WhiteButton)`
+  border: 1px solid rgb(224, 130, 37);
+  background-color: rgb(224, 130, 37);
+  color: white;
+
+  &:hover {
+    background-color: rgb(224, 130, 37);
+    border-color: rgb(224, 130, 37);
+  }
+`;
+
+export { WhiteButton, OrangeButton };
