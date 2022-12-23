@@ -9,4 +9,5 @@ import java.util.List;
 @Setter
 public class UserInfoResponseDto {
     private List<UserInfoQuestionListDto> questions;
+    private List<UserInfoAnswerListDto> answers;
 }
