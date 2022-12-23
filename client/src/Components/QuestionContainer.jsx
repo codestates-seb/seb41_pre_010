@@ -19,17 +19,20 @@ function QuestionContainer(props) {
         <span className="Main_Page_Question_Votes">Votes: {vote}</span>
         <span className="Main_Page_Question_Answers">Answers: {answers}</span>
       </div>
-      <div className="Question_Content">
-        <a className="Question_Title" href={`/questions/${questionId}`}>
+      <div className="Main_Page_Question_Content">
+        <a
+          className="Main_Page_Question_Title"
+          href={`/questions/${questionId}`}
+        >
           {title}
         </a>
-        <div className="Question_Body">{body}</div>
-        <div className="Question_Tag">
+        <div className="Main_Page_Question_Body">{body}</div>
+        <div className="Main_Page_Question_Tag">
           {tags.map((tag) => {
             return <span key={tag.tagId}>{tag.tagName}</span>;
           })}
         </div>
-        <span className="Question_UserInfo">
+        <span className="Main_Page_Question_UserInfo">
           <a href={`/users/${user.userId}/userprofile`}>{user.displayName}</a>
           {modifiedAt || createdAt}
         </span>

@@ -15,7 +15,6 @@
 .Questions_Container {
   width: 1024px;
   height: calc(100% - 338px);
-  background-color: lightblue;
 }
 
 .Questions_Title_Container {
@@ -35,12 +34,11 @@
   padding: 0 10px;
   width: 100%;
   height: 50px;
-  background-color: lightcoral;
+  border-bottom: 1px solid rgb(234, 236, 237);
 }
 
 .Questions_List_Container {
   width: 100%;
-  background-color: cyan;
 }
 
 .Questions_Pagination_Container {
