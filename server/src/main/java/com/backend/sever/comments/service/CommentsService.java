@@ -21,28 +21,35 @@ public class CommentsService {
         this.beanUtils = beanUtils;
     }
 
+    // 코멘트 만들기
+
     public Comments createCommnets(Comments comments){
         return commnetsRepository.save(comments);
     }
 
 
 
+    // 코멘트 찾기 던지기
     public Comments findComments (long commentId){
 
         return findVerifiedComments(commentId);
 
     }
 
+    // 코멘트 찾기
+
     public Comments findVerifiedComments (long commentId){
 
 
         Optional<Comments> comments = commnetsRepository.findById(commentId);
 
-        Comments findComments = comments.orElseThrow();
+        Comments findComments = comments.orElseThrow(() -> new RuntimeException()); //예외처리 작성 필요
 
         return findComments;
 
     }
+
+    // 업데이트
 
     public Comments updateComments(Comments comments){
 
@@ -51,6 +58,14 @@ public class CommentsService {
         Comments updateComments = beanUtils.copyNonNullProperties(comments, findComments);
 
         return commnetsRepository.save(updateComments);
+
+    }
+
+    public void deleteComments (long commentsId){
+
+        Comments findComments = findVerifiedComments(commentsId);
+
+        commnetsRepository.delete(findComments);
 
     }
 
