@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-const WhiteButton = styled.button`
+const WhiteButton = styled.a`
   width: ${(props) => props.width};
   height: ${(props) => (props.height ? props.height : "30px")};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => (props.color ? props.color : "black")};
   border: 1px solid rgb(234, 236, 237);
   border-radius: 3px;
+  padding: 5px;
+  text-align: center;
   background-color: white;
   cursor: pointer;
   box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset;
