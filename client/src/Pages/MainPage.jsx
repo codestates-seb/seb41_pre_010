@@ -21,9 +21,7 @@ function MainPage() {
         </div>
         <div className="Questions_List_Container">
           {dummyData.map((el) => {
-            const { questionId } = el;
-
-            return <QuestionContainer key={questionId} el={el} />;
+            return <QuestionContainer key={el.questionId} el={el} />;
           })}
         </div>
         <div className="Questions_Pagination_Container">
