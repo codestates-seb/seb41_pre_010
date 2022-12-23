@@ -1,16 +1,12 @@
 package com.backend.sever.user.mapper;
 
+import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.question.entity.Question;
-import com.backend.sever.user.dto.UserInfoQuestionListDto;
-import com.backend.sever.user.dto.UserInfoResponseDto;
-import com.backend.sever.user.dto.UserPutDto;
-import com.backend.sever.user.dto.UserResponseDto;
+import com.backend.sever.user.dto.*;
 import com.backend.sever.user.entity.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -20,16 +16,27 @@ public interface UserMapper {
 
     default UserInfoQuestionListDto questionToUserInfoQuestionListDto(Question question) {
         UserInfoQuestionListDto.UserInfoQuestionListDtoBuilder userInfoQuestionListDtoBuilder = UserInfoQuestionListDto.builder();
+
         userInfoQuestionListDtoBuilder.vote(question.getVotes().size());
         userInfoQuestionListDtoBuilder.questionId(question.getQuestionId());
         userInfoQuestionListDtoBuilder.title(question.getTitle());
-        userInfoQuestionListDtoBuilder.createdAt(DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(question.getCreatedAt()));
-        userInfoQuestionListDtoBuilder.modifiedAt(DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(question.getModifiedAt()));
+        userInfoQuestionListDtoBuilder.createdAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(question.getCreatedAt()));
+        userInfoQuestionListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(question.getModifiedAt()));
 
         return userInfoQuestionListDtoBuilder.build();
     }
 
-    UserInfoResponseDto userToUserInfoResponseDto(User user);
+    default UserInfoAnswerListDto answerToUserInfoAnswerListDto(Answer answer){
+        UserInfoAnswerListDto.UserInfoAnswerListDtoBuilder userInfoAnswerListDtoBuilder = UserInfoAnswerListDto.builder();
 
-    List<UserInfoResponseDto> questionToUserInfoResponseDtoList(List<Question> questions);
+        userInfoAnswerListDtoBuilder.vote(answer.getVotes().size());
+        userInfoAnswerListDtoBuilder.answerId(answer.getAnswerId());
+        userInfoAnswerListDtoBuilder.createAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getCreatedAt()));
+        userInfoAnswerListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getModifiedAt()));
+        userInfoAnswerListDtoBuilder.title(answer.getBody());
+
+        return userInfoAnswerListDtoBuilder.build();
+    }
+
+    UserInfoResponseDto userToUserInfoResponseDto(User user);
 }
