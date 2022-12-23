@@ -21,7 +21,7 @@ public class CommentsService {
         this.beanUtils = beanUtils;
     }
 
-    public Comments createCommnets(Comments comments){
+    public Comments createComments(Comments comments){
         return commnetsRepository.save(comments);
     }
 
@@ -38,7 +38,7 @@ public class CommentsService {
 
         Optional<Comments> comments = commnetsRepository.findById(commentId);
 
-        Comments findComments = comments.orElseThrow();
+        Comments findComments = comments.orElseThrow(() -> new RuntimeException());
 
         return findComments;
 
@@ -52,6 +52,11 @@ public class CommentsService {
 
         return commnetsRepository.save(updateComments);
 
+    }
+
+    public void deleteComments (long commentsId){
+        Comments findComments = findVerifiedComments(commentsId);
+        commnetsRepository.delete(findComments);
     }
 
 
