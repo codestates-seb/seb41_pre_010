@@ -36,4 +36,8 @@ public class AnswerService {
         return optionalAnswer.orElseThrow(() ->
                 new RuntimeException());
     }
+
+    public void deleteAnswer(long answerId) {
+        answerRepository.deleteById(answerId);
+    }
 }
