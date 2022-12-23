@@ -16,7 +16,6 @@ const MypageEdit = () => {
         <UserProfile />
         <UserInfoEdit />
       </main>
-      <footer className="Footer"></footer>
     </>
   );
 };

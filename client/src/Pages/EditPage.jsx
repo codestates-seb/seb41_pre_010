@@ -30,7 +30,6 @@ function EditPage() {
           <button className="Cancel_Edit">Cancel</button>
         </div>
       </div>
-      <footer className="Footer"></footer>
     </div>
   );
 }
