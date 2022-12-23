@@ -32,6 +32,11 @@ public class QuestionService {
         return questionRepository.save(updatedQuestion);
     }
 
+    public void deleteQuestion(long questionId) {
+        questionRepository.deleteById(questionId);
+
+    }
+
     private Question verifyQuestion(Optional<Question> optionalQuestion) {
         return optionalQuestion.orElseThrow(() -> new RuntimeException());
     }
