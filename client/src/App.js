@@ -13,7 +13,7 @@ function App() {
         <Route path="/questions" element={<MainPage />} />
         <Route path="/users/signup" element={<SignUp />} />
         <Route path="/users/islogin" element={<Login />} />
-        <Route path="/questions/0/edit" element={<EditPage />} />
+        <Route path="/questions/:questionId/edit" element={<EditPage />} />
         <Route path={"/users/mypage"} element={<Mypage />} />
       </Routes>
     </BrowserRouter>
