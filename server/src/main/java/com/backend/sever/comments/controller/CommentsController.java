@@ -26,16 +26,14 @@ public class CommentsController {
         this.commentsService = commentsService;
     }
 
-
     @PostMapping
     public ResponseEntity postComments (@RequestBody CommentsPostDto commentsPostDto){
 
-        Comments comments = commentsService.createCommnets(commentsMapper.commentsPostDtoToComments(commentsPostDto));
+        Comments comments = commentsService.createComments(commentsMapper.commentsPostDtoToComments(commentsPostDto));
         CommentsResponseDto commentsResponse = commentsMapper.commentsToCommentsResponseDto(comments);
 
         return new ResponseEntity(commentsResponse, HttpStatus.OK);
     }
-
 
 
     @GetMapping("/{comments-id}/edit")
@@ -61,11 +59,13 @@ public class CommentsController {
 
     }
 
+    @DeleteMapping("/{comments-id}")
+    public ResponseEntity deleteComments(@PathVariable ("comments-id") @Positive long commentsId){
 
+        commentsService.deleteComments(commentsId);
 
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
-
-
-
+    }
 
 }
