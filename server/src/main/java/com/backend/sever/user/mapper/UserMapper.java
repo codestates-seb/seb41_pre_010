@@ -1,10 +1,13 @@
 package com.backend.sever.user.mapper;
 
 import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.bookmark.entity.BookmarkAnswer;
+import com.backend.sever.bookmark.entity.BookmarkQuestion;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.user.dto.*;
 import com.backend.sever.user.entity.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.time.format.DateTimeFormatter;
 
@@ -37,6 +40,11 @@ public interface UserMapper {
 
         return userInfoAnswerListDtoBuilder.build();
     }
+    @Mapping(source = "question",target = "questions")
+    UserBookMarkQuestionListDto bookmarkQuestionToUserBookMarkQuestionListDto(BookmarkQuestion bookmarkQuestion);
+
+    @Mapping(source = "answer", target = "answers")
+    UserBookMarkAnswerListDto bookmarkAnswerToUserBookMarkAnswerListDto(BookmarkAnswer bookmarkAnswer);
 
     UserInfoResponseDto userToUserInfoResponseDto(User user);
 }
