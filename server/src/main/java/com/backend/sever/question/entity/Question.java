@@ -61,4 +61,8 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    public void addQuestionTag(QuestionTag questionTag) {
+        this.questionTags.add(questionTag);
+    }
 }
