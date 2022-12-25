@@ -8,13 +8,13 @@ import java.util.Optional;
 
 @Service
 public class TagService {
-    private TagRepository tagRepository;
+    private final TagRepository tagRepository;
 
     public TagService(TagRepository tagRepository) {
         this.tagRepository = tagRepository;
     }
 
-    public Tag createService(Tag tag) {
+    public Tag createTag(Tag tag) {
         verifyExistTag(tag);
 
         return tagRepository.save(tag);
