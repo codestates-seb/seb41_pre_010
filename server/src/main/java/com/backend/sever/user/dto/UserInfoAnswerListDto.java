@@ -6,6 +6,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class UserInfoAnswerListDto {
+    private long questionId;
     private long answerId;
     private String title;
     private String createAt;
