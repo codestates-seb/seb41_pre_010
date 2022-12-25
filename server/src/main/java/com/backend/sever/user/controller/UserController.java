@@ -1,5 +1,7 @@
 package com.backend.sever.user.controller;
 
+import com.backend.sever.jwt.utils.UriCreator;
+import com.backend.sever.user.dto.UserPostDto;
 import com.backend.sever.user.dto.UserPutDto;
 import com.backend.sever.user.dto.UserResponseDto;
 import com.backend.sever.user.entity.User;
@@ -8,6 +10,8 @@ import com.backend.sever.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -37,4 +41,20 @@ public class UserController {
 
         return new ResponseEntity(userResponse, HttpStatus.OK);
     }
+
+
+    @PostMapping("/login")
+
+    public ResponseEntity postUser(@RequestBody UserPostDto userPostDto){
+        User user = userMapper.userPostToUser(userPostDto);
+
+        User createdUser = userService.createUser(user);
+        URI location = UriCreator.createUri("/api/v1/users", createdUser.getUserId());
+
+        return ResponseEntity.created(location).build();
+
+    }
+
+
+
 }
