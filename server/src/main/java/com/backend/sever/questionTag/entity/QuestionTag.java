@@ -24,4 +24,12 @@ public class QuestionTag {
     @ManyToOne
     @JoinColumn(name = "TAG_ID")
     private Tag tag;
+
+    public void addQuestion(Question question) {
+        this.question = question;
+    }
+
+    public void addTag(Tag tag) {
+        this.tag = tag;
+    }
 }
