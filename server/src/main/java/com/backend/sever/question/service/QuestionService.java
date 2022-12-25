@@ -21,7 +21,7 @@ public class QuestionService {
     }
 
     public Question findQuestion(long questionId) {
-        Optional optionalQuestion = questionRepository.findById(questionId);
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         return verifyQuestion(optionalQuestion);
     }
 
