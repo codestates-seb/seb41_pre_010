@@ -1,6 +1,6 @@
 package com.backend.sever.answer.entity;
 
-import com.backend.sever.bookmark.entity.Bookmark;
+import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.comments.entity.Comments;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.user.entity.User;
@@ -40,7 +40,7 @@ public class Answer {
     private List<Comments> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
-    private List<Bookmark> bookmarks = new ArrayList<>();
+    private List<BookmarkAnswer> bookmarkAnswers = new ArrayList<>();
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
     private List<Vote> votes = new ArrayList<>();
