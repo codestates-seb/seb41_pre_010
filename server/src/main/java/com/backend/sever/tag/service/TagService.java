@@ -1,7 +1,7 @@
 package com.backend.sever.tag.service;
 
-import com.backend.sever.tag.dto.TagPostDto;
 import com.backend.sever.tag.entity.Tag;
+import com.backend.sever.tag.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +13,7 @@ public class TagService {
     }
 
     public Tag createService(Tag tag) {
-        return null;
+
+        return tagRepository.save(tag);
     }
 }
