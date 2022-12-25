@@ -37,6 +37,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    // 사용자 권한 테이블 생성용 테이블
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
