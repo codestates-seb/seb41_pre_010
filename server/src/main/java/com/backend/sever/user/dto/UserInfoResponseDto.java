@@ -10,4 +10,6 @@ import java.util.List;
 public class UserInfoResponseDto {
     private List<UserInfoQuestionListDto> questions;
     private List<UserInfoAnswerListDto> answers;
+    private List<UserBookMarkQuestionListDto> bookmarkQuestions;
+    private List<UserBookMarkAnswerListDto> bookmarkAnswers;
 }
