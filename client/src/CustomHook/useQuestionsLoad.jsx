@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function useQuestionsLoad(
-  tabName = "newest",
-  pageNumber = "1",
-  pageSizeNumber = "15"
-) {
+function useQuestionsLoad(tabName, pageNumber, pageSizeNumber) {
   const [questionsList, setQuestionsList] = useState([]);
 
   useEffect(() => {
@@ -22,7 +18,8 @@ function useQuestionsLoad(
     }
 
     getQuestionList(tabName, pageNumber, pageSizeNumber);
-  });
+  }, [tabName, pageNumber, pageSizeNumber]);
+
   return questionsList;
 }
 

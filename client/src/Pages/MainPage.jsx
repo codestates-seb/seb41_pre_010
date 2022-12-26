@@ -8,8 +8,17 @@ import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
 function MainPage() {
   const [curPage, setCurPage] = useState(1);
   const [curPerPage, setCurPerPage] = useState(15);
-  const [totalPage, setTotalPage] = useState(100);
-  useQuestionsLoad();
+  const [totalPage, setTotalPage] = useState(5);
+  const [curTab, setCurTab] = useState("newest");
+
+  // 질분 페이지 Load
+  useQuestionsLoad(curTab, curPage, curPerPage);
+
+  function changePerPage(e) {
+    console.log(e.target.textContent);
+    setCurPerPage(() => Number(e.target.textContent));
+    setCurPage(() => 1);
+  }
 
   return (
     <div className="MainPage_Container">
@@ -47,7 +56,8 @@ function MainPage() {
           <div className="Per_Page_Container">
             {[15, 30, 50].map((el) => {
               if (curPerPage === el) return <OrangeButton>{el}</OrangeButton>;
-              else return <WhiteButton>{el}</WhiteButton>;
+              else
+                return <WhiteButton onClick={changePerPage}>{el}</WhiteButton>;
             })}
             <span> Per Page</span>
           </div>
