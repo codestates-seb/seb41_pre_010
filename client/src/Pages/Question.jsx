@@ -22,15 +22,27 @@ export default function Question() {
     setAnswerIdx(idx);
   };
 
-  const commentValueHandler = (e) => {
-    setCommentValue(e.target.value);
-  };
-
-  const postAnswer = (questionId, userId, body) => {
+  const addAnswer = (questionId, userId, body) => {
     axios
       .post("api/v1/answers", {
         questionId: `${questionId}`,
         userId: `${userId}`,
+        body: `${body}`,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const postComment = (questionId, userId, answerId, body) => {
+    axios
+      .post("api/v1/answers", {
+        questionId: `${questionId}`,
+        userId: `${userId}`,
+        answerId: `${answerId}`,
         body: `${body}`,
       })
       .then((res) => {
@@ -186,7 +198,27 @@ export default function Question() {
                           {/* 추후 TextBox예정 */}
                           {answerIdx === index ? (
                             <div>
-                              <Input width={"80%"} type={"text"} />
+                              <Input
+                                width={"80%"}
+                                type={"text"}
+                                defaultValue={commentValue}
+                                onchange={(e) =>
+                                  setCommentValue(e.target.value)
+                                }
+                              />
+                              <BlueButton
+                                onClick={() =>
+                                  postComment(
+                                    filterData[0].questionId,
+                                    //현재 로그인 되어있는 user의 ID
+                                    filterData[0].user.userId,
+                                    el.answerId,
+                                    commentValue
+                                  )
+                                }
+                              >
+                                Add Comment
+                              </BlueButton>
                             </div>
                           ) : null}
                           <button
@@ -207,12 +239,14 @@ export default function Question() {
               <div>Answer작성창 부분</div>
               <div className="Submit_Clear_Container">
                 <BlueButton
-                  onClick={()=> postAnswer(
-                    filterData[0].questionId,
-                     //현재 글의 user의 정보가 아닌 작성자의 user Id를 넣을것
-                    filterData[0].user.userId,
-                    filterData[0].body
-                  )}
+                  onClick={() =>
+                    addAnswer(
+                      filterData[0].questionId,
+                      //현재 글의 user의 정보가 아닌 작성자의 user Id를 넣을것
+                      filterData[0].user.userId,
+                      filterData[0].body
+                    )
+                  }
                 >
                   Post Yout Answer
                 </BlueButton>
