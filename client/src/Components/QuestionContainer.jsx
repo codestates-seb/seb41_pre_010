@@ -1,6 +1,7 @@
 import React from "react";
 import "./Styles/QuestionContainer.css";
 import { TagButton } from "./Button";
+import { Link } from "react-router-dom";
 
 function QuestionContainer(props) {
   const {
@@ -25,12 +26,12 @@ function QuestionContainer(props) {
         </span>
       </div>
       <div className="Main_Page_Question_Content">
-        <a
+        <Link
           className="Main_Page_Question_Title"
-          href={`/questions/${questionId}`}
+          to={`/questions/${questionId}`}
         >
           {title}
-        </a>
+        </Link>
         <div className="Main_Page_Question_Body">{body}</div>
         <div className="Main_Page_Question_Tag">
           {tags.map((tag) => {
@@ -42,13 +43,22 @@ function QuestionContainer(props) {
           })}
         </div>
         <div className="Main_Page_Question_UserInfo">
-          <img src={user.profileImage} alt="User Profile"></img>
-          <a
-            href={`/users/${user.userId}/userprofile`}
+          <Link
+            to={`/users/${user.userId}/userprofile`}
+            className="Main_Page_Question_User_Profile_Img"
+          >
+            <img
+              src={user.profileImage}
+              alt="User Profile Img"
+              className="Main_Page_Question_User_Profile_Img"
+            ></img>
+          </Link>
+          <Link
+            to={`/users/${user.userId}/userprofile`}
             className="Main_Page_Question_UserName"
           >
             {user.displayName}
-          </a>
+          </Link>
           <span>{modifiedAt || createdAt}</span>
         </div>
       </div>
