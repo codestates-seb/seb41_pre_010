@@ -3,7 +3,7 @@ import axios from "axios";
 import { dummyData } from "../DummyData";
 
 function useQuestionsLoad(tabName, pageNumber, pageSizeNumber) {
-  const [questionsList, setQuestionsList] = useState([]);
+  const [questionsList, setQuestionsList] = useState(dummyData);
   const [totalPages, setTotalPage] = useState(5);
   const [totalQuestions, setTotalQuestions] = useState(23338049);
 
@@ -19,7 +19,6 @@ function useQuestionsLoad(tabName, pageNumber, pageSizeNumber) {
         setTotalQuestions(() => data.totalQuestions);
       } catch (err) {
         console.log("failed to fetch!");
-        setQuestionsList(() => dummyData);
       }
     }
 

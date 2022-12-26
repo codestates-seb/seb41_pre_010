@@ -51,7 +51,12 @@ function MainPage() {
               const { enName, krName } = el;
               if (curTab === enName)
                 return (
-                  <OrangeButton width="60px" fontSize="0.8rem" id={enName}>
+                  <OrangeButton
+                    width="60px"
+                    fontSize="0.8rem"
+                    id={enName}
+                    key={enName}
+                  >
                     {krName}
                   </OrangeButton>
                 );
@@ -62,6 +67,7 @@ function MainPage() {
                     fontSize="0.8rem"
                     onClick={changeCurTab}
                     id={enName}
+                    key={enName}
                   >
                     {krName}
                   </WhiteButton>
@@ -80,18 +86,26 @@ function MainPage() {
               .fill(0)
               .map((_, idx) => {
                 idx += 1;
-                if (idx === curPage) return <OrangeButton>{idx}</OrangeButton>;
+                if (idx === curPage)
+                  return <OrangeButton key={idx}>{idx}</OrangeButton>;
                 else
                   return (
-                    <WhiteButton onClick={changeCurPage}>{idx}</WhiteButton>
+                    <WhiteButton onClick={changeCurPage} key={idx}>
+                      {idx}
+                    </WhiteButton>
                   );
               })}
           </div>
           <div className="Per_Page_Container">
             {PERPAGEARR.map((el) => {
-              if (curPerPage === el) return <OrangeButton>{el}</OrangeButton>;
+              if (curPerPage === el)
+                return <OrangeButton key={el}>{el}</OrangeButton>;
               else
-                return <WhiteButton onClick={changePerPage}>{el}</WhiteButton>;
+                return (
+                  <WhiteButton onClick={changePerPage} key={el}>
+                    {el}
+                  </WhiteButton>
+                );
             })}
             <span> Per Page</span>
           </div>
