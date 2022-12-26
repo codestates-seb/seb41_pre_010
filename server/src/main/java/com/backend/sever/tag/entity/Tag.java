@@ -18,13 +18,17 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
 
+    @ElementCollection
     @Column(nullable = false, unique = true, updatable = false, length = 50)
-    private String tagName;
+    private List<String> tagNames;
 
     @OneToMany(mappedBy = "tag", cascade = CascadeType.PERSIST)
     private List<QuestionTag> questionTags = new ArrayList<>();
 
     public void addQuestionTag(QuestionTag questionTag) {
         this.questionTags.add(questionTag);
+        if (questionTag.getTag() != this) {
+            questionTag.addTag(this);
+        }
     }
 }
