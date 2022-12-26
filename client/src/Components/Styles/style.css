@@ -1,0 +1,19 @@
+.rti--container{
+  max-width: 70%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.rti--tag {
+  background: hsl(205,46%,92%);
+  color: hsl(205,47%,42%);
+}
+
+.rti--tag button:hover {
+  color: hsl(205,47%,42%);
+}
+
+.rti--input{
+  place-content: "태그를 입력하세요";
+}
