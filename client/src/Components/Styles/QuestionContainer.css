@@ -28,6 +28,10 @@
   text-decoration: none;
 }
 
+.Main_Page_Question_Title:visited {
+  color: rgb(0, 116, 204);
+}
+
 .Main_Page_Question_Title:hover {
   color: rgb(10, 149, 255);
 }
@@ -38,5 +42,28 @@
 }
 
 .Main_Page_Question_UserInfo {
-  text-align: right;
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Main_Page_Question_UserInfo > img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.Main_Page_Question_UserName {
+  color: rgb(0, 116, 204);
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.Main_Page_Question_UserName:visited {
+  color: rgb(0, 116, 204);
+}
+
+.Main_Page_Question_UserName:hover {
+  color: rgb(10, 149, 255);
 }

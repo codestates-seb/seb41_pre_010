@@ -42,8 +42,13 @@ function QuestionContainer(props) {
           })}
         </div>
         <div className="Main_Page_Question_UserInfo">
-          <img></img>
-          <a href={`/users/${user.userId}/userprofile`}>{user.displayName}</a>
+          <img src={user.profileImage} alt="User Profile"></img>
+          <a
+            href={`/users/${user.userId}/userprofile`}
+            className="Main_Page_Question_UserName"
+          >
+            {user.displayName}
+          </a>
           <span>{modifiedAt || createdAt}</span>
         </div>
       </div>

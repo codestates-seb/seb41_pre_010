@@ -4,7 +4,8 @@ export const dummyData = [
     user: {
       userId: 0, //Number
       displayName: "Kimcoding", //String
-      profileImage: "testURL", //String
+      profileImage:
+        "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
@@ -24,7 +25,8 @@ export const dummyData = [
     user: {
       userId: 0, //Number
       displayName: "LeeHacker", //String
-      profileImage: "testURL", //String
+      profileImage:
+        "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
@@ -44,7 +46,8 @@ export const dummyData = [
     user: {
       userId: 0, //Number
       displayName: "ABCDE", //String
-      profileImage: "testURL", //String
+      profileImage:
+        "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
@@ -64,7 +67,8 @@ export const dummyData = [
     user: {
       userId: 0, //Number
       displayName: "HIHI", //String
-      profileImage: "testURL", //String
+      profileImage:
+        "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
@@ -84,7 +88,8 @@ export const dummyData = [
     user: {
       userId: 0, //Number
       displayName: "Bye", //String
-      profileImage: "testURL", //String
+      profileImage:
+        "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
