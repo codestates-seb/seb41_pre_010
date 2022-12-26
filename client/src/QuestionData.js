@@ -44,7 +44,7 @@ export const questionDummyData = [
             modifiedAt: "2022/12/26/11:55", //String
           },
           {
-            commentId: 0, //Number
+            commentId: 1, //Number
             user: {
               userId: 255, //Number
               displayName: "유리", //String
@@ -54,7 +54,7 @@ export const questionDummyData = [
             modifiedAt: "2022/12/26/11:55", //String
           },
           {
-            commentId: 0, //Number
+            commentId: 2, //Number
             user: {
               userId: 255, //Number
               displayName: "유리", //String
@@ -75,7 +75,7 @@ export const questionDummyData = [
         answerId: 2, //Number
         user: {
           userId: 245, //Number
-          displayName: "유병재", //String
+          displayName: "하늬", //String
           profileImage: "https://yt3.ggpht.com/ytc/AMLnZu-nsGDNtj2Kn2SthH20NUPJLILrahbH725dTyCGBw=s900-c-k-c0x00ffffff-no-rj", //String
         },
         comments: [
@@ -90,7 +90,7 @@ export const questionDummyData = [
             modifiedAt: "2022/12/26/11:55", //String
           },
           {
-            commentId: 0, //Number
+            commentId: 1, //Number
             user: {
               userId: 255, //Number
               displayName: "유리", //String
@@ -100,7 +100,7 @@ export const questionDummyData = [
             modifiedAt: "2022/12/26/11:55", //String
           },
           {
-            commentId: 0, //Number
+            commentId: 2, //Number
             user: {
               userId: 255, //Number
               displayName: "유리", //String

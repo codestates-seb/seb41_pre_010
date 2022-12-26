@@ -67,7 +67,8 @@ a{
 }
 
 .Main_Text_Content{
-  width: 86%;
+  margin-left: 20px;
+  width: 90%;
   background-color: white;
 }
 
@@ -106,7 +107,7 @@ margin-right: 70px;
 
 .Contour_Line{
   margin-top: 20px;
-  border-bottom: 2px solid hsl(210,8%,90%);
+  border-bottom: 1px solid hsl(210,8%,90%);
 }
 
 .Comment_Contour_Line{
@@ -118,9 +119,18 @@ margin-right: 70px;
   margin-top: 15px;
 }
 
+.Comment_Contents{
+  display: flex;
+  border-bottom: 1px solid hsl(210,8%,90%);
+  width: 93%;
+  align-items: center;
+  padding: 3px 20px;
+}
+
 .Comment_Container{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Add_Comment{

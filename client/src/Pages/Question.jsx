@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./Styles/Question.css";
-import { TagButton } from "../Components/Tag";
+import { BlueButton, TagButton } from "../Components/button";
+import Input from "../Components/Input";
 import { questionDummyData } from "../QuestionData";
 
 const StyledSpan = styled.span`
@@ -39,7 +40,12 @@ export default function Question() {
                 <h1>{filterData[0].title}</h1>
               </div>
               <div className="Ask_Question_Button_Container">
-                <button className="Ask_Question_Button">Ask Question</button>
+                <BlueButton
+                  href={`/questions/:${filterData[0].questionId}/edit`}
+                  className="Ask_Question_Button"
+                >
+                  Ask Question
+                </BlueButton>
                 <div className="Wright_Data_Info">
                   <StyledSpan fontsize={"14px"}>
                     작성: {filterData[0].createdAt}
@@ -73,7 +79,7 @@ export default function Question() {
                   return el.tags.map((tags, index) => {
                     return (
                       <div key={index} className="Tags_Element">
-                        <TagButton>{tags.tagName}</TagButton>
+                        <TagButton fontSize={"12px"}>{tags.tagName}</TagButton>
                       </div>
                     );
                   });
@@ -115,7 +121,11 @@ export default function Question() {
                         <div className="Answer_User_Profil_Container">
                           <div className="Answer_Contents">
                             <div className="Answer_CreateAt">
-                              <span>{el.createdAt}</span>
+                              {el.modifiedAt ? (
+                                <span>수정:{el.modifiedAt}</span>
+                              ) : (
+                                <span>작성:{el.createdAt}</span>
+                              )}
                               <span>✍🏻</span>
                             </div>
                             <div>
@@ -128,17 +138,16 @@ export default function Question() {
                               </a>
                             </div>
                           </div>
-                          {/* <div className="Answer_ModifyAt"></div> 조건부 랜더링예정 */}
                         </div>
+                        <div className="Contour_Line" />
+                        <div className="Comment_Container">
                         {el.comments.length !== 0
                           ? el.comments.map((comment) => {
-                              console.log(comment.user);
                               return (
                                 <div
                                   key={comment.commentId}
-                                  className="Comment_Container"
+                                  className="Comment_Contents"
                                 >
-                                  <div className="Comment_Contour_Line">
                                     <span>{comment.body} -</span>
                                     <div>
                                       <a
@@ -149,13 +158,17 @@ export default function Question() {
                                       <span>{comment.createdAt}</span>
                                     </div>
                                   </div>
-                                </div>
                               );
                             })
                           : null}
+                        </div>
                         <div className="Add_Comment">
                           {/* 추후 TextBox예정 */}
-                          {commentClick ? null : (
+                          {commentClick ? (
+                            <div>
+                              <Input width={"80%"} type={"text"}/>
+                            </div>
+                          ) : (
                             <button
                               className="Comment_Add_Button"
                               onClick={commentToggle}
@@ -174,7 +187,7 @@ export default function Question() {
               <h2>Your Answer</h2>
               <div>Answer작성창 부분</div>
               <div className="Submit_Clear_Container">
-                <button>Post Yout Answer</button>
+                <BlueButton>Post Yout Answer</BlueButton>
               </div>
             </div>
           </div>
