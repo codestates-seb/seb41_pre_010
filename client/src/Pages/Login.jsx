@@ -1,12 +1,9 @@
-import React from "react"
-import "./Styles/Login.css"
+import React from "react";
+import "./Styles/Login.css";
 
-
-export default function Login(){
-
-  return(
+export default function Login() {
+  return (
     <>
-      <header className="Header"></header>
       <main>
         <div className="Login_Container">
           <div className="Login_Content">
@@ -24,11 +21,9 @@ export default function Login(){
               <button className="Login_Button">Log In</button>
             </div>
           </div>
-          <span className="No_Account_Message">
-            계정이 없으신가요? Sign Up
-          </span>
+          <span className="No_Account_Message">계정이 없으신가요? Sign Up</span>
         </div>
       </main>
     </>
-  )
+  );
 }

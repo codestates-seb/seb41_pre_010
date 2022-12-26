@@ -6,7 +6,6 @@ import MainPageQuestion from "../Components/MainPageQuestion";
 function MainPage() {
   return (
     <div className="MainPage_Container">
-      <header className="Header"></header>
       <main className="Questions_Container">
         <div className="Questions_Title_Container">
           <h1>모든 질문</h1>

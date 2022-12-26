@@ -3,7 +3,7 @@ import "./Styles/QuestionContainer.css";
 import { TagButton } from "./Button";
 import { Link } from "react-router-dom";
 
-function QuestionContainer(props) {
+function MainPageQuestion(props) {
   const {
     questionId,
     answers,
@@ -68,4 +68,4 @@ function QuestionContainer(props) {
   );
 }
 
-export default QuestionContainer;
+export default MainPageQuestion;
