@@ -30,7 +30,7 @@ export const dummyData = [
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
     createdAt: "2022/12/23 13:22", //String
     modifiedAt: null, //String
-    vote: 0, //Number
+    vote: 1, //Number
     answers: 0, //Number
     tags: [
       {
@@ -49,7 +49,8 @@ export const dummyData = [
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
     createdAt: "2022/12/23 13:22", //String
-    modifiedAt: null, //String    vote: 0, //Number
+    modifiedAt: null, //String
+    vote: 0, //Number
     answers: 0, //Number
     tags: [
       {
@@ -68,8 +69,9 @@ export const dummyData = [
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
     createdAt: "2022/12/23 13:22", //String
-    modifiedAt: null, //String    vote: 0, //Number
-    answers: 0, //Number
+    modifiedAt: null, //String
+    vote: 0, //Number
+    answers: 5, //Number
     tags: [
       {
         tagId: 0, //Number
@@ -87,8 +89,9 @@ export const dummyData = [
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
     body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String    createdAt: "Year/Month/Day/Hour/Minute", //String
     createdAt: "2022/12/23 13:22", //String
-    modifiedAt: "2022/12/31 13:22", //String    vote: 0, //Number
-    answers: 0, //Number
+    modifiedAt: "2022/12/31 13:22", //String
+    vote: 4, //Number
+    answers: 1, //Number
     tags: [
       {
         tagId: 0, //Number

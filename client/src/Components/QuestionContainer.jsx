@@ -17,8 +17,12 @@ function QuestionContainer(props) {
   return (
     <div className="Main_Page_Question_Container">
       <div className="Main_Page_Question_Info">
-        <span className="Main_Page_Question_Votes">Votes: {vote}</span>
-        <span className="Main_Page_Question_Answers">Answers: {answers}</span>
+        <span className="Main_Page_Question_Votes">
+          {vote} {vote === 1 ? "vote" : "votes"}
+        </span>
+        <span className="Main_Page_Question_Answers">
+          {answers} {answers === 1 ? "answer" : "answers"}
+        </span>
       </div>
       <div className="Main_Page_Question_Content">
         <a

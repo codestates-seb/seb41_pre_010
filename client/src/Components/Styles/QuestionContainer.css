@@ -12,6 +12,7 @@
   justify-content: space-evenly;
   width: 90px;
   margin-right: 20px;
+  font-size: 0.8rem;
 }
 
 .Main_Page_Question_Content {
@@ -32,7 +33,7 @@
 }
 
 .Main_Page_Question_Body {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: rgb(59, 64, 69);
 }
 
