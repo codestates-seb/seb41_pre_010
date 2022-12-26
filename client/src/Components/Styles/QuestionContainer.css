@@ -1,0 +1,69 @@
+.Main_Page_Question_Container {
+  display: flex;
+  width: 100%;
+  height: 125px;
+  padding: 15px;
+  border-bottom: 1px solid rgb(234, 236, 237);
+}
+
+.Main_Page_Question_Info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 90px;
+  margin-right: 20px;
+  font-size: 0.8rem;
+}
+
+.Main_Page_Question_Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: calc(1024px - 110px);
+}
+
+.Main_Page_Question_Title {
+  color: rgb(0, 116, 204);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.Main_Page_Question_Title:visited {
+  color: rgb(0, 116, 204);
+}
+
+.Main_Page_Question_Title:hover {
+  color: rgb(10, 149, 255);
+}
+
+.Main_Page_Question_Body {
+  font-size: 0.8rem;
+  color: rgb(59, 64, 69);
+}
+
+.Main_Page_Question_UserInfo {
+  display: flex;
+  font-size: 0.8rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Main_Page_Question_User_Profile_Img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.Main_Page_Question_UserName {
+  color: rgb(0, 116, 204);
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+.Main_Page_Question_UserName:visited {
+  color: rgb(0, 116, 204);
+}
+
+.Main_Page_Question_UserName:hover {
+  color: rgb(10, 149, 255);
+}

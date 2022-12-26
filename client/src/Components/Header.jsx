@@ -1,7 +1,7 @@
 import "./Styles/Header.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { OrangeButton } from "./button";
+import { OrangeButton } from "./Button";
 
 const dummyDataProfile = {
   userId: 0,

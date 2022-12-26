@@ -1,6 +1,7 @@
 import React from "react";
 import "./Styles/MainPage.css";
 import { dummyData } from "../DummyData";
+import MainPageQuestion from "../Components/MainPageQuestion";
 
 function MainPage() {
   return (
@@ -19,24 +20,7 @@ function MainPage() {
         </div>
         <div className="Questions_List_Container">
           {dummyData.map((el) => {
-            return (
-              <div className="Main_Page_Question_Container" key={el.questionId}>
-                <div className="Main_Page_Question_Info">
-                  <span className="Main_Page_Question_Votes">
-                    Votes: {el.vote}
-                  </span>
-                  <span className="Main_Page_Question_Answers">
-                    Answers: {el.answers}
-                  </span>
-                </div>
-                <div className="Question_Content">
-                  <div className="Question_Title">{el.title}</div>
-                  <div className="Question_Bddy">{el.body}</div>
-                  <div className="Question_Tag">{el.tags[0].tagName}</div>
-                  <div className="Question_UserInfo">{el.user.displayName}</div>
-                </div>
-              </div>
-            );
+            return <MainPageQuestion key={el.questionId} el={el} />;
           })}
         </div>
         <div className="Questions_Pagination_Container">
