@@ -18,9 +18,8 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
 
-    @ElementCollection
     @Column(nullable = false, unique = true, updatable = false, length = 50)
-    private List<String> tagNames;
+    private String tagName;
 
     @OneToMany(mappedBy = "tag", cascade = CascadeType.PERSIST)
     private List<QuestionTag> questionTags = new ArrayList<>();
