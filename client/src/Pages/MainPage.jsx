@@ -49,29 +49,26 @@ function MainPage() {
           <div className="Questions_Filter_Container">
             {FILTERARR.map((el) => {
               const { enName, krName } = el;
-              if (curTab === enName)
-                return (
-                  <OrangeButton
-                    width="60px"
-                    fontSize="0.8rem"
-                    id={enName}
-                    key={enName}
-                  >
-                    {krName}
-                  </OrangeButton>
-                );
-              else
-                return (
-                  <WhiteButton
-                    width="60px"
-                    fontSize="0.8rem"
-                    onClick={changeCurTab}
-                    id={enName}
-                    key={enName}
-                  >
-                    {krName}
-                  </WhiteButton>
-                );
+              return curTab === enName ? (
+                <OrangeButton
+                  width="60px"
+                  fontSize="0.8rem"
+                  id={enName}
+                  key={enName}
+                >
+                  {krName}
+                </OrangeButton>
+              ) : (
+                <WhiteButton
+                  width="60px"
+                  fontSize="0.8rem"
+                  onClick={changeCurTab}
+                  id={enName}
+                  key={enName}
+                >
+                  {krName}
+                </WhiteButton>
+              );
             })}
           </div>
         </div>
@@ -85,27 +82,24 @@ function MainPage() {
             {Array(totalPages)
               .fill(0)
               .map((_, idx) => {
-                idx += 1;
-                if (idx === curPage)
-                  return <OrangeButton key={idx}>{idx}</OrangeButton>;
-                else
-                  return (
-                    <WhiteButton onClick={changeCurPage} key={idx}>
-                      {idx}
-                    </WhiteButton>
-                  );
+                return idx + 1 === curPage ? (
+                  <OrangeButton key={idx + 1}>{idx + 1}</OrangeButton>
+                ) : (
+                  <WhiteButton onClick={changeCurPage} key={idx + 1}>
+                    {idx + 1}
+                  </WhiteButton>
+                );
               })}
           </div>
           <div className="Per_Page_Container">
             {PERPAGEARR.map((el) => {
-              if (curPerPage === el)
-                return <OrangeButton key={el}>{el}</OrangeButton>;
-              else
-                return (
-                  <WhiteButton onClick={changePerPage} key={el}>
-                    {el}
-                  </WhiteButton>
-                );
+              return curPerPage === el ? (
+                <OrangeButton key={el}>{el}</OrangeButton>
+              ) : (
+                <WhiteButton onClick={changePerPage} key={el}>
+                  {el}
+                </WhiteButton>
+              );
             })}
             <span> Per Page</span>
           </div>
