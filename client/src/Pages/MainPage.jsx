@@ -1,7 +1,7 @@
 import React from "react";
 import "./Styles/MainPage.css";
 import { dummyData } from "../DummyData";
-import QuestionContainer from "../Components/QuestionContainer";
+import MainPageQuestion from "../Components/MainPageQuestion";
 
 function MainPage() {
   return (
@@ -21,7 +21,7 @@ function MainPage() {
         </div>
         <div className="Questions_List_Container">
           {dummyData.map((el) => {
-            return <QuestionContainer key={el.questionId} el={el} />;
+            return <MainPageQuestion key={el.questionId} el={el} />;
           })}
         </div>
         <div className="Questions_Pagination_Container">
