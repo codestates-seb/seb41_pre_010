@@ -66,4 +66,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Question> questions = new ArrayList<>();
+
+
+
 }

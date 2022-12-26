@@ -52,14 +52,14 @@ public class UserJTWService {
 //    }
 
 
-    private  void verifyExistsEmail (String email){
-
-        Optional<User> user = userRepository.findByEmail(email);
-        if(user.isPresent()){
-            throw  new RuntimeException(); // 비즈니스 로직 예외 던지기로 수정 예정
-
-        }
-    }
+//    private  void verifyExistsEmail (String email){
+//
+//        Optional<User> user = userRepository.findByEmail(email);
+//        if(user.isPresent()){
+//            throw  new RuntimeException(); // 비즈니스 로직 예외 던지기로 수정 예정
+//
+//        }
+//    }
 
 
 }

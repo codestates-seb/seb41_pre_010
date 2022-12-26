@@ -82,7 +82,7 @@ public class UserService {
         return savedUser;
     }
 
-    private  void verifyExistsEmail (String email){
+    private void verifyExistsEmail (String email){
 
         Optional<User> user = userRepository.findByEmail(email);
         if(user.isPresent()){

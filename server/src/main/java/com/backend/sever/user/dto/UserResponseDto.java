@@ -10,4 +10,6 @@ public class UserResponseDto {
     private String profileImage;
     private String displayName;
     private String title;
+
+
 }

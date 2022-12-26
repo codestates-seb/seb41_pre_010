@@ -1,5 +1,7 @@
 package com.backend.sever.jwt.configration;
 
+import com.backend.sever.jwt.auth.handler.UserAuthenticationFailureHandler;
+import com.backend.sever.jwt.auth.handler.UserAuthenticationSuccessHandler;
 import com.backend.sever.jwt.filter.JwtAuthenticationFilter;
 import com.backend.sever.jwt.token.JwtTokenizer;
 import org.springframework.context.annotation.Bean;
@@ -67,6 +69,9 @@ public class SecurityConfiguration {
 
             JwtAuthenticationFilter jwtAuthenticationFilter =new JwtAuthenticationFilter(authenticationManager,jwtTokenizer);
             jwtAuthenticationFilter.setFilterProcessesUrl("/api/v1/users/login");
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSuccessHandler());
+            jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
+
 
             builder.addFilter(jwtAuthenticationFilter);
         }
