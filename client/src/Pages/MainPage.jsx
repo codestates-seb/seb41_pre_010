@@ -8,6 +8,11 @@ function MainPage() {
   const [curPage, setCurPage] = useState(1);
   const [curPerPage, setCurPerPage] = useState(15);
   const [curTab, setCurTab] = useState("newest");
+  const FILTERARR = [
+    { enName: "newest", krName: "최신순" },
+    { enName: "votes", krName: "추천순" },
+  ];
+  const PERPAGEARR = [15, 30, 50];
 
   // 질분 페이지 Load
   const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
@@ -16,13 +21,16 @@ function MainPage() {
     curPerPage
   );
 
+  function changeCurTab(e) {
+    setCurTab(() => e.target.id);
+    setCurPage(() => 1);
+  }
+
   function changeCurPage(e) {
-    console.log(e.target.textContent);
     setCurPage(() => Number(e.target.textContent));
   }
 
   function changePerPage(e) {
-    console.log(e.target.textContent);
     setCurPerPage(() => Number(e.target.textContent));
     setCurPage(() => 1);
   }
@@ -39,12 +47,26 @@ function MainPage() {
         <div className="Questions_SubTitle_Container">
           <h3>{totalQuestions.toLocaleString("ko-KR")} Questions</h3>
           <div className="Questions_Filter_Container">
-            <WhiteButton width="60px" fontSize="0.8rem">
-              최신순
-            </WhiteButton>
-            <WhiteButton width="60px" fontSize="0.8rem">
-              추천순
-            </WhiteButton>
+            {FILTERARR.map((el) => {
+              const { enName, krName } = el;
+              if (curTab === enName)
+                return (
+                  <OrangeButton width="60px" fontSize="0.8rem" id={enName}>
+                    {krName}
+                  </OrangeButton>
+                );
+              else
+                return (
+                  <WhiteButton
+                    width="60px"
+                    fontSize="0.8rem"
+                    onClick={changeCurTab}
+                    id={enName}
+                  >
+                    {krName}
+                  </WhiteButton>
+                );
+            })}
           </div>
         </div>
         <div className="Questions_List_Container">
@@ -66,7 +88,7 @@ function MainPage() {
               })}
           </div>
           <div className="Per_Page_Container">
-            {[15, 30, 50].map((el) => {
+            {PERPAGEARR.map((el) => {
               if (curPerPage === el) return <OrangeButton>{el}</OrangeButton>;
               else
                 return <WhiteButton onClick={changePerPage}>{el}</WhiteButton>;
