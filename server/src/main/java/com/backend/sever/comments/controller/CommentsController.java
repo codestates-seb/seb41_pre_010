@@ -11,12 +11,12 @@ import com.backend.sever.comments.repository.CommnetsRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.constraints.Positive;
 
 @RestController
 @RequestMapping("api/v1/comments")
 public class CommentsController {
-
     private final CommentsMapper commentsMapper;
 
     private final CommentsService commentsService;
@@ -27,7 +27,7 @@ public class CommentsController {
     }
 
     @PostMapping
-    public ResponseEntity postComments (@RequestBody CommentsPostDto commentsPostDto){
+    public ResponseEntity postComments(@RequestBody CommentsPostDto commentsPostDto) {
 
         Comments comments = commentsService.createComments(commentsMapper.commentsPostDtoToComments(commentsPostDto));
         CommentsResponseDto commentsResponse = commentsMapper.commentsToCommentsResponseDto(comments);
@@ -37,36 +37,28 @@ public class CommentsController {
 
 
     @GetMapping("/{comments-id}/edit")
-    public  ResponseEntity getComments(
-            @PathVariable("comments-id") @Positive long commentsId){
+    public ResponseEntity getComments(@PathVariable("comments-id") @Positive long commentsId) {
         CommentsResponseDto commentsResponse = commentsMapper.commentsToCommentsResponseDto(commentsService.findComments(commentsId));
 
-        return new ResponseEntity<>(commentsResponse , HttpStatus.OK);
-
+        return new ResponseEntity<>(commentsResponse, HttpStatus.OK);
     }
 
     @PutMapping("/{comments-id}")
-    public ResponseEntity putComments(
-            @RequestBody CommentsPutDto commentsPutDto,
-            @PathVariable("comments-id") long commentsId){
-
+    public ResponseEntity putComments(@RequestBody CommentsPutDto commentsPutDto,
+                                      @PathVariable("comments-id") long commentsId) {
         commentsPutDto.setCommentsId(commentsId);
+
         Comments comments = commentsService.updateComments(commentsMapper.commentsPutDtoComments(commentsPutDto));
 
         CommentsResponseDto commentsResponseDto = commentsMapper.commentsToCommentsResponseDto(comments);
 
-        return new ResponseEntity(commentsResponseDto , HttpStatus.OK);
-
+        return new ResponseEntity(commentsResponseDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{comments-id}")
-    public ResponseEntity deleteComments(@PathVariable ("comments-id") @Positive long commentsId){
-
+    public ResponseEntity deleteComments(@PathVariable("comments-id") @Positive long commentsId) {
         commentsService.deleteComments(commentsId);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
     }
-
-
 }
