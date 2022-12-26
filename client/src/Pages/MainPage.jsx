@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Styles/MainPage.css";
-import { dummyData } from "../DummyData";
 import { BlueButton, WhiteButton, OrangeButton } from "../Components/Button";
 import MainPageQuestion from "../Components/MainPageQuestion";
 import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
@@ -8,11 +7,14 @@ import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
 function MainPage() {
   const [curPage, setCurPage] = useState(1);
   const [curPerPage, setCurPerPage] = useState(15);
-  const [totalPage, setTotalPage] = useState(5);
   const [curTab, setCurTab] = useState("newest");
 
   // 질분 페이지 Load
-  useQuestionsLoad(curTab, curPage, curPerPage);
+  const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
+    curTab,
+    curPage,
+    curPerPage
+  );
 
   function changePerPage(e) {
     console.log(e.target.textContent);
@@ -30,7 +32,7 @@ function MainPage() {
           </BlueButton>
         </div>
         <div className="Questions_SubTitle_Container">
-          <h3>23,338,049 Questions</h3>
+          <h3>{totalQuestions.toLocaleString("ko-KR")} Questions</h3>
           <div className="Questions_Filter_Container">
             <WhiteButton width="60px" fontSize="0.8rem">
               최신순
@@ -41,7 +43,7 @@ function MainPage() {
           </div>
         </div>
         <div className="Questions_List_Container">
-          {dummyData.map((el) => {
+          {questionsList.map((el) => {
             return <MainPageQuestion key={el.questionId} el={el} />;
           })}
         </div>
