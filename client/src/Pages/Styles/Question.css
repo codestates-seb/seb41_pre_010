@@ -165,3 +165,7 @@ margin-right: 70px;
   justify-content: flex-end;
   margin-top: 30px;
 }
+
+.None_Activate{
+  display: none;
+}

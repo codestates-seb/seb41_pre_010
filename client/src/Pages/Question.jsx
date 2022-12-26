@@ -14,18 +14,22 @@ const StyledSpan = styled.span`
 export default function Question() {
   //추후 useState기본값 null처리
   const [questionData, setQeustionData] = useState(questionDummyData);
-  const [commentClick, setCommentClic] = useState(false);
+  const [answerIdx, setAnswerIdx] = useState(0);
+  const [commentValue, setCommentValue] = useState("")
 
-  const commentToggle = () => {
-    setCommentClic(!commentClick);
+  const addCommentHandler = (idx) => {
+    setAnswerIdx(idx);
   };
+
+  const commentValueHandler = (e) => {
+    setCommentValue(e.target.value)
+  }
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
   //     const result = await 데이터함수(Click시 넘어온 ID값)
   //      setQuestionData(result)
   //   };
-
   //   getQuestionData()
   // },[]);
   const filterData = questionData;
@@ -101,7 +105,7 @@ export default function Question() {
             {/* 질문 여부에 따른 조건부 설정 예정 */}
             {filterData[0].answers
               ? filterData &&
-                filterData[0].answers.map((el) => {
+                filterData[0].answers.map((el, index) => {
                   return (
                     <div key={el.answerId} className="Answers_Container">
                       <h2>Answer{el.answerId}</h2>
@@ -141,13 +145,13 @@ export default function Question() {
                         </div>
                         <div className="Contour_Line" />
                         <div className="Comment_Container">
-                        {el.comments.length !== 0
-                          ? el.comments.map((comment) => {
-                              return (
-                                <div
-                                  key={comment.commentId}
-                                  className="Comment_Contents"
-                                >
+                          {el.comments.length !== 0
+                            ? el.comments.map((comment) => {
+                                return (
+                                  <div
+                                    key={comment.commentId}
+                                    className="Comment_Contents"
+                                  >
                                     <span>{comment.body} -</span>
                                     <div>
                                       <a
@@ -158,24 +162,23 @@ export default function Question() {
                                       <span>{comment.createdAt}</span>
                                     </div>
                                   </div>
-                              );
-                            })
-                          : null}
+                                );
+                              })
+                            : null}
                         </div>
                         <div className="Add_Comment">
                           {/* 추후 TextBox예정 */}
-                          {commentClick ? (
+                          {answerIdx === index ? (
                             <div>
-                              <Input width={"80%"} type={"text"}/>
+                              <Input width={"80%"} type={"text"} />
                             </div>
-                          ) : (
-                            <button
-                              className="Comment_Add_Button"
-                              onClick={commentToggle}
-                            >
-                              Add a Comment
-                            </button>
-                          )}
+                          ) : null}
+                          <button
+                            onClick={() => addCommentHandler(index)}
+                            className="Comment_Add_Button"
+                          >
+                            Add a Comment
+                          </button>
                         </div>
                         <div className="Contour_Line" />
                       </div>
