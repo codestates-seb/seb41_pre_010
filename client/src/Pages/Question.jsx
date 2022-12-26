@@ -28,7 +28,7 @@ export default function Question() {
   //   getQuestionData()
   // },[]);
   const filterData = questionData;
-  console.log(commentClick);
+  console.log(filterData);
   return (
     <>
       <main>
@@ -126,11 +126,17 @@ export default function Question() {
                           </div>
                           {/* <div className="Answer_ModifyAt"></div> 조건부 랜더링예정 */}
                         </div>
-                        <div className="Comment_Container">
-                          <div className="Comment_Contour_Line">
-                            <span>코멘트 내용입니다</span>
-                          </div>
-                        </div>
+                        {el.comments.length !== 0
+                          ? el.comments.map((comment) => {
+                              return (
+                                <div key={comment.commentId} className="Comment_Container">
+                                  <div className="Comment_Contour_Line">
+                                    <span>{comment.body}</span>
+                                  </div>
+                                </div>
+                              );
+                            })
+                          : null}
                         <div className="Add_Comment">
                           {/* 추후 TextBox예정 */}
                           {commentClick ? null : (
