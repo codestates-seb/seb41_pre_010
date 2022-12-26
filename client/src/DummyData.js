@@ -18,6 +18,14 @@ export const dummyData = [
         tagId: 0, //Number
         tagName: "test", //String
       },
+      {
+        tagId: 1, //Number
+        tagName: "avbc", //String
+      },
+      {
+        tagId: 2, //Number
+        tagName: "dddd", //String
+      },
     ],
   },
   {
