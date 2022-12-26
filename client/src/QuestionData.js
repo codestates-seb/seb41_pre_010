@@ -43,6 +43,72 @@ export const questionDummyData = [
             createdAt: "2022/12/26/11:54", //String
             modifiedAt: "2022/12/26/11:55", //String
           },
+          {
+            commentId: 0, //Number
+            user: {
+              userId: 255, //Number
+              displayName: "유리", //String
+            },
+            body: "ㄹㅇ취업은 결국 하기나름임", //String
+            createdAt: "2022/12/26/11:54", //String
+            modifiedAt: "2022/12/26/11:55", //String
+          },
+          {
+            commentId: 0, //Number
+            user: {
+              userId: 255, //Number
+              displayName: "유리", //String
+            },
+            body: "ㄹㅇ취업은 결국 하기나름임", //String
+            createdAt: "2022/12/26/11:54", //String
+            modifiedAt: "2022/12/26/11:55", //String
+          },
+        ],
+        body: "취업은 하기 나름인듯 님이 얼마나 노력을 했는지에 따라 ㅋㅋ", //String
+        createdAt: "2022/12/26/11:53", //String
+        modifiedAt: "2022/12/26/11:55", //String
+        vote: 4, //Number
+        voteCheck: false, //Boolean
+        bookMarkCheck: false, //Boolean
+      },
+      {
+        answerId: 2, //Number
+        user: {
+          userId: 245, //Number
+          displayName: "유병재", //String
+          profileImage: "https://yt3.ggpht.com/ytc/AMLnZu-nsGDNtj2Kn2SthH20NUPJLILrahbH725dTyCGBw=s900-c-k-c0x00ffffff-no-rj", //String
+        },
+        comments: [
+          {
+            commentId: 0, //Number
+            user: {
+              userId: 255, //Number
+              displayName: "유리", //String
+            },
+            body: "ㄹㅇ취업은 결국 하기나름임", //String
+            createdAt: "2022/12/26/11:54", //String
+            modifiedAt: "2022/12/26/11:55", //String
+          },
+          {
+            commentId: 0, //Number
+            user: {
+              userId: 255, //Number
+              displayName: "유리", //String
+            },
+            body: "ㄹㅇ취업은 결국 하기나름임", //String
+            createdAt: "2022/12/26/11:54", //String
+            modifiedAt: "2022/12/26/11:55", //String
+          },
+          {
+            commentId: 0, //Number
+            user: {
+              userId: 255, //Number
+              displayName: "유리", //String
+            },
+            body: "ㄹㅇ취업은 결국 하기나름임", //String
+            createdAt: "2022/12/26/11:54", //String
+            modifiedAt: "2022/12/26/11:55", //String
+          },
         ],
         body: "취업은 하기 나름인듯 님이 얼마나 노력을 했는지에 따라 ㅋㅋ", //String
         createdAt: "2022/12/26/11:53", //String

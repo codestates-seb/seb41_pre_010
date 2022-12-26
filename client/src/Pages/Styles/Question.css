@@ -1,6 +1,12 @@
 h1{
   margin: 0;
 }
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
 .Question_Container{
   display: flex;
   justify-content: center;
@@ -104,6 +110,7 @@ margin-right: 70px;
 }
 
 .Comment_Contour_Line{
+  display: flex;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   width: 83%;

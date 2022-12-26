@@ -59,7 +59,7 @@ export default function Question() {
                 {/* 임시 아이콘 */}
                 <div className="Vote_Icon_Container">
                   <span>⬆</span>
-                  <span>3</span>
+                  <span>{filterData[0].vote}</span>
                   <span>⬇</span>
                 </div>
               </aside>
@@ -85,7 +85,9 @@ export default function Question() {
                   className="Question_User_Image"
                   src={`${filterData[0].user.profileImage}`}
                 />
-                <span>{`${filterData[0].user.displayName}`}</span>
+                <a
+                  href={`/users/mypage/:${filterData[0].user.userId}`}
+                >{`${filterData[0].user.displayName}`}</a>
               </div>
             </div>
             {/* 상태값에 따른 조건부 설정 예정 */}
@@ -102,7 +104,7 @@ export default function Question() {
                           <aside className="Main_Text_Aside">
                             <div className="Vote_Icon_Container">
                               <span>⬆</span>
-                              <span>3</span>
+                              <span>{el.vote}</span>
                               <span>⬇</span>
                             </div>
                           </aside>
@@ -121,17 +123,31 @@ export default function Question() {
                                 className="Answer_User_Image"
                                 src={`${el.user.profileImage}`}
                               />
-                              <span>{el.user.displayName}</span>
+                              <a href={`/users/mypage/:${el.user.userId}`}>
+                                {el.user.displayName}
+                              </a>
                             </div>
                           </div>
                           {/* <div className="Answer_ModifyAt"></div> 조건부 랜더링예정 */}
                         </div>
                         {el.comments.length !== 0
                           ? el.comments.map((comment) => {
+                              console.log(comment.user);
                               return (
-                                <div key={comment.commentId} className="Comment_Container">
+                                <div
+                                  key={comment.commentId}
+                                  className="Comment_Container"
+                                >
                                   <div className="Comment_Contour_Line">
-                                    <span>{comment.body}</span>
+                                    <span>{comment.body} -</span>
+                                    <div>
+                                      <a
+                                        href={`/users/mypage/:${comment.user.userId}`}
+                                      >
+                                        {comment.user.displayName}
+                                      </a>
+                                      <span>{comment.createdAt}</span>
+                                    </div>
                                   </div>
                                 </div>
                               );
