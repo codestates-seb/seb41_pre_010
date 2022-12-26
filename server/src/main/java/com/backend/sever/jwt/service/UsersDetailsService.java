@@ -1,5 +1,7 @@
 package com.backend.sever.jwt.service;
 
+import com.backend.sever.jwt.dto.ExceptionCode;
+import com.backend.sever.jwt.event.LoginException;
 import com.backend.sever.jwt.utils.CustomAuthorityUtils;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.repository.UserRepository;
@@ -26,7 +28,7 @@ public class UsersDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException {
         Optional<User> optionalUser = userRepository.findByEmail(username);
-        User findUser = optionalUser.orElseThrow(() -> new RuntimeException()); // 예외 수정 필요
+        User findUser = optionalUser.orElseThrow(() -> new LoginException(ExceptionCode.USER_NOT_FOUND)); // 예외 수정 필요
 
         return new UsersDetails(findUser);
 

@@ -1,5 +1,6 @@
 package com.backend.sever.user.controller;
 
+import com.backend.sever.jwt.service.UserJTWService;
 import com.backend.sever.jwt.utils.UriCreator;
 import com.backend.sever.user.dto.UserPostDto;
 import com.backend.sever.user.dto.UserPutDto;
@@ -10,6 +11,7 @@ import com.backend.sever.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.net.URI;
 
@@ -43,8 +45,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/login")
-
+    @PostMapping()
     public ResponseEntity postUser(@RequestBody UserPostDto userPostDto){
         User user = userMapper.userPostToUser(userPostDto);
 
