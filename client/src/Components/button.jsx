@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const WhiteButton = styled.a`
+  display: flex;
   width: ${(props) => props.width};
   height: ${(props) => (props.height ? props.height : "30px")};
   font-size: ${(props) => props.fontSize};
@@ -8,7 +9,9 @@ const WhiteButton = styled.a`
   border: 1px solid rgb(234, 236, 237);
   border-radius: 3px;
   padding: 5px;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   background-color: white;
   cursor: pointer;
   box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset;
@@ -52,6 +55,7 @@ const BlueWhiteButton = styled(WhiteButton)`
 `;
 
 const TagButton = styled(WhiteButton)`
+  display: inline;
   border: 1px solid rgb(225, 236, 244);
   background-color: rgb(225, 236, 244);
   color: rgb(57, 115, 157);
