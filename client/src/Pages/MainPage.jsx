@@ -3,6 +3,7 @@ import "./Styles/MainPage.css";
 import { BlueButton, WhiteButton, OrangeButton } from "../Components/Button";
 import MainPageQuestion from "../Components/MainPageQuestion";
 import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
+import calcPagination from "../Function/calcPagination";
 
 function MainPage() {
   const [curPage, setCurPage] = useState(1);
@@ -27,8 +28,19 @@ function MainPage() {
   }
 
   function changeCurPage(e) {
+    if (e.target.textContent === curPage) return;
     setCurPage(() => Number(e.target.textContent));
   }
+
+  const movePageLeft = () => {
+    if (curPage === 1) return;
+    setCurPage(curPage - 1);
+  };
+
+  const movePageRight = () => {
+    if (curPage === totalPages) return;
+    setCurPage(curPage + 1);
+  };
 
   function changePerPage(e) {
     setCurPerPage(() => Number(e.target.textContent));
@@ -79,17 +91,9 @@ function MainPage() {
         </div>
         <div className="Questions_Pagination_Container">
           <div className="Page_Number_Container">
-            {Array(totalPages)
-              .fill(0)
-              .map((_, idx) => {
-                return idx + 1 === curPage ? (
-                  <OrangeButton key={idx + 1}>{idx + 1}</OrangeButton>
-                ) : (
-                  <WhiteButton onClick={changeCurPage} key={idx + 1}>
-                    {idx + 1}
-                  </WhiteButton>
-                );
-              })}
+            <WhiteButton onClick={movePageLeft}>←</WhiteButton>
+            {calcPagination(totalPages, curPage, changeCurPage)}
+            <WhiteButton onClick={movePageRight}>→</WhiteButton>
           </div>
           <div className="Per_Page_Container">
             {PERPAGEARR.map((el) => {

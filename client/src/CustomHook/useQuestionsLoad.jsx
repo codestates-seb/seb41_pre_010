@@ -4,7 +4,7 @@ import { dummyData } from "../DummyData";
 
 function useQuestionsLoad(tabName, pageNumber, pageSizeNumber) {
   const [questionsList, setQuestionsList] = useState(dummyData);
-  const [totalPages, setTotalPage] = useState(5);
+  const [totalPages, setTotalPage] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(23338049);
 
   useEffect(() => {
@@ -19,6 +19,7 @@ function useQuestionsLoad(tabName, pageNumber, pageSizeNumber) {
         setTotalQuestions(() => data.totalQuestions);
       } catch (err) {
         console.log("failed to fetch!");
+        setTotalPage(2000);
       }
     }
 
