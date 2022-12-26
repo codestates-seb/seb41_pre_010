@@ -16,6 +16,11 @@ function MainPage() {
     curPerPage
   );
 
+  function changeCurPage(e) {
+    console.log(e.target.textContent);
+    setCurPage(() => Number(e.target.textContent));
+  }
+
   function changePerPage(e) {
     console.log(e.target.textContent);
     setCurPerPage(() => Number(e.target.textContent));
@@ -49,11 +54,16 @@ function MainPage() {
         </div>
         <div className="Questions_Pagination_Container">
           <div className="Page_Number_Container">
-            <OrangeButton>1</OrangeButton>
-            <WhiteButton>2</WhiteButton>
-            <WhiteButton>3</WhiteButton>
-            <WhiteButton>4</WhiteButton>
-            <WhiteButton>5</WhiteButton>
+            {Array(totalPages)
+              .fill(0)
+              .map((_, idx) => {
+                idx += 1;
+                if (idx === curPage) return <OrangeButton>{idx}</OrangeButton>;
+                else
+                  return (
+                    <WhiteButton onClick={changeCurPage}>{idx}</WhiteButton>
+                  );
+              })}
           </div>
           <div className="Per_Page_Container">
             {[15, 30, 50].map((el) => {
