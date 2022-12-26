@@ -8,7 +8,7 @@ export const dummyData = [
         "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg", //String
     },
     title: "VSCode Omnisharp server A .NET 6 SDK for x86_64 was not found", //String
-    body: "내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용", //String
+    body: "내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하내용 가나다라마바 사아자차카타파하", //String
     createdAt: "2022/12/23 13:22", //String
     modifiedAt: "2022/12/25 13:32", //String
     vote: 0, //Number

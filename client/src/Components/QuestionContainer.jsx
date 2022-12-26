@@ -32,7 +32,9 @@ function QuestionContainer(props) {
         >
           {title}
         </Link>
-        <div className="Main_Page_Question_Body">{body}</div>
+        <div className="Main_Page_Question_Body">
+          {body.length > 80 ? body.slice(0, 80) + "..." : body}
+        </div>
         <div className="Main_Page_Question_Tag">
           {tags.map((tag) => {
             return (
