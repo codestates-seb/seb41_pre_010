@@ -31,6 +31,7 @@ public class AnswerService {
 
         answer.setUser(user);
         answer.setQuestion(question);
+        updateAnswerCount(answer);
 
         return answerRepository.save(answer);
     }
@@ -54,5 +55,12 @@ public class AnswerService {
     public void deleteAnswer(long answerId) {
         answerRepository.deleteById(answerId);
     }
+
+    public void updateAnswerCount(Answer answer) {
+        Question question = questionService.findQuestion(answer.getQuestion().getQuestionId());
+        question.setAnswerCount(question.getAnswerCount() + 1);
+    }
 }
+
+
 
