@@ -43,6 +43,9 @@ public class Question {
     @Column(nullable = false)
     private int view;
 
+    @Column
+    private int answerCount;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Vote> votes = new ArrayList<>();
 
