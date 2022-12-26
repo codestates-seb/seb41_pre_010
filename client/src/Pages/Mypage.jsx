@@ -102,7 +102,6 @@ const dummyDataInfo = [
 const Mypage = () => {
   return (
     <>
-      <header className="Header"></header>
       <main className="Mypage_Container">
         <UserProfile />
         <UserInfo />

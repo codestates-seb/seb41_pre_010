@@ -1,0 +1,99 @@
+.MainHeader {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 50px;
+}
+.MainHeader_Container {
+  border-top: 3px solid rgb(224, 130, 37);
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
+    0 2px 8px hsla(0, 0%, 0%, 0.05);
+  background-color: rgb(248, 249, 249);
+  top: 0px;
+  position: fixed;
+  width: 100%;
+}
+
+.MainHeader_Contents_Container {
+  width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.MainHeader_Logo_Container {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+.MainHeader_Input_Container {
+  height: 100%;
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MainHeader_Search_Input {
+  width: 98.5%;
+  height: 69%;
+  border-color: hsl(210, 8%, 75%);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: rgb(234, 236, 237);
+  color: hsl(210, 8%, 25%);
+  display: block;
+  padding: 0.6em 0.7em;
+  line-height: 1px;
+  border: 1px solid hsl(209, 13%, 39%);
+  border-radius: 3px;
+  padding-left: 30px;
+  background-image: url("../../../public/image/search_icon.png");
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 9px center;
+}
+
+.MainHeader_Search_Input:focus {
+  outline: none;
+  border-color: rgb(89, 164, 222);
+  box-shadow: rgb(217, 234, 247) 0px 1px 4px, rgb(217, 234, 247) 0px 0px 0px 4px;
+}
+
+.MainHeader_UserInfo_Container {
+  height: 100%;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.MainHeader_UserProfileImage {
+  margin-top: 5px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.MainHeader_UserInfo_Profile {
+  display: flex;
+  align-items: center;
+}
+
+.MainHeader_UserInfo_DisplayName {
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.MainHeader_UserInfo_DisplayName :any-link {
+  text-decoration-line: none;
+  color: inherit;
+}
+
+.MainHeader_Button_Container {
+  width: 16%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

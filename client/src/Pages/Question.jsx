@@ -10,7 +10,6 @@ const StyledSpan = styled.span`
 export default function Question() {
   return (
     <>
-      <header className="Header" />
       <main>
         <div className="Question_Container">
           <div className="Question_Content_Container">

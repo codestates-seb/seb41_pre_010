@@ -11,7 +11,6 @@ const dummyDataProfile = {
 const MypageEdit = () => {
   return (
     <>
-      <header className="Header"></header>
       <main className="Mypage_Container">
         <UserProfile />
         <UserInfoEdit />
