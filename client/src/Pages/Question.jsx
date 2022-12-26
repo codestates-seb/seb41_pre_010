@@ -15,12 +15,15 @@ const StyledSpan = styled.span`
 export default function Question() {
   //추후 useState기본값 null처리
   const [questionData, setQeustionData] = useState(questionDummyData);
-  const [answerIdx, setAnswerIdx] = useState(0);
+  const [answerIdx, setAnswerIdx] = useState(null);
+  const [activeClick, setActiveClick] = useState(false);
   const [commentValue, setCommentValue] = useState("");
 
   const addCommentHandler = (idx) => {
     setAnswerIdx(idx);
   };
+
+  console.log(commentValue);
 
   const addAnswer = (questionId, userId, body) => {
     axios
@@ -196,13 +199,13 @@ export default function Question() {
                         </div>
                         <div className="Add_Comment">
                           {/* 추후 TextBox예정 */}
-                          {answerIdx === index ? (
+                          {answerIdx === index && activeClick ? (
                             <div>
                               <Input
                                 width={"80%"}
                                 type={"text"}
                                 defaultValue={commentValue}
-                                onchange={(e) =>
+                                onChange={(e) =>
                                   setCommentValue(e.target.value)
                                 }
                               />
@@ -222,7 +225,11 @@ export default function Question() {
                             </div>
                           ) : null}
                           <button
-                            onClick={() => addCommentHandler(index)}
+                            onClick={() => {
+                              addCommentHandler(index);
+                              setActiveClick(!activeClick);
+                              setCommentValue("");
+                            }}
                             className="Comment_Add_Button"
                           >
                             Add a Comment
