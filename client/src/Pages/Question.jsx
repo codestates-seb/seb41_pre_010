@@ -4,6 +4,7 @@ import "./Styles/Question.css";
 import { BlueButton, TagButton } from "../Components/button";
 import Input from "../Components/Input";
 import { questionDummyData } from "../QuestionData";
+import axios from "axios";
 
 const StyledSpan = styled.span`
   font-size: ${(props) => props.fontsize};
@@ -15,15 +16,30 @@ export default function Question() {
   //추후 useState기본값 null처리
   const [questionData, setQeustionData] = useState(questionDummyData);
   const [answerIdx, setAnswerIdx] = useState(0);
-  const [commentValue, setCommentValue] = useState("")
+  const [commentValue, setCommentValue] = useState("");
 
   const addCommentHandler = (idx) => {
     setAnswerIdx(idx);
   };
 
   const commentValueHandler = (e) => {
-    setCommentValue(e.target.value)
-  }
+    setCommentValue(e.target.value);
+  };
+
+  const postAnswer = (questionId, userId, body) => {
+    axios
+      .post("api/v1/answers", {
+        questionId: `${questionId}`,
+        userId: `${userId}`,
+        body: `${body}`,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
@@ -190,7 +206,16 @@ export default function Question() {
               <h2>Your Answer</h2>
               <div>Answer작성창 부분</div>
               <div className="Submit_Clear_Container">
-                <BlueButton>Post Yout Answer</BlueButton>
+                <BlueButton
+                  onClick={()=> postAnswer(
+                    filterData[0].questionId,
+                     //현재 글의 user의 정보가 아닌 작성자의 user Id를 넣을것
+                    filterData[0].user.userId,
+                    filterData[0].body
+                  )}
+                >
+                  Post Yout Answer
+                </BlueButton>
               </div>
             </div>
           </div>
