@@ -1,6 +1,8 @@
 package com.backend.sever.user.service;
 
 import com.backend.sever.config.CustomBeanUtils;
+import com.backend.sever.jwt.dto.ExceptionCode;
+import com.backend.sever.jwt.event.LoginException;
 import com.backend.sever.jwt.event.UserRegistrationApplicationEvent;
 import com.backend.sever.jwt.utils.CustomAuthorityUtils;
 import com.backend.sever.user.entity.User;
@@ -84,7 +86,7 @@ public class UserService {
 
         Optional<User> user = userRepository.findByEmail(email);
         if(user.isPresent()){
-            throw  new RuntimeException(); // 비즈니스 로직 예외 던지기로 수정 예정
+            throw  new LoginException(ExceptionCode.USER_EXISTS); // 비즈니스 로직 예외 던지기로 수정 예정
 
         }
     }
