@@ -37,7 +37,6 @@ public class CommentsService {
     }
 
     public Comments findComments (long commentId){
-
         return findVerifiedComments(commentId);
     }
 
@@ -50,7 +49,6 @@ public class CommentsService {
     }
 
     public Comments updateComments(Comments comments){
-
         Comments findComments = findComments(comments.getCommentsId());
 
         Comments updateComments = beanUtils.copyNonNullProperties(comments, findComments);

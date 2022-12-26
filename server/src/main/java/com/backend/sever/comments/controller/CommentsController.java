@@ -29,9 +29,8 @@ public class CommentsController {
         Comments comments = commentsService.createComments(commentsMapper.commentsPostDtoToComments(commentsPostDto));
         CommentsResponseDto commentsResponse = commentsMapper.commentsToCommentsResponseDto(comments);
 
-        return new ResponseEntity(commentsResponse, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
-
 
     @GetMapping("/{comments-id}/edit")
     public ResponseEntity getComments(@PathVariable("comments-id") @Positive long commentsId) {
@@ -49,13 +48,13 @@ public class CommentsController {
 
         CommentsResponseDto commentsResponseDto = commentsMapper.commentsToCommentsResponseDto(comments);
 
-        return new ResponseEntity(commentsResponseDto, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @DeleteMapping("/{comments-id}")
     public ResponseEntity deleteComments(@PathVariable("comments-id") @Positive long commentsId) {
         commentsService.deleteComments(commentsId);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
