@@ -29,7 +29,6 @@ export default function Login(){
           </span>
         </div>
       </main>
-      <footer className="Footer"></footer>
     </>
   )
 }

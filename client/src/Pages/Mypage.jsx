@@ -107,7 +107,6 @@ const Mypage = () => {
         <UserProfile />
         <UserInfo />
       </main>
-      <footer className="Footer"></footer>
     </>
   );
 };
