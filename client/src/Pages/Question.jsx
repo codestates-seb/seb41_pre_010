@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "./Styles/Question.css";
+import { TagButton } from "../Components/Tag";
 
 const StyledSpan = styled.span`
   font-size: ${(props) => props.fontsize};
@@ -41,7 +42,7 @@ export default function Question() {
               </div>
             </div>
             <div className="Tag_Section">
-              <button className="Tag_Button">React</button>
+              <TagButton>React</TagButton>
             </div>
             {/* 상태값에 따른 조건부 설정 예정 */}
             <div className="Contour_Line" />
