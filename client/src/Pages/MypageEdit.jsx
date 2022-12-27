@@ -3,6 +3,7 @@ import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton, BlueWhiteButton } from "../Components/Button";
 import "./Styles/MypageEdit.css";
+import UserProfile from "../Components/UserProfile";
 
 const dummyDataProfile = {
   userId: 0,
@@ -16,36 +17,10 @@ const MypageEdit = () => {
   return (
     <>
       <main className="Mypage_Container">
-        <UserProfile />
+        <UserProfile profile={dummyDataProfile} />
         <UserInfoEdit />
       </main>
     </>
-  );
-};
-
-//UserProfile 재활용 컴포넌트화 필요
-const UserProfile = () => {
-  return (
-    <div className="Mypage_UserProfile_Container">
-      <div className="Mypage_UserProfile_Content">
-        <img
-          src={dummyDataProfile.profileImage}
-          className="Mypage_UserProfile_Image"
-          width={50}
-          height={50}
-          alt="TestImage"
-        />
-        <div className="Mypage_UserProfile_Info_Container">
-          <div className="Mypage_UserProfile_UserName">
-            {dummyDataProfile.displayName}
-          </div>
-          <div className="Mypage_UserProfile_Title">
-            {dummyDataProfile.title}
-          </div>
-        </div>
-      </div>
-      <button className="Mypage_UserProfile_EditButton">Edit profile</button>
-    </div>
   );
 };
 
