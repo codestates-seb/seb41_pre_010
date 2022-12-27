@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Styles/MypageEdit.css";
 import UserProfile from "../Components/UserProfile";
-import UserInfoEdit from "../Components/UserInfoEdit";
+import UserProfileEdit from "../Components/UserProfileEdit";
+import axios from "axios";
 
 const dummyDataProfile = {
   userId: 0,
@@ -12,11 +13,20 @@ const dummyDataProfile = {
 };
 
 const MypageEdit = () => {
+  const [userProfile, setUserProfile] = useState(dummyDataProfile);
+
+  useEffect(() => {
+    axios
+      .get(`api/v1/users/{userId}/userprofile`)
+      .then((res) => setUserProfile(res))
+      .catch((err) => console.log(err));
+  });
+
   return (
     <>
       <main className="Mypage_Container">
-        <UserProfile profile={dummyDataProfile} />
-        <UserInfoEdit profile={dummyDataProfile} />
+        <UserProfile profile={userProfile} />
+        <UserProfileEdit profile={userProfile} />
       </main>
     </>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Input from "../Components/Input";
-import { BlueButton, BlueWhiteButton } from "../Components/Button";
+import Input from "./Input";
+import { BlueButton, BlueWhiteButton } from "./Button";
 
-const UserInfoEdit = (props) => {
+const UserProfileEdit = (props) => {
   const { profileImage, displayName, title } = props.profile;
 
   const [newName, setNewName] = useState(displayName);
@@ -80,4 +80,4 @@ const UserInfoEdit = (props) => {
   );
 };
 
-export default UserInfoEdit;
+export default UserProfileEdit;

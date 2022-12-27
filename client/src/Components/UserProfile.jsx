@@ -21,6 +21,7 @@ const UserProfile = (props) => {
         </div>
       </div>
       <WhiteButton
+        // 현재 로그인된 사용자와 유저페이지의 id가 같지 않으면 edit 버튼이 안보이도록 하는 로직 추가
         width="80px"
         height="40px"
         className="Mypage_UserProfile_EditButton"
