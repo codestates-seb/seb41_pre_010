@@ -122,12 +122,33 @@ public class VoteService {
         }
     }
 
-    private AnswerVote AnswerVoteDown(AnswerVote voteAnswerPutDtoToVote) {
+    private AnswerVote AnswerVoteDown(AnswerVote vote) {
+
         return null;
     }
 
-    private AnswerVote AnswerVoteUp(AnswerVote voteAnswerPutDtoToVote) {
-        return null;
+    private AnswerVote AnswerVoteUp(AnswerVote vote) {
+        AnswerVote answerVote = getAnswerVote(vote);
+        //up이 눌린 상태
+        if (answerVote.getVoteCount() >= 1) {
+            answerVote.voteDown();
+            answerVoteCal(answerVote.getAnswer(),-1);
+            answerVote.getUser().voteCountDown();
+            return answerVoteRepository.save(answerVote);
+        //down이 눌린 상태
+        } else if (answerVote.getVoteCount() <= -1) {
+            answerVote.voteDown();
+            answerVoteCal(answerVote.getAnswer(), 1);
+            answerVote.getUser().voteCountDown();
+            return answerVoteRepository.save(answerVote);
+        }
+        //아무것도 안눌린 상태
+        else {
+            answerVote.voteUp();
+            answerVoteCal(answerVote.getAnswer(), 1);
+            answerVote.getUser().voteCountUp();
+            return answerVoteRepository.save(answerVote);
+        }
     }
 
     private AnswerVote getAnswerVote(AnswerVote vote) {
@@ -147,7 +168,7 @@ public class VoteService {
         }
     }
 
-    private void AnswerVoteCal(Answer answer, int number) {
+    private void answerVoteCal(Answer answer, int number) {
         if(number >= 0) answer.countUp();
         else answer.countDown();
     }
