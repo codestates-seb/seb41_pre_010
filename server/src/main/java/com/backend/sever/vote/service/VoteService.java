@@ -1,6 +1,7 @@
 package com.backend.sever.vote.service;
 
 import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.answer.service.AnswerService;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.service.QuestionService;
 import com.backend.sever.user.entity.User;
@@ -10,6 +11,7 @@ import com.backend.sever.vote.dto.QuestionVotePutDto;
 import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;
 import com.backend.sever.vote.mapper.VoteMapper;
+import com.backend.sever.vote.repository.AnswerVoteRepository;
 import com.backend.sever.vote.repository.QuestionVoteRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +23,16 @@ public class VoteService {
     private final QuestionVoteRepository questionVoteRepository;
     private final UserService userService;
     private final VoteMapper voteMapper;
+    private final AnswerService answerService;
+    private final AnswerVoteRepository answerVoteRepository;
 
-    public VoteService(QuestionService questionService, QuestionVoteRepository questionVoteRepository, UserService userService, VoteMapper voteMapper) {
+    public VoteService(QuestionService questionService, QuestionVoteRepository questionVoteRepository, UserService userService, VoteMapper voteMapper, AnswerService answerService, AnswerVoteRepository answerVoteRepository) {
         this.questionService = questionService;
         this.questionVoteRepository = questionVoteRepository;
         this.userService = userService;
         this.voteMapper = voteMapper;
+        this.answerService = answerService;
+        this.answerVoteRepository = answerVoteRepository;
     }
 
     //up 또는 down판단
@@ -124,8 +130,21 @@ public class VoteService {
         return null;
     }
 
-    private AnswerVote getAnswerVote(long answerId) {
-        return null;
+    private AnswerVote getAnswerVote(AnswerVote vote) {
+        Answer answer = answerService.findAnswer(vote.getAnswerVoteId());
+        User user = userService.findUser(vote.getUser().getUserId());
+
+        Optional<AnswerVote> optionalAnswerVote = answerVoteRepository.findByAnswerAndUser(answer, user);
+
+        if (optionalAnswerVote.isPresent()) {
+            return optionalAnswerVote.get();
+        }
+        else {
+            AnswerVote answerVote = new AnswerVote();
+            answerVote.setUser(user);
+            answerVote.setAnswer(answer);
+            return answerVote;
+        }
     }
 
     private void AnswerVoteCal(Answer answer, int number) {
