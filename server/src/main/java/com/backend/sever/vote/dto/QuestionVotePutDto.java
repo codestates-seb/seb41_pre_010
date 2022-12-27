@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class VotePostDto {
+public class QuestionVotePutDto {
     private int vote;
     private long questionId;
     private long userId;

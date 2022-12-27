@@ -4,7 +4,7 @@ import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.service.QuestionService;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.service.UserService;
-import com.backend.sever.vote.dto.VotePostDto;
+import com.backend.sever.vote.dto.QuestionVotePutDto;
 import com.backend.sever.vote.entity.QuestionVote;
 import com.backend.sever.vote.mapper.VoteMapper;
 import com.backend.sever.vote.repository.QuestionVoteRepository;
@@ -27,11 +27,11 @@ public class VoteService {
     }
 
     //up 또는 down판단
-    public QuestionVote upAndDown(VotePostDto votePostDto) {
-        if (votePostDto.getVote() == 1) {
-            return questionVoteUp(voteMapper.voteQuestionPutDtoToVote(votePostDto));
+    public QuestionVote upAndDown(QuestionVotePutDto questionVotePutDto) {
+        if (questionVotePutDto.getVote() == 1) {
+            return questionVoteUp(voteMapper.voteQuestionPutDtoToVote(questionVotePutDto));
         } else {
-            return questionVoteDown(voteMapper.voteQuestionPutDtoToVote(votePostDto));
+            return questionVoteDown(voteMapper.voteQuestionPutDtoToVote(questionVotePutDto));
         }
     }
     //down 로직
