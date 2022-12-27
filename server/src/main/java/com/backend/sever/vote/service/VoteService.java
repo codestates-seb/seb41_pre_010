@@ -166,7 +166,7 @@ public class VoteService {
     }
 
     private AnswerVote getAnswerVote(AnswerVote vote) {
-        Answer answer = answerService.findAnswer(vote.getAnswerVoteId());
+        Answer answer = answerService.findAnswer(vote.getAnswer().getAnswerId());
         User user = userService.findUser(vote.getUser().getUserId());
 
         Optional<AnswerVote> optionalAnswerVote = answerVoteRepository.findByAnswerAndUser(answer, user);
