@@ -1,17 +1,14 @@
-package com.backend.sever.comments.dto;
+package com.backend.sever.vote;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
-public class CommentsPutDto {
-    private long commentsId;
-    private long questionId;
+public class AnswerVotePutDto {
+    private int vote;
     private long answerId;
     private long userId;
-    private String body;
 }

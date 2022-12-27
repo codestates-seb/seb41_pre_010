@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Input from "../Components/Input";
+import QuestionTitle from "../Components/QuestionPage/QuestionTitle";
+import QuestionBodyAside from "../Components/QuestionPage/QuestionBodyAside";
 import { questionDummyData } from "../QuestionData";
-import { BlueButton, TagButton } from "../Components/button";
-import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark, TiPen } from "react-icons/ti";
+import { BlueButton, TagButton } from "../Components/Button";
+import {
+  TiArrowSortedUp,
+  TiArrowSortedDown,
+  TiBookmark,
+  TiPen,
+} from "react-icons/ti";
 import { IconContext } from "react-icons";
 import axios from "axios";
 import styled from "styled-components";
@@ -102,7 +109,7 @@ export default function Question() {
   //   };
   //   getQuestionData()
   // },[]);
-  
+
   //추후 변경 예정
   const filterData = questionData;
 
@@ -111,47 +118,21 @@ export default function Question() {
       <main>
         <div className="Question_Container">
           <div className="Question_Content_Container">
-            <div className="Title_Container">
-              <div className="Title_Contents">
-                <h1>{filterData[0].title}</h1>
-              </div>
-              <div className="Ask_Question_Button_Container">
-                <BlueButton
-                  href={`/questions/:${filterData[0].questionId}/edit`}
-                  className="Ask_Question_Button"
-                >
-                  Ask Question
-                </BlueButton>
-                <div className="Wright_Data_Info">
-                  <StyledSpan fontsize={"14px"}>
-                    작성: {filterData[0].createdAt}
-                  </StyledSpan>
-                  <br></br>
-                  <div className="Modify_Data_Info">
-                    <StyledSpan fontsize={"14px"}>
-                      수정: {filterData[0].modifiedAt}
-                    </StyledSpan>
-                    <TiPen/>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <QuestionTitle
+              filterData={filterData}
+              StyledSpan={StyledSpan}
+              BlueButton={BlueButton}
+              TiPen={TiPen}
+            />
             <div className="Main_Text_Container">
               <aside className="Main_Text_Aside">
-                <div className="Vote_Icon_Container">
-                  <IconContext.Provider
-                    value={{ size: "35px", color: "hsl(210,8%,85%)" }}
-                  >
-                    <TiArrowSortedUp />
-                    <span>{filterData[0].vote}</span>
-                    <TiArrowSortedDown />
-                  </IconContext.Provider>
-                  <IconContext.Provider
-                    value={{ size: "30px", color: "#a5a7a9" }}
-                  >
-                    <TiBookmark />
-                  </IconContext.Provider>
-                </div>
+                <QuestionBodyAside
+                  IconContext={IconContext}
+                  TiBookmark={TiBookmark}
+                  filterData={filterData}
+                  TiArrowSortedUp={TiArrowSortedUp}
+                  TiArrowSortedDown={TiArrowSortedDown}
+                />
               </aside>
               <div className="Main_Text_Content">
                 <span>{filterData[0].body}</span>
@@ -197,13 +178,15 @@ export default function Question() {
                                 value={{
                                   size: "35px",
                                   color: "hsl(210,8%,85%)",
-                                }}>
+                                }}
+                              >
                                 <TiArrowSortedUp />
                                 <span>{el.vote}</span>
                                 <TiArrowSortedDown />
                               </IconContext.Provider>
                               <IconContext.Provider
-                                value={{ size: "30px", color: "#a5a7a9" }}>
+                                value={{ size: "30px", color: "#a5a7a9" }}
+                              >
                                 <TiBookmark />
                               </IconContext.Provider>
                             </div>
@@ -220,7 +203,7 @@ export default function Question() {
                               ) : (
                                 <span>작성:{el.createdAt}</span>
                               )}
-                              <TiPen/>
+                              <TiPen />
                             </div>
                             <div>
                               <img
@@ -304,6 +287,7 @@ export default function Question() {
               <div>Answer작성창 부분</div>
               <div className="Submit_Clear_Container">
                 <BlueButton
+                  width={"140px"}
                   onClick={() =>
                     addAnswer(
                       filterData[0].questionId,

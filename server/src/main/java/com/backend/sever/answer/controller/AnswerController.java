@@ -26,7 +26,7 @@ public class AnswerController {
         Answer answer = answerService.createAnswer(answerMapper.answerPostDtoToAnswer(answerPostDto));
         AnswerResponseDto answerResponse = answerMapper.answerToAnswerResponseDto(answer);
 
-        return new ResponseEntity(answerResponse, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PutMapping("/{answer-id}")
@@ -36,7 +36,7 @@ public class AnswerController {
         Answer answer = answerService.updateAnswer(answerMapper.answerPutDtoAnswer(answerPutDto));
         AnswerResponseDto answerResponse = answerMapper.answerToAnswerResponseDto(answer);
 
-        return new ResponseEntity(answerResponse, HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/{answer-id}/edit")

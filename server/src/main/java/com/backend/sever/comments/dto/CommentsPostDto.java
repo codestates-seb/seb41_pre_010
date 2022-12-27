@@ -10,5 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentsPostDto {
+    private long questionId;
+    private long answerId;
+    private long userId;
     private String body;
 }

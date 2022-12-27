@@ -8,5 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnswerPostDto {
+    private long questionId;
+    private long userId;
     private String body;
 }
