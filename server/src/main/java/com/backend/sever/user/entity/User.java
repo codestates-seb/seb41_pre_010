@@ -5,7 +5,7 @@ import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.bookmark.entity.BookmarkQuestion;
 import com.backend.sever.comments.entity.Comments;
 import com.backend.sever.question.entity.Question;
-import com.backend.sever.vote.entity.Vote;
+import com.backend.sever.vote.entity.QuestionVote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,16 +38,15 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    // 사용자 권한 테이블 생성용 테이블
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> roles = new ArrayList<>();
-
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(length = 100)
     private String title;
+
+    @Column
+    private int voteCount;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
@@ -62,11 +61,15 @@ public class User {
     private List<BookmarkQuestion> bookmarkQuestions = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<Vote> votes = new ArrayList<>();
+    private List<QuestionVote> questionVotes = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Question> questions = new ArrayList<>();
 
-
-
+    public void voteCountUp() {
+        this.voteCount++;
+    }
+    public void voteCountDown(){
+        this.voteCount--;
+    }
 }

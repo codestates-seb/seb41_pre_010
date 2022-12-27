@@ -83,7 +83,7 @@ const LoginRequired = ({ navigate }) => {
       <OrangeButton
         width="70px"
         height="40px"
-        onClick={() => navigate("/users/islogin")}
+        onClick={() => navigate("/users/login")}
       >
         LogIn
       </OrangeButton>
