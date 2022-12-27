@@ -1,5 +1,5 @@
-import { useState, useCallback } from "react";
-import { Link, useNavigate, redirect } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
@@ -13,25 +13,28 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] =
     useState("비밀번호를 입력해주세요.");
-
   const url = "http://localhost:8080/api/v1/users/signup";
   const navigate = useNavigate();
-
-  const onSubmit = useCallback(async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // navigate(-1);
-    // await axios
-    //   .post(url, {
-    //     username: name,
-    //     password: password,
-    //     email: email,
-    //   })
-    //   .then((res) => {
-    //     console.log("response:", res);
-    //     if (res.status === 200) {
-    //     }
-    //   }).catch((e)=>if(e) return redirect("/users/signup"))
-  });
+    await axios
+      .post(url, {
+        username: name,
+        password: password,
+        email: email,
+      })
+      .then((res) => {
+        console.log("response:", res);
+        if (res.status === 200) {
+          navigate("/");
+        }
+      })
+      .catch((e) => {
+        if (e) {
+          console.log(e);
+        }
+      });
+  };
 
   return (
     <>
@@ -95,7 +98,9 @@ const DisplayNameComponent = ({ setName, setNameMessage, nameMessage }) => {
     const nameCurrent = e.target.value;
     setName(nameCurrent);
     if (nameCurrent.length !== 0) setNameMessage("");
-    else setNameMessage("닉네임을 입력해주세요");
+    else {
+      setNameMessage("닉네임을 입력해주세요");
+    }
   };
 
   return (
@@ -106,6 +111,7 @@ const DisplayNameComponent = ({ setName, setNameMessage, nameMessage }) => {
       <Input
         id="SignUp_DisplayName"
         type="text"
+        aria-label="Name Input"
         className="SignUp_Content_Input"
         onChange={onChangeName}
       />
@@ -138,6 +144,7 @@ const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
       <Input
         id="SignUp_email"
         type="text"
+        aria-label="Email Input"
         className="SignUp_Content_Input"
         onChange={onChangeEmail}
       />
@@ -177,6 +184,7 @@ const PasswordComponent = ({
       <Input
         id="SignUp_Password"
         type="password"
+        aria-label="Password Input"
         className="SignUp_Content_Input"
         onChange={onChangePassword}
       />
