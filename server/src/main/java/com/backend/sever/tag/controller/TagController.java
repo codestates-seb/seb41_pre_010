@@ -1,6 +1,7 @@
 package com.backend.sever.tag.controller;
 
 import com.backend.sever.tag.dto.TagPostDto;
+import com.backend.sever.tag.dto.TagPostDtos;
 import com.backend.sever.tag.entity.Tag;
 import com.backend.sever.tag.mapper.TagMapper;
 import com.backend.sever.tag.service.TagService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/tags")
@@ -23,9 +26,9 @@ public class TagController {
     }
 
     @PostMapping
-    public ResponseEntity postTag(@RequestBody TagPostDto tagPostDto) {
-        Tag tag = tagService.createTag(mapper.tagPostDtoToTag(tagPostDto));
+    public ResponseEntity postTag(@RequestBody TagPostDtos tagPostDtos) {
+        List<Tag> tags = tagService.createTag(mapper.tagPostDtosToTags(tagPostDtos));
 
-        return new ResponseEntity<> (mapper.tagToTagResponseDto(tag), HttpStatus.CREATED);
+        return new ResponseEntity<> (mapper.tagToTagResponseDtos(tags), HttpStatus.CREATED);
     }
 }
