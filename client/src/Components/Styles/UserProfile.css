@@ -26,14 +26,13 @@
 
 .Mypage_UserProfile_UserName {
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 600;
   width: 80%;
 }
 
 .Mypage_UserProfile_Title {
   color: rgb(131, 138, 146);
   font-size: 18px;
-  font-weight: 600;
   width: 100%;
 }
 

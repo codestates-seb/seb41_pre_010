@@ -24,6 +24,7 @@ const UserProfile = (props) => {
         width="80px"
         height="40px"
         className="Mypage_UserProfile_EditButton"
+        href={"/users/mypage/edit/:userId"}
       >
         Edit profile
       </WhiteButton>
