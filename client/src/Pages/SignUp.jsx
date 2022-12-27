@@ -4,6 +4,21 @@ import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/SignUp.css";
 
+const Logo = () => {
+  return (
+    <div className="SignUp_Logo_Container">
+      <Link to="/">
+        <img
+          src={"/image/stackoverflow_simple_icon.png"}
+          width={"auto"}
+          height={"auto"}
+          alt="stackoverflow-logo"
+        />
+      </Link>
+    </div>
+  );
+};
+
 export default function SignUp() {
   const [passwordMessage, setPasswordMessage] = useState(
     "비밀번호는 최소 1개의 문자와 1개의 숫자를 포함하여 최소 8자이상이어야 합니다."
@@ -31,7 +46,7 @@ export default function SignUp() {
     <>
       <main>
         <div className="SignUp_Container">
-          <div>LOGO</div>
+          <Logo />
           <div className="SignUp_Content">
             <form>
               <div className="SignUp_Display_Name_Container">

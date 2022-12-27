@@ -6,6 +6,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: hsl(210, 8%, 95%);
+}
+
+.SignUp_Logo_Container {
+  padding-bottom: 30px;
 }
 
 .SignUp_Content {
@@ -17,6 +22,7 @@
   align-items: center;
   box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
     0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+  background-color: white;
 }
 
 .SignUp_Content_Title {
