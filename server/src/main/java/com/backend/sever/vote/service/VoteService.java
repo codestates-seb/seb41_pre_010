@@ -53,17 +53,21 @@ public class VoteService {
                 questionVote.voteDown();
                 questionVoteCal(questionVote.getQuestion(), -1);
             }
+            questionVote.setVoteUpCheck(false);
+            questionVote.setVoteDownCheck(true);
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
             //down이 눌린상태
         } else if (questionVote.getVoteCount() <= -1) {
             questionVote.voteUp();
+            questionVote.setVoteDownCheck(false);
             questionVoteCal(questionVote.getQuestion(), 1);
             questionVote.getUser().voteCountUp();
             return questionVoteRepository.save(questionVote);
             //아무것도 안눌린 상태
         } else {
             questionVote.voteDown();
+            questionVote.setVoteDownCheck(true);
             questionVoteCal(questionVote.getQuestion(), -1);
             questionVote.getUser().voteCountUp();
             return questionVoteRepository.save(questionVote);
@@ -76,6 +80,7 @@ public class VoteService {
         //up이 눌린 상태로 한 번 더 누를 경우 -> 취소
         if (questionVote.getVoteCount() >= 1) {
             questionVote.voteDown();
+            questionVote.setVoteUpCheck(false);
             questionVoteCal(questionVote.getQuestion(), -1);
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
@@ -85,12 +90,15 @@ public class VoteService {
                 questionVote.voteUp();
                 questionVoteCal(questionVote.getQuestion(), 1);
             }
+            questionVote.setVoteUpCheck(true);
+            questionVote.setVoteDownCheck(false);
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
         }
         //기존에 아무것도 안누른 경우
         else {
             questionVote.voteUp();
+            questionVote.setVoteUpCheck(true);
             questionVoteCal(questionVote.getQuestion(), 1);
             questionVote.getUser().voteCountUp();
             return questionVoteRepository.save(questionVote);
