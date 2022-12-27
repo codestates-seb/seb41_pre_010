@@ -22,6 +22,9 @@ public class BookmarkQuestion {
     @Column(nullable = false)
     private int bookmarkCount;
 
+    @Column
+    private boolean bookmarkCheck;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
