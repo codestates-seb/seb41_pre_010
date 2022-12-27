@@ -9,7 +9,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   //  만약에 로그인이 되어있으면 튕기게
   // navigate("/");
-  const [name, setName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [nameMessage, setNameMessage] = useState("닉네임을 입력해주세요");
   const [email, setEmail] = useState("");
   const [emailMessage, setEmailMessage] = useState("이메일을 입력해주세요");
@@ -21,7 +21,7 @@ export default function SignUp() {
     e.preventDefault();
     await axios
       .post(url, {
-        displayName: name,
+        displayName: displayName,
         password: password,
         email: email,
       })
@@ -46,7 +46,7 @@ export default function SignUp() {
           <div className="SignUp_Content">
             <form onSubmit={onSubmit}>
               <DisplayNameComponent
-                setName={setName}
+                setName={setDisplayName}
                 setNameMessage={setNameMessage}
                 nameMessage={nameMessage}
               />
