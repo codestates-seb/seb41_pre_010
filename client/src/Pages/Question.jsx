@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Input from "../Components/Input";
 import { questionDummyData } from "../QuestionData";
 import { BlueButton, TagButton } from "../Components/button";
-import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import axios from "axios";
 import styled from "styled-components";
@@ -59,15 +59,25 @@ export default function Question() {
       });
   };
 
-  const questionVoteRequest = (userId, questionId, vote) => {
-    const request = {"userId": userId, "questionId": questionId, "vote": vote};
-    axios.put(`api/v1/votes/${questionId}/questions`,request);
+  const questionUpVoteRequest = (userId, questionId) => {
+    const request = { "userId": userId, "questionId": questionId, "vote": 1 };
+    axios.put(`api/v1/votes/${questionId}/questions`, request);
   };
 
-  const answerVoteRequest = (userId, answerId, vote) => {
-    const request = {"userId": userId, "questionId": answerId, "vote": vote};
-    axios.put(`api/v1/votes/${answerId}/questions`,request);
-  }
+  const questionDownVoteRequest = (userId, questionId) => {
+    const request = { "userId": userId, "questionId": questionId, "vote": -1 };
+    axios.put(`api/v1/votes/${questionId}/questions`, request);
+  };
+
+  const answerUpVoteRequest = (userId, answerId) => {
+    const request = { "userId": userId, "questionId": answerId, "vote": 1 };
+    axios.put(`api/v1/votes/${answerId}/questions`, request);
+  };
+
+  const answerDownVoteRequest = (userId, answerId) => {
+    const request = { "userId": userId, "questionId": answerId, "vote": -1 };
+    axios.put(`api/v1/votes/${answerId}/questions`, request);
+  };
 
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
@@ -120,6 +130,11 @@ export default function Question() {
                     <span>{filterData[0].vote}</span>
                     <TiArrowSortedDown />
                   </IconContext.Provider>
+                  <IconContext.Provider
+                    value={{ size: "30px", color: "#a5a7a9" }}
+                  >
+                    <TiBookmark />
+                  </IconContext.Provider>
                 </div>
               </aside>
               <div className="Main_Text_Content">
@@ -171,6 +186,11 @@ export default function Question() {
                                 <TiArrowSortedUp />
                                 <span>{el.vote}</span>
                                 <TiArrowSortedDown />
+                              </IconContext.Provider>
+                              <IconContext.Provider
+                                value={{ size: "30px", color: "#a5a7a9" }}
+                              >
+                                <TiBookmark/>
                               </IconContext.Provider>
                             </div>
                           </aside>
