@@ -1,4 +1,4 @@
-package com.backend.sever.vote.dto;
+package com.backend.sever.vote;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class VotePostDto {
+public class AnswerVotePutDto {
     private int vote;
-    private long questionId;
+    private long answerId;
     private long userId;
 }

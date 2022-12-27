@@ -36,6 +36,9 @@ public class Answer {
     @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
+    @Column
+    private int vote;
+
     @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
 
@@ -52,4 +55,12 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
+
+    public void countUp(){
+        this.vote++;
+    }
+
+    public void countDown(){
+        this.vote--;
+    }
 }
