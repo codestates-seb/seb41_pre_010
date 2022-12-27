@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Input from "../Components/Input";
 import { questionDummyData } from "../QuestionData";
 import { BlueButton, TagButton } from "../Components/button";
-import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark } from "react-icons/ti";
+import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark, TiPen } from "react-icons/ti";
 import { IconContext } from "react-icons";
 import axios from "axios";
 import styled from "styled-components";
@@ -27,7 +27,20 @@ export default function Question() {
       setActiveClick(!activeClick);
     }
   };
+  //answer,comment delete Request
+  const deleteQuestion = (questionId) => {
+    axios.delete(`api/v1/questions/${questionId}`);
+  };
 
+  const deleteAnswer = (answerId) => {
+    axios.delete(`api/v1/questions/${answerId}`);
+  };
+
+  const deleteComment = (commentId) => {
+    axios.delete(`api/v1/questions/${commentId}`);
+  };
+
+  //answer,comment add Request
   const addAnswer = (questionId, userId, body) => {
     axios
       .post("api/v1/answers", {
@@ -43,14 +56,16 @@ export default function Question() {
       });
   };
 
-  const postComment = (questionId, userId, answerId, body) => {
+  const addComment = (questionId, userId, answerId, body) => {
+    const request = {
+      questionId: questionId,
+      userId: userId,
+      answerId: answerId,
+      body: body,
+    };
+
     axios
-      .post("api/v1/answers", {
-        questionId: `${questionId}`,
-        userId: `${userId}`,
-        answerId: `${answerId}`,
-        body: `${body}`,
-      })
+      .post("api/v1/answers", JSON.stringify(request))
       .then((res) => {
         console.log(res);
       })
@@ -59,26 +74,26 @@ export default function Question() {
       });
   };
 
+  //Vote Request
   const questionUpVoteRequest = (userId, questionId) => {
-    const request = { "userId": userId, "questionId": questionId, "vote": 1 };
-    axios.put(`api/v1/votes/${questionId}/questions`, request);
+    const request = { userId: userId, questionId: questionId, vote: 1 };
+    axios.put(`api/v1/votes/${questionId}/questions`, JSON.stringify(request));
   };
 
   const questionDownVoteRequest = (userId, questionId) => {
-    const request = { "userId": userId, "questionId": questionId, "vote": -1 };
-    axios.put(`api/v1/votes/${questionId}/questions`, request);
+    const request = { userId: userId, questionId: questionId, vote: -1 };
+    axios.put(`api/v1/votes/${questionId}/questions`, JSON.stringify(request));
   };
 
   const answerUpVoteRequest = (userId, answerId) => {
-    const request = { "userId": userId, "questionId": answerId, "vote": 1 };
-    axios.put(`api/v1/votes/${answerId}/questions`, request);
+    const request = { userId: userId, questionId: answerId, vote: 1 };
+    axios.put(`api/v1/votes/${answerId}/questions`, JSON.stringify(request));
   };
 
   const answerDownVoteRequest = (userId, answerId) => {
-    const request = { "userId": userId, "questionId": answerId, "vote": -1 };
-    axios.put(`api/v1/votes/${answerId}/questions`, request);
+    const request = { userId: userId, questionId: answerId, vote: -1 };
+    axios.put(`api/v1/votes/${answerId}/questions`, JSON.stringify(request));
   };
-
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
@@ -87,6 +102,8 @@ export default function Question() {
   //   };
   //   getQuestionData()
   // },[]);
+  
+  //추후 변경 예정
   const filterData = questionData;
 
   return (
@@ -114,7 +131,7 @@ export default function Question() {
                     <StyledSpan fontsize={"14px"}>
                       수정: {filterData[0].modifiedAt}
                     </StyledSpan>
-                    <div className="Modify_Icon">✍🏻</div>
+                    <TiPen/>
                   </div>
                 </div>
               </div>
@@ -190,7 +207,7 @@ export default function Question() {
                               <IconContext.Provider
                                 value={{ size: "30px", color: "#a5a7a9" }}
                               >
-                                <TiBookmark/>
+                                <TiBookmark />
                               </IconContext.Provider>
                             </div>
                           </aside>
@@ -206,7 +223,7 @@ export default function Question() {
                               ) : (
                                 <span>작성:{el.createdAt}</span>
                               )}
-                              <span>✍🏻</span>
+                              <TiPen/>
                             </div>
                             <div>
                               <img
@@ -256,7 +273,7 @@ export default function Question() {
                               />
                               <BlueButton
                                 onClick={() =>
-                                  postComment(
+                                  addComment(
                                     filterData[0].questionId,
                                     //현재 로그인 되어있는 user의 ID
                                     filterData[0].user.userId,
