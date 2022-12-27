@@ -138,7 +138,6 @@ export default function Question() {
             </div>
             <div className="Main_Text_Container">
               <aside className="Main_Text_Aside">
-                {/* 임시 아이콘 */}
                 <div className="Vote_Icon_Container">
                   <IconContext.Provider
                     value={{ size: "35px", color: "hsl(210,8%,85%)" }}
@@ -198,15 +197,13 @@ export default function Question() {
                                 value={{
                                   size: "35px",
                                   color: "hsl(210,8%,85%)",
-                                }}
-                              >
+                                }}>
                                 <TiArrowSortedUp />
                                 <span>{el.vote}</span>
                                 <TiArrowSortedDown />
                               </IconContext.Provider>
                               <IconContext.Provider
-                                value={{ size: "30px", color: "#a5a7a9" }}
-                              >
+                                value={{ size: "30px", color: "#a5a7a9" }}>
                                 <TiBookmark />
                               </IconContext.Provider>
                             </div>
@@ -275,7 +272,7 @@ export default function Question() {
                                 onClick={() =>
                                   addComment(
                                     filterData[0].questionId,
-                                    //현재 로그인 되어있는 user의 ID
+                                    //현재 로그인 되어있는 user의 ID로 변경예정
                                     filterData[0].user.userId,
                                     el.answerId,
                                     commentValue
@@ -289,7 +286,6 @@ export default function Question() {
                           <button
                             onClick={() => {
                               addCommentHandler(index);
-                              // toggleClickHandler(index);
                               setCommentValue("");
                             }}
                             className="Comment_Add_Button"
@@ -311,7 +307,7 @@ export default function Question() {
                   onClick={() =>
                     addAnswer(
                       filterData[0].questionId,
-                      //현재 글의 user의 정보가 아닌 작성자의 user Id를 넣을것
+                      //현재 글의 user의 정보가 아닌 작성자의 user Id로 교체예정
                       filterData[0].user.userId,
                       filterData[0].body
                     )
