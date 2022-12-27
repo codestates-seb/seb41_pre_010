@@ -5,7 +5,7 @@ import com.backend.sever.bookmark.entity.BookmarkQuestion;
 import com.backend.sever.comments.entity.Comments;
 import com.backend.sever.questionTag.entity.QuestionTag;
 import com.backend.sever.user.entity.User;
-import com.backend.sever.vote.entity.Vote;
+import com.backend.sever.vote.entity.QuestionVote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -46,8 +46,11 @@ public class Question {
     @Column
     private int answerCount;
 
+    @Column
+    private int vote;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
-    private List<Vote> votes = new ArrayList<>();
+    private List<QuestionVote> questionVotes = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<QuestionTag> questionTags = new ArrayList<>();
@@ -64,4 +67,11 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    public void countUp(){
+        this.vote++;
+    }
+    public void countDown(){
+        this.vote--;
+    }
 }
