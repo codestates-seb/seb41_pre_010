@@ -9,24 +9,29 @@ import MypageEdit from "./Pages/MypageEdit";
 import EditPage from "./Pages/EditPage";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-
+import { SessionProvider } from "./CustomHook/SessionProvider";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/question/:questionId" element={<Question />} />
-          <Route path="/questions" element={<MainPage />} />
-          <Route path="/users/signup" element={<SignUp />} />
-          <Route path="/users/islogin" element={<Login />} />
-          <Route path="/questions/:questionId/edit" element={<EditPage />} />
-          <Route path={"/users/mypage/:userId"} element={<Mypage />} />
-          <Route path={"/users/mypage/edit/:userId"} element={<MypageEdit />} />
-          <Route path={"/search"} element={<></>} />
-        </Routes>
-      </BrowserRouter>
-      <Footer />
+      <SessionProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/question/:questionId" element={<Question />} />
+            <Route path="/questions" element={<MainPage />} />
+            <Route path="/users/signup" element={<SignUp />} />
+            <Route path="/users/islogin" element={<Login />} />
+            <Route path="/questions/:questionId/edit" element={<EditPage />} />
+            <Route path={"/users/mypage/:userId"} element={<Mypage />} />
+            <Route
+              path={"/users/mypage/edit/:userId"}
+              element={<MypageEdit />}
+            />
+            <Route path={"/search"} element={<></>} />
+          </Routes>
+        </BrowserRouter>
+        <Footer />
+      </SessionProvider>
     </>
   );
 }
