@@ -1,5 +1,6 @@
 package com.backend.sever.user.controller;
 
+import com.backend.sever.user.dto.UserInfoResponseDto;
 import com.backend.sever.user.dto.UserPutDto;
 import com.backend.sever.user.dto.UserResponseDto;
 import com.backend.sever.user.entity.User;
@@ -25,6 +26,13 @@ public class UserController {
         UserResponseDto userResponse = userMapper.userToUserResponseDto(userService.findUser(userId));
 
         return new ResponseEntity(userResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/{user-id}/userinfo")
+    public ResponseEntity getUserInfo(@PathVariable("user-id") long userId) {
+        User user =  userService.findUser(userId);
+        UserInfoResponseDto userInfoResponseDto = userMapper.userToUserInfoResponseDto(user);
+        return new ResponseEntity(userInfoResponseDto,HttpStatus.OK);
     }
 
     @PutMapping("/{user-id}/userprofile")

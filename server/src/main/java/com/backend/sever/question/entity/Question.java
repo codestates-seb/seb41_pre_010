@@ -1,7 +1,7 @@
 package com.backend.sever.question.entity;
 
 import com.backend.sever.answer.entity.Answer;
-import com.backend.sever.bookmark.entity.Bookmark;
+import com.backend.sever.bookmark.entity.BookmarkQuestion;
 import com.backend.sever.comments.entity.Comments;
 import com.backend.sever.questionTag.entity.QuestionTag;
 import com.backend.sever.user.entity.User;
@@ -43,6 +43,9 @@ public class Question {
     @Column(nullable = false)
     private int view;
 
+    @Column
+    private int answerCount;
+
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Vote> votes = new ArrayList<>();
 
@@ -56,7 +59,7 @@ public class Question {
     private List<Answer> Answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
-    private List<Bookmark> bookmarks = new ArrayList<>();
+    private List<BookmarkQuestion> bookmarksQuestions = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
