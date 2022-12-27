@@ -1,3 +1,6 @@
+import React from "react";
+import Input from "../Components/Input";
+import { BlueButton, BlueWhiteButton } from "../Components/Button";
 import "./Styles/MypageEdit.css";
 
 const dummyDataProfile = {
@@ -66,15 +69,15 @@ const UserInfoEdit = () => {
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div>Display name</div>
-          <input />
+          <Input />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormTitle_Container">
           <div>Title</div>
-          <input />
+          <Input />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormButton_Container">
-          <button>프로필 저장</button>
-          <button>취소</button>
+          <BlueButton width="90px">프로필 저장</BlueButton>
+          <BlueWhiteButton width="90px">취소</BlueWhiteButton>
         </div>
       </div>
     </div>

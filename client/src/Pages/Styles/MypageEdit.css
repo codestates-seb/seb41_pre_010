@@ -1,6 +1,6 @@
 .Mypage_Container {
   height: 1000px;
-  background-color: aquamarine;
+  background-color: rgb(255, 255, 255);
 }
 
 .Mypage_UserProfile_Container {
@@ -49,7 +49,6 @@
 }
 
 .MypageEdit_UserInfoEdit_Container {
-  background-color: red;
   margin: 70px auto;
   min-width: 600px;
   max-width: 900px;
@@ -72,7 +71,7 @@
   height: 50px;
   padding-top: 15px;
   margin-top: 10px;
-  background-color: aqua;
+  border: 1px solid greenyellow;
 }
 .MypageEdit_UserInfoEdit_Title {
   font-size: 20px;
@@ -89,22 +88,24 @@
 .MypageEdit_UserInfoEdit_FormImage_Container {
   width: 100%;
   height: 40%;
-  background-color: greenyellow;
+  border: 1px solid greenyellow;
 }
 
 .MypageEdit_UserInfoEdit_FormName_Container {
   width: 100%;
   height: 20%;
-  background-color: pink;
+  border: 1px solid greenyellow;
 }
 .MypageEdit_UserInfoEdit_FormTitle_Container {
   width: 100%;
   height: 20%;
-  background-color: greenyellow;
+  border: 1px solid greenyellow;
 }
 .MypageEdit_UserInfoEdit_FormButton_Container {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 10%;
+  height: 15%;
   padding-top: 30px;
-  background-color: darkcyan;
+  border: 1px solid greenyellow;
 }
