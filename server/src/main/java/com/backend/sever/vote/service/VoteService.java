@@ -43,6 +43,7 @@ public class VoteService {
             return questionVoteDown(voteMapper.voteQuestionPutDtoToVote(questionVotePutDto));
         }
     }
+
     //down 로직
     private QuestionVote questionVoteDown(QuestionVote vote) {
         QuestionVote questionVote = getQuestionVote(vote);
@@ -52,16 +53,16 @@ public class VoteService {
             questionVoteCal(questionVote.getQuestion(), -1);
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
-        //down이 눌린상태
+            //down이 눌린상태
         } else if (questionVote.getVoteCount() <= -1) {
             questionVote.voteUp();
             questionVoteCal(questionVote.getQuestion(), 1);
             questionVote.getUser().voteCountUp();
             return questionVoteRepository.save(questionVote);
-        //아무것도 안눌린 상태
+            //아무것도 안눌린 상태
         } else {
             questionVote.voteDown();
-            questionVoteCal(questionVote.getQuestion(),-1);
+            questionVoteCal(questionVote.getQuestion(), -1);
             questionVote.getUser().voteCountUp();
             return questionVoteRepository.save(questionVote);
         }
@@ -73,18 +74,18 @@ public class VoteService {
         //up이 눌린 상태로 한 번 더 누를 경우 -> 취소
         if (questionVote.getVoteCount() >= 1) {
             questionVote.voteDown();
-            questionVoteCal(questionVote.getQuestion(),-1);
+            questionVoteCal(questionVote.getQuestion(), -1);
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
-        //down이 눌린 상태로 up을 누를 경우
+            //down이 눌린 상태로 up을 누를 경우
         } else if (questionVote.getVoteCount() <= -1) {
             questionVote.voteUp();
-            questionVoteCal(questionVote.getQuestion(),1);
+            questionVoteCal(questionVote.getQuestion(), 1);
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
         }
         //기존에 아무것도 안누른 경우
-        else{
+        else {
             questionVote.voteUp();
             questionVoteCal(questionVote.getQuestion(), 1);
             questionVote.getUser().voteCountUp();
@@ -95,12 +96,11 @@ public class VoteService {
     public QuestionVote getQuestionVote(QuestionVote vote) {
         Question question = questionService.findQuestion(vote.getQuestion().getQuestionId());
         User user = userService.findUser(vote.getUser().getUserId());
-        Optional<QuestionVote> optionalQuestionVote = questionVoteRepository.findByQuestionAndUser(question,user);
+        Optional<QuestionVote> optionalQuestionVote = questionVoteRepository.findByQuestionAndUser(question, user);
 
         if (optionalQuestionVote.isPresent()) {
             return optionalQuestionVote.get();
-        }
-        else{
+        } else {
             QuestionVote questionVote = new QuestionVote();
             questionVote.setQuestion(question);
             questionVote.setUser(user);
@@ -109,22 +109,36 @@ public class VoteService {
     }
 
     public void questionVoteCal(Question question, int number) {
-        if(number >= 0) question.countUp();
+        if (number >= 0) question.countUp();
         else question.countDown();
     }
 
     public AnswerVote AnswerUpAndDown(AnswerVotePutDto answerVotePutDto) {
         if (answerVotePutDto.getVote() == 1) {
             return AnswerVoteUp(voteMapper.voteAnswerPutDtoToVote(answerVotePutDto));
-        }
-        else {
+        } else {
             return AnswerVoteDown(voteMapper.voteAnswerPutDtoToVote(answerVotePutDto));
         }
     }
 
     private AnswerVote AnswerVoteDown(AnswerVote vote) {
-
-        return null;
+        AnswerVote answerVote = getAnswerVote(vote);
+        if (answerVote.getVoteCount() >= 1) {
+            answerVote.voteDown();
+            answerVoteCal(answerVote.getAnswer(), -1);
+            answerVote.getUser().voteCountDown();
+            return answerVoteRepository.save(answerVote);
+        } else if (answerVote.getVoteCount() <= -1) {
+            answerVote.voteUp();
+            answerVoteCal(answerVote.getAnswer(), 1);
+            answerVote.getUser().voteCountUp();
+            return answerVoteRepository.save(answerVote);
+        } else {
+            answerVote.voteDown();
+            answerVoteCal(answerVote.getAnswer(), -1);
+            answerVote.getUser().voteCountUp();
+            return answerVoteRepository.save(answerVote);
+        }
     }
 
     private AnswerVote AnswerVoteUp(AnswerVote vote) {
@@ -132,10 +146,10 @@ public class VoteService {
         //up이 눌린 상태
         if (answerVote.getVoteCount() >= 1) {
             answerVote.voteDown();
-            answerVoteCal(answerVote.getAnswer(),-1);
+            answerVoteCal(answerVote.getAnswer(), -1);
             answerVote.getUser().voteCountDown();
             return answerVoteRepository.save(answerVote);
-        //down이 눌린 상태
+            //down이 눌린 상태
         } else if (answerVote.getVoteCount() <= -1) {
             answerVote.voteDown();
             answerVoteCal(answerVote.getAnswer(), 1);
@@ -159,8 +173,7 @@ public class VoteService {
 
         if (optionalAnswerVote.isPresent()) {
             return optionalAnswerVote.get();
-        }
-        else {
+        } else {
             AnswerVote answerVote = new AnswerVote();
             answerVote.setUser(user);
             answerVote.setAnswer(answer);
@@ -169,7 +182,7 @@ public class VoteService {
     }
 
     private void answerVoteCal(Answer answer, int number) {
-        if(number >= 0) answer.countUp();
+        if (number >= 0) answer.countUp();
         else answer.countDown();
     }
 }
