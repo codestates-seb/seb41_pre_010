@@ -19,7 +19,7 @@ export default function SignUp() {
     e.preventDefault();
     await axios
       .post(url, {
-        username: name,
+        displayName: name,
         password: password,
         email: email,
       })
