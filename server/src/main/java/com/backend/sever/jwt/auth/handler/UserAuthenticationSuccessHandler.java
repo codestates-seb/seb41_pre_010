@@ -20,5 +20,6 @@ public class UserAuthenticationSuccessHandler  implements AuthenticationSuccessH
 
         log.info("# Authenticated successfully!");
 
+
     }
 }

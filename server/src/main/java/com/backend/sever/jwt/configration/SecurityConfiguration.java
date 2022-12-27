@@ -4,8 +4,11 @@ import com.backend.sever.jwt.auth.handler.UserAuthenticationFailureHandler;
 import com.backend.sever.jwt.auth.handler.UserAuthenticationSuccessHandler;
 import com.backend.sever.jwt.filter.JwtAuthenticationFilter;
 import com.backend.sever.jwt.token.JwtTokenizer;
+import com.backend.sever.user.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -20,13 +23,17 @@ import java.util.Arrays;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-@Configuration
+//@Configuration
 public class SecurityConfiguration {
 
     private  final JwtTokenizer jwtTokenizer;
+    private final UserRepository userRepository;
 
-    public SecurityConfiguration(JwtTokenizer jwtTokenizer) {
+
+    public SecurityConfiguration(JwtTokenizer jwtTokenizer,
+                                 UserRepository userRepository) {
         this.jwtTokenizer = jwtTokenizer;
+        this.userRepository = userRepository;
     }
 
     @Bean
@@ -74,6 +81,8 @@ public class SecurityConfiguration {
 
 
             builder.addFilter(jwtAuthenticationFilter);
+
+
         }
 
     }

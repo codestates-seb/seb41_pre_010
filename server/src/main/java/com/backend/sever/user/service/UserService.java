@@ -10,6 +10,7 @@ import com.backend.sever.user.repository.UserRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 // 사용자 로그인을 위한 요소 임포트
 
@@ -41,11 +42,9 @@ public class UserService {
 //    }
 
 
-
+    @Transactional(readOnly = true)
     public User findUser(long userId) {
-        User findUser = verifiedUser(userId);
-
-        return findUser;
+        return verifiedUser(userId);
     }
 
     public User updateUser(User user) {
@@ -56,11 +55,14 @@ public class UserService {
         return userRepository.save(updateUser);
     }
 
+    @Transactional(readOnly = true)
     public User verifiedUser(long userId) {
-        Optional<User> findUser = userRepository.findById(userId);
+        Optional<User> optionalUser = userRepository.findById(userId);
 
-        return findUser.orElseThrow(() ->
+        User findUser = optionalUser.orElseThrow(() ->
                 new RuntimeException());
+
+        return findUser;
     }
 
 
