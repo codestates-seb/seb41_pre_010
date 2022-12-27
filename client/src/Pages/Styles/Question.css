@@ -169,3 +169,15 @@ margin-right: 70px;
 .None_Activate{
   display: none;
 }
+
+.test1{
+  width: 30px;
+  height: 30px;
+  background-color: black;
+}
+
+.test2{
+  width: 30px;
+  height: 30px;
+  background-color: pink;
+}
