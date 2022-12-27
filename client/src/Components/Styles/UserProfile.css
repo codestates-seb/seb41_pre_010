@@ -1,6 +1,8 @@
 .Mypage_UserProfile_Container {
   width: 70%;
   margin: 50px auto;
+  min-width: 1024px;
+  max-width: 1024px;
   display: flex;
   justify-content: space-between;
 }
