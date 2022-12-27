@@ -41,6 +41,10 @@
   color: rgb(59, 64, 69);
 }
 
+.Main_Page_Question_Tag > a {
+  margin-right: 2px;
+}
+
 .Main_Page_Question_UserInfo {
   display: flex;
   font-size: 0.8rem;
