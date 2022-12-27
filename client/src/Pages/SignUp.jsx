@@ -6,6 +6,9 @@ import { BlueButton } from "../Components/Button";
 import "./Styles/SignUp.css";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  //  만약에 로그인이 되어있으면 튕기게
+  // navigate("/");
   const [name, setName] = useState("");
   const [nameMessage, setNameMessage] = useState("닉네임을 입력해주세요");
   const [email, setEmail] = useState("");
@@ -14,7 +17,6 @@ export default function SignUp() {
   const [passwordMessage, setPasswordMessage] =
     useState("비밀번호를 입력해주세요.");
   const url = "http://localhost:8080/api/v1/users/signup";
-  const navigate = useNavigate();
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
