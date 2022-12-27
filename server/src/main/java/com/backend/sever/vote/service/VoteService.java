@@ -4,7 +4,9 @@ import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.service.QuestionService;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.service.UserService;
+import com.backend.sever.vote.AnswerVotePutDto;
 import com.backend.sever.vote.dto.QuestionVotePutDto;
+import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;
 import com.backend.sever.vote.mapper.VoteMapper;
 import com.backend.sever.vote.repository.QuestionVoteRepository;
@@ -27,7 +29,7 @@ public class VoteService {
     }
 
     //up 또는 down판단
-    public QuestionVote upAndDown(QuestionVotePutDto questionVotePutDto) {
+    public QuestionVote QuestionUpAndDown(QuestionVotePutDto questionVotePutDto) {
         if (questionVotePutDto.getVote() == 1) {
             return questionVoteUp(voteMapper.voteQuestionPutDtoToVote(questionVotePutDto));
         } else {
@@ -102,5 +104,26 @@ public class VoteService {
     public void questionVoteCal(Question question, int number) {
         if(number >= 0) question.countUp();
         else question.countDown();
+    }
+
+    public AnswerVote AnswerUpAndDown(AnswerVotePutDto answerVotePutDto) {
+        if (answerVotePutDto.getVote() == 1) {
+            return AnswerVoteUp(voteMapper.voteAnswerPutDtoToVote(answerVotePutDto));
+        }
+        else {
+            return AnswerVoteDown(voteMapper.voteAnswerPutDtoToVote(answerVotePutDto));
+        }
+    }
+
+    private AnswerVote AnswerVoteDown(AnswerVote voteAnswerPutDtoToVote) {
+        return null;
+    }
+
+    private AnswerVote AnswerVoteUp(AnswerVote voteAnswerPutDtoToVote) {
+        return null;
+    }
+
+    private AnswerVote getAnswerVote(long answerId) {
+        return null;
     }
 }
