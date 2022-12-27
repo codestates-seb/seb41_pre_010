@@ -6,26 +6,32 @@ import { BlueButton } from "../Components/Button";
 import "./Styles/SignUp.css";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [nameMessage, setNameMessage] = useState("닉네임을 입력해주세요");
+  const [email, setEmail] = useState("");
+  const [emailMessage, setEmailMessage] = useState("이메일을 입력해주세요");
+  const [password, setPassword] = useState("");
+  const [passwordMessage, setPasswordMessage] =
+    useState("비밀번호를 입력해주세요.");
+
   const url = "http://localhost:8080/api/v1/users/signup";
   const navigate = useNavigate();
-  const onSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      navigate(-1);
-      // await axios
-      //   .post(url, {
-      //     username: name,
-      //     password: password,
-      //     email: email,
-      //   })
-      //   .then((res) => {
-      //     console.log("response:", res);
-      //     if (res.status === 200) {
-      //     }
-      //   }).catch((e)=>if(e) return redirect("/users/signup"))
-    },
-    [navigate]
-  );
+
+  const onSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    // navigate(-1);
+    // await axios
+    //   .post(url, {
+    //     username: name,
+    //     password: password,
+    //     email: email,
+    //   })
+    //   .then((res) => {
+    //     console.log("response:", res);
+    //     if (res.status === 200) {
+    //     }
+    //   }).catch((e)=>if(e) return redirect("/users/signup"))
+  });
 
   return (
     <>
@@ -34,11 +40,25 @@ export default function SignUp() {
           <Logo />
           <div className="SignUp_Content">
             <form onSubmit={onSubmit}>
-              <NickNameComponent />
-              <EmailComponent />
-              <PasswordComponent />
+              <DisplayNameComponent
+                setName={setName}
+                setNameMessage={setNameMessage}
+                nameMessage={nameMessage}
+              />
+              <EmailComponent
+                setEmail={setEmail}
+                setEmailMessage={setEmailMessage}
+                emailMessage={emailMessage}
+              />
+              <PasswordComponent
+                setPassword={setPassword}
+                setPasswordMessage={setPasswordMessage}
+                passwordMessage={passwordMessage}
+              />
               <div className="SignUp_Button_Container">
                 <BlueButton
+                  type="submit"
+                  onClick={onSubmit}
                   className="SignUp_Button"
                   height="30"
                   fontSize="16px"
@@ -70,58 +90,88 @@ const Logo = () => {
   );
 };
 
-const NickNameComponent = () => {
+const DisplayNameComponent = ({ setName, setNameMessage, nameMessage }) => {
+  const onChangeName = (e) => {
+    const nameCurrent = e.target.value;
+    setName(nameCurrent);
+    if (nameCurrent.length !== 0) setNameMessage("");
+    else setNameMessage("닉네임을 입력해주세요");
+  };
+
   return (
     <div className="SignUp_Display_Name_Container">
-      <label for="SignUp_DisplayName" className="SignUp_Content_Title">
+      <label htmlFor="SignUp_DisplayName" className="SignUp_Content_Title">
         닉네임
       </label>
       <Input
         id="SignUp_DisplayName"
         type="text"
         className="SignUp_Content_Input"
+        onChange={onChangeName}
       />
+      <span className="SignUp_Message">{nameMessage}</span>
     </div>
   );
 };
 
-const EmailComponent = () => {
+const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
+  const onChangeEmail = (e) => {
+    const emailRegex =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const emailCurrent = e.target.value;
+    setEmail(emailCurrent);
+    if (emailCurrent.length === 0) setEmailMessage("이메일을 입력해주세요");
+    else {
+      if (!emailRegex.test(emailCurrent)) {
+        setEmailMessage("이메일 형식이 아닙니다.");
+      } else {
+        setEmailMessage("");
+      }
+    }
+  };
+
   return (
     <div className="SignUp_Email_Container">
-      <label for="SignUp_email" className="SignUp_Content_Title">
+      <label htmlFor="SignUp_email" className="SignUp_Content_Title">
         이메일
       </label>
-      <Input id="SignUp_email" type="text" className="SignUp_Content_Input" />
+      <Input
+        id="SignUp_email"
+        type="text"
+        className="SignUp_Content_Input"
+        onChange={onChangeEmail}
+      />
+      <span className="SignUp_Message">{emailMessage}</span>
     </div>
   );
 };
 
-const PasswordComponent = () => {
-  const [passwordMessage, setPasswordMessage] = useState(
-    "비밀번호는 최소 1개의 문자와 1개의 숫자를 포함하여 최소 8자이상이어야 합니다."
-  );
-  const [isPassword, setIsPassword] = useState(false);
-  const [password, setPassword] = useState("");
-
-  const onChangePassword = useCallback((e) => {
+const PasswordComponent = ({
+  setPassword,
+  setPasswordMessage,
+  passwordMessage,
+}) => {
+  const onChangePassword = (e) => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
     const passwordCurrent = e.target.value;
-    setPassword(passwordCurrent);
 
-    if (!passwordRegex.test(passwordCurrent)) {
-      setPasswordMessage(
-        "비밀번호는 최소 1개의 문자와 1개의 숫자를 포함하여 최소 8자이상이어야 합니다."
-      );
-      setIsPassword(false);
+    setPassword(passwordCurrent);
+    if (passwordCurrent.length === 0) {
+      setPasswordMessage("비밀번호를 입력해주세요.");
     } else {
-      setPasswordMessage("");
-      setIsPassword(true);
+      if (!passwordRegex.test(passwordCurrent)) {
+        setPasswordMessage(
+          "비밀번호는 최소 1개의 문자와 1개의 숫자를 포함하여 최소 8자이상이어야 합니다."
+        );
+      } else {
+        setPasswordMessage("");
+      }
     }
-  }, []);
+  };
 
   return (
     <div className="SignUp_Password_Container">
-      <label for="SignUp_Password" className="SignUp_Content_Title">
+      <label htmlFor="SignUp_Password" className="SignUp_Content_Title">
         비밀번호
       </label>
       <Input
@@ -130,7 +180,7 @@ const PasswordComponent = () => {
         className="SignUp_Content_Input"
         onChange={onChangePassword}
       />
-      <span className="SignUp_Password_Message">{passwordMessage}</span>
+      <span className="SignUp_Message">{passwordMessage}</span>
     </div>
   );
 };
