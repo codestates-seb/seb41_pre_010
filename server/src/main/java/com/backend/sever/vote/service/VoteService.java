@@ -49,8 +49,10 @@ public class VoteService {
         QuestionVote questionVote = getQuestionVote(vote);
         //up이 눌린상태
         if (questionVote.getVoteCount() >= 1) {
-            questionVote.voteDown();
-            questionVoteCal(questionVote.getQuestion(), -1);
+            for (int i = 0; i < 2; i++) {
+                questionVote.voteDown();
+                questionVoteCal(questionVote.getQuestion(), -1);
+            }
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
             //down이 눌린상태
@@ -79,8 +81,10 @@ public class VoteService {
             return questionVoteRepository.save(questionVote);
             //down이 눌린 상태로 up을 누를 경우
         } else if (questionVote.getVoteCount() <= -1) {
-            questionVote.voteUp();
-            questionVoteCal(questionVote.getQuestion(), 1);
+            for (int i = 0; i < 2; i++) {
+                questionVote.voteUp();
+                questionVoteCal(questionVote.getQuestion(), 1);
+            }
             questionVote.getUser().voteCountDown();
             return questionVoteRepository.save(questionVote);
         }
@@ -120,12 +124,14 @@ public class VoteService {
             return AnswerVoteDown(voteMapper.voteAnswerPutDtoToVote(answerVotePutDto));
         }
     }
-
+    //down 로직
     private AnswerVote AnswerVoteDown(AnswerVote vote) {
         AnswerVote answerVote = getAnswerVote(vote);
         if (answerVote.getVoteCount() >= 1) {
-            answerVote.voteDown();
-            answerVoteCal(answerVote.getAnswer(), -1);
+            for (int i = 0; i < 2; i++) {
+                answerVote.voteDown();
+                answerVoteCal(answerVote.getAnswer(), -1);
+            }
             answerVote.getUser().voteCountDown();
             return answerVoteRepository.save(answerVote);
         } else if (answerVote.getVoteCount() <= -1) {
@@ -140,7 +146,7 @@ public class VoteService {
             return answerVoteRepository.save(answerVote);
         }
     }
-
+    //up로직
     private AnswerVote AnswerVoteUp(AnswerVote vote) {
         AnswerVote answerVote = getAnswerVote(vote);
         //up이 눌린 상태
@@ -151,8 +157,10 @@ public class VoteService {
             return answerVoteRepository.save(answerVote);
             //down이 눌린 상태
         } else if (answerVote.getVoteCount() <= -1) {
-            answerVote.voteDown();
-            answerVoteCal(answerVote.getAnswer(), 1);
+            for (int i = 0; i < 2; i++) {
+                answerVote.voteUp();
+                answerVoteCal(answerVote.getAnswer(), 1);
+            }
             answerVote.getUser().voteCountDown();
             return answerVoteRepository.save(answerVote);
         }
