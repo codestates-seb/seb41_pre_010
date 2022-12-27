@@ -113,7 +113,7 @@ export const questionDummyData = [
         body: "취업은 하기 나름인듯 님이 얼마나 노력을 했는지에 따라 ㅋㅋ", //String
         createdAt: "2022/12/26/11:53", //String
         modifiedAt: "2022/12/26/11:55", //String
-        vote: 4, //Number
+        vote: 6, //Number
         voteCheck: false, //Boolean
         bookMarkCheck: false, //Boolean
       },

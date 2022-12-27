@@ -55,19 +55,19 @@ a{
 }
 
 .Main_Text_Container{
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
 }
 
 .Main_Text_Aside{
   display: flex;
   flex-direction: column;
-  background-color: rgb(99, 99, 151);
   height: 100%;
 }
 
 .Main_Text_Content{
   margin-left: 20px;
+  padding-top: 9px;
   width: 90%;
   background-color: white;
 }

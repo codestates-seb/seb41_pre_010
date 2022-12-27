@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import "./Styles/Question.css";
-import { BlueButton, TagButton } from "../Components/button";
 import Input from "../Components/Input";
 import { questionDummyData } from "../QuestionData";
+import { BlueButton, TagButton } from "../Components/button";
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+import { IconContext } from "react-icons";
 import axios from "axios";
+import styled from "styled-components";
+import "./Styles/Question.css";
 
 const StyledSpan = styled.span`
   font-size: ${(props) => props.fontsize};
@@ -20,10 +22,11 @@ export default function Question() {
   const [commentValue, setCommentValue] = useState("");
 
   const addCommentHandler = (idx) => {
-    setAnswerIdx(idx);
+    setAnswerIdx(() => idx);
+    if (idx === answerIdx) {
+      setActiveClick(!activeClick);
+    }
   };
-
-  console.log(commentValue);
 
   const addAnswer = (questionId, userId, body) => {
     axios
@@ -55,6 +58,17 @@ export default function Question() {
         console.log(err);
       });
   };
+
+  const questionVoteRequest = (userId, questionId, vote) => {
+    const request = {"userId": userId, "questionId": questionId, "vote": vote};
+    axios.put(`api/v1/votes/${questionId}/questions`,request);
+  };
+
+  const answerVoteRequest = (userId, answerId, vote) => {
+    const request = {"userId": userId, "questionId": answerId, "vote": vote};
+    axios.put(`api/v1/votes/${answerId}/questions`,request);
+  }
+
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
@@ -64,7 +78,7 @@ export default function Question() {
   //   getQuestionData()
   // },[]);
   const filterData = questionData;
-  console.log(filterData);
+
   return (
     <>
       <main>
@@ -99,9 +113,13 @@ export default function Question() {
               <aside className="Main_Text_Aside">
                 {/* 임시 아이콘 */}
                 <div className="Vote_Icon_Container">
-                  <span>⬆</span>
-                  <span>{filterData[0].vote}</span>
-                  <span>⬇</span>
+                  <IconContext.Provider
+                    value={{ size: "35px", color: "hsl(210,8%,85%)" }}
+                  >
+                    <TiArrowSortedUp />
+                    <span>{filterData[0].vote}</span>
+                    <TiArrowSortedDown />
+                  </IconContext.Provider>
                 </div>
               </aside>
               <div className="Main_Text_Content">
@@ -144,9 +162,16 @@ export default function Question() {
                         <div className="Main_Text_Container">
                           <aside className="Main_Text_Aside">
                             <div className="Vote_Icon_Container">
-                              <span>⬆</span>
-                              <span>{el.vote}</span>
-                              <span>⬇</span>
+                              <IconContext.Provider
+                                value={{
+                                  size: "35px",
+                                  color: "hsl(210,8%,85%)",
+                                }}
+                              >
+                                <TiArrowSortedUp />
+                                <span>{el.vote}</span>
+                                <TiArrowSortedDown />
+                              </IconContext.Provider>
                             </div>
                           </aside>
                           <div className="Main_Text_Content">
@@ -227,7 +252,7 @@ export default function Question() {
                           <button
                             onClick={() => {
                               addCommentHandler(index);
-                              setActiveClick(!activeClick);
+                              // toggleClickHandler(index);
                               setCommentValue("");
                             }}
                             className="Comment_Add_Button"
