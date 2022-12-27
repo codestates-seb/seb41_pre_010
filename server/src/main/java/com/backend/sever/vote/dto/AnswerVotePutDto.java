@@ -1,4 +1,4 @@
-package com.backend.sever.vote;
+package com.backend.sever.vote.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
