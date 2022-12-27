@@ -135,20 +135,26 @@ public class VoteService {
     //down 로직
     private AnswerVote AnswerVoteDown(AnswerVote vote) {
         AnswerVote answerVote = getAnswerVote(vote);
+        //up이 눌린 상태
         if (answerVote.getVoteCount() >= 1) {
             for (int i = 0; i < 2; i++) {
                 answerVote.voteDown();
                 answerVoteCal(answerVote.getAnswer(), -1);
             }
+            answerVote.setVoteUpCheck(false);
+            answerVote.setVoteDownCheck(true);
             answerVote.getUser().voteCountDown();
             return answerVoteRepository.save(answerVote);
+            //down이 눌린 상태
         } else if (answerVote.getVoteCount() <= -1) {
             answerVote.voteUp();
+            answerVote.setVoteDownCheck(false);
             answerVoteCal(answerVote.getAnswer(), 1);
             answerVote.getUser().voteCountUp();
             return answerVoteRepository.save(answerVote);
         } else {
             answerVote.voteDown();
+            answerVote.setVoteDownCheck(true);
             answerVoteCal(answerVote.getAnswer(), -1);
             answerVote.getUser().voteCountUp();
             return answerVoteRepository.save(answerVote);
@@ -160,6 +166,7 @@ public class VoteService {
         //up이 눌린 상태
         if (answerVote.getVoteCount() >= 1) {
             answerVote.voteDown();
+            answerVote.setVoteUpCheck(false);
             answerVoteCal(answerVote.getAnswer(), -1);
             answerVote.getUser().voteCountDown();
             return answerVoteRepository.save(answerVote);
@@ -169,12 +176,15 @@ public class VoteService {
                 answerVote.voteUp();
                 answerVoteCal(answerVote.getAnswer(), 1);
             }
+            answerVote.setVoteUpCheck(true);
+            answerVote.setVoteDownCheck(false);
             answerVote.getUser().voteCountDown();
             return answerVoteRepository.save(answerVote);
         }
         //아무것도 안눌린 상태
         else {
             answerVote.voteUp();
+            answerVote.setVoteUpCheck(true);
             answerVoteCal(answerVote.getAnswer(), 1);
             answerVote.getUser().voteCountUp();
             return answerVoteRepository.save(answerVote);
