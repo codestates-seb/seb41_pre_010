@@ -31,30 +31,31 @@ export default function SignUp() {
     <>
       <main>
         <div className="SignUp_Container">
+          <div>LOGO</div>
           <div className="SignUp_Content">
-            <div>
+            <form>
               <div className="SignUp_Display_Name_Container">
                 <label
                   for="signup_display_name"
-                  className="SignUp_Display_Name"
+                  className="SignUp_Content_Title"
                 >
                   닉네임
                 </label>
                 <Input
                   id="signup_display_name"
                   type="text"
-                  className="SignUp_Display_Input"
+                  className="SignUp_Content_Input"
                 />
               </div>
               <div className="SignUp_Email_Container">
-                <span>이메일</span>
-                <Input type="text" className="SignUp_Email_Input" />
+                <label className="SignUp_Content_Title">이메일</label>
+                <Input type="text" className="SignUp_Content_Input" />
               </div>
               <div className="SignUp_Password_Container">
-                <span>비밀번호</span>
+                <label className="SignUp_Content_Title">비밀번호</label>
                 <Input
                   type="password"
-                  className="SignUp_Password_Input "
+                  className="SignUp_Content_Input"
                   onChange={onChangePassword}
                 />
                 <span className="SignUp_Password_Message">
@@ -62,16 +63,26 @@ export default function SignUp() {
                 </span>
               </div>
               <div className="SignUp_Button_Container">
-                <BlueButton className="SignUp_Button" height="30">
+                <BlueButton
+                  className="SignUp_Button"
+                  height="30"
+                  fontSize="16px"
+                >
                   Sign Up
                 </BlueButton>
               </div>
+            </form>
+          </div>
+          <div className="SignUp_Accout_Have_Message_Container">
+            <span className="SignUp_Accout_Have_Message">
+              이미 계정이 있으신가요?
+            </span>
+            <div>
+              <Link className="SignUp_Link" to={"/users/login"}>
+                로그인
+              </Link>
             </div>
           </div>
-          <span className="SignUp_Accout_Have_Message">
-            이미 계정이 있으신가요?
-            <Link to={"/users/login"}>Log in</Link>
-          </span>
         </div>
       </main>
     </>

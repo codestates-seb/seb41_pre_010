@@ -12,10 +12,29 @@
   width: 320px;
   height: 400px;
   padding: 24px;
-  background-color: aquamarine;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
+    0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+}
+
+.SignUp_Content_Title {
+  font-size: 16px;
+  color: hsl(210, 8%, 5%);
+  font-weight: 600;
+  pointer-events: none;
+  padding: 0 2px;
+  margin-bottom: 2px;
+}
+
+.SignUp_Content_Input {
+  height: 33px;
+  padding: 0.6em 0.7em;
+  border: 1px solid hsl(210, 8%, 75%);
+  border-radius: 3px;
+  color: hsl(210, 8%, 5%);
+  font-size: 13px;
 }
 
 .SignUp_Display_Name_Container {
@@ -25,21 +44,12 @@
   justify-content: center;
 }
 
-.SignUp_Display_Name {
-  /* font-size: 20px; */
-  pointer-events: none;
-}
-
-.SignUp_Display_Input {
-  height: 20px;
-}
-
 .SignUp_Email_Container {
   height: 61px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 25px;
 }
 
 .SignUp_Password_Container {
@@ -47,11 +57,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 25px;
 }
 
 .SignUp_Password_Message {
-  width: 200px;
+  margin-top: 5px;
+  width: 255px;
   height: 40px;
   font-size: 12px;
   color: hsl(210, 8%, 45%);
@@ -60,8 +71,7 @@
 .SignUp_Button_Container {
   width: 268px;
   height: 40px;
-  margin-top: 12px;
-  background-color: red;
+  margin-top: 25px;
 }
 
 .SignUp_Button {
@@ -72,6 +82,21 @@
   justify-content: center;
 }
 
+.SignUp_Accout_Have_Message_Container {
+  padding: 40px;
+  display: flex;
+}
+
 .SignUp_Accout_Have_Message {
-  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.SignUp_Link {
+  margin-left: 5px;
+  color: hsl(206, 100%, 40%);
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: auto;
 }
