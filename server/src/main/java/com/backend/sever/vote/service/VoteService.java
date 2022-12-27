@@ -1,5 +1,6 @@
 package com.backend.sever.vote.service;
 
+import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.service.QuestionService;
 import com.backend.sever.user.entity.User;
@@ -125,5 +126,10 @@ public class VoteService {
 
     private AnswerVote getAnswerVote(long answerId) {
         return null;
+    }
+
+    private void AnswerVoteCal(Answer answer, int number) {
+        if(number >= 0) answer.countUp();
+        else answer.countDown();
     }
 }
