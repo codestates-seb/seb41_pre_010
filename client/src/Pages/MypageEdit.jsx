@@ -52,14 +52,14 @@ const UserInfoEdit = () => {
   return (
     <div className="MypageEdit_UserInfoEdit_Container">
       <div className="MypageEdit_UserInfoEdit_Text_Container">
-        <div className="MypageEdit_UserInfoEdit_Title">Edit your profile</div>
+        <h2>Edit your profile</h2>
       </div>
       <div className="MypageEdit_UserInfoEdit_SecondText_Container">
-        <div className="MypageEdit_UserInfoEdit_Title">Public information</div>
+        <h3>Public information</h3>
       </div>
       <div className="MypageEdit_UserInfoEdit_Form_Container">
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
-          <div>Profile image</div>
+          <div className="UserInfo_Edit_Subtitle">Profile image</div>
           <img
             src={dummyDataProfile.profileImage}
             width={165}
@@ -68,12 +68,12 @@ const UserInfoEdit = () => {
           />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
-          <div>Display name</div>
-          <Input />
+          <div className="UserInfo_Edit_Subtitle">Display name</div>
+          <Input className="UserInfo_Edit_Input" />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormTitle_Container">
-          <div>Title</div>
-          <Input />
+          <div className="UserInfo_Edit_Subtitle">Title</div>
+          <Input className="UserInfo_Edit_Input" />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormButton_Container">
           <BlueButton width="90px">프로필 저장</BlueButton>
