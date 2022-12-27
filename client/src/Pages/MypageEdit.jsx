@@ -54,9 +54,6 @@ const UserInfoEdit = () => {
       <div className="MypageEdit_UserInfoEdit_Text_Container">
         <h2>Edit your profile</h2>
       </div>
-      <div className="MypageEdit_UserInfoEdit_SecondText_Container">
-        <h3>Public information</h3>
-      </div>
       <div className="MypageEdit_UserInfoEdit_Form_Container">
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
@@ -76,8 +73,12 @@ const UserInfoEdit = () => {
           <Input className="UserInfo_Edit_Input" />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormButton_Container">
-          <BlueButton width="90px">프로필 저장</BlueButton>
-          <BlueWhiteButton width="90px">취소</BlueWhiteButton>
+          <BlueButton width="90px" height="35px">
+            프로필 저장
+          </BlueButton>
+          <BlueWhiteButton width="90px" height="35px">
+            취소
+          </BlueWhiteButton>
         </div>
       </div>
     </div>
