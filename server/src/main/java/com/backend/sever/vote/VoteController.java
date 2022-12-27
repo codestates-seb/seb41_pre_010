@@ -1,6 +1,7 @@
 package com.backend.sever.vote;
 
 import com.backend.sever.vote.dto.QuestionVotePutDto;
+import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;
 import com.backend.sever.vote.service.VoteService;
 import org.springframework.http.HttpStatus;
@@ -20,9 +21,15 @@ public class VoteController {
     public ResponseEntity putQuestionVote(@RequestBody QuestionVotePutDto questionVotePutDto,
                                           @PathVariable ("question-id") long questionId) {
         questionVotePutDto.setQuestionId(questionId);
-        QuestionVote questionVote = voteService.upAndDown(questionVotePutDto);
+        QuestionVote questionVote = voteService.QuestionUpAndDown(questionVotePutDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    
+    @PutMapping("/{answer-id}/answers")
+    public ResponseEntity putAnswerVote(@RequestBody AnswerVotePutDto answerVotePutDto,
+                                        @PathVariable("answer-id") long answerId) {
+        answerVotePutDto.setAnswerId(answerId);
+        AnswerVote answerVote = voteService.AnswerUpAndDown(answerVotePutDto);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }
