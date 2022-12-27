@@ -1,5 +1,6 @@
 import React from "react";
 import "./Styles/UserProfile.css";
+import { WhiteButton } from "./Button";
 
 const UserProfile = (props) => {
   const { profileImage, displayName, title } = props.profile;
@@ -19,7 +20,13 @@ const UserProfile = (props) => {
           <div className="Mypage_UserProfile_Title">{title}</div>
         </div>
       </div>
-      <button className="Mypage_UserProfile_EditButton">Edit profile</button>
+      <WhiteButton
+        width="80px"
+        height="40px"
+        className="Mypage_UserProfile_EditButton"
+      >
+        Edit profile
+      </WhiteButton>
     </div>
   );
 };
