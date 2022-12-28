@@ -72,7 +72,7 @@ const LoggedIn = ({ session }) => {
         </span>
       </div>
       <OrangeButton
-        width="65px"
+        width="70px"
         height="38px"
         onClick={async () => {
           const url = "/api/v1/users/logout";
@@ -90,7 +90,7 @@ const LoggedIn = ({ session }) => {
             });
         }}
       >
-        Logout
+        로그아웃
       </OrangeButton>
     </div>
   );
@@ -105,7 +105,7 @@ const LoginRequired = ({ navigate }) => {
         onClick={() => navigate("/users/login")}
         className="MainHeader_Button"
       >
-        LogIn
+        로그인
       </OrangeButton>
       <OrangeButton
         width="70px"
@@ -113,7 +113,7 @@ const LoginRequired = ({ navigate }) => {
         onClick={() => navigate("/users/signup")}
         className="MainHeader_Button"
       >
-        SignUp
+        회원가입
       </OrangeButton>
     </div>
   );
