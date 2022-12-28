@@ -23,7 +23,7 @@ public class QuestionController {
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
 
-        return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.CREATED);
+        return new ResponseEntity<> (HttpStatus.OK);
     }
 
     @GetMapping("/{question-id}/edit")
