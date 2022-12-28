@@ -19,18 +19,6 @@ public interface TagMapper {
         return tags;
     }
 
-//    default List<Tag> tagPostDtosToTags(TagPostDtos tagPostDtos) {
-//        List<Tag> tags = tagPostDtos.getTags().stream()
-//                .map(tagPostDto -> {
-//                    Tag tag = new Tag();
-//                    tag.setTagName(tagPostDto.getTagName());
-//
-//                    return tag;
-//                }).collect(Collectors.toList());
-//
-//        return tags;
-//    }
-
     default TagResponseDto tagsToTagResponseDto(List<Tag> tags) {
         TagResponseDto tagResponseDto = new TagResponseDto();
         List<Long> tagIdList = tags.stream().map(tag -> {
@@ -41,22 +29,5 @@ public interface TagMapper {
 
         return tagResponseDto;
     }
-
-//    default TagResponseDtos tagToTagResponseDtos(List<Tag> tags) {
-//        TagResponseDtos tagResponseDtos = new TagResponseDtos();
-//        List<TagResponseDto> tagResponseDtoList =
-//        tags.stream()
-//                .map(tag -> {
-//                    TagResponseDto tagResponseDto = new TagResponseDto();
-//                    tagResponseDto.setTagId(tag.getTagId());
-//                    tagResponseDto.setTagName(tag.getTagName());
-//
-//                    return tagResponseDto;
-//                }).collect(Collectors.toList());
-//
-//        tagResponseDtos.setTags(tagResponseDtoList);
-//
-//        return tagResponseDtos;
-//    }
 
 }

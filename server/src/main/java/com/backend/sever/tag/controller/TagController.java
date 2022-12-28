@@ -1,7 +1,6 @@
 package com.backend.sever.tag.controller;
 
 import com.backend.sever.tag.dto.TagPostDto;
-import com.backend.sever.tag.dto.TagPostDtos;
 import com.backend.sever.tag.entity.Tag;
 import com.backend.sever.tag.mapper.TagMapper;
 import com.backend.sever.tag.service.TagService;
@@ -26,9 +25,9 @@ public class TagController {
     }
 
     @PostMapping
-    public ResponseEntity postTag(@RequestBody TagPostDtos tagPostDtos) {
-        List<Tag> tags = tagService.createTag(mapper.tagPostDtosToTags(tagPostDtos));
+    public ResponseEntity postTag(@RequestBody TagPostDto tagPostDto) {
+        List<Tag> tags = tagService.createTag(mapper.tagPostDtoToTags(tagPostDto));
 
-        return new ResponseEntity<> (mapper.tagToTagResponseDtos(tags), HttpStatus.CREATED);
+        return new ResponseEntity<> (mapper.tagsToTagResponseDto(tags), HttpStatus.OK);
     }
 }
