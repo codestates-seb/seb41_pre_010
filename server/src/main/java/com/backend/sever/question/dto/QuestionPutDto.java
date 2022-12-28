@@ -13,6 +13,6 @@ import java.util.List;
 public class QuestionPutDto {
     private String title;
     private String body;
-    private List<TagPostDto> tags;
+    private List<Long> tags;
 
 }
