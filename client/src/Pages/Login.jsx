@@ -18,11 +18,11 @@ export default function Login() {
     password.length !== 0 &&
     email.length !== 0;
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
 
     const url = "/api/v1/users/login";
-    await axios
+    axios
       .post(url, {
         email: email,
         password: password,
