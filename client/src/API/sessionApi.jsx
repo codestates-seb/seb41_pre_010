@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const refreshTokens = async () => {
-  const url = "http://localhost:8080/api/v1/refreshToken";
+  const url = "/api/v1/refreshToken";
   await axios.post(url, undefined, {
     withCredentials: true,
   });
@@ -25,14 +25,21 @@ const handleRequest = async (request) => {
 
 export const fetcher = async (url) => {
   try {
-    // const request = () => axios.get(url, { withCredentials: true });
-    // const { data } = await handleRequest(request);
-    const data = {
-      userId: 0,
-      displayName: "test",
-      profileImage:
-        "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg",
-    };
+    const url = "/api/v1/users/access-token";
+    // const data = {
+    //   userId: 0,
+    //   displayName: "test",
+    //   profileImage:
+    //     "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg",
+    // };
+    const request = () =>
+      axios.get(url, {
+        headers: {
+          withCredentials: true,
+          "ngrok-skip-browser-warning": "69420",
+        },
+      });
+    const { data } = await handleRequest(request);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve([null, data]);
