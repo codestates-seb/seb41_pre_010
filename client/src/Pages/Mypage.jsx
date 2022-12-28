@@ -14,7 +14,8 @@ const dummyDataInfo = [
     question: [
       {
         questionId: 0,
-        title: "Find out whether Chrome console is open",
+        title:
+          "Find out whether Chrome console is opeFind out whether Chrome console is open",
         createdAt: "2022/10/20/13:10",
         modifiedAt: "Year/Month/Day/Hour/Minute",
         vote: 0,
@@ -113,17 +114,17 @@ const Mypage = () => {
 
 const UserInfo = () => {
   return (
-    <>
+    <div className="Mypage_UserInfo_Container">
       <FirstRowContainer />
       <SecondRowContainer />
-    </>
+    </div>
   );
 };
 
 const FirstRowContainer = () => {
   return (
     <div className="Mypage_List_Container">
-      <div className="Mypage_Questions_Container">
+      <div className="Mypage_List_Row">
         <div className="Mypage_Title"> Questions</div>
         <div className="Mypage_ListContents">
           {dummyDataInfo[0].question.map((el) => {
@@ -137,7 +138,7 @@ const FirstRowContainer = () => {
           })}
         </div>
       </div>
-      <div className="Mypage_Answers_Container">
+      <div className="Mypage_List_Row">
         <div className="Mypage_Title">Answers</div>
         <div className="Mypage_ListContents">
           {dummyDataInfo[1].answer.map((el) => {
@@ -167,9 +168,9 @@ const SecondRowContainer = () => {
         </div>
       </div> */}
 
-      <div className="Mypage_BookMark_List_Container">
+      <div className="Mypage_List_Row">
         <div className="Mypage_Title">book mark</div>
-        <div className="Mypage_BookMark_ListContents">
+        <div className="Mypage_ListContents">
           {dummyDataInfo[2].bookmark[0].question.map((el) => {
             return (
               <ul key={el.questionId}>
@@ -179,9 +180,9 @@ const SecondRowContainer = () => {
           })}
         </div>
       </div>
-      <div className="Mypage_BookMark_List_Container">
+      <div className="Mypage_List_Row">
         <div className="Mypage_Title">book mark</div>
-        <div className="Mypage_BookMark_ListContents">
+        <div className="Mypage_ListContents">
           {dummyDataInfo[2].bookmark[1].answer.map((el) => {
             return <ul key={el.answerId}>{<li>{el.title} </li>}</ul>;
           })}

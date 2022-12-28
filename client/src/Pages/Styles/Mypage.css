@@ -1,36 +1,40 @@
 .Mypage_Container {
-  height: 1000px;
-  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.Mypage_UserInfo_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .Mypage_List_Container {
-  margin: 40px auto;
-  width: 80%;
-  height: 30%;
-  min-width: 1200px;
-  max-width: 1400px;
+  width: 1024px;
   display: flex;
-  padding: 15px 15px;
+  justify-content: space-between;
+  margin: 20px 0;
 }
 
-.Mypage_Title {
-  background-color: rgb(189, 189, 218);
-}
-
-.Mypage_ListContents {
-  margin: 30px auto;
-  width: 95%;
-  height: 80%;
-  border: 1px solid black;
-}
-
-.Mypage_Answers_Container {
+.Mypage_List_Row {
   width: 50%;
-  min-width: auto;
-  margin: 0 auto;
   height: 100%;
 }
 
+.Mypage_Title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.Mypage_ListContents > ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* 
 .Mypage_Questions_Container {
   min-width: auto;
   width: 50%;
@@ -44,4 +48,4 @@
 .Mypage_BookMark_List_Container {
   width: 50%;
   margin-left: 15px;
-}
+} */
