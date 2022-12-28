@@ -142,7 +142,7 @@ const FirstRowContainer = ({ question, answer }) => {
   return (
     <div className="Mypage_List_Container">
       <div className="Mypage_List_Row">
-        <div className="Mypage_Title">Answers</div>
+        <div className="Mypage_Title">Questions</div>
         <MyPageListRow question={question} />
       </div>
       <div className="Mypage_List_Row">
