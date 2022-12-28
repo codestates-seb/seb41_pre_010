@@ -1,0 +1,26 @@
+.NotFound_Container {
+  display: flex;
+  height: calc(100vh - 280px);
+  min-height: 600px;
+  width: 1024px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.NotFound_Image {
+  width: 400px;
+  height: 400px;
+}
+
+.NotFound_Description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.NotFound_Title {
+  font-size: 49px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
