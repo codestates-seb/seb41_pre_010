@@ -19,8 +19,10 @@
 }
 
 .Mypage_List_Row {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  width: 470px;
 }
 
 .Mypage_Title {
@@ -29,9 +31,26 @@
   margin-bottom: 10px;
 }
 
-.Mypage_ListContents > ul {
-  list-style-type: none;
-  padding-left: 0;
+.Mypage_List_Content_Container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(234, 236, 237);
+  border-radius: 5px;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.Mypage_Content_Container {
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+
+.Mypage_Content_Title {
+  color: rgb(0, 116, 204);
+  font-weight: 500;
+  text-decoration: none;
+  margin: 10px;
 }
 
 /* 
