@@ -33,7 +33,11 @@ export const fetcher = async (url) => {
       profileImage:
         "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg",
     };
-    return [null, data];
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([null, data]);
+      }, 300);
+    });
   } catch (error) {
     return [error, null];
   }
