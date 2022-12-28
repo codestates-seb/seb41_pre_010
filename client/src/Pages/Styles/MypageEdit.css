@@ -1,55 +1,9 @@
 .Mypage_Container {
   height: 1000px;
-  background-color: aquamarine;
-}
-
-.Mypage_UserProfile_Container {
-  width: 70%;
-  min-width: 600px;
-  max-width: 1000px;
-  height: 150px;
-  background-color: rgb(66, 66, 100);
-  margin: 50px auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.Mypage_UserProfile_Content {
-  background-color: rgb(255, 0, 204);
-  display: flex;
-  flex-grow: 1;
-}
-
-.Mypage_UserProfile_Image {
-  width: 96px;
-  height: 96px;
-  margin: 16px 16px;
-}
-
-.Mypage_UserProfile_Info_Container {
-  width: 400px;
-}
-
-.Mypage_UserProfile_UserName {
-  width: 80%;
-  height: 50%;
-  background-color: blue;
-}
-
-.Mypage_UserProfile_Title {
-  background-color: wheat;
-  width: 100%;
-  height: 50%;
-}
-
-.Mypage_UserProfile_EditButton {
-  background-color: green;
-  height: 50px;
-  margin: 20px 10px;
+  background-color: rgb(255, 255, 255);
 }
 
 .MypageEdit_UserInfoEdit_Container {
-  background-color: red;
   margin: 70px auto;
   min-width: 600px;
   max-width: 900px;
@@ -61,21 +15,16 @@
 .MypageEdit_UserInfoEdit_Text_Container {
   width: 80%;
   margin: auto;
-  border-bottom: 1px solid gray;
-  padding-bottom: 15px;
   background-color: white;
 }
 
-.MypageEdit_UserInfoEdit_SecondText_Container {
-  width: 80%;
-  margin: auto;
-  height: 50px;
-  padding-top: 15px;
-  margin-top: 10px;
-  background-color: aqua;
+.UserInfo_Edit_Subtitle {
+  font-size: 16px;
+  font-weight: 600;
 }
-.MypageEdit_UserInfoEdit_Title {
-  font-size: 20px;
+
+.MypageEdit_UserInfoEdit_Form_Container {
+  padding: 0px 20px;
 }
 
 .MypageEdit_UserInfoEdit_Form_Container {
@@ -83,28 +32,41 @@
   height: 550px;
   margin: 0 auto;
   background-color: white;
-  border: 1px solid gray;
+  border: 1px solid rgb(234, 236, 237);
+  border-radius: 5px;
 }
 
 .MypageEdit_UserInfoEdit_FormImage_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
-  height: 40%;
-  background-color: greenyellow;
+  height: 45%;
 }
 
 .MypageEdit_UserInfoEdit_FormName_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
   height: 20%;
-  background-color: pink;
 }
 .MypageEdit_UserInfoEdit_FormTitle_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
   height: 20%;
-  background-color: greenyellow;
 }
+
+.UserInfo_Edit_Input {
+  width: 300px;
+}
+
 .MypageEdit_UserInfoEdit_FormButton_Container {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 10%;
-  padding-top: 30px;
-  background-color: darkcyan;
+  height: 15%;
+  padding-top: 20px;
 }

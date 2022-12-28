@@ -1,0 +1,45 @@
+.Mypage_UserProfile_Container {
+  width: 70%;
+  margin: 50px auto;
+  min-width: 1024px;
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Mypage_UserProfile_Content {
+  display: flex;
+  flex-grow: 1;
+}
+
+.Mypage_UserProfile_Image {
+  width: 100px;
+  height: 100px;
+  margin: 12px 12px;
+}
+
+.Mypage_UserProfile_Info_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 400px;
+  height: 100%;
+}
+
+.Mypage_UserProfile_UserName {
+  font-size: 28px;
+  font-weight: 600;
+  width: 80%;
+}
+
+.Mypage_UserProfile_Title {
+  color: rgb(131, 138, 146);
+  font-size: 18px;
+  width: 100%;
+}
+
+.Mypage_UserProfile_EditButton {
+  min-width: 80px;
+  margin: 20px 10px;
+  font-size: 0.8rem;
+}
