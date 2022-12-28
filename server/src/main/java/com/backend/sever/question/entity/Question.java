@@ -46,7 +46,7 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Vote> votes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<QuestionTag> questionTags = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
@@ -64,5 +64,8 @@ public class Question {
 
     public void addQuestionTag(QuestionTag questionTag) {
         this.questionTags.add(questionTag);
+        if (questionTag.getQuestion() != this) {
+            questionTag.addQuestion(this);
+        }
     }
 }
