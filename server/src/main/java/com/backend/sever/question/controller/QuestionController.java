@@ -19,6 +19,7 @@ public class QuestionController {
         this.mapper = mapper;
         this.questionService = questionService;
     }
+
     @PostMapping
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
