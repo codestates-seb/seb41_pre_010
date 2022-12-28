@@ -4,10 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class TagResponseDto {
-    private long tagId;
-    private String tagName;
+    private List<Long> tags;
 }
