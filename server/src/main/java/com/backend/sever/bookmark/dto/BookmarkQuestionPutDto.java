@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class AnswerBookmarkPutDto {
-    private long answerId;
+public class BookmarkQuestionPutDto {
     private long userId;
+    private long questionId;
 }
