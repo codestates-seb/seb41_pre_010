@@ -1,4 +1,7 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import UserProfile from "../Components/UserProfile";
+import MyPageListRow from "../Components/MyPageListRow";
 import "./Styles/Mypage.css";
 
 const dummyDataProfile = {
@@ -102,61 +105,57 @@ const dummyDataInfo = [
 ];
 
 const Mypage = () => {
+  const [myInfo, setMyInfo] = useState(dummyDataInfo);
+
+  useEffect(() => {
+    axios
+      .get(`api/v1/users/userId/userinfo`)
+      .then((res) => setMyInfo(res))
+      .catch((err) => {
+        console.log(err);
+        setMyInfo(dummyDataInfo);
+      });
+  }, []);
+
   return (
     <>
       <main className="Mypage_Container">
         <UserProfile profile={dummyDataProfile} />
-        <UserInfo />
+        <UserInfo myInfo={myInfo} />
       </main>
     </>
   );
 };
 
-const UserInfo = () => {
+const UserInfo = ({ myInfo }) => {
+  const [question, answer, bookmark] = myInfo;
+
   return (
     <div className="Mypage_UserInfo_Container">
-      <FirstRowContainer />
-      <SecondRowContainer />
+      <FirstRowContainer question={question} answer={answer} />
+      <SecondRowContainer bookmark={bookmark} />
     </div>
   );
 };
 
-const FirstRowContainer = () => {
+const FirstRowContainer = ({ question, answer }) => {
   return (
     <div className="Mypage_List_Container">
       <div className="Mypage_List_Row">
-        <div className="Mypage_Title"> Questions</div>
-        <div className="Mypage_ListContents">
-          {dummyDataInfo[0].question.map((el) => {
-            return (
-              <ul key={el.questionId}>
-                <li>
-                  {el.title} {el.createdAt}
-                </li>
-              </ul>
-            );
-          })}
-        </div>
+        <div className="Mypage_Title">Answers</div>
+        <MyPageListRow question={question} />
       </div>
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Answers</div>
-        <div className="Mypage_ListContents">
-          {dummyDataInfo[1].answer.map((el) => {
-            return (
-              <ul key={el.answerId}>
-                <li>
-                  {el.title} {el.createdAt}
-                </li>
-              </ul>
-            );
-          })}
-        </div>
+        <MyPageListRow answer={answer} />
       </div>
     </div>
   );
 };
 
-const SecondRowContainer = () => {
+const SecondRowContainer = ({ bookmark }) => {
+  const [bookmarkQuestions, bookmarkAnswers] = bookmark.bookmark;
+
   return (
     <div className="Mypage_List_Container">
       {/* <div className="Mypage_Tag_Container">
@@ -167,26 +166,13 @@ const SecondRowContainer = () => {
           })}
         </div>
       </div> */}
-
       <div className="Mypage_List_Row">
-        <div className="Mypage_Title">book mark</div>
-        <div className="Mypage_ListContents">
-          {dummyDataInfo[2].bookmark[0].question.map((el) => {
-            return (
-              <ul key={el.questionId}>
-                <li>{el.title}</li>
-              </ul>
-            );
-          })}
-        </div>
+        <div className="Mypage_Title">Bookmark (Questions)</div>
+        <MyPageListRow question={bookmarkQuestions} />
       </div>
       <div className="Mypage_List_Row">
-        <div className="Mypage_Title">book mark</div>
-        <div className="Mypage_ListContents">
-          {dummyDataInfo[2].bookmark[1].answer.map((el) => {
-            return <ul key={el.answerId}>{<li>{el.title} </li>}</ul>;
-          })}
-        </div>
+        <div className="Mypage_Title">Bookmark (Answers)</div>
+        <MyPageListRow answer={bookmarkAnswers} />
       </div>
     </div>
   );
