@@ -24,3 +24,10 @@
   font-weight: 600;
   margin-bottom: 30px;
 }
+
+.NotFound_Buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
