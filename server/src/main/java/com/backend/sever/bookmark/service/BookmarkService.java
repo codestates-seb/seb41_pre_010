@@ -1,5 +1,8 @@
 package com.backend.sever.bookmark.service;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.answer.service.AnswerService;
+import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.bookmark.entity.BookmarkQuestion;
 import com.backend.sever.bookmark.repository.BookmarkAnswerRepository;
 import com.backend.sever.bookmark.repository.BookmarkQuestionRepository;
@@ -17,12 +20,51 @@ public class BookmarkService {
     private final BookmarkQuestionRepository bookmarkQuestionRepository;
     private final UserService userService;
     private final QuestionService questionService;
+    private final AnswerService answerService;
 
-    public BookmarkService(BookmarkAnswerRepository bookmarkAnswerRepository, BookmarkQuestionRepository bookmarkQuestionRepository, UserService userService, QuestionService questionService) {
+    public BookmarkService(BookmarkAnswerRepository bookmarkAnswerRepository, BookmarkQuestionRepository bookmarkQuestionRepository, UserService userService, QuestionService questionService, AnswerService answerService) {
         this.bookmarkAnswerRepository = bookmarkAnswerRepository;
         this.bookmarkQuestionRepository = bookmarkQuestionRepository;
         this.userService = userService;
         this.questionService = questionService;
+        this.answerService = answerService;
+    }
+
+    public BookmarkAnswer updateBookmarkAnswer(BookmarkAnswer bookmark) {
+        BookmarkAnswer bookmarkAnswer = getBookmark(bookmark);
+        //true일 때 요청 -> false
+        if (bookmarkAnswer.isBookmarkCheck()) {
+            return bookmarkUnCheck(bookmarkAnswer);
+            //false or null일 때 요청 -> true
+        } else {
+            return bookmarkCheck(bookmarkAnswer);
+        }
+    }
+
+    private BookmarkAnswer bookmarkCheck(BookmarkAnswer bookmark) {
+        bookmark.setBookmarkCheck(true);
+        return bookmarkAnswerRepository.save(bookmark);
+    }
+
+    private BookmarkAnswer bookmarkUnCheck(BookmarkAnswer bookmark) {
+        bookmark.setBookmarkCheck(false);
+        return bookmarkAnswerRepository.save(bookmark);
+    }
+
+
+    private BookmarkAnswer getBookmark(BookmarkAnswer bookmark) {
+        Answer answer = answerService.findAnswer(bookmark.getAnswer().getAnswerId());
+        User user = userService.findUser(bookmark.getUser().getUserId());
+
+        Optional<BookmarkAnswer> optionalBookmarkAnswer = bookmarkAnswerRepository.findByAnswerAndUser(answer, user);
+        if (optionalBookmarkAnswer.isPresent()) {
+            return optionalBookmarkAnswer.get();
+        } else {
+            BookmarkAnswer bookmarkAnswer = new BookmarkAnswer();
+            bookmarkAnswer.setUser(user);
+            bookmarkAnswer.setAnswer(answer);
+            return bookmarkAnswer;
+        }
     }
 
     public BookmarkQuestion updateBookmarkQuestion(BookmarkQuestion bookmark) {
@@ -37,13 +79,11 @@ public class BookmarkService {
     }
 
     private BookmarkQuestion bookmarkCheck(BookmarkQuestion bookmark) {
-        //BookmarkQuestion bookmarkQuestion = getBookmark(bookmark);
         bookmark.setBookmarkCheck(true);
         return bookmarkQuestionRepository.save(bookmark);
     }
 
     private BookmarkQuestion bookmarkUnCheck(BookmarkQuestion bookmark) {
-//        BookmarkQuestion bookmarkQuestion = getBookmark(bookmark);
         bookmark.setBookmarkCheck(false);
         return bookmarkQuestionRepository.save(bookmark);
     }
