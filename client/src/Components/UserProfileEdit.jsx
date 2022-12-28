@@ -6,21 +6,21 @@ import { BlueButton, BlueWhiteButton } from "./Button";
 const UserProfileEdit = (props) => {
   const { profileImage, displayName, title } = props.profile;
 
-  const [newName, setNewName] = useState(displayName);
-  const [newTitle, setNewTitle] = useState(title);
+  const [editDisplayName, setEditDisplayName] = useState(displayName);
+  const [editTitle, setEditTitle] = useState(title);
 
   function changeDisplayName(e) {
-    setNewName(e.target.value);
+    setEditDisplayName(e.target.value);
   }
 
   function changeTitle(e) {
-    setNewTitle(e.target.value);
+    setEditTitle(e.target.value);
   }
 
   function changeUserProfile() {
     const newProfile = {
-      displayName: newName,
-      title: newTitle,
+      displayName: editDisplayName,
+      title: editTitle,
       // [Optional] "profileImage:"URL" //String
     };
 
@@ -46,7 +46,7 @@ const UserProfileEdit = (props) => {
           <div className="UserInfo_Edit_Subtitle">Display name</div>
           <Input
             className="UserInfo_Edit_Input"
-            value={newName}
+            value={editDisplayName}
             onChange={changeDisplayName}
           />
         </div>
@@ -54,7 +54,7 @@ const UserProfileEdit = (props) => {
           <div className="UserInfo_Edit_Subtitle">Title</div>
           <Input
             className="UserInfo_Edit_Input"
-            value={newTitle}
+            value={editTitle}
             onChange={changeTitle}
           />
         </div>
