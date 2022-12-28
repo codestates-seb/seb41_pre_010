@@ -4,7 +4,7 @@ import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.comments.entity.Comments;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.user.entity.User;
-import com.backend.sever.vote.entity.Vote;
+import com.backend.sever.vote.entity.AnswerVote;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,14 +36,17 @@ public class Answer {
     @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
+    @Column
+    private int vote;
+
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<Comments> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
     private List<BookmarkAnswer> bookmarkAnswers = new ArrayList<>();
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
-    private List<Vote> votes = new ArrayList<>();
+    private List<AnswerVote> answerVotes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
@@ -52,4 +55,12 @@ public class Answer {
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
+
+    public void countUp(){
+        this.vote++;
+    }
+
+    public void countDown(){
+        this.vote--;
+    }
 }
