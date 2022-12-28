@@ -39,7 +39,7 @@ public class Answer {
     @Column
     private int vote;
 
-    @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "answer", cascade = CascadeType.REMOVE)
     private List<Comments> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "answer", cascade = CascadeType.PERSIST)
