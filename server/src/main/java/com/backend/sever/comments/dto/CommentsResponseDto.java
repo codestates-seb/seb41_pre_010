@@ -7,13 +7,9 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 public class CommentsResponseDto {
-
     private Long commentsId;
-
     private String body;
-
     private LocalDateTime createdAt;
-
     private LocalDateTime modifiedAt;
 
 }

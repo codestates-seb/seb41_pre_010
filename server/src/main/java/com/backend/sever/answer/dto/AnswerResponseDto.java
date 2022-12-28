@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public class AnswerResponseDto {
     private Long answerId;
     private String body;
-    private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
 }
