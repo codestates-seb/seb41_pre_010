@@ -18,12 +18,12 @@ export const SessionProvider = ({ children }) => {
       })
       .catch((e) => {
         setSession(null);
-        setLoading(true);
+        setLoading(false);
       });
   }, []);
 
   return (
-    <SessionContext.Provider value={{ session, setSession, loading }}>
+    <SessionContext.Provider value={{ session, loading }}>
       {children}
     </SessionContext.Provider>
   );
