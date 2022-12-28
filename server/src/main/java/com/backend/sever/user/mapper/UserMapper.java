@@ -20,7 +20,7 @@ public interface UserMapper {
     default UserInfoQuestionListDto questionToUserInfoQuestionListDto(Question question) {
         UserInfoQuestionListDto.UserInfoQuestionListDtoBuilder userInfoQuestionListDtoBuilder = UserInfoQuestionListDto.builder();
 
-        userInfoQuestionListDtoBuilder.vote(question.getVotes().size());
+        userInfoQuestionListDtoBuilder.vote(question.getVote());
         userInfoQuestionListDtoBuilder.questionId(question.getQuestionId());
         userInfoQuestionListDtoBuilder.title(question.getTitle());
         userInfoQuestionListDtoBuilder.createdAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(question.getCreatedAt()));
@@ -32,7 +32,7 @@ public interface UserMapper {
     default UserInfoAnswerListDto answerToUserInfoAnswerListDto(Answer answer){
         UserInfoAnswerListDto.UserInfoAnswerListDtoBuilder userInfoAnswerListDtoBuilder = UserInfoAnswerListDto.builder();
 
-        userInfoAnswerListDtoBuilder.vote(answer.getVotes().size());
+        userInfoAnswerListDtoBuilder.vote(answer.getVote());
         userInfoAnswerListDtoBuilder.answerId(answer.getAnswerId());
         userInfoAnswerListDtoBuilder.createAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getCreatedAt()));
         userInfoAnswerListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getModifiedAt()));
