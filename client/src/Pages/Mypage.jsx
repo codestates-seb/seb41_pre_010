@@ -1,3 +1,4 @@
+import UserProfile from "../Components/UserProfile";
 import "./Styles/Mypage.css";
 
 const dummyDataProfile = {
@@ -103,35 +104,10 @@ const Mypage = () => {
   return (
     <>
       <main className="Mypage_Container">
-        <UserProfile />
+        <UserProfile profile={dummyDataProfile} />
         <UserInfo />
       </main>
     </>
-  );
-};
-
-const UserProfile = () => {
-  return (
-    <div className="Mypage_UserProfile_Container">
-      <div className="Mypage_UserProfile_Content">
-        <img
-          src={dummyDataProfile.profileImage}
-          className="Mypage_UserProfile_Image"
-          width={50}
-          height={50}
-          alt="TestImage"
-        />
-        <div className="Mypage_UserProfile_Info_Container">
-          <div className="Mypage_UserProfile_UserName">
-            {dummyDataProfile.displayName}
-          </div>
-          <div className="Mypage_UserProfile_Title">
-            {dummyDataProfile.title}
-          </div>
-        </div>
-      </div>
-      <button className="Mypage_UserProfile_EditButton">Edit profile</button>
-    </div>
   );
 };
 
@@ -182,14 +158,14 @@ const FirstRowContainer = () => {
 const SecondRowContainer = () => {
   return (
     <div className="Mypage_List_Container">
-      <div className="Mypage_Tag_Container">
+      {/* <div className="Mypage_Tag_Container">
         <div className="Mypage_Title">Top Tags</div>
         <div className="Mypage_Tag_ListContents">
           {dummyDataInfo[3].tag.map((el) => {
             return <ul key={el.tagId}>{<li>{el.tagName}</li>}</ul>;
           })}
         </div>
-      </div>
+      </div> */}
 
       <div className="Mypage_BookMark_List_Container">
         <div className="Mypage_Title">book mark</div>
