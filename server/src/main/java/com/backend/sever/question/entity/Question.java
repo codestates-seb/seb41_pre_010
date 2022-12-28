@@ -58,7 +58,7 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> Answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
