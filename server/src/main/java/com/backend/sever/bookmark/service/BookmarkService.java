@@ -30,15 +30,14 @@ public class BookmarkService {
         this.answerService = answerService;
     }
 
-    public BookmarkAnswer updateBookmarkAnswer(BookmarkAnswer bookmark) {
+    public void updateBookmarkAnswer(BookmarkAnswer bookmark) {
         BookmarkAnswer bookmarkAnswer = getBookmark(bookmark);
         //true일 때 요청 -> false
         if (bookmarkAnswer.isBookmarkCheck()) {
-            return bookmarkUnCheck(bookmarkAnswer);
+            bookmarkUnCheck(bookmarkAnswer);
             //false or null일 때 요청 -> true
-        } else {
-            return bookmarkCheck(bookmarkAnswer);
-        }
+        } else
+            bookmarkCheck(bookmarkAnswer);
     }
 
     private BookmarkAnswer bookmarkCheck(BookmarkAnswer bookmark) {
@@ -46,12 +45,10 @@ public class BookmarkService {
         return bookmarkAnswerRepository.save(bookmark);
     }
 
-    private BookmarkAnswer bookmarkUnCheck(BookmarkAnswer bookmark) {
-        bookmark.setBookmarkCheck(false);
-        return bookmarkAnswerRepository.save(bookmark);
+    private void bookmarkUnCheck(BookmarkAnswer bookmark) {
+        bookmarkAnswerRepository.delete(bookmark);
     }
-
-
+    
     private BookmarkAnswer getBookmark(BookmarkAnswer bookmark) {
         Answer answer = answerService.findAnswer(bookmark.getAnswer().getAnswerId());
         User user = userService.findUser(bookmark.getUser().getUserId());
@@ -67,25 +64,24 @@ public class BookmarkService {
         }
     }
 
-    public BookmarkQuestion updateBookmarkQuestion(BookmarkQuestion bookmark) {
+    public void updateBookmarkQuestion(BookmarkQuestion bookmark) {
         BookmarkQuestion bookmarkQuestion = getBookmark(bookmark);
         //true일 때 요청 -> false
         if (bookmarkQuestion.isBookmarkCheck()) {
-            return bookmarkUnCheck(bookmarkQuestion);
+            bookmarkUnCheck(bookmarkQuestion);
             //false or null일 때 요청 -> true
         } else {
-            return bookmarkCheck(bookmarkQuestion);
+            bookmarkCheck(bookmarkQuestion);
         }
     }
 
-    private BookmarkQuestion bookmarkCheck(BookmarkQuestion bookmark) {
+    private void bookmarkCheck(BookmarkQuestion bookmark) {
         bookmark.setBookmarkCheck(true);
-        return bookmarkQuestionRepository.save(bookmark);
+        bookmarkQuestionRepository.save(bookmark);
     }
 
-    private BookmarkQuestion bookmarkUnCheck(BookmarkQuestion bookmark) {
-        bookmark.setBookmarkCheck(false);
-        return bookmarkQuestionRepository.save(bookmark);
+    private void bookmarkUnCheck(BookmarkQuestion bookmark) {
+        bookmarkQuestionRepository.delete(bookmark);
     }
 
 
