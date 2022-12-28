@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 
 import "./Styles/Login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
   const [password, setPassword] = useState("");
@@ -13,12 +15,31 @@ export default function Login() {
   const isSubmit =
     emailMessage.length === 0 &&
     passwordMessage.length === 0 &&
-    password.length !== 0;
+    password.length !== 0 &&
+    email.length !== 0;
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("hi");
+
+    const url = "/api/v1/users/login";
+    await axios
+      .post(url, {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        console.log("response:", res);
+        if (res.status === 200) {
+          navigate("/");
+        }
+      })
+      .catch((e) => {
+        if (e) {
+          console.log(e);
+        }
+      });
   };
+
   return (
     <>
       <main>
