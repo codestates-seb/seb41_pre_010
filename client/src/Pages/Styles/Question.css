@@ -1,23 +1,30 @@
 h1{
   margin: 0;
 }
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
 .Question_Container{
   display: flex;
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: blueviolet;
+  background-color: white;
 }
 
 .Question_Content_Container{
   height: 100%;
   width: 1024px;
-  background-color: pink;
-  padding: 15px;
+  background-color: white;
+  padding-top: 15px;
 }
 
 .Title_Container{
   display: flex;
+  justify-content: space-between;
   border-bottom: 2px solid hsl(210,8%,90%);
 }
 
@@ -29,6 +36,7 @@ h1{
   margin-left: 10px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 }
 
 .Ask_Question_Button{
@@ -42,34 +50,26 @@ h1{
   color: white;
 }
 
-.Wright_Data_Info{
-  position: relative;
-  right: 70px;
-  top: 7px;
-}
-
-.Modify_Icon{
-  position: relative;
-  left: 149px;
-  bottom: 35px;
-  font-size: 24px;
+.Modify_Data_Info{
+  display: flex;
 }
 
 .Main_Text_Container{
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
 }
 
 .Main_Text_Aside{
   display: flex;
   flex-direction: column;
-  background-color: rgb(99, 99, 151);
   height: 100%;
 }
 
 .Main_Text_Content{
-  width: 86%;
-  background-color: antiquewhite;
+  margin-left: 20px;
+  padding-top: 9px;
+  width: 90%;
+  background-color: white;
 }
 
 .Answer_User_Profil_Container{
@@ -83,9 +83,17 @@ margin-right: 70px;
   width: 42px;
 }
 
+.Question_User_Image{
+  width: 42px;
+}
+
 .Tag_Section{
-  margin-left: 70px;
+  display: flex;
   margin-top: 20px;
+}
+
+.Tags_Element{
+  margin-left: 10px;
 }
 
 .Tag_Button{
@@ -99,10 +107,11 @@ margin-right: 70px;
 
 .Contour_Line{
   margin-top: 20px;
-  border-bottom: 2px solid hsl(210,8%,90%);
+  border-bottom: 1px solid hsl(210,8%,90%);
 }
 
 .Comment_Contour_Line{
+  display: flex;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
   width: 83%;
@@ -110,9 +119,18 @@ margin-right: 70px;
   margin-top: 15px;
 }
 
+.Comment_Contents{
+  display: flex;
+  border-bottom: 1px solid hsl(210,8%,90%);
+  width: 93%;
+  align-items: center;
+  padding: 3px 20px;
+}
+
 .Comment_Container{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Add_Comment{
@@ -130,4 +148,24 @@ margin-right: 70px;
 
 .Submit_Clear_Container{
   margin: 20px 0;
+}
+
+.Vote_Icon_Container{
+  display: flex;
+  flex-direction: column;
+}
+
+.Vote_Icon_Container > span {
+  display: flex;
+  justify-content: center;
+}
+
+.Question_User_Profil_Container{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.None_Activate{
+  display: none;
 }
