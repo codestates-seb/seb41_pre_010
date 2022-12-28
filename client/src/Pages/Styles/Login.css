@@ -1,33 +1,28 @@
 .Login_Container {
   width: 100%;
+  margin: 0 auto;
   height: calc(100vh - 60px);
-  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(210, 8%, 95%);
 }
 
 .Login_Content {
-  width: 290px;
-  height: 340px;
-  border: 1px solid gray;
-  background-color: aquamarine;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 20px;
-}
-
-.User_Info_Enter_Container {
-  background-color: bisque;
-  width: 239px;
-  height: 80%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 20px;
+  width: 320px;
+  height: 400px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 24px hsla(0, 0%, 0%, 0.05),
+    0 20px 48px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.1);
+  background-color: white;
+}
+
+.Login_Logo_Container {
+  padding-bottom: 30px;
 }
 
 .Email_Container {
@@ -49,14 +44,21 @@
   align-items: center;
   justify-content: center;
 }
+.Login_No_Account_Message_Container {
+  padding: 40px;
+  display: flex;
+}
 
 .No_Account_Message {
-  position: absolute;
-  top: 77%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 15px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  font-size: 14px;
+  text-align: center;
+}
+
+.Login_Link {
+  margin-left: 5px;
+  color: hsl(206, 100%, 40%);
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: auto;
 }
