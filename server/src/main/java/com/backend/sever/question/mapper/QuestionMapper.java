@@ -7,6 +7,7 @@ import com.backend.sever.question.entity.Question;
 import com.backend.sever.questionTag.dto.QuestionTagResponseDto;
 import com.backend.sever.questionTag.entity.QuestionTag;
 import com.backend.sever.tag.entity.Tag;
+import com.backend.sever.user.entity.User;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -16,14 +17,17 @@ import java.util.stream.Collectors;
 public interface QuestionMapper {
     default Question questionPostDtoToQuestion(QuestionPostDto questionPostDto) {
         Question question = new Question();
+        User user = new User();
+        user.setUserId(questionPostDto.getUserId());
+
         question.setTitle(questionPostDto.getTitle());
         question.setBody(questionPostDto.getBody());
 
         List<QuestionTag> questionTags = questionPostDto.getTags().stream()
-                .map(questionTagDto -> {
+                .map(questionTagId -> {
                     QuestionTag questionTag = new QuestionTag();
                     Tag tag = new Tag();
-                    tag.setTagId(questionTagDto.getTagId());
+                    tag.setTagId(questionTagId);
                     questionTag.addQuestion(question);
                     questionTag.addTag(tag);
 
@@ -31,6 +35,7 @@ public interface QuestionMapper {
                 }).collect(Collectors.toList());
 
         question.setQuestionTags(questionTags);
+        question.setUser(user);
 
         return question;
     }
@@ -41,10 +46,10 @@ public interface QuestionMapper {
         question.setBody(questionPutDto.getBody());
 
         List<QuestionTag> questionTags = questionPutDto.getTags().stream()
-                .map(questionTagDto -> {
+                .map(questionTagId -> {
                     QuestionTag questionTag = new QuestionTag();
                     Tag tag = new Tag();
-                    tag.setTagId(questionTagDto.getTagId());
+                    tag.setTagId(questionTagId);
                     questionTag.addQuestion(question);
                     questionTag.addTag(tag);
 
