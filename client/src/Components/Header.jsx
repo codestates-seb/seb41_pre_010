@@ -1,8 +1,9 @@
 import "./Styles/Header.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, redirect } from "react-router-dom";
 import { OrangeButton } from "./Button";
-
+import { useSession } from "../CustomHook/SessionProvider";
+import axios from "axios";
 const dummyDataProfile = {
   userId: 0,
   profileImage:
@@ -48,29 +49,47 @@ const SearchInput = ({ navigate }) => {
   );
 };
 
-const LoggedIn = () => {
+const LoggedIn = ({ session }) => {
   return (
     <div className="MainHeader_UserInfo_Container">
       <div className="MainHeader_UserInfo_Profile">
-        <Link to={`/users/mypage/${dummyDataProfile.userId}`}>
+        <Link to={`/users/mypage/${session.userId}`}>
           <img
             className="MainHeader_UserProfileImage"
-            src={dummyDataProfile.profileImage}
+            src={session.profileImage}
             alt="profileImage"
             width={40}
             height={40}
           />
         </Link>
         <span className="MainHeader_UserInfo_DisplayName">
-          <Link to={`/users/mypage/${dummyDataProfile.userId}`}>
-            {dummyDataProfile.displayName.length >= 7
-              ? dummyDataProfile.displayName.substr(0, 7) + "..."
-              : dummyDataProfile.displayName}
+          <Link to={`/users/mypage/${session.userId}`}>
+            {session.displayName.length >= 7
+              ? session.displayName.substr(0, 7) + "..."
+              : session.displayName}
             님
           </Link>
         </span>
       </div>
-      <OrangeButton width="65px" height="40px">
+      <OrangeButton
+        width="65px"
+        height="38px"
+        onClick={async () => {
+          const url = "/api/v1/users/logout";
+          await axios
+            .post(url, {
+              headers: {
+                withCredentials: true,
+              },
+            })
+            .then((data) => {
+              window.location.reload();
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        }}
+      >
         Logout
       </OrangeButton>
     </div>
@@ -82,15 +101,17 @@ const LoginRequired = ({ navigate }) => {
     <div className="MainHeader_Button_Container">
       <OrangeButton
         width="70px"
-        height="40px"
+        height="38px"
         onClick={() => navigate("/users/login")}
+        className="MainHeader_Button"
       >
         LogIn
       </OrangeButton>
       <OrangeButton
         width="70px"
-        height="40px"
+        height="38px"
         onClick={() => navigate("/users/signup")}
+        className="MainHeader_Button"
       >
         SignUp
       </OrangeButton>
@@ -100,14 +121,20 @@ const LoginRequired = ({ navigate }) => {
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(false);
+  const { loading, session } = useSession();
   return (
     <header className="MainHeader">
       <div className="MainHeader_Container">
         <div className="MainHeader_Contents_Container">
           <Logo />
           <SearchInput navigate={navigate} />
-          {isLogin ? <LoggedIn /> : <LoginRequired navigate={navigate} />}
+          {loading ? (
+            <div className="MainHeader_Empty_Container"></div>
+          ) : session ? (
+            <LoggedIn session={session} />
+          ) : (
+            <LoginRequired navigate={navigate} />
+          )}
         </div>
       </div>
     </header>
