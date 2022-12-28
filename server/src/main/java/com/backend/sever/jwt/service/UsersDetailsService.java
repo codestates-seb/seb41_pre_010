@@ -41,7 +41,8 @@ public class UsersDetailsService implements UserDetailsService {
             setEmail(user.getEmail());
             setPassword(user.getPassword());
             setRoles(user.getRoles());
-
+            setDisplayName(user.getDisplayName());
+            setProfileImage(user.getProfileImage());
         }
 
 
