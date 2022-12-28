@@ -1,4 +1,4 @@
-package questionTag.dto;
+package com.backend.sever.questionTag.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
