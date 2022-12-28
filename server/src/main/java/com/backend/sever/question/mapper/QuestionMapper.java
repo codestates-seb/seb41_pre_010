@@ -4,6 +4,7 @@ import com.backend.sever.question.dto.QuestionPostDto;
 import com.backend.sever.question.dto.QuestionPutDto;
 import com.backend.sever.question.dto.QuestionResponseDto;
 import com.backend.sever.question.entity.Question;
+import com.backend.sever.questionTag.dto.QuestionTagResponseDto;
 import com.backend.sever.questionTag.entity.QuestionTag;
 import com.backend.sever.tag.entity.Tag;
 import com.backend.sever.user.entity.User;
