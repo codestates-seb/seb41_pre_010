@@ -16,7 +16,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] =
     useState("비밀번호를 입력해주세요.");
-  const url = "http://localhost:8080/api/v1/users/signup";
+  const url = "/api/v1/users/signup";
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios
@@ -26,8 +26,7 @@ export default function SignUp() {
         email: email,
       })
       .then((res) => {
-        console.log("response:", res);
-        if (res.status === 200) {
+        if (res.status === 201) {
           navigate("/");
         }
       })
