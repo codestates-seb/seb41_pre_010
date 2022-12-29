@@ -78,7 +78,6 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         }
         System.out.println( accessToken);
 
-//        String jws = request.getHeader("Authorization").replace("Bearer ", "");
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
         Map<String, Object> claims = jwtTokenizer.getClaims(accessToken, base64EncodedSecretKey).getBody();
 
@@ -134,50 +133,3 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
-
-/*
-public class JwtVerificationFilter extends OncePerRequestFilter {
-    private final JwtTokenizer jwtTokenizer;
-
-    private final CustomAuthorityUtils authorityUtils;
-
-    public JwtVerificationFilter(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
-
-        this.jwtTokenizer = jwtTokenizer;
-        this.authorityUtils = authorityUtils;
-    }
-
-    @Override
-    protected  void doFilterInternal (HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
-        Map<String,Object> claims = verifyJws(request);
-        setAuthenticationToContext(claims);
-
-        filterChain.doFilter(request,response);
-    }
-
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException{
-        String authorization = request.getHeader("Authorization");
-
-        return authorization == null || !authorization.startsWith("Bearer");
-    }
-
-    private Map<String,Object> verifyJws(HttpServletRequest request){
-        String jws = request.getHeader("Authorization").replace("Bearer ", "");
-        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-        Map<String,Object> claims = jwtTokenizer.getClaims(jws,base64EncodedSecretKey).getBody();
-
-        return claims;
-    }
-
-    private void setAuthenticationToContext(Map<String, Object> claims){
-        String username = (String) claims.get("username");
-        List<GrantedAuthority> authorities = authorityUtils.createAuthorities((List)claims.get("roles"));
-        Authentication authentication = new UsernamePasswordAuthenticationToken(username,null,authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
-
-
-
-}
-*/

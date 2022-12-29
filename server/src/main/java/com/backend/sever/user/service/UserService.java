@@ -36,11 +36,6 @@ public class UserService {
         this.authorityUtils = authorityUtils;
     }
 
-//    public UserService(UserRepository userRepository, CustomBeanUtils<User> beanUtils) {
-//        this.userRepository = userRepository;
-//        this.beanUtils = beanUtils;
-//    }
-
 
     @Transactional(readOnly = true)
     public User findUser(long userId) {

@@ -11,7 +11,6 @@ import com.backend.sever.user.dto.UserResponseDto;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.mapper.UserMapper;
 import com.backend.sever.user.service.UserService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -80,74 +79,11 @@ public class UserController {
 
         User createdUser = userService.createUser(user);
 
-//        String accessToken = "";
-//        String refreshToken = "";
-//
-//        accessToken = jwtAuthenticationFilter.delegateAccessToken(createdUser);
-//        refreshToken = jwtAuthenticationFilter.delegateRefreshToken(createdUser);
-//
-//        System.out.println(accessToken);
-//
-//        System.out.println(refreshToken);
-//
-//        Cookie cookie = new Cookie("Authorization", accessToken);
-//        Cookie cookie_2 = new Cookie("Refresh", refreshToken);
-
-//
-//
-//        cookie.setPath("/");
-//        cookie.setMaxAge(1000 * 60 * 60*6);
-//
-//        cookie.setHttpOnly(true);
-//
-//        response.addCookie(cookie);
-//
-//        cookie_2.setPath("/");
-//        cookie_2.setMaxAge(1000 * 60 * 60*24);
-//
-//        cookie_2.setHttpOnly(true);
-//
-//        response.addCookie(cookie_2);
-
-
-
-//
-//        Cookie cookie = new Cookie("Authorization", accessToken);
-//        Cookie cookie_2 = new Cookie("Refresh", refreshToken);
-//
-//
-//
-//        cookie.setPath("/");
-//        cookie.setMaxAge(1000 * 60 * 60*6);
-//
-//        cookie.setHttpOnly(true);
-//
-//        response.addCookie(cookie);
-//
-//        cookie_2.setPath("/");
-//        cookie_2.setMaxAge(1000 * 60 * 60*24);
-//
-//        cookie_2.setHttpOnly(true);
-//
-//        response.addCookie(cookie_2);
-
         URI location = UriCreator.createUri("/api/v1/users", createdUser.getUserId());
-
-
-
-        // 토큰 보내주는거 추가
-
-
-
-
 
         return ResponseEntity.created(location).build();
 
-//        return new ResponseEntity<>(userMapper.userToUserResponseDto(user), ResponseEntity.created(location).build().getStatusCode());
-
-//        return new ResponseEntity<>( HttpStatus.OK);
     }
-
 
 
 
@@ -171,13 +107,9 @@ public class UserController {
             }catch (Exception e){
                 return new ResponseEntity( HttpStatus.UNAUTHORIZED );
             }
-
         }else{
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
-
-
-
     }
 
     @GetMapping("/refresh-token")
@@ -202,11 +134,7 @@ public class UserController {
                 System.out.println(cookieVo.getName() +" :: "+ cookieVo.getValue());
             }
         }
-
         return new ResponseEntity( HttpStatus.OK);
-
-
-
     }
 
 
@@ -224,13 +152,8 @@ public class UserController {
                 cookies[i].setPath("/");
                 cookies[i].setMaxAge(0);
                 response.addCookie(cookies[i]);
-
             }
-
         }
         return new ResponseEntity( HttpStatus.OK);
     }
-
-
-
 }

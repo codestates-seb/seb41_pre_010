@@ -33,33 +33,4 @@ public class UserJTWService {
 
     }
 
-//    public User createUser(User user){
-//        verifyExistsEmail(user.getEmail());
-//        // 비밀번호 암호화
-//        String encryptedPassword = passwordEncoder.encode(user.getPassword());
-//        user.setPassword(encryptedPassword);
-//
-//        // DB에 USER ROLE 저장
-//        List<String> roles = authorityUtils.createRoles(user.getEmail());
-//        user.setRoles(roles);
-//
-//        User savedUser =userRepository.save(user);
-//
-//        publisher.publishEvent(new UserRegistrationApplicationEvent(savedUser));
-//        return savedUser;
-//
-//
-//    }
-
-
-//    private  void verifyExistsEmail (String email){
-//
-//        Optional<User> user = userRepository.findByEmail(email);
-//        if(user.isPresent()){
-//            throw  new RuntimeException(); // 비즈니스 로직 예외 던지기로 수정 예정
-//
-//        }
-//    }
-
-
 }

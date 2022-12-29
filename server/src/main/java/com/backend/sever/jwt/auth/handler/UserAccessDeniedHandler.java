@@ -19,6 +19,5 @@ public class UserAccessDeniedHandler implements AccessDeniedHandler {
         ErrorResponder.sendErrorResponse(response, HttpStatus.FORBIDDEN);
         log.warn("Forbidden error happened: {}", accessDeniedException.getMessage());
 
-        // DaoAuthenticationProvider
     }
 }
