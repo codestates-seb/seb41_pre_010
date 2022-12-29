@@ -85,10 +85,6 @@ export default function Question() {
             <Answers
               //추후 배열+spreed 연산자로 변경할 예정
               filterData={filterData}
-              IconContext={IconContext}
-              TiArrowSortedUp={TiArrowSortedUp}
-              TiArrowSortedDown={TiArrowSortedDown}
-              TiBookmark={TiBookmark}
               answerIdx={answerIdx}
               activeClick={activeClick}
               setCommentValue={setCommentValue}
