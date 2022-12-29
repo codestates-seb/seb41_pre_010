@@ -48,4 +48,6 @@ public interface UserMapper {
     UserBookMarkAnswerListDto bookmarkAnswerToUserBookMarkAnswerListDto(BookmarkAnswer bookmarkAnswer);
 
     UserInfoResponseDto userToUserInfoResponseDto(User user);
+
+    User userPostToUser (UserPostDto userPostDto);
 }
