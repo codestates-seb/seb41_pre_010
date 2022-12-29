@@ -1,7 +1,7 @@
 import React from "react";
 import { TiPen } from "react-icons/ti";
 
-export default function Answer({
+export default function Answers({
   filterData,
   IconContext,
   TiArrowSortedUp,

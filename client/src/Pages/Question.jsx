@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  addQuestion,
-  addComment,
-  addAnswer,
-} from "../API/Question/AddRequest.js"
 import Input from "../Components/Input";
+import AnswerAdd from "../Components/QuestionPage/AnswerAdd.jsx";
 import QuestionTitle from "../Components/QuestionPage/QuestionTitle";
 import QuestionBodyAside from "../Components/QuestionPage/QuestionBodyAside";
 import QuestionBody from "../Components/QuestionPage/QuestionBody";
@@ -12,7 +8,7 @@ import QuestionTag from "../Components/QuestionPage/QuestionTag";
 import QuestionUserProfil from "../Components/QuestionPage/QuestionUserProfil";
 import { questionDummyData } from "../QuestionData";
 import { BlueButton, TagButton } from "../Components/Button";
-import Answer from "../Components/QuestionPage/Answer";
+import Answers from "../Components/QuestionPage/Answer/Answers";
 import {
   TiArrowSortedUp,
   TiArrowSortedDown,
@@ -86,7 +82,7 @@ export default function Question() {
               <QuestionUserProfil filterData={filterData} />
             </div>
             {filterData[0].answers ? <div className="Contour_Line" /> : null}
-            <Answer
+            <Answers
               //추후 배열+spreed 연산자로 변경할 예정
               filterData={filterData}
               IconContext={IconContext}
@@ -97,30 +93,11 @@ export default function Question() {
               activeClick={activeClick}
               setCommentValue={setCommentValue}
               commentValue={commentValue}
-              addComment={addComment}
               BlueButton={BlueButton}
               Input={Input}
               addCommentHandler={addCommentHandler}
             />
-            <div className="Your_Answer_Container">
-              <h2>Your Answer</h2>
-              <div>Answer작성창 부분</div>
-              <div className="Submit_Clear_Container">
-                <BlueButton
-                  width={"140px"}
-                  onClick={() =>
-                    addAnswer(
-                      filterData[0].questionId,
-                      //현재 글의 user의 정보가 아닌 작성자의 user Id로 교체예정
-                      filterData[0].user.userId,
-                      filterData[0].body
-                    )
-                  }
-                >
-                  Post Yout Answer
-                </BlueButton>
-              </div>
-            </div>
+            <AnswerAdd BlueButton={BlueButton} filterData={filterData}/>
           </div>
         </div>
       </main>
