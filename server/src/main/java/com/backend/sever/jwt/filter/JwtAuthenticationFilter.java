@@ -70,38 +70,30 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 //        response.setHeader("Authorization", "Bearer " + accessToken);
 //        response.setHeader("Refresh", refreshToken);
-        response.setStatus(200);
+
 
         // 쿠키 만드는 거 .
 
         Cookie cookie = new Cookie("Authorization", accessToken);
         Cookie cookie_2 = new Cookie("Refresh", refreshToken);
 
-
-
         cookie.setPath("/");
         cookie.setMaxAge(1000 * 60 * 60*6);
-
         cookie.setHttpOnly(true);
-
         response.addCookie(cookie);
-
         cookie_2.setPath("/");
         cookie_2.setMaxAge(1000 * 60 * 60*24);
-
         cookie_2.setHttpOnly(true);
 
         response.addCookie(cookie_2);
-
-
-
+        response.setStatus(200);
 
         this.getSuccessHandler().onAuthenticationSuccess(request,response,authResult);
 
     }
 
 
-    private String delegateAccessToken(User user){
+    public String delegateAccessToken(User user){
 
 
 
@@ -128,11 +120,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
 
-    private String delegateRefreshToken(User user){
+    public String delegateRefreshToken(User user){
         String subject = user.getEmail();
 
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
         String base64EncodedSecretKey =jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+
 
         String refreshToken = jwtTokenizer.generateRefreshToken(subject, expiration, base64EncodedSecretKey);
 
@@ -143,9 +136,33 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public void GetToken (
                           HttpServletResponse response,
                           Authentication authResult){
+
+
+
+
+
         User user = (User) authResult.getPrincipal();
 
-        String accessToken = delegateAccessToken(user);
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("email", user.getEmail());
+        claims.put("roles", user.getRoles());
+        claims.put("displayName", user.getDisplayName());
+        claims.put("userId", user.getUserId());
+        claims.put("profileImage", user.getProfileImage());
+
+        String subject = user.getEmail();
+
+        System.out.println(user.getProfileImage());
+        System.out.println(user.getDisplayName());
+
+        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
+
+        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+
+        String accessToken = jwtTokenizer.generateAccessToken(claims, subject, expiration, base64EncodedSecretKey);
+
+
+        String accessTokenG = delegateAccessToken(user);
         String refreshToken = delegateRefreshToken(user);
 
         Cookie cookie = new Cookie("Authorization", accessToken);

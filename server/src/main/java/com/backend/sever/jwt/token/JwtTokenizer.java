@@ -45,6 +45,7 @@ public class JwtTokenizer {
 
 
 
+
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -64,6 +65,8 @@ public class JwtTokenizer {
                 .signWith(key)
                 .compact();
     }
+
+
 
     // 검증 후, Claims을 반환 하는 용도
     public Jws<Claims> getClaims(String jws, String base64EncodedSecretKey) {

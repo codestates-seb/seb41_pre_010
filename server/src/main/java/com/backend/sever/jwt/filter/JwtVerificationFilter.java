@@ -106,6 +106,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
         }
 
         if (RefeshToken.equals(Token)){
+
             if(cookie != null && cookie.length > 0) {
                 for(Cookie cookieVo : cookie) {
 
@@ -118,9 +119,6 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
             }
             System.out.println(AccessToken);
         }
-
-
-
 
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
         Map<String, Object> claims = jwtTokenizer.getClaims(AccessToken, base64EncodedSecretKey).getBody();

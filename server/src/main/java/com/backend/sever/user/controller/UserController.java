@@ -14,12 +14,14 @@ import com.backend.sever.user.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -33,7 +35,7 @@ public class UserController {
     private final JwtTokenizer jwtTokenizer;
 
 
-//    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
     public UserController(UserService userService, UserMapper userMapper, JwtVerificationFilter jwtVerificationFilter, JwtTokenizer jwtTokenizer) {
@@ -76,9 +78,38 @@ public class UserController {
         User user = userMapper.userPostToUser(userPostDto);
         user.setProfileImage("https://www.gravatar.com/avatar/8b366b9f59dce8b67557baf97ddb3053?s=192&d=identicon&r=PG&f=1");
 
-//        String accessToken = jwtAuthenticationFilter.delegateAccessToken(user);
-//        String refreshToken = jwtAuthenticationFilter.delegateRefreshToken(user);
         User createdUser = userService.createUser(user);
+
+//        String accessToken = "";
+//        String refreshToken = "";
+//
+//        accessToken = jwtAuthenticationFilter.delegateAccessToken(createdUser);
+//        refreshToken = jwtAuthenticationFilter.delegateRefreshToken(createdUser);
+//
+//        System.out.println(accessToken);
+//
+//        System.out.println(refreshToken);
+//
+//        Cookie cookie = new Cookie("Authorization", accessToken);
+//        Cookie cookie_2 = new Cookie("Refresh", refreshToken);
+
+//
+//
+//        cookie.setPath("/");
+//        cookie.setMaxAge(1000 * 60 * 60*6);
+//
+//        cookie.setHttpOnly(true);
+//
+//        response.addCookie(cookie);
+//
+//        cookie_2.setPath("/");
+//        cookie_2.setMaxAge(1000 * 60 * 60*24);
+//
+//        cookie_2.setHttpOnly(true);
+//
+//        response.addCookie(cookie_2);
+
+
 
 //
 //        Cookie cookie = new Cookie("Authorization", accessToken);
@@ -102,7 +133,11 @@ public class UserController {
 
         URI location = UriCreator.createUri("/api/v1/users", createdUser.getUserId());
 
+
+
         // 토큰 보내주는거 추가
+
+
 
 
 
@@ -115,6 +150,13 @@ public class UserController {
 
 
 
+
+    Map<String, Object> token= new HashMap<>();
+    // refreshtoken 에서 받아와서
+    // 같은지 검사 후
+    // 아래 엑세스 토큰처럼 반환
+
+
     @GetMapping("/access-token")
     public ResponseEntity AccessToken(HttpServletRequest request, HttpServletResponse response){
 
@@ -123,6 +165,7 @@ public class UserController {
             System.out.println("pas???");
             try {
                 Map<String, Object> fdfdf =  jwtVerificationFilter.verifyJws(request);
+                token = jwtVerificationFilter.verifyJws(request);
                 return new ResponseEntity(fdfdf ,  HttpStatus.OK);
 
             }catch (Exception e){
@@ -138,40 +181,29 @@ public class UserController {
     }
 
     @GetMapping("/refresh-token")
-    public ResponseEntity RefreshToken(HttpServletRequest request, HttpServletResponse response){
-
-        Cookie[] cookies = request.getCookies();
-
-        String RefeshToken = "";
-        String AccessToken = "";
+    public ResponseEntity RefreshToken(HttpServletRequest request, HttpServletResponse response, Authentication authResult){
 
         Cookie[] cookie =request.getCookies();
+
+        String RefeshToken = "";
 
         if(cookie != null && cookie.length > 0) {
             for(Cookie cookieVo : cookie) {
 
-                if(cookieVo.getName().equals("Refresh")){ // 리프레시 토큰을 받아옴
-                    RefeshToken =  cookieVo.getValue();
+                if(cookieVo.getName().equals("Authorization")){ // 리프레시 토큰을 받아옴
+                    cookieVo.setPath("/");
+                    cookieVo.setMaxAge(1000 * 60 * 60*6);
+
+                    cookieVo.setHttpOnly(true);
+
+                    response.addCookie(cookieVo);
                     break;
                 }
                 System.out.println(cookieVo.getName() +" :: "+ cookieVo.getValue());
             }
         }
 
-
-        if((cookies != null && cookies.length > 0)){
-            System.out.println("pas???");
-            try {
-                Map<String, Object> fdfdf =  jwtVerificationFilter.refreshtoken(request,RefeshToken); // 받아온 리프레시 토큰을 쳐널음 -> 안에서 둘이 비교해서 똑같으면 엑세스 토큰 날려줌
-                return new ResponseEntity(fdfdf ,  HttpStatus.OK);
-
-            }catch (Exception e){
-                return new ResponseEntity( HttpStatus.UNAUTHORIZED );
-            }
-
-        }else{
-            return new ResponseEntity(HttpStatus.FORBIDDEN);
-        }
+        return new ResponseEntity( HttpStatus.OK);
 
 
 
