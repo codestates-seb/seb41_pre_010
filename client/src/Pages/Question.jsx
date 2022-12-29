@@ -51,39 +51,6 @@ export default function Question() {
     axios.delete(`api/v1/questions/${commentId}`);
   };
 
-  //answer,comment add Request
-  const addAnswer = (questionId, userId, body) => {
-    axios
-      .post("api/v1/answers", {
-        questionId: `${questionId}`,
-        userId: `${userId}`,
-        body: `${body}`,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const addComment = (questionId, userId, answerId, body) => {
-    const request = {
-      questionId: questionId,
-      userId: userId,
-      answerId: answerId,
-      body: body,
-    };
-
-    axios
-      .post("api/v1/answers", JSON.stringify(request))
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
