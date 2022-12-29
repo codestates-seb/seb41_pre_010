@@ -23,8 +23,8 @@ public interface UserMapper {
         userInfoQuestionListDtoBuilder.vote(question.getVote());
         userInfoQuestionListDtoBuilder.questionId(question.getQuestionId());
         userInfoQuestionListDtoBuilder.title(question.getTitle());
-        userInfoQuestionListDtoBuilder.createdAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(question.getCreatedAt()));
-        userInfoQuestionListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(question.getModifiedAt()));
+        userInfoQuestionListDtoBuilder.createdAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm").format(question.getCreatedAt()));
+        userInfoQuestionListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm").format(question.getModifiedAt()));
 
         return userInfoQuestionListDtoBuilder.build();
     }
@@ -34,8 +34,8 @@ public interface UserMapper {
 
         userInfoAnswerListDtoBuilder.vote(answer.getVote());
         userInfoAnswerListDtoBuilder.answerId(answer.getAnswerId());
-        userInfoAnswerListDtoBuilder.createAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getCreatedAt()));
-        userInfoAnswerListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getModifiedAt()));
+        userInfoAnswerListDtoBuilder.createAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm").format(answer.getCreatedAt()));
+        userInfoAnswerListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm").format(answer.getModifiedAt()));
         userInfoAnswerListDtoBuilder.title(answer.getQuestion().getTitle());
         userInfoAnswerListDtoBuilder.questionId(answer.getQuestion().getQuestionId());
 
