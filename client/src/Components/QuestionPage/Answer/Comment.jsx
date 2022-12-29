@@ -1,5 +1,5 @@
 import React from "react";
-
+import { TiPen } from "react-icons/ti";
 export default function Comment({ el }) {
   return (
     <div className="Comment_Container">
@@ -13,6 +13,7 @@ export default function Comment({ el }) {
                     {comment.user.displayName}
                   </a>
                   <span>{comment.createdAt}</span>
+                  <TiPen/>
                 </div>
               </div>
             );

@@ -24,7 +24,7 @@ export default function Answers({
                 <h2>Answer{el.answerId}</h2>
                 <div>
                   <div className="Main_Text_Container">
-                    <AnswerBodyAside />
+                    <AnswerBodyAside el={el} index={index}/>
                     <div className="Main_Text_Content">
                       <span>{el.body}</span>
                     </div>

@@ -8,6 +8,7 @@ import QuestionTag from "../Components/QuestionPage/QuestionTag";
 import QuestionUserProfil from "../Components/QuestionPage/QuestionUserProfil";
 import { questionDummyData } from "../QuestionData";
 import { BlueButton, TagButton } from "../Components/Button";
+import { useSession } from "../CustomHook/SessionProvider";
 import Answers from "../Components/QuestionPage/Answer/Answers";
 import styled from "styled-components";
 import "./Styles/Question.css";
@@ -19,6 +20,7 @@ const StyledSpan = styled.span`
 
 //0번 데이터의 기준으로 작성 추후 데이터ID를 받을 예정
 export default function Question() {
+  const { loading, session } = useSession();
   //추후 useState기본값 null처리
   const [questionData, setQeustionData] = useState(questionDummyData);
   const [answerIdx, setAnswerIdx] = useState(null);
@@ -39,9 +41,10 @@ export default function Question() {
   //   };
   //   getQuestionData()
   // },[]);
-  
-  const filterData = questionData;
 
+  const filterData = questionData;
+  console.log(loading);
+  console.log(session);
   return (
     <>
       <main>
@@ -51,10 +54,16 @@ export default function Question() {
               filterData={filterData}
               StyledSpan={StyledSpan}
               BlueButton={BlueButton}
+              loading={loading}
+              session={session}
             />
             <div className="Main_Text_Container">
               <aside className="Main_Text_Aside">
-                <QuestionBodyAside filterData={filterData} />
+                <QuestionBodyAside
+                  filterData={filterData}
+                  loading={loading}
+                  session={session}
+                />
               </aside>
               <QuestionBody filterData={filterData} />
             </div>
@@ -75,8 +84,15 @@ export default function Question() {
               BlueButton={BlueButton}
               Input={Input}
               addCommentHandler={addCommentHandler}
+              loading={loading}
+              session={session}
             />
-            <AnswerAdd BlueButton={BlueButton} filterData={filterData} />
+            <AnswerAdd
+              BlueButton={BlueButton}
+              filterData={filterData}
+              loading={loading}
+              session={session}
+            />
           </div>
         </div>
       </main>

@@ -116,8 +116,9 @@ export const questionDummyData = [
         createdAt: "2022/12/26/11:53", //String
         modifiedAt: "2022/12/26/11:55", //String
         vote: 6, //Number
-        voteCheck: false, //Boolean
-        bookMarkCheck: false, //Boolean
+        voteUpCheck: false, //Boolean
+        voteDownCheck: true, //Boolean
+        bookMarkCheck: true, //Boolean
       },
     ],
   },
