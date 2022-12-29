@@ -1,14 +1,12 @@
-package com.backend.sever.tag.dto;
+package com.backend.sever.questionTag.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class TagPostDto {
-    private List<String> tags;
+public class QuestionTagDto {
+    private long tagId;
 }

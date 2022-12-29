@@ -3,6 +3,7 @@
   height: 50px;
   padding-bottom: 50px;
 }
+
 .MainHeader_Container {
   border-top: 3px solid rgb(224, 130, 37);
   box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.05), 0 1px 4px hsla(0, 0%, 0%, 0.05),
@@ -62,8 +63,8 @@
 }
 
 .MainHeader_UserInfo_Container {
-  height: 100%;
-  width: 25%;
+  height: 48.5px;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -82,7 +83,7 @@
 
 .MainHeader_UserInfo_DisplayName {
   font-size: 15px;
-  margin-left: 5px;
+  margin-left: 15px;
 }
 
 .MainHeader_UserInfo_DisplayName :any-link {
@@ -91,9 +92,17 @@
 }
 
 .MainHeader_Button_Container {
-  width: 16%;
-  height: 50px;
+  width: 20%;
+  height: 48.5px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+}
+.MainHeader_Button {
+  margin-left: 5px;
+}
+
+.MainHeader_Empty_Container {
+  height: 48.5px;
+  width: 205px;
 }

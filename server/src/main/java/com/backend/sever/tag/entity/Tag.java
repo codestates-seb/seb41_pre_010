@@ -22,5 +22,12 @@ public class Tag {
     private String tagName;
 
     @OneToMany(mappedBy = "tag", cascade = CascadeType.PERSIST)
-    private List<QuestionTag> questionTag = new ArrayList<>();
+    private List<QuestionTag> questionTags = new ArrayList<>();
+
+    public void addQuestionTag(QuestionTag questionTag) {
+        this.questionTags.add(questionTag);
+        if (questionTag.getTag() != this) {
+            questionTag.addTag(this);
+        }
+    }
 }

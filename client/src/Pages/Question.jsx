@@ -9,7 +9,6 @@ import QuestionUserProfil from "../Components/QuestionPage/QuestionUserProfil";
 import { questionDummyData } from "../QuestionData";
 import { BlueButton, TagButton } from "../Components/Button";
 import Answers from "../Components/QuestionPage/Answer/Answers";
-import { IconContext } from "react-icons";
 import styled from "styled-components";
 import "./Styles/Question.css";
 
