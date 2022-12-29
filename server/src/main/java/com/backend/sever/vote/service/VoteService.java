@@ -6,7 +6,7 @@ import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.service.QuestionService;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.service.UserService;
-import com.backend.sever.vote.AnswerVotePutDto;
+import com.backend.sever.vote.dto.AnswerVotePutDto;
 import com.backend.sever.vote.dto.QuestionVotePutDto;
 import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;
