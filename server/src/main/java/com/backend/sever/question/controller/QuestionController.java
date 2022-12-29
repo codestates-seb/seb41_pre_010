@@ -1,5 +1,6 @@
 package com.backend.sever.question.controller;
 
+import com.backend.sever.question.dto.QuestionInfoResponseDto;
 import com.backend.sever.question.dto.QuestionPostDto;
 import com.backend.sever.question.dto.QuestionPutDto;
 import com.backend.sever.question.entity.Question;
@@ -32,6 +33,13 @@ public class QuestionController {
         Question question = questionService.findQuestion(questionId);
 
         return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.OK);
+    }
+
+    @GetMapping("{question-id}")
+    public ResponseEntity getQuestionInfo(@PathVariable("question-id") long questionId) {
+        Question question = questionService.findQuestion(questionId);
+        QuestionInfoResponseDto response = mapper.questionToQuestionInfoDto(question);
+        return new ResponseEntity(response,HttpStatus.OK);
     }
 
     @PutMapping("/{question-id}")
