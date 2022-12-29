@@ -31,7 +31,6 @@ export default function Question() {
       setActiveClick(!activeClick);
     }
   };
-
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
@@ -40,8 +39,7 @@ export default function Question() {
   //   };
   //   getQuestionData()
   // },[]);
-
-  //추후 변경 예정
+  
   const filterData = questionData;
 
   return (

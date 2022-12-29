@@ -11,8 +11,9 @@ export const questionDummyData = [
     createdAt: "2022/12/26/11:53", //String
     modifiedAt: "2022/12/27/12:52", //String
     vote: 7, //Number
-    voteCheck: false, //Boolean
-    bookMarkCheck: false, //Boolean
+    voteUpCheck: true, //Boolean
+    voteDownCheck: true, //Boolean
+    bookMarkCheck: true, //Boolean
     tags: [
       {
         tagName: "React", //String
@@ -68,8 +69,9 @@ export const questionDummyData = [
         createdAt: "2022/12/26/11:53", //String
         modifiedAt: "2022/12/26/11:55", //String
         vote: 4, //Number
-        voteCheck: false, //Boolean
-        bookMarkCheck: false, //Boolean
+        voteUpCheck: true, //Boolean
+        voteDownCheck: true, //Boolean
+        bookMarkCheck: true, //Boolean
       },
       {
         answerId: 2, //Number
