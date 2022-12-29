@@ -8,6 +8,31 @@ const UserProfileEdit = (props) => {
 
   const [editDisplayName, setEditDisplayName] = useState(displayName);
   const [editTitle, setEditTitle] = useState(title);
+  const [image, setImage] = useState(profileImage);
+
+  const onChange = async (e) => {
+    const url = "http://13.125.80.84";
+    e.preventDefault();
+    const img = e.target.files[0];
+    const base64Image = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = (event) => resolve(event.target.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+    axios
+      .post(`${url}/api/v1/user/setting/profileimage`, {
+        image: base64Image,
+        userId: 0,
+      })
+      .then((res) => {
+        setImage(res.data.url);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   function changeDisplayName(e) {
     setEditDisplayName(e.target.value);
@@ -21,15 +46,13 @@ const UserProfileEdit = (props) => {
     const newProfile = {
       displayName: editDisplayName,
       title: editTitle,
-      // [Optional] "profileImage:"URL" //String
+      profile: image,
     };
 
-    console.log(newProfile);
-
-    axios
-      .put(`/api/v1/users/1/userprofile`, newProfile)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // axios
+    //   .put(`/api/v1/users/1/userprofile`, newProfile)
+    //   .then((res) => console.log(res))
+    //   .catch((err) => console.log(err));
   }
 
   return (
@@ -40,7 +63,13 @@ const UserProfileEdit = (props) => {
       <div className="MypageEdit_UserInfoEdit_Form_Container">
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
-          <img src={profileImage} width={165} height={165} alt="test" />
+          <img src={image} width={165} height={165} alt="test" />
+          <input
+            type="file"
+            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            name="profile_img"
+            onChange={onChange}
+          />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
