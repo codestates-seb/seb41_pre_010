@@ -36,7 +36,7 @@ public interface UserMapper {
         userInfoAnswerListDtoBuilder.answerId(answer.getAnswerId());
         userInfoAnswerListDtoBuilder.createAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getCreatedAt()));
         userInfoAnswerListDtoBuilder.modifiedAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH/mm").format(answer.getModifiedAt()));
-        userInfoAnswerListDtoBuilder.title(answer.getBody());
+        userInfoAnswerListDtoBuilder.title(answer.getQuestion().getTitle());
         userInfoAnswerListDtoBuilder.questionId(answer.getQuestion().getQuestionId());
 
         return userInfoAnswerListDtoBuilder.build();
