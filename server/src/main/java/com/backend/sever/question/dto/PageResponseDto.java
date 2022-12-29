@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class PageResponseDto {
-    List<QuestionInfo> pageInfos;
+    List<QuestionInfo> questionInfos;
     private long totalQuestions;
     private long totalPages;
 }
