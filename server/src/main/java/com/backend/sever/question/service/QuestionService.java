@@ -3,10 +3,15 @@ package com.backend.sever.question.service;
 import com.backend.sever.config.CustomBeanUtils;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.repository.QuestionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @Service
 public class QuestionService {
@@ -25,6 +30,19 @@ public class QuestionService {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         return verifyQuestion(optionalQuestion);
     }
+
+    public Page<Question> findAllQuestions(int pageIndex, int pageSize, String filter) {
+        String filterType = filter.equals("newest") ? "questionId" : "vote";
+
+        return questionRepository.findAll(PageRequest.of(pageIndex, pageSize, Sort.by(filterType).descending()));
+    }
+
+    public Page<Question> findAllQuestions(int pageIndex, int pageSize, String filter, String keyword) {
+        System.out.println("find keyword");
+
+        return null;
+    }
+
 
     public Question updateQuestion(Question question) {
         Question verifiedQuestion = verifyQuestion(questionRepository.findById(question.getQuestionId()));
