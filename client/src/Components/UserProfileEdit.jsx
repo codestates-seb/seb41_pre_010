@@ -27,7 +27,7 @@ const UserProfileEdit = (props) => {
     console.log(newProfile);
 
     axios
-      .put(`/api/v1/users/:userId/userprofile`, newProfile)
+      .put(`/api/v1/users/1/userprofile`, newProfile)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
@@ -59,12 +59,7 @@ const UserProfileEdit = (props) => {
           />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormButton_Container">
-          <BlueButton
-            width="90px"
-            height="35px"
-            onClick={changeUserProfile}
-            href={"/users/mypage/:userId"}
-          >
+          <BlueButton width="90px" height="35px" onClick={changeUserProfile}>
             프로필 저장
           </BlueButton>
           <BlueWhiteButton

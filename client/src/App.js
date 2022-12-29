@@ -7,6 +7,7 @@ import MainPage from "./Pages/MainPage";
 import Mypage from "./Pages/Mypage";
 import MypageEdit from "./Pages/MypageEdit";
 import EditPage from "./Pages/EditPage";
+import Page404 from "./Pages/404Page";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import { SessionProvider } from "./CustomHook/SessionProvider";
@@ -28,6 +29,7 @@ function App() {
               element={<MypageEdit />}
             />
             <Route path={"/search"} element={<></>} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
         <Footer />
