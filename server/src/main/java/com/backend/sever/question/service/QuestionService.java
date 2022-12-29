@@ -1,5 +1,7 @@
 package com.backend.sever.question.service;
 
+import com.backend.sever.bookmark.entity.BookmarkQuestion;
+import com.backend.sever.bookmark.repository.BookmarkQuestionRepository;
 import com.backend.sever.config.CustomBeanUtils;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.repository.QuestionRepository;
@@ -19,12 +21,14 @@ public class QuestionService {
     private final CustomBeanUtils<Question> customBeanUtils;
     private final QuestionVoteRepository questionVoteRepository;
     private final UserService userService;
+    private final BookmarkQuestionRepository bookmarkQuestionRepository;
 
-    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService) {
+    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService, BookmarkQuestionRepository bookmarkQuestionRepository) {
         this.questionRepository = questionRepository;
         this.customBeanUtils = customBeanUtils;
         this.questionVoteRepository = questionVoteRepository;
         this.userService = userService;
+        this.bookmarkQuestionRepository = bookmarkQuestionRepository;
     }
 
     public Question createQuestion(Question question) {
@@ -88,7 +92,14 @@ public class QuestionService {
             voteChecks.add(false);
             voteChecks.add(false);
         }
-
         return voteChecks;
+    }
+
+    public boolean findBookmarkCheck(long questionId, long userId) {
+        User user = userService.findUser(userId);
+        Question question = findQuestion(questionId);
+
+        Optional<BookmarkQuestion> optionalBookmarkQuestion = bookmarkQuestionRepository.findByQuestionAndUser(question, user);
+        return optionalBookmarkQuestion.map(BookmarkQuestion::isBookmarkCheck).orElse(false);
     }
 }

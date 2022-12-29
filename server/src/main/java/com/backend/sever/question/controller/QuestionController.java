@@ -45,6 +45,7 @@ public class QuestionController {
         List<Boolean> check = questionService.findCheck(questionId, userId);
         response.setVoteUpCheck(check.get(0));
         response.setVoteDownCheck(check.get(1));
+        response.setBookmarkCheck(questionService.findBookmarkCheck(questionId,userId));
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
