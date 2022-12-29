@@ -1,14 +1,16 @@
 package com.backend.sever.question.mapper;
 
-import com.backend.sever.question.dto.QuestionPostDto;
-import com.backend.sever.question.dto.QuestionPutDto;
-import com.backend.sever.question.dto.QuestionResponseDto;
+import com.backend.sever.question.dto.*;
 import com.backend.sever.question.entity.Question;
+import com.backend.sever.question.pageDto.PageResponseDto;
+import com.backend.sever.question.pageDto.QuestionInfo;
+import com.backend.sever.question.pageDto.UserInfo;
 import com.backend.sever.questionTag.dto.QuestionTagResponseDto;
 import com.backend.sever.questionTag.entity.QuestionTag;
 import com.backend.sever.tag.entity.Tag;
 import com.backend.sever.user.entity.User;
 import org.mapstruct.Mapper;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,6 +73,43 @@ public interface QuestionMapper {
         questionResponseDto.setTags(questionTagsToQuestionTagResponseDtos(questionTags));
 
         return questionResponseDto;
+    }
+
+    default PageResponseDto questionInfosToPageResponseDto(Page<Question> questionPages) {
+        PageResponseDto pageResponseDto = new PageResponseDto();
+
+        List<QuestionInfo> questionInfos =
+        questionPages.getContent().stream().map(content -> {
+            QuestionInfo questionInfo = new QuestionInfo();
+            questionInfo.setQuestionId(content.getQuestionId());
+
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserId(content.getUser().getUserId());
+            userInfo.setDisplayName(content.getUser().getDisplayName());
+            userInfo.setProfileImage(content.getUser().getProfileImage());
+            questionInfo.setUser(userInfo);
+
+            questionInfo.setTitle(content.getTitle());
+            questionInfo.setBody(content.getBody());
+            questionInfo.setCreatedAt(content.getCreatedAt().toString());
+            questionInfo.setModifiedAt(content.getModifiedAt().toString());
+            questionInfo.setVote(content.getVote());
+            questionInfo.setAnswers(content.getAnswerCount());
+
+            List<String> tagNames =
+            content.getQuestionTags().stream().map(questionTag -> {
+                return questionTag.getTag().getTagName();
+            }).collect(Collectors.toList());
+            questionInfo.setTags(tagNames);
+
+            return questionInfo;
+        }).collect(Collectors.toList());
+
+        pageResponseDto.setQuestionInfos(questionInfos);
+        pageResponseDto.setTotalQuestions(questionPages.getTotalElements());
+        pageResponseDto.setTotalPages(questionPages.getTotalPages());
+
+        return pageResponseDto;
     }
 
     default List<QuestionTagResponseDto> questionTagsToQuestionTagResponseDtos(List<QuestionTag> questionTags) {
