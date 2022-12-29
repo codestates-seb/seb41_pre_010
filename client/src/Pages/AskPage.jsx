@@ -3,6 +3,8 @@ import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
 import TextEditor from "../Components/TextEditor";
 import { useState } from "react";
+import { useSession } from "../CustomHook/SessionProvider";
+import axios from "axios";
 
 const AskTitle = ({ setQuestionTitle }) => {
   function changeQuestionTitle(e) {
@@ -27,9 +29,20 @@ const AskPage = () => {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [questionBodyString, setQuestionBodyString] = useState("");
-
+  const { loading, session } = useSession();
   function submitQuestion() {
-    console.log(questionTitle, questionBodyHTML, questionBodyString);
+    const body = {
+      userId: session.userId,
+      title: questionTitle,
+      bodyHTML: questionBodyHTML,
+      bodyString: questionBodyHTML.replace(/<[^>]+>/g, " "),
+    };
+
+    console.log(body);
+    axios
+      .post("api/v1/questions", body)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   }
 
   return (

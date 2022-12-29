@@ -12,9 +12,7 @@ function TextEditor({ setQuestionBodyHTML, setQuestionBodyString }) {
 
   function changeQuestionBody() {
     const htmlData = editorRef.current.getInstance().getHTML();
-    const stringData = htmlData.replace(/<[^>]+>/g, " ");
     setQuestionBodyHTML(htmlData);
-    setQuestionBodyString(stringData);
   }
 
   return (
