@@ -3,8 +3,13 @@ package com.backend.sever.question.service;
 import com.backend.sever.config.CustomBeanUtils;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.repository.QuestionRepository;
+import com.backend.sever.user.entity.User;
+import com.backend.sever.user.service.UserService;
+import com.backend.sever.vote.entity.QuestionVote;
+import com.backend.sever.vote.repository.QuestionVoteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,11 +17,16 @@ import java.util.Optional;
 public class QuestionService {
     private final QuestionRepository questionRepository;
     private final CustomBeanUtils<Question> customBeanUtils;
+    private final QuestionVoteRepository questionVoteRepository;
+    private final UserService userService;
 
-    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils) {
+    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService) {
         this.questionRepository = questionRepository;
         this.customBeanUtils = customBeanUtils;
+        this.questionVoteRepository = questionVoteRepository;
+        this.userService = userService;
     }
+
     public Question createQuestion(Question question) {
         return questionRepository.save(question);
     }
@@ -63,5 +73,22 @@ public class QuestionService {
 
     private Question verifyQuestion(Optional<Question> optionalQuestion) {
         return optionalQuestion.orElseThrow(() -> new RuntimeException());
+    }
+
+    public List<Boolean> findCheck(long questionId,long userId) {
+        List<Boolean> voteChecks = new ArrayList<>();
+        User user = userService.findUser(userId);
+        Question question = findQuestion(questionId);
+
+        Optional<QuestionVote> questionVote = questionVoteRepository.findByQuestionAndUser(question, user);
+        if (questionVote.isPresent()) {
+            voteChecks.add(questionVote.get().isVoteUpCheck());
+            voteChecks.add(questionVote.get().isVoteDownCheck());
+        }else {
+            voteChecks.add(false);
+            voteChecks.add(false);
+        }
+
+        return voteChecks;
     }
 }

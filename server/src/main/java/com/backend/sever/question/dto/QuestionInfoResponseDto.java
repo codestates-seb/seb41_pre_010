@@ -21,6 +21,8 @@ public class QuestionInfoResponseDto {
     private int vote;
     private String createdAt;
     private String modifiedAt;
+    private boolean voteUpCheck;
+    private boolean voteDownCheck;
     private List<QuestionTagResponseDto> tags;
     private List<AnswerInfoDto> answers;
 }

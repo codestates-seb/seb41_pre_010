@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/questions")
 public class QuestionController {
@@ -35,10 +37,14 @@ public class QuestionController {
         return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.OK);
     }
 
-    @GetMapping("{question-id}")
-    public ResponseEntity getQuestionInfo(@PathVariable("question-id") long questionId) {
+    @GetMapping("{question-id}/{user-id}")
+    public ResponseEntity getQuestionInfo(@PathVariable("question-id") long questionId,
+                                          @PathVariable("user-id") long userId ) {
         Question question = questionService.findQuestion(questionId);
         QuestionInfoResponseDto response = mapper.questionToQuestionInfoDto(question);
+        List<Boolean> check = questionService.findCheck(questionId, userId);
+        response.setVoteUpCheck(check.get(0));
+        response.setVoteDownCheck(check.get(1));
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
