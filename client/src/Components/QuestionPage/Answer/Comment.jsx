@@ -1,6 +1,6 @@
 import React from "react";
 import { TiPen } from "react-icons/ti";
-export default function Comment({ el }) {
+export default function Comment({ el, loading, session }) {
   return (
     <div className="Comment_Container">
       {el.comments.length !== 0
@@ -13,7 +13,11 @@ export default function Comment({ el }) {
                     {comment.user.displayName}
                   </a>
                   <span>{comment.createdAt}</span>
-                  <TiPen/>
+                  {loading ? (
+                    <div>로딩중 입니다...</div>
+                  ) : (session === comment.user.userId) ? (
+                      <TiPen />
+                  ) : null}
                 </div>
               </div>
             );

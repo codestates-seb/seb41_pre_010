@@ -11,9 +11,9 @@ export const questionDummyData = [
     createdAt: "2022/12/26/11:53", //String
     modifiedAt: "2022/12/27/12:52", //String
     vote: 7, //Number
-    voteUpCheck: true, //Boolean
-    voteDownCheck: true, //Boolean
-    bookMarkCheck: true, //Boolean
+    voteUpCheck: false, //Boolean
+    voteDownCheck: false, //Boolean
+    bookMarkCheck: false, //Boolean
     tags: [
       {
         tagName: "React", //String

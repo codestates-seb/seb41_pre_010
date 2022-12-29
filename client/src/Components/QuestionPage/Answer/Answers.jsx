@@ -14,7 +14,7 @@ export default function Answers({
   Input,
   addCommentHandler,
   loading,
-  session
+  session,
 }) {
   return (
     <>
@@ -26,26 +26,45 @@ export default function Answers({
                 <h2>Answer{el.answerId}</h2>
                 <div>
                   <div className="Main_Text_Container">
-                    <AnswerBodyAside el={el} index={index}/>
+                    <AnswerBodyAside
+                      el={el}
+                      index={index}
+                      loading={loading}
+                      session={session}
+                    />
                     <div className="Main_Text_Content">
                       <span>{el.body}</span>
                     </div>
                   </div>
-                  <AnswerUserProfile el={el} />
-                  <div className="Contour_Line" />
-                  <Comment el={el} />
-                  <AddComment
-                    BlueButton={BlueButton}
-                    answerIdx={answerIdx}
-                    index={index}
-                    Input={Input}
+                  <AnswerUserProfile
                     el={el}
-                    activeClick={activeClick}
-                    commentValue={commentValue}
-                    setCommentValue={setCommentValue}
-                    filterData={filterData}
-                    addCommentHandler={addCommentHandler}
+                    loading={loading}
+                    session={session}
                   />
+                  <div className="Contour_Line" />
+                  <Comment el={el} loading={loading} session={session} />
+                  {loading ? (
+                    <div>로딩중 입니다...</div>
+                  ) : session ? (
+                    <AddComment
+                      BlueButton={BlueButton}
+                      answerIdx={answerIdx}
+                      index={index}
+                      Input={Input}
+                      el={el}
+                      activeClick={activeClick}
+                      commentValue={commentValue}
+                      setCommentValue={setCommentValue}
+                      filterData={filterData}
+                      addCommentHandler={addCommentHandler}
+                    />
+                  ) : (
+                    <div className="Add_Comment">
+                      <a className="Go_Login" href="/users/login">
+                        Go Login
+                      </a>
+                    </div>
+                  )}
                   <div className="Contour_Line" />
                 </div>
               </div>

@@ -173,3 +173,12 @@ margin-right: 70px;
 .None_Activate{
   display: none;
 }
+
+.Go_Login{
+  font-size: 13px;
+  background-color: white;
+  border: none;
+  color: hsl(210,8%,55%);
+  opacity: .8;
+  padding: 0 3px 2px;
+}

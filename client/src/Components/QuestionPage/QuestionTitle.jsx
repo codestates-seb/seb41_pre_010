@@ -34,7 +34,7 @@ export default function QuestionTitle({
             </StyledSpan>
             {loading ? (
               <div>로딩중 입니다...</div>
-            ) : session ? (
+            ) : (session === filterData[0].user.userId) ? (
               <a href={`/questions/:${filterData[0].questionId}/edit`}>
                 <TiPen />
               </a>

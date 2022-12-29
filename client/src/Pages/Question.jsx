@@ -7,6 +7,7 @@ import QuestionBody from "../Components/QuestionPage/QuestionBody";
 import QuestionTag from "../Components/QuestionPage/QuestionTag";
 import QuestionUserProfil from "../Components/QuestionPage/QuestionUserProfil";
 import { questionDummyData } from "../QuestionData";
+import { getQuestionData } from "../API/Question/QuestionInfo";
 import { BlueButton, TagButton } from "../Components/Button";
 import { useSession } from "../CustomHook/SessionProvider";
 import Answers from "../Components/QuestionPage/Answer/Answers";
@@ -34,16 +35,15 @@ export default function Question() {
     }
   };
   //실제 API 정보에서 수정 예정
-  // useEffect(() => {
-  //   const getQuestionData = async () => {
-  //     const result = await 데이터함수(Click시 넘어온 ID값)
-  //      setQuestionData(result)
-  //   };
-  //   getQuestionData()
-  // },[]);
+  useEffect(() => {
+    const questionData = async () => {
+      const result = await getQuestionData()
+      setQeustionData(result)
+    };
+    questionData()
+  },[]);
 
   const filterData = questionData;
-  console.log(loading);
   console.log(session);
   return (
     <>
