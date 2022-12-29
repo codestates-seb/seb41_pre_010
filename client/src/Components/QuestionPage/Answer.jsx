@@ -1,7 +1,8 @@
 import React from "react";
-import {TiPen} from "react-icons/ti";
+import { TiPen } from "react-icons/ti";
 
-export default function Answer({filterData,
+export default function Answer({
+  filterData,
   IconContext,
   TiArrowSortedUp,
   TiArrowSortedDown,
@@ -13,7 +14,8 @@ export default function Answer({filterData,
   addComment,
   BlueButton,
   Input,
-  addCommentHandler,}) {
+  addCommentHandler,
+}) {
   return (
     <>
       {filterData[0].answers
@@ -94,7 +96,7 @@ export default function Answer({filterData,
                   <div className="Add_Comment">
                     {/* 추후 TextBox예정 */}
                     {answerIdx === index && activeClick ? (
-                      <div>
+                      <div className="Answer_Comment_Contents">
                         <Input
                           width={"80%"}
                           type={"text"}
@@ -102,6 +104,8 @@ export default function Answer({filterData,
                           onChange={(e) => setCommentValue(e.target.value)}
                         />
                         <BlueButton
+                        marginLft={"10px"}
+                          width={"117px"}
                           onClick={() =>
                             addComment(
                               filterData[0].questionId,

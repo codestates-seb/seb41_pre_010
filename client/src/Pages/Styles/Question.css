@@ -133,6 +133,10 @@ margin-right: 70px;
   align-items: center;
 }
 
+.Answer_Comment_Contents{
+  display: flex;
+}
+
 .Add_Comment{
   margin-left: 70px;
   margin-top: 15px;
