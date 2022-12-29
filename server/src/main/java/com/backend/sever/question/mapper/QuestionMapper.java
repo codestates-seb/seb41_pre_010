@@ -12,6 +12,7 @@ import com.backend.sever.user.entity.User;
 import org.mapstruct.Mapper;
 import org.springframework.data.domain.Page;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,11 +89,10 @@ public interface QuestionMapper {
             userInfo.setDisplayName(content.getUser().getDisplayName());
             userInfo.setProfileImage(content.getUser().getProfileImage());
             questionInfo.setUser(userInfo);
-
             questionInfo.setTitle(content.getTitle());
             questionInfo.setBody(content.getBody());
-            questionInfo.setCreatedAt(content.getCreatedAt().toString());
-            questionInfo.setModifiedAt(content.getModifiedAt().toString());
+            questionInfo.setCreatedAt(content.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm")));
+            questionInfo.setModifiedAt(content.getModifiedAt().format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm")));
             questionInfo.setVote(content.getVote());
             questionInfo.setAnswers(content.getAnswerCount());
 
