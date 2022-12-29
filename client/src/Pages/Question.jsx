@@ -3,7 +3,7 @@ import {
   addQuestion,
   addComment,
   addAnswer,
-} from "../Function/Question/AddRequest.js";
+} from "../API/Question/AddRequest.js"
 import Input from "../Components/Input";
 import QuestionTitle from "../Components/QuestionPage/QuestionTitle";
 import QuestionBodyAside from "../Components/QuestionPage/QuestionBodyAside";
