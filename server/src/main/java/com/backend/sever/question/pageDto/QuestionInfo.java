@@ -15,13 +15,13 @@ public class QuestionInfo {
     private UserDto user;
     private String title;
     private String body;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private String createdAt;
+    private String modifiedAt;
     private int vote;
     private int answers;
     private List<String> tags;
 
-    static class UserDto {
+    public static class UserDto {
         private long userId;
         private String displayName;
         private String profileImage;
