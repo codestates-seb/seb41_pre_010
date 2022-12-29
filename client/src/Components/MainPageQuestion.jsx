@@ -1,6 +1,6 @@
 import React from "react";
 import "./Styles/QuestionContainer.css";
-import { TagButton } from "./Button";
+import { TagButton } from "./Button.jsx";
 import { Link } from "react-router-dom";
 
 function MainPageQuestion(props) {
