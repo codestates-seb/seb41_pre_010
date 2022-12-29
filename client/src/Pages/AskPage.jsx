@@ -1,34 +1,40 @@
+import Input from "../Components/Input";
+import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
+
+const AskTitle = () => {
+  return (
+    <div className="Edit_Title_Container">
+      <label htmlFor="EditPage_Title" className="Title">
+        Title
+      </label>
+      <Input id="EditPage_Title" className="Title_Input" />
+    </div>
+  );
+};
 
 const AskPage = () => {
   return (
     <div className="EditPage_Container">
-      <div className="EditPage_Ask_Question_Container">
-        <div className="EditPage_Ask_Title">Ask a public question</div>
-      </div>
       <div className="Edit_Container">
-        <div className="Edit_Title_Container">
-          <span className="Title">Title</span>
-          <input className="Title_Input" />
+        <div className="EditPage_Ask_Question_Container">
+          <h1 className="EditPage_Ask_Title">Ask a public question</h1>
         </div>
+        <AskTitle />
         <div className="Body_Container">
-          <span className="Title">Body</span>
+          <label className="Title">Body</label>
           <textarea className="Edit_Input" />
         </div>
         <div className="Preview_Container">
           <span className="Title">Preview</span>
-          <div className="Preview">
-            {`인풋창에 쓴 내용의 미리보기
-            Preview 컨테이너도 작성한 내용에 따라서 유동적으로 움직일 예정입니다`}
-          </div>
+          <div className="Preview"></div>
         </div>
         <div className="Tags_Container">
           <span className="Title">Tags</span>
           <input className="Tags_Input" />
         </div>
         <div className="Buttons_Container">
-          <button className="Save_Edit">Save edits</button>
-          <button className="Cancel_Edit">Cancel</button>
+          <BlueButton height="36px">Review your question</BlueButton>
         </div>
       </div>
     </div>
