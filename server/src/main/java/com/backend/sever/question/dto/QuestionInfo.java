@@ -1,23 +1,25 @@
 package com.backend.sever.question.dto;
 
-import com.backend.sever.tag.entity.Tag;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@AllArgsConstructor
 @Getter
-public class PageInfo {
+@Setter
+@NoArgsConstructor
+public class QuestionInfo {
     private long questionId;
     private UserDto user;
     private String title;
     private String body;
-    private LocalDateTime createdAt = LocalDateTime.now();
-    private LocalDateTime modifiedAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
     private int vote;
     private int answers;
-    private Tag tag;
+    private List<String> tags;
 
     static class UserDto {
         private long userId;
