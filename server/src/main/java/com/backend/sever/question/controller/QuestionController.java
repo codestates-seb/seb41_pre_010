@@ -51,4 +51,13 @@ public class QuestionController {
         return new ResponseEntity<> (HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity searchQuestion(@RequestParam("q") String searchResult,
+                                         @RequestParam("tab") String tabName,
+                                         @RequestParam("page") int pageNumber,
+                                         @RequestParam("pageSize") int pageSizeNumber) {
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 }
