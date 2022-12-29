@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from "react";
+import {
+  addQuestion,
+  addComment,
+  addAnswer,
+} from "../Function/Question/AddRequest.js";
 import Input from "../Components/Input";
 import QuestionTitle from "../Components/QuestionPage/QuestionTitle";
 import QuestionBodyAside from "../Components/QuestionPage/QuestionBodyAside";
@@ -94,7 +99,7 @@ export default function Question() {
             </div>
             {filterData[0].answers ? <div className="Contour_Line" /> : null}
             <Answer
-            //추후 배열+spreed 연산자로 변경할 예정
+              //추후 배열+spreed 연산자로 변경할 예정
               filterData={filterData}
               IconContext={IconContext}
               TiArrowSortedUp={TiArrowSortedUp}
