@@ -43,19 +43,7 @@ export default function Question() {
       setActiveClick(!activeClick);
     }
   };
-  //answer,comment delete Request
-  const deleteQuestion = (questionId) => {
-    axios.delete(`api/v1/questions/${questionId}`);
-  };
-
-  const deleteAnswer = (answerId) => {
-    axios.delete(`api/v1/questions/${answerId}`);
-  };
-
-  const deleteComment = (commentId) => {
-    axios.delete(`api/v1/questions/${commentId}`);
-  };
-
+  
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
