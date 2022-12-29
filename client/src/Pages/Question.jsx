@@ -71,7 +71,9 @@ export default function Question() {
               <QuestionTag filterData={filterData} TagButton={TagButton} />
             </div>
             <div className="Question_User_Profil_Container">
-              <QuestionUserProfil filterData={filterData} />
+              <QuestionUserProfil
+                filterData={filterData}
+              />
             </div>
             {filterData[0].answers ? <div className="Contour_Line" /> : null}
             <Answers

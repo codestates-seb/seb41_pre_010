@@ -13,6 +13,8 @@ export default function Answers({
   BlueButton,
   Input,
   addCommentHandler,
+  loading,
+  session
 }) {
   return (
     <>
