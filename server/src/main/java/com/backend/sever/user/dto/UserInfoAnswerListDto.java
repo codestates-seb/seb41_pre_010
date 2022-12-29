@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public class UserInfoAnswerListDto {
     private long questionId;
-    private long answerId;
     private String title;
     private String createAt;
     private String modifiedAt;
     private int vote;
+    private long answerId;
 }

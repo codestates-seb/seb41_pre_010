@@ -4,6 +4,7 @@ const Input = styled.input`
   padding: 7px;
   border: 1px solid rgb(186, 191, 196);
   border-radius: 3px;
+  width: ${(props) => props.width};
 
   &:focus {
     outline: none !important;

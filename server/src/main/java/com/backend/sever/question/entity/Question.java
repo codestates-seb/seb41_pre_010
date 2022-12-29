@@ -52,13 +52,13 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<QuestionVote> questionVotes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<QuestionTag> questionTags = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> Answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
@@ -73,5 +73,12 @@ public class Question {
     }
     public void countDown(){
         this.vote--;
+    }
+
+    public void addQuestionTag(QuestionTag questionTag) {
+        this.questionTags.add(questionTag);
+        if (questionTag.getQuestion() != this) {
+            questionTag.addQuestion(this);
+        }
     }
 }

@@ -5,6 +5,7 @@ import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.repository.QuestionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,15 +22,38 @@ public class QuestionService {
     }
 
     public Question findQuestion(long questionId) {
-        Optional optionalQuestion = questionRepository.findById(questionId);
+        Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         return verifyQuestion(optionalQuestion);
     }
 
     public Question updateQuestion(Question question) {
         Question verifiedQuestion = verifyQuestion(questionRepository.findById(question.getQuestionId()));
-        Question updatedQuestion = customBeanUtils.copyNonNullProperties(question, verifiedQuestion);
+        Optional.ofNullable(question.getTitle()).ifPresent(title -> verifiedQuestion.setTitle(title));
+        Optional.ofNullable(question.getBody()).ifPresent(body -> verifiedQuestion.setBody(body));
 
-        return questionRepository.save(updatedQuestion);
+        List<Long> questionTagIds = questionRepository.findQuestionTagIdByQuestionId(question.getQuestionId());
+
+        int questionTagIndex = 0;
+
+        if(question.getQuestionTags().size() >= verifiedQuestion.getQuestionTags().size()) {
+            for(int i=0; i<verifiedQuestion.getQuestionTags().size(); i++) {
+                question.getQuestionTags().get(i).setQuestionTagId(questionTagIds.get(questionTagIndex));
+                questionTagIndex++;
+            }
+        } else {
+            for(int i=0; i<verifiedQuestion.getQuestionTags().size(); i++) {
+                if(i > question.getQuestionTags().size()-1) {
+                    questionRepository.deleteQuestionTagIdById(questionTagIds.get(i));
+                } else {
+                    question.getQuestionTags().get(i).setQuestionTagId(questionTagIds.get(questionTagIndex));
+                    questionTagIndex++;
+                }
+            }
+        }
+
+        Optional.ofNullable(question.getQuestionTags()).ifPresent(questionTags -> verifiedQuestion.setQuestionTags(question.getQuestionTags()));
+
+        return questionRepository.save(verifiedQuestion);
     }
 
     public void deleteQuestion(long questionId) {

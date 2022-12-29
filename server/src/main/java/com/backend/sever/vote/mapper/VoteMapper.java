@@ -1,6 +1,6 @@
 package com.backend.sever.vote.mapper;
 
-import com.backend.sever.vote.AnswerVotePutDto;
+import com.backend.sever.vote.dto.AnswerVotePutDto;
 import com.backend.sever.vote.dto.QuestionVotePutDto;
 import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;

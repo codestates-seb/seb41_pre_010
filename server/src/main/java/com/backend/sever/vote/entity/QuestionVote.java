@@ -28,6 +28,12 @@ public class QuestionVote {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+   @Column
+   private boolean voteUpCheck;
+
+   @Column
+   private boolean voteDownCheck;
+
     public void voteUp(){
         this.voteCount++;
     }
