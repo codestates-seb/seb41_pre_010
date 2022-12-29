@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Input from "../Components/Input";
 import { questionDummyData } from "../QuestionData";
-import { BlueButton, TagButton } from "../Components/button";
-import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark, TiPen } from "react-icons/ti";
+import { BlueButton, TagButton } from "../Components/Button";
+import {
+  TiArrowSortedUp,
+  TiArrowSortedDown,
+  TiBookmark,
+  TiPen,
+} from "react-icons/ti";
 import { IconContext } from "react-icons";
 import axios from "axios";
 import styled from "styled-components";
@@ -102,7 +107,7 @@ export default function Question() {
   //   };
   //   getQuestionData()
   // },[]);
-  
+
   //추후 변경 예정
   const filterData = questionData;
 
@@ -131,7 +136,7 @@ export default function Question() {
                     <StyledSpan fontsize={"14px"}>
                       수정: {filterData[0].modifiedAt}
                     </StyledSpan>
-                    <TiPen/>
+                    <TiPen />
                   </div>
                 </div>
               </div>
@@ -197,13 +202,15 @@ export default function Question() {
                                 value={{
                                   size: "35px",
                                   color: "hsl(210,8%,85%)",
-                                }}>
+                                }}
+                              >
                                 <TiArrowSortedUp />
                                 <span>{el.vote}</span>
                                 <TiArrowSortedDown />
                               </IconContext.Provider>
                               <IconContext.Provider
-                                value={{ size: "30px", color: "#a5a7a9" }}>
+                                value={{ size: "30px", color: "#a5a7a9" }}
+                              >
                                 <TiBookmark />
                               </IconContext.Provider>
                             </div>
@@ -220,7 +227,7 @@ export default function Question() {
                               ) : (
                                 <span>작성:{el.createdAt}</span>
                               )}
-                              <TiPen/>
+                              <TiPen />
                             </div>
                             <div>
                               <img
