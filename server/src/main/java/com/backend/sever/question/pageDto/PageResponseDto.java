@@ -1,4 +1,4 @@
-package com.backend.sever.question.dto;
+package com.backend.sever.question.pageDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
