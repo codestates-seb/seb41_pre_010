@@ -8,15 +8,22 @@ function MyPageListRow(props) {
   return (
     <div className="Mypage_List_Content_Container">
       {listData.slice(-10).map((el) => {
-        const keys = Object.keys(el);
+        const [id, title, createdAt, modifiedAt, vote] = Object.keys(el);
         return (
-          <div key={el[keys[0]]} className="Mypage_Content_Container">
-            <span className="Mypage_Content_Votes">{el[keys[4]]}</span>
+          <div key={el[id]} className="Mypage_Content_Container">
+            <span className="Mypage_Content_Votes">{el[vote]}</span>
             <Link to="" className="Mypage_Content_Title">
-              {el[keys[1]].length > 50
-                ? el[keys[1]].slice(0, 50) + "..."
-                : el[keys[1]]}
+              {el[title].split("").every((el) => el.charCodeAt() < 127)
+                ? el[title].length > 35
+                  ? el[title].slice(0, 35) + "..."
+                  : el[title]
+                : el[title].length > 20
+                ? el[title].slice(0, 20) + "..."
+                : el[title]}
             </Link>
+            <span className="Mypage_Content_Date">
+              {el[modifiedAt] || el[createdAt]}
+            </span>
           </div>
         );
       })}
