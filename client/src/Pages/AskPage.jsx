@@ -1,6 +1,7 @@
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
+import TextEditor from "../Components/TextEditor";
 
 const AskTitle = () => {
   return (
@@ -23,7 +24,7 @@ const AskPage = () => {
         <AskTitle />
         <div className="Body_Container">
           <label className="Title">Body</label>
-          <textarea className="Edit_Input" />
+          <TextEditor />
         </div>
         <div className="Preview_Container">
           <span className="Title">Preview</span>
