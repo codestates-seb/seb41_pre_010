@@ -9,14 +9,7 @@ import QuestionUserProfil from "../Components/QuestionPage/QuestionUserProfil";
 import { questionDummyData } from "../QuestionData";
 import { BlueButton, TagButton } from "../Components/Button";
 import Answers from "../Components/QuestionPage/Answer/Answers";
-import {
-  TiArrowSortedUp,
-  TiArrowSortedDown,
-  TiBookmark,
-  TiPen,
-} from "react-icons/ti";
 import { IconContext } from "react-icons";
-import axios from "axios";
 import styled from "styled-components";
 import "./Styles/Question.css";
 
@@ -39,7 +32,7 @@ export default function Question() {
       setActiveClick(!activeClick);
     }
   };
-  
+
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const getQuestionData = async () => {
@@ -61,17 +54,10 @@ export default function Question() {
               filterData={filterData}
               StyledSpan={StyledSpan}
               BlueButton={BlueButton}
-              TiPen={TiPen}
             />
             <div className="Main_Text_Container">
               <aside className="Main_Text_Aside">
-                <QuestionBodyAside
-                  IconContext={IconContext}
-                  TiBookmark={TiBookmark}
-                  filterData={filterData}
-                  TiArrowSortedUp={TiArrowSortedUp}
-                  TiArrowSortedDown={TiArrowSortedDown}
-                />
+                <QuestionBodyAside filterData={filterData} />
               </aside>
               <QuestionBody filterData={filterData} />
             </div>
@@ -93,7 +79,7 @@ export default function Question() {
               Input={Input}
               addCommentHandler={addCommentHandler}
             />
-            <AnswerAdd BlueButton={BlueButton} filterData={filterData}/>
+            <AnswerAdd BlueButton={BlueButton} filterData={filterData} />
           </div>
         </div>
       </main>

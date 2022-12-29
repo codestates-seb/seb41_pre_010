@@ -1,6 +1,11 @@
 import React from "react";
+import { TiPen } from "react-icons/ti";
 
-export default function QuestionTitle({filterData, StyledSpan, BlueButton, TiPen}) {
+export default function QuestionTitle({
+  filterData,
+  StyledSpan,
+  BlueButton,
+}) {
   return (
     <div className="Title_Container">
       <div className="Title_Contents">

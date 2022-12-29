@@ -1,12 +1,7 @@
 import React from "react";
-
-export default function QuestionBodyAside({
-  IconContext,
-  TiBookmark,
-  filterData,
-  TiArrowSortedUp,
-  TiArrowSortedDown,
-}) {
+import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark } from "react-icons/ti";
+import { IconContext } from "react-icons";
+export default function QuestionBodyAside({ filterData }) {
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">
