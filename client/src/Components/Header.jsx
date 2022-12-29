@@ -32,7 +32,7 @@ const SearchInput = ({ navigate }) => {
   return (
     <form
       className="MainHeader_Input_Container"
-      action={"/search"}
+      action={"/questions/search"}
       role="search"
       method="GET"
     >
