@@ -32,7 +32,7 @@ export default function QuestionTitle({
             <StyledSpan fontsize={"14px"}>
               수정: {filterData[0].modifiedAt}
             </StyledSpan>
-            <TiPen />
+            {loading ? <div>로딩중 입니다...</div> : session ? <TiPen /> : null}
           </div>
         </div>
       </div>
