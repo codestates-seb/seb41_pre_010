@@ -26,10 +26,6 @@ const AskPage = () => {
           <label className="Title">Body</label>
           <TextEditor />
         </div>
-        <div className="Preview_Container">
-          <span className="Title">Preview</span>
-          <div className="Preview"></div>
-        </div>
         <div className="Tags_Container">
           <span className="Title">Tags</span>
           <input className="Tags_Input" />
