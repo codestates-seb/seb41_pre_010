@@ -64,8 +64,8 @@ const UserProfileEdit = (props) => {
       <div className="MypageEdit_UserInfoEdit_Form_Container">
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
-          <img src={image} width={165} height={165} alt="test" />
-          <ImageUpload />
+          {/* <img src={image} width={165} height={165} alt="test" /> */}
+          <ImageUpload userProfileImage={image} />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
