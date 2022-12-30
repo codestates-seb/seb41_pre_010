@@ -24,7 +24,7 @@ function App() {
             <Route path="/questions" element={<MainPage />} />
             <Route path="/users/signup" element={<SignUp />} />
             <Route path="/users/login" element={<Login />} />
-            <Route path="/questions/:questionId/edit" element={<EditPage />} />
+            <Route path="/questions/1/edit" element={<EditPage />} />
             <Route path={"/users/mypage/:userId"} element={<Mypage />} />
             <Route
               path={"/users/mypage/edit/:userId"}

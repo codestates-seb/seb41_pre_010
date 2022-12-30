@@ -33,7 +33,6 @@ const EditPage = () => {
   const [questionBodyMD, setQuestionBodyMD] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
-  const [tagsResponse, settagsResponse] = useState([]);
   const { session } = useSession();
 
   const { questionId } = useParams();
@@ -42,20 +41,27 @@ const EditPage = () => {
     async function loadQuestionContents() {
       axios
         .get(
-          `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/${questionId}/edit`
+          `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/1/edit`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "69420",
+            },
+          }
         )
         .then((res) => {
-          const { title, body, tags } = res;
+          const { title, body, tags } = res.data;
+          const tagNameArr = [];
+
+          for (let el of tags) {
+            tagNameArr.push(el.tagName);
+          }
 
           setQuestionTitle(title);
           setQuestionBodyMD(body);
-          setSelected(tags);
+          setSelected(tagNameArr);
         })
         .catch((err) => {
           console.log(err);
-          setQuestionTitle("아까 질문");
-          setQuestionBodyMD("## 질문 \n 어쩌구저쩌구");
-          setSelected(["java", "javascript", "react"]);
         });
     }
 
@@ -64,23 +70,20 @@ const EditPage = () => {
 
   function submitEditQuestion() {
     const tags = { tags: selected };
-    const body = {
-      userId: session.userId,
-      title: questionTitle,
-      body: questionBodyMD,
-      bodyString: questionBodyHTML.replace(/<[^>]+>/g, " "),
-      tags: tagsResponse,
-    };
 
     axios
       .post("https://359b-112-144-75-111.jp.ngrok.io/api/v1/tags", tags)
       .then((res) => {
-        settagsResponse(res);
-      })
-      .then(() => {
+        const body = {
+          userId: session.userId,
+          title: questionTitle,
+          body: questionBodyMD,
+          bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
+          tags: res.data.tags,
+        };
         axios
-          .post(
-            "https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions",
+          .put(
+            "https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/1",
             body
           )
           .then((res) => {
@@ -89,17 +92,6 @@ const EditPage = () => {
           })
           .catch((err) => console.log(err));
       });
-    // .finally(() => {
-    //   axios
-    //     .post("api/v1/questions", body)
-    //     .then((res) => {
-    //       console.log(res);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //       console.log(body);
-    //     });
-    // });
   }
 
   return (
