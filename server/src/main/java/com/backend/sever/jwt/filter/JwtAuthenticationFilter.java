@@ -65,6 +65,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String accessToken = delegateAccessToken(user);
         String refreshToken = delegateRefreshToken(user);
 
+        String image = user.getProfileImage();
+
+
+
         Cookie cookie = new Cookie("Authorization", accessToken);
         Cookie cookie_2 = new Cookie("Refresh", refreshToken);
 
