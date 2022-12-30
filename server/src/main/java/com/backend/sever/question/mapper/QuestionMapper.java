@@ -25,6 +25,7 @@ public interface QuestionMapper {
 
         question.setTitle(questionPostDto.getTitle());
         question.setBody(questionPostDto.getBody());
+        question.setBodyString(questionPostDto.getBodyString());
 
         List<QuestionTag> questionTags = questionPostDto.getTags().stream()
                 .map(questionTagId -> {
@@ -71,6 +72,7 @@ public interface QuestionMapper {
         questionResponseDto.setQuestionId(question.getQuestionId());
         questionResponseDto.setTitle(question.getTitle());
         questionResponseDto.setBody(question.getBody());
+        questionResponseDto.setBodyString(question.getBodyString());
         questionResponseDto.setTags(questionTagsToQuestionTagResponseDtos(questionTags));
 
         return questionResponseDto;
@@ -91,6 +93,7 @@ public interface QuestionMapper {
             questionInfo.setUser(userInfo);
             questionInfo.setTitle(content.getTitle());
             questionInfo.setBody(content.getBody());
+            questionInfo.setBodyString(content.getBodyString());
             questionInfo.setCreatedAt(content.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm")));
             questionInfo.setModifiedAt(content.getModifiedAt().format(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm")));
             questionInfo.setVote(content.getVote());
