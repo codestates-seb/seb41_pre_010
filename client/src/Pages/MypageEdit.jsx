@@ -15,22 +15,21 @@ const dummyDataProfile = {
 const MypageEdit = () => {
   const [userProfile, setUserProfile] = useState(dummyDataProfile);
 
+  const myPageEditGetUserProfileUrl = `/api/v1/users/1/userprofile`;
+
   useEffect(() => {
     axios
-      .get(
-        `https://3bdd-175-205-115-85.jp.ngrok.io/api/v1/users/1/userprofile`,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
-      )
+      .get(myPageEditGetUserProfileUrl, {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
       .then((res) => {
         console.log(res);
         setUserProfile(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [myPageEditGetUserProfileUrl]);
 
   return (
     <>
