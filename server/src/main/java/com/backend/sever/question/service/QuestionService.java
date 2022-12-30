@@ -1,5 +1,7 @@
 package com.backend.sever.question.service;
 
+import com.backend.exception.logicException.ExceptionCode;
+import com.backend.exception.logicException.LoginException;
 import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.bookmark.entity.BookmarkQuestion;
@@ -85,7 +87,7 @@ public class QuestionService {
     }
 
     private Question verifyQuestion(Optional<Question> optionalQuestion) {
-        return optionalQuestion.orElseThrow(() -> new RuntimeException());
+        return optionalQuestion.orElseThrow(() -> new LoginException(ExceptionCode.QUESTION_NOT_FOUND));
     }
 
     public List<Boolean> findCheck(long questionId,long userId) {
@@ -143,9 +145,4 @@ public class QuestionService {
         }
         return answerVoteCheck;
     }
-
-    public User findUser(long userId) {
-        return userService.findUser(userId);
-    }
-
 }
