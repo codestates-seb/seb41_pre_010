@@ -6,11 +6,11 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import Prism from "prismjs"; // prism 테마 추가
 
-function TextEditor({ setQuestionBodyHTML, setQuestionBodyString }) {
+function TextEditor({ setQuestionBodyHTML }) {
   const editorRef = useRef();
   const dataa = "string";
 
-  function changeQuestionBody() {
+  function onEditorBlur() {
     const htmlData = editorRef.current.getInstance().getHTML();
     setQuestionBodyHTML(htmlData);
   }
@@ -24,7 +24,7 @@ function TextEditor({ setQuestionBodyHTML, setQuestionBodyString }) {
       useCommandShortcut={false}
       language="ko-KR"
       ref={editorRef}
-      onChange={changeQuestionBody}
+      onBlur={onEditorBlur}
       plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
     />
   );

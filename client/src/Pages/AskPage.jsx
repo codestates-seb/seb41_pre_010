@@ -28,14 +28,14 @@ const AskTitle = ({ setQuestionTitle }) => {
 const AskPage = () => {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
-  const [questionBodyString, setQuestionBodyString] = useState("");
-  const { loading, session } = useSession();
+  const { session } = useSession();
+
   function submitQuestion() {
     const body = {
       userId: session.userId,
       title: questionTitle,
       bodyHTML: questionBodyHTML,
-      bodyString: questionBodyHTML.replace(/<[^>]+>/g, " "),
+      bodyString: questionBodyHTML.replace(/<[^>]+>/g, ""),
     };
 
     console.log(body);
@@ -54,10 +54,7 @@ const AskPage = () => {
         <AskTitle setQuestionTitle={setQuestionTitle} />
         <div className="Body_Container">
           <label className="Title">Body</label>
-          <TextEditor
-            setQuestionBodyHTML={setQuestionBodyHTML}
-            setQuestionBodyString={setQuestionBodyString}
-          />
+          <TextEditor setQuestionBodyHTML={setQuestionBodyHTML} />
         </div>
         <div className="Tags_Container">
           <span className="Title">Tags</span>
