@@ -66,7 +66,7 @@ const UserProfileEdit = (props) => {
           <img src={image} width={165} height={165} alt="test" />
           <input
             type="file"
-            accept="image/jpg,impge/png,image/jpeg,image/gif"
+            accept="image/*"
             name="profile_img"
             onChange={onChange}
           />
