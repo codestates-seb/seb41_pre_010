@@ -20,7 +20,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/question/:questionId" element={<Question />} />
+            <Route path="/questions/:questionId" element={<Question />} />
             <Route path="/questions" element={<MainPage />} />
             <Route path="/users/signup" element={<SignUp />} />
             <Route path="/users/login" element={<Login />} />
