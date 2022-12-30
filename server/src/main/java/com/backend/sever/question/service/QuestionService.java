@@ -10,13 +10,18 @@ import com.backend.sever.bookmark.repository.BookmarkQuestionRepository;
 import com.backend.sever.config.CustomBeanUtils;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.repository.QuestionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.service.UserService;
 import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;
 import com.backend.sever.vote.repository.AnswerVoteRepository;
 import com.backend.sever.vote.repository.QuestionVoteRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +48,9 @@ public class QuestionService {
     }
 
     public Question createQuestion(Question question) {
+        if(questionRepository.countTag() == 0) {
+            throw new RuntimeException();
+        }
         return questionRepository.save(question);
     }
 
@@ -51,12 +59,37 @@ public class QuestionService {
         return verifyQuestion(optionalQuestion);
     }
 
+    public Page<Question> findAllQuestions(int pageIndex, int pageSize, String filter) {
+        String filterType = filter.equals("newest") ? "questionId" : "vote";
+
+        return questionRepository.findAll(PageRequest.of(pageIndex, pageSize, Sort.by(filterType).descending()));
+    }
+
+    public Page<Question> findAllQuestions(int pageIndex, int pageSize, String filter, String keyword) {
+        String filterType = filter.equals("newest") ? "questionId" : "vote";
+
+        List<String> keywords = Arrays.asList(keyword.split("\\s"));
+
+        Set<Long> questionIds = new HashSet<>();
+
+        keywords.forEach(word -> {
+            questionIds.addAll(questionRepository.findQuestionIdByKeywordInQuestionTable(word));
+            questionIds.addAll(questionRepository.findQuestionIdByKeywordInTagTable(word));
+            questionIds.addAll(questionRepository.findQuestionIdByKeywordInUserTable(word));
+        });
+
+        return questionRepository.makePageByQuestionId(questionIds, PageRequest.of(pageIndex, pageSize, Sort.by(filterType).descending()));
+    }
+
+
     public Question updateQuestion(Question question) {
         Question verifiedQuestion = verifyQuestion(questionRepository.findById(question.getQuestionId()));
         Optional.ofNullable(question.getTitle()).ifPresent(title -> verifiedQuestion.setTitle(title));
         Optional.ofNullable(question.getBody()).ifPresent(body -> verifiedQuestion.setBody(body));
+        Optional.ofNullable(question.getBodyString()).ifPresent(bodyString -> verifiedQuestion.setBodyString(bodyString));
 
-        List<Long> questionTagIds = questionRepository.findQuestionTagIdByQuestionId(question.getQuestionId());
+        Optional<List<Long>> optionalQuestionTagIds = questionRepository.findQuestionTagIdByQuestionId(question.getQuestionId());
+        List<Long> questionTagIds = optionalQuestionTagIds.orElseThrow(() -> new RuntimeException());
 
         int questionTagIndex = 0;
 

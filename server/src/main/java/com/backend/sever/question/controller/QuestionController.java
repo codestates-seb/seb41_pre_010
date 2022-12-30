@@ -7,12 +7,14 @@ import com.backend.sever.question.dto.QuestionPutDto;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.mapper.QuestionMapper;
 import com.backend.sever.question.service.QuestionService;
+import org.springframework.data.domain.Page;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.List;
 
 @RestController
@@ -42,6 +44,23 @@ public class QuestionController {
         return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity searchQuestion(@RequestParam("q") Optional<String> keyword,
+                                         @RequestParam("tab") String filter,
+                                         @RequestParam("page") int pageIndex,
+                                         @RequestParam("pageSize") int pageSize) {
+
+        Page<Question> questionPage;
+
+        if (keyword.isPresent()) {
+            questionPage = questionService.findAllQuestions(pageIndex - 1, pageSize, filter, keyword.get());
+        } else {
+            questionPage = questionService.findAllQuestions(pageIndex - 1, pageSize, filter);
+        }
+
+        return new ResponseEntity<>(mapper.questionInfosToPageResponseDto(questionPage), HttpStatus.OK);
+    }
+
     @GetMapping("{question-id}/{user-id}")
     public ResponseEntity getQuestionInfo(@PathVariable("question-id") long questionId,
                                           @PathVariable("user-id") long userId ) {
@@ -64,6 +83,7 @@ public class QuestionController {
             idx += 2;
         }
         return new ResponseEntity(response,HttpStatus.OK);
+
     }
 
     @PutMapping("/{question-id}")
