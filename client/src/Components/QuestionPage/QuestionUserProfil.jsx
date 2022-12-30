@@ -1,15 +1,15 @@
 import React from "react";
 
-export default function QuestionUserProfil({filterData}) {
+export default function QuestionUserProfil({ questionData }) {
   return (
     <div className="Question_User_Profil">
       <img
         className="Question_User_Image"
-        src={`${filterData[0].user.profileImage}`}
+        src={`${questionData.user.profileImage}`}
       />
       <a
-        href={`/users/mypage/:${filterData[0].user.userId}`}
-      >{`${filterData[0].user.displayName}`}</a>
+        href={`/users/mypage/:${questionData.user.userId}`}
+      >{`${questionData.user.displayName}`}</a>
     </div>
   );
 }
