@@ -109,15 +109,17 @@ const dummyDataInfo = [
 const Mypage = () => {
   const [myInfo, setMyInfo] = useState(dummyDataInfo);
 
+  const myPageGetUserInfoUrl = `api/v1/users/userId/userinfo`;
+
   useEffect(() => {
     axios
-      .get(`api/v1/users/userId/userinfo`)
+      .get(myPageGetUserInfoUrl)
       .then((res) => setMyInfo(res))
       .catch((err) => {
         console.log(err);
         setMyInfo(dummyDataInfo);
       });
-  }, []);
+  }, [myPageGetUserInfoUrl]);
 
   return (
     <>

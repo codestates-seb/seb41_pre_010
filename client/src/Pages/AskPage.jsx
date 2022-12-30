@@ -2,10 +2,11 @@ import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
 import TextEditor from "../Components/TextEditor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
 import { TagBar } from "../Components/TagBar";
+import { useNavigate } from "react-router-dom";
 
 const AskTitle = ({ setQuestionTitle }) => {
   function changeQuestionTitle(e) {
@@ -32,33 +33,37 @@ const AskPage = () => {
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
   const { session } = useSession();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!session) {
+      navigate("/questions");
+    }
+  });
+
+  const askPageTagsPostUrl = `/api/v1/tags`;
+  const askPageQuestionPostUrl = `/api/v1/questions`;
 
   function submitQuestion() {
     const tags = { tags: selected };
 
-    axios
-      .post("https://359b-112-144-75-111.jp.ngrok.io/api/v1/tags", tags)
-      .then((res) => {
-        const body = {
-          userId: session.userId,
-          title: questionTitle,
-          body: questionBodyMD,
-          bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
-          tags: res.data.tags,
-        };
+    axios.post(askPageTagsPostUrl, tags).then((res) => {
+      const body = {
+        userId: session.userId,
+        title: questionTitle,
+        body: questionBodyMD,
+        bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
+        tags: res.data.tags,
+      };
 
-        console.log(body);
-        axios
-          .post(
-            "https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions",
-            body
-          )
-          .then((res) => {
-            console.log(res);
-            console.log(body);
-          })
-          .catch((err) => console.log(err));
-      });
+      axios
+        .post(askPageQuestionPostUrl, body)
+        .then((res) => {
+          console.log(res);
+          console.log(body);
+        })
+        .catch((err) => console.log(err));
+    });
   }
 
   return (

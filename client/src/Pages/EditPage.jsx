@@ -37,17 +37,18 @@ const EditPage = () => {
 
   const { questionId } = useParams();
 
+  const editPageGetQuestionUrl = `/api/v1/questions/${questionId}/edit`;
+  const editPagePostTagsUrl = `/api/v1/tags`;
+  const editPagePutQuestionUrl = `/api/v1/questions/${questionId}`;
+
   useEffect(() => {
     async function loadQuestionContents() {
       axios
-        .get(
-          `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/${questionId}/edit`,
-          {
-            headers: {
-              "ngrok-skip-browser-warning": "69420",
-            },
-          }
-        )
+        .get(editPageGetQuestionUrl, {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
+        })
         .then((res) => {
           const { title, body, tags } = res.data;
           const tagNameArr = [];
@@ -66,32 +67,27 @@ const EditPage = () => {
     }
 
     loadQuestionContents();
-  }, [questionId]);
+  }, [questionId, editPageGetQuestionUrl]);
 
   function submitEditQuestion() {
     const tags = { tags: selected };
 
-    axios
-      .post("https://359b-112-144-75-111.jp.ngrok.io/api/v1/tags", tags)
-      .then((res) => {
-        const body = {
-          userId: session.userId,
-          title: questionTitle,
-          body: questionBodyMD,
-          bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
-          tags: res.data.tags,
-        };
-        axios
-          .put(
-            `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/${questionId}`,
-            body
-          )
-          .then((res) => {
-            console.log(res);
-            console.log(body);
-          })
-          .catch((err) => console.log(err));
-      });
+    axios.post(editPagePostTagsUrl, tags).then((res) => {
+      const body = {
+        userId: session.userId,
+        title: questionTitle,
+        body: questionBodyMD,
+        bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
+        tags: res.data.tags,
+      };
+      axios
+        .put(editPagePutQuestionUrl, body)
+        .then((res) => {
+          console.log(res);
+          console.log(body);
+        })
+        .catch((err) => console.log(err));
+    });
   }
 
   return (

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSession } from "../CustomHook/SessionProvider";
-
 import "./Styles/MypageEdit.css";
 import UserProfile from "../Components/UserProfile/UserProfile";
 import UserProfileEdit from "../Components/UserProfile/UserProfileEdit";
@@ -17,14 +16,22 @@ const dummyDataProfile = {
 };
 
 const MypageEdit = () => {
-  const [userProfile, setUserProfile] = useState(dummyDataProfile);
-  const { userId } = useParams();
-  const navigate = useNavigate();
   const { loading, session } = useSession();
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const [userProfile, setUserProfile] = useState(dummyDataProfile);
+
+  useEffect(() => {
+    if (!session) {
+      navigate("/questions");
+    }
+  });
+
+  const myPageEditGetUserProfileUrl = `/api/v1/users/${userId}/userprofile`;
 
   useEffect(() => {
     axios
-      .get(`/api/v1/users/1/userprofile`, {
+      .get(myPageEditGetUserProfileUrl, {
         withCredentials: true,
       })
       .then((res) => {
@@ -32,7 +39,7 @@ const MypageEdit = () => {
         setUserProfile(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [myPageEditGetUserProfileUrl]);
 
   if (loading) return;
   if (!session || session.userId !== userId) {
