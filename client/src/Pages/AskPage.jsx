@@ -2,10 +2,11 @@ import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
 import TextEditor from "../Components/TextEditor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
 import { TagBar } from "../Components/TagBar";
+import { useNavigate } from "react-router-dom";
 
 const AskTitle = ({ setQuestionTitle }) => {
   function changeQuestionTitle(e) {
@@ -32,6 +33,13 @@ const AskPage = () => {
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
   const { session } = useSession();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!session) {
+      navigate("/questions");
+    }
+  });
 
   const askPageTagsPostUrl = `/api/v1/tags`;
   const askPageQuestionPostUrl = `/api/v1/questions`;
