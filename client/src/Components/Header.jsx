@@ -27,7 +27,7 @@ const SearchInput = ({ navigate }) => {
   return (
     <form
       className="MainHeader_Input_Container"
-      action={"/search"}
+      action={"/questions/search"}
       role="search"
       method="GET"
     >
@@ -72,7 +72,7 @@ const LoggedIn = ({ session }) => {
         height="38px"
         onClick={async () => {
           const url = "/api/v1/users/logout";
-          await axios
+          axios
             .post(url, {
               headers: {
                 withCredentials: true,

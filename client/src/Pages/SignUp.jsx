@@ -4,11 +4,12 @@ import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/SignUp.css";
+import CustomTitle from "../Components/CustomTitle";
+import { useSession } from "../CustomHook/SessionProvider";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  //  만약에 로그인이 되어있으면 튕기게
-  // navigate("/");
+  const { loading, session } = useSession();
   const [displayName, setDisplayName] = useState("");
   const [nameMessage, setNameMessage] = useState("닉네임을 입력해주세요");
   const [email, setEmail] = useState("");
@@ -16,29 +17,57 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] =
     useState("비밀번호를 입력해주세요.");
-  const url = "/api/v1/users/signup";
+
+  const isSubmit =
+    emailMessage.length === 0 &&
+    passwordMessage.length === 0 &&
+    password.length !== 0 &&
+    email.length !== 0 &&
+    displayName.length !== 0;
+
+  const signUpUrl = "/api/v1/users/signup";
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post(url, {
+    axios
+      .post(signUpUrl, {
         displayName: displayName,
         password: password,
         email: email,
       })
       .then((res) => {
-        if (res.status === 201) {
-          navigate("/");
-        }
+        const loginUrl = "/api/v1/users/login";
+        axios
+          .post(
+            loginUrl,
+            {
+              email: email,
+              password: password,
+            },
+            { withCredentials: true }
+          )
+          .then(() => {
+            navigate("/");
+            window.location.reload();
+          })
+          .catch((e) => {
+            window.location.reload();
+          });
       })
       .catch((e) => {
         if (e) {
-          console.log(e);
+          setEmail("");
+          setEmailMessage("중복된 이메일입니다.");
         }
       });
   };
-
+  if (loading) return;
+  if (session) return navigate("/");
   return (
     <>
+      <CustomTitle
+        title={"회원가입 - Stack Overflow"}
+        description="회원가입 페이지입니다."
+      />
       <main>
         <div className="SignUp_Container">
           <Logo />
@@ -65,6 +94,15 @@ export default function SignUp() {
                   onClick={onSubmit}
                   className="SignUp_Button"
                   height="30"
+                  style={
+                    isSubmit
+                      ? {}
+                      : {
+                          pointerEvents: "none",
+                          cursor: "default",
+                          color: "lightgrey",
+                        }
+                  }
                   fontSize="16px"
                 >
                   Sign Up
