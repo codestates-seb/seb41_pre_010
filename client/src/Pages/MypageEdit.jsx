@@ -21,12 +21,6 @@ const MypageEdit = () => {
   const { userId } = useParams();
   const [userProfile, setUserProfile] = useState(dummyDataProfile);
 
-  useEffect(() => {
-    if (!session) {
-      navigate("/questions");
-    }
-  });
-
   const myPageEditGetUserProfileUrl = `/api/v1/users/${userId}/userprofile`;
 
   useEffect(() => {
@@ -42,7 +36,7 @@ const MypageEdit = () => {
   }, [myPageEditGetUserProfileUrl]);
 
   if (loading) return;
-  if (!session || session.userId !== userId) {
+  if (!session || session.userId !== Number(userId)) {
     window.location.reload();
     navigate(`/users/mypage/${userId}`);
   }
