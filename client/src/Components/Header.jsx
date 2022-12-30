@@ -4,12 +4,6 @@ import { Link, useNavigate, redirect } from "react-router-dom";
 import { OrangeButton } from "./Button";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
-const dummyDataProfile = {
-  userId: 0,
-  profileImage:
-    "https://www.phinational.org/wp-content/uploads/2017/07/fb-test-image-470x246.jpg",
-  displayName: "테스트닉네임",
-};
 
 const Logo = () => {
   return (
