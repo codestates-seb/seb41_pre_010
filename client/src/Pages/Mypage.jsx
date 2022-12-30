@@ -1,3 +1,9 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import UserProfile from "../Components/UserProfile";
+import MyPageListRow from "../Components/MyPageListRow";
+import CustomTitle from "../Components/CustomTitle";
+
 import "./Styles/Mypage.css";
 
 const dummyDataProfile = {
@@ -13,16 +19,17 @@ const dummyDataInfo = [
     question: [
       {
         questionId: 0,
-        title: "Find out whether Chrome console is open",
+        title:
+          "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하",
         createdAt: "2022/10/20/13:10",
-        modifiedAt: "Year/Month/Day/Hour/Minute",
+        modifiedAt: "2022/10/20/13:10",
         vote: 0,
       },
       {
         questionId: 1,
         title: "Find out whether Chrome console is open",
-        createdAt: "2022/10/20/13:10",
-        modifiedAt: "Year/Month/Day/Hour/Minute",
+        createdAt: "2022/10/20/ 13:10",
+        modifiedAt: "2022/10/20/ 3:10",
         vote: 0,
       },
     ],
@@ -32,22 +39,22 @@ const dummyDataInfo = [
       {
         answerId: 0,
         title: "Find out whether Chrome console is open",
-        createdAt: "2022/10/20/13:10",
-        modifiedAt: "Year/Month/Day/Hour/Minute",
+        createdAt: "2022/10/20/ 13:10",
+        modifiedAt: "2022/10/20/ 13:10",
         vote: 0,
       },
       {
         answerId: 1,
         title: "Find out whether Chrome console is open",
-        createdAt: "2022/10/20/13:10",
-        modifiedAt: "Year/Month/Day/Hour/Minute",
+        createdAt: "2022/13/20/ 13:10",
+        modifiedAt: null,
         vote: 0,
       },
       {
         answerId: 2,
         title: "test3",
         createdAt: "Year/Month/Day/Hour/Minute",
-        modifiedAt: "Year/Month/Day/Hour/Minute",
+        modifiedAt: "2022/10/20/ 13:10",
         vote: 0,
       },
     ],
@@ -60,14 +67,14 @@ const dummyDataInfo = [
             questionId: 0,
             title: "Find out whether Chrome console is open",
             createdAt: "2022/10/20/13:10",
-            modifiedAt: "Year/Month/Day/Hour/Minute",
+            modifiedAt: "2022/10/20/13:10",
             vote: 0,
           },
           {
             questionId: 1,
             title: "Find out whether Chrome console is open",
             createdAt: "2022/10/20/13:10",
-            modifiedAt: "Year/Month/Day/Hour/Minute",
+            modifiedAt: "2022/10/20/13:10",
             vote: 0,
           },
         ],
@@ -78,7 +85,7 @@ const dummyDataInfo = [
             answerId: 0,
             title: "Find out whether Chrome console is open",
             createdAt: "2022/10/20/13:10",
-            modifiedAt: "Year/Month/Day/Hour/Minute",
+            modifiedAt: "2022/22/22/ 22:22",
             vote: 0,
           },
         ],
@@ -100,116 +107,75 @@ const dummyDataInfo = [
 ];
 
 const Mypage = () => {
+  const [myInfo, setMyInfo] = useState(dummyDataInfo);
+
+  useEffect(() => {
+    axios
+      .get(`api/v1/users/userId/userinfo`)
+      .then((res) => setMyInfo(res))
+      .catch((err) => {
+        console.log(err);
+        setMyInfo(dummyDataInfo);
+      });
+  }, []);
+
   return (
     <>
+      <CustomTitle title={`User ${dummyDataProfile.displayName}`} />
       <main className="Mypage_Container">
-        <UserProfile />
-        <UserInfo />
+        <UserProfile profile={dummyDataProfile} />
+        <UserInfo myInfo={myInfo} />
       </main>
     </>
   );
 };
 
-const UserProfile = () => {
+const UserInfo = ({ myInfo }) => {
+  const [question, answer, bookmark] = myInfo;
+
   return (
-    <div className="Mypage_UserProfile_Container">
-      <div className="Mypage_UserProfile_Content">
-        <img
-          src={dummyDataProfile.profileImage}
-          className="Mypage_UserProfile_Image"
-          width={50}
-          height={50}
-          alt="TestImage"
-        />
-        <div className="Mypage_UserProfile_Info_Container">
-          <div className="Mypage_UserProfile_UserName">
-            {dummyDataProfile.displayName}
-          </div>
-          <div className="Mypage_UserProfile_Title">
-            {dummyDataProfile.title}
-          </div>
-        </div>
-      </div>
-      <button className="Mypage_UserProfile_EditButton">Edit profile</button>
+    <div className="Mypage_UserInfo_Container">
+      <FirstRowContainer question={question} answer={answer} />
+      <SecondRowContainer bookmark={bookmark} />
     </div>
   );
 };
 
-const UserInfo = () => {
-  return (
-    <>
-      <FirstRowContainer />
-      <SecondRowContainer />
-    </>
-  );
-};
-
-const FirstRowContainer = () => {
+const FirstRowContainer = ({ question, answer }) => {
   return (
     <div className="Mypage_List_Container">
-      <div className="Mypage_Questions_Container">
-        <div className="Mypage_Title"> Questions</div>
-        <div className="Mypage_ListContents">
-          {dummyDataInfo[0].question.map((el) => {
-            return (
-              <ul key={el.questionId}>
-                <li>
-                  {el.title} {el.createdAt}
-                </li>
-              </ul>
-            );
-          })}
-        </div>
+      <div className="Mypage_List_Row">
+        <div className="Mypage_Title">Questions</div>
+        <MyPageListRow question={question} />
       </div>
-      <div className="Mypage_Answers_Container">
+      <div className="Mypage_List_Row">
         <div className="Mypage_Title">Answers</div>
-        <div className="Mypage_ListContents">
-          {dummyDataInfo[1].answer.map((el) => {
-            return (
-              <ul key={el.answerId}>
-                <li>
-                  {el.title} {el.createdAt}
-                </li>
-              </ul>
-            );
-          })}
-        </div>
+        <MyPageListRow answer={answer} />
       </div>
     </div>
   );
 };
 
-const SecondRowContainer = () => {
+const SecondRowContainer = ({ bookmark }) => {
+  const [bookmarkQuestions, bookmarkAnswers] = bookmark.bookmark;
+
   return (
     <div className="Mypage_List_Container">
-      <div className="Mypage_Tag_Container">
+      {/* <div className="Mypage_Tag_Container">
         <div className="Mypage_Title">Top Tags</div>
         <div className="Mypage_Tag_ListContents">
           {dummyDataInfo[3].tag.map((el) => {
             return <ul key={el.tagId}>{<li>{el.tagName}</li>}</ul>;
           })}
         </div>
+      </div> */}
+      <div className="Mypage_List_Row">
+        <div className="Mypage_Title">Bookmark (Questions)</div>
+        <MyPageListRow question={bookmarkQuestions} />
       </div>
-
-      <div className="Mypage_BookMark_List_Container">
-        <div className="Mypage_Title">book mark</div>
-        <div className="Mypage_BookMark_ListContents">
-          {dummyDataInfo[2].bookmark[0].question.map((el) => {
-            return (
-              <ul key={el.questionId}>
-                <li>{el.title}</li>
-              </ul>
-            );
-          })}
-        </div>
-      </div>
-      <div className="Mypage_BookMark_List_Container">
-        <div className="Mypage_Title">book mark</div>
-        <div className="Mypage_BookMark_ListContents">
-          {dummyDataInfo[2].bookmark[1].answer.map((el) => {
-            return <ul key={el.answerId}>{<li>{el.title} </li>}</ul>;
-          })}
-        </div>
+      <div className="Mypage_List_Row">
+        <div className="Mypage_Title">Bookmark (Answers)</div>
+        <MyPageListRow answer={bookmarkAnswers} />
       </div>
     </div>
   );

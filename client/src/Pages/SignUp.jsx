@@ -4,6 +4,7 @@ import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/SignUp.css";
+import CustomTitle from "../Components/CustomTitle";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -39,6 +40,10 @@ export default function SignUp() {
 
   return (
     <>
+      <CustomTitle
+        title={"회원가입 - Stack Overflow"}
+        description="회원가입 페이지입니다."
+      />
       <main>
         <div className="SignUp_Container">
           <Logo />
