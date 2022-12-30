@@ -1,23 +1,31 @@
 package com.backend.sever.question.controller;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.question.dto.QuestionInfoResponseDto;
 import com.backend.sever.question.dto.QuestionPostDto;
 import com.backend.sever.question.dto.QuestionPutDto;
 import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.mapper.QuestionMapper;
 import com.backend.sever.question.service.QuestionService;
+import com.backend.sever.user.entity.User;
+import com.backend.sever.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/questions")
 public class QuestionController {
     private final QuestionMapper mapper;
     private final QuestionService questionService;
+    private final UserService userService;
 
-    public QuestionController(QuestionMapper mapper, QuestionService questionService) {
+    public QuestionController(QuestionMapper mapper, QuestionService questionService, UserService userService) {
         this.mapper = mapper;
         this.questionService = questionService;
+        this.userService = userService;
     }
 
     @PostMapping
@@ -32,6 +40,30 @@ public class QuestionController {
         Question question = questionService.findQuestion(questionId);
 
         return new ResponseEntity<> (mapper.questionToQuestionResponseDto(question), HttpStatus.OK);
+    }
+
+    @GetMapping("{question-id}/{user-id}")
+    public ResponseEntity getQuestionInfo(@PathVariable("question-id") long questionId,
+                                          @PathVariable("user-id") long userId ) {
+        Question question = questionService.findQuestion(questionId);
+        User user = userService.findUser(userId);
+        List<Answer> answers = question.getAnswers();
+        QuestionInfoResponseDto response = mapper.questionToQuestionInfoDto(question);
+        List<Boolean> check = questionService.findCheck(questionId, userId);
+        response.setVoteUpCheck(check.get(0));
+        response.setVoteDownCheck(check.get(1));
+        response.setBookMarkCheck(questionService.findBookmarkCheck(questionId,userId));
+
+        List<Boolean> answerBookmark = questionService.findAnswerBookmark(question, userId);
+        List<Boolean> answerVoteCheck = questionService.findAnswerVoteCheck(answers, user);
+        int idx = 0;
+        for (int i = 0; i < response.getAnswers().size(); i++) {
+            response.getAnswers().get(i).setBookMarkCheck(answerBookmark.get(i));
+            response.getAnswers().get(i).setVoteUpCheck(answerVoteCheck.get(idx));
+            response.getAnswers().get(i).setVoteDownCheck(answerVoteCheck.get(idx + 1));
+            idx += 2;
+        }
+        return new ResponseEntity(response,HttpStatus.OK);
     }
 
     @PutMapping("/{question-id}")

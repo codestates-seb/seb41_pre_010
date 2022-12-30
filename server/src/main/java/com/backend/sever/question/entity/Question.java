@@ -59,7 +59,7 @@ public class Question {
     private List<Comments> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private List<Answer> Answers = new ArrayList<>();
+    private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<BookmarkQuestion> bookmarksQuestions = new ArrayList<>();

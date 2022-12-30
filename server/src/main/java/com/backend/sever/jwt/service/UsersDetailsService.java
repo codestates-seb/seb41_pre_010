@@ -1,7 +1,7 @@
 package com.backend.sever.jwt.service;
 
-import com.backend.sever.jwt.dto.ExceptionCode;
-import com.backend.sever.jwt.event.LoginException;
+import com.backend.exception.logicException.ExceptionCode;
+import com.backend.exception.logicException.LoginException;
 import com.backend.sever.jwt.utils.CustomAuthorityUtils;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.repository.UserRepository;
