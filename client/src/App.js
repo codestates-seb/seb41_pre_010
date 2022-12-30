@@ -13,6 +13,7 @@ import Footer from "./Components/Footer";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import { SessionProvider } from "./CustomHook/SessionProvider";
 import SearchResultPage from "./Pages/SearchResultPage";
+import AnswerEditPage from "./Pages/AnswerEditPage";
 function App() {
   return (
     <>
@@ -33,6 +34,10 @@ function App() {
             <Route path={"/questions/ask"} element={<AskPage />} />;
             <Route path={"/questions/search"} element={<SearchResultPage />} />
             <Route path="*" element={<Page404 />} />
+            <Route
+              path="/answers/:answerId/edit"
+              element={<AnswerEditPage />}
+            />
           </Routes>
         </BrowserRouter>
         <Footer />
