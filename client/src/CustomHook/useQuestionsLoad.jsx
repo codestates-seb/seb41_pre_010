@@ -12,13 +12,14 @@ function useQuestionsLoad(
   const [totalPages, setTotalPage] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(23338049);
 
+  const getSearchValueUrl = `/api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
+  const getAllPagesUrl = `ttps://e066-112-144-75-111.jp.ngrok.io/api/v1/questions/search?tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
+
   useEffect(() => {
     async function getQuestionList(tabName, pageNumber, pageSizeNumber) {
       try {
         const response = await axios.get(
-          searchValue
-            ? `ttps://e066-112-144-75-111.jp.ngrok.io/api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`
-            : `ttps://e066-112-144-75-111.jp.ngrok.io/api/v1/questions/search?tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`,
+          searchValue ? getSearchValueUrl : getAllPagesUrl,
           {
             headers: {
               "ngrok-skip-browser-warning": "69420",
@@ -37,7 +38,14 @@ function useQuestionsLoad(
     }
 
     getQuestionList(tabName, pageNumber, pageSizeNumber);
-  }, [tabName, pageNumber, pageSizeNumber, searchValue]);
+  }, [
+    tabName,
+    pageNumber,
+    pageSizeNumber,
+    searchValue,
+    getAllPagesUrl,
+    getSearchValueUrl,
+  ]);
 
   return { questionsList, totalPages, totalQuestions, searchValue };
 }
