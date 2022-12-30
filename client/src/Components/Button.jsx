@@ -6,6 +6,7 @@ const WhiteButton = styled.a`
   height: ${(props) => (props.height ? props.height : "30px")};
   font-size: ${(props) => props.fontSize};
   color: ${(props) => (props.color ? props.color : "black")};
+  margin-left: ${(props) => props.marginLft};
   border: 1px solid rgb(234, 236, 237);
   border-radius: 3px;
   padding: 5px;

@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,8 +28,8 @@ public class User {
     private Long userId;
 
     @Column
+//    private String profileImage;
     private String profileImage;
-
     @Column(nullable = false, unique = true)
     private String displayName;
 
@@ -47,6 +48,9 @@ public class User {
 
     @Column
     private int voteCount;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Comments> comments = new ArrayList<>();
