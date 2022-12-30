@@ -13,6 +13,9 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
+    @Query(value = "SELECT COUNT(TAGID) FROM TAG", nativeQuery =true)
+    long countTag();
+
     @Query(value = "SELECT QUESTION_TAG_ID FROM QUESTION_TAG WHERE QUESTION_ID = :questionId", nativeQuery =true)
     Optional<List<Long>> findQuestionTagIdByQuestionId(Long questionId);
 
