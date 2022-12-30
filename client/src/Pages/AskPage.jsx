@@ -87,7 +87,11 @@ const AskPage = () => {
         </div>
         <div className="Tags_Container">
           <span className="Title">Tags</span>
-          <TagBar selected={selected} setSelected={setSelected} />
+          <TagBar
+            selected={selected}
+            setSelected={setSelected}
+            className="EditPage_TagBar"
+          />
         </div>
         <div className="Buttons_Container">
           <BlueButton height="36px" onClick={submitQuestion}>

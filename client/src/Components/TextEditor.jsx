@@ -4,11 +4,14 @@ import "prismjs/themes/prism.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
-import Prism from "prismjs"; // prism 테마 추가
+import Prism from "prismjs";
 
-function TextEditor({ setQuestionBodyHTML, setQuestionBodyMD }) {
+function TextEditor({
+  setQuestionBodyHTML,
+  setQuestionBodyMD,
+  initData = null,
+}) {
   const editorRef = useRef();
-  const initData = "abc";
 
   function onEditorBlur() {
     const mdData = editorRef.current.getInstance().getMarkdown();
@@ -19,11 +22,10 @@ function TextEditor({ setQuestionBodyHTML, setQuestionBodyMD }) {
 
   return (
     <Editor
-      initialValue={initData}
+      initialValue={initData || "내용을 입력해주세요."}
       previewStyle="vertical"
       height="500px"
       initialEditType="markdown"
-      useCommandShortcut={false}
       language="ko-KR"
       ref={editorRef}
       onBlur={onEditorBlur}
