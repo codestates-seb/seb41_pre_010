@@ -3,6 +3,7 @@ import AnswerBodyAside from "./AnswerBodyAside";
 import AnswerUserProfile from "./AnswerUserProfile";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
+import AnswerBody from "./AnswerBody";
 
 export default function Answers({
   questionData,
@@ -32,9 +33,10 @@ export default function Answers({
                       loading={loading}
                       session={session}
                     />
-                    <div className="Main_Text_Content">
+                    <AnswerBody el={el}/>
+                    {/* <div className="Main_Text_Content">
                       <span>{el.body}</span>
-                    </div>
+                    </div> */}
                   </div>
                   <AnswerUserProfile
                     el={el}

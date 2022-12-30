@@ -22,7 +22,7 @@ export const questionDummyData = {
         displayName: "휴먼D",
         profileImage: "이미지 url stub",
       },
-      body: "답변 1",
+      body: "질문\n## question\n ```javascript\\nlet abc = 'hello'\\n```\n* abc\n* def\n* ",
       createdAt: "2022/12/30/14:52",
       modifiedAt: "2022/12/30/14:52",
       vote: 0,
