@@ -5,6 +5,7 @@ import MyPageListRow from "../Components/UserProfile/MyPageListRow";
 import CustomTitle from "../Components/CustomTitle";
 
 import "./Styles/Mypage.css";
+import { useParams } from "react-router-dom";
 
 const dummyDataProfile = {
   userId: 0,
@@ -109,7 +110,10 @@ const dummyDataInfo = [
 const Mypage = () => {
   const [myInfo, setMyInfo] = useState(dummyDataInfo);
 
-  const myPageGetUserInfoUrl = `api/v1/users/userId/userinfo`;
+  const { userId } = useParams();
+  console.log(userId);
+
+  const myPageGetUserInfoUrl = `api/v1/users/${userId}/userinfo`;
 
   useEffect(() => {
     axios
