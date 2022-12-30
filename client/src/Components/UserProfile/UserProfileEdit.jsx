@@ -3,7 +3,7 @@ import axios from "axios";
 import Input from "../Input";
 import ImageUpload from "./Image";
 import { BlueButton, BlueWhiteButton } from "../Button";
-import useImage from "../CustomHook/useImage";
+import useImage from "../../CustomHook/useImage";
 
 const UserProfileEdit = (props) => {
   const { profileImage, displayName, title } = props.profile;
