@@ -1,15 +1,16 @@
 import React from "react";
 import "../Styles/UserProfile.css";
 import { WhiteButton } from "../Button";
+import useImage from "../../CustomHook/useImage";
 
 const UserProfile = (props) => {
   const { profileImage, displayName, title } = props.profile;
-
+  const { image } = useImage(profileImage);
   return (
     <div className="Mypage_UserProfile_Container">
       <div className="Mypage_UserProfile_Content">
         <img
-          src={profileImage}
+          src={image}
           className="Mypage_UserProfile_Image"
           width={50}
           height={50}

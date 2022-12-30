@@ -3,13 +3,13 @@ import axios from "axios";
 import Input from "../Input";
 import ImageUpload from "./Image";
 import { BlueButton, BlueWhiteButton } from "../Button";
+import useImage from "../CustomHook/useImage";
 
 const UserProfileEdit = (props) => {
   const { profileImage, displayName, title } = props.profile;
-
+  const { image, setImage } = useImage(profileImage);
   const [editDisplayName, setEditDisplayName] = useState(displayName);
   const [editTitle, setEditTitle] = useState(title);
-  const [image, setImage] = useState(profileImage);
 
   const onChange = async (e) => {
     const url = "http://13.125.80.84";
@@ -66,12 +66,6 @@ const UserProfileEdit = (props) => {
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
           <img src={image} width={165} height={165} alt="test" />
           <ImageUpload />
-          {/* <input
-            type="file"
-            accept="image/*"
-            name="profile_img"
-            onChange={onChange}
-          /> */}
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
