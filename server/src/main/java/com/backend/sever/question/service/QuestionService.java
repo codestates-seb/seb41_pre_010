@@ -8,10 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.data.domain.Sort.Direction.DESC;
+import java.util.*;
 
 @Service
 public class QuestionService {
@@ -38,9 +35,19 @@ public class QuestionService {
     }
 
     public Page<Question> findAllQuestions(int pageIndex, int pageSize, String filter, String keyword) {
-        System.out.println("find keyword");
+        String filterType = filter.equals("newest") ? "questionId" : "vote";
 
-        return null;
+        List<String> keywords = Arrays.asList(keyword.split("\\s"));
+
+        Set<Long> questionIds = new HashSet<>();
+
+        keywords.forEach(word -> {
+            questionIds.addAll(questionRepository.findQuestionIdByKeywordInQuestionTable(word));
+            questionIds.addAll(questionRepository.findQuestionIdByKeywordInTagTable(word));
+            questionIds.addAll(questionRepository.findQuestionIdByKeywordInUserTable(word));
+        });
+
+        return questionRepository.makePageByQuestionId(questionIds, PageRequest.of(pageIndex, pageSize, Sort.by(filterType).descending()));
     }
 
 
@@ -49,7 +56,8 @@ public class QuestionService {
         Optional.ofNullable(question.getTitle()).ifPresent(title -> verifiedQuestion.setTitle(title));
         Optional.ofNullable(question.getBody()).ifPresent(body -> verifiedQuestion.setBody(body));
 
-        List<Long> questionTagIds = questionRepository.findQuestionTagIdByQuestionId(question.getQuestionId());
+        Optional<List<Long>> optionalQuestionTagIds = questionRepository.findQuestionTagIdByQuestionId(question.getQuestionId());
+        List<Long> questionTagIds = optionalQuestionTagIds.orElseThrow(() -> new RuntimeException());
 
         int questionTagIndex = 0;
 
