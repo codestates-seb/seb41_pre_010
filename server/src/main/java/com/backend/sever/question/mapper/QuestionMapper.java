@@ -124,7 +124,7 @@ public interface QuestionMapper {
 
     default List<CommentsInfoDto> commentsToCommentsInfoDto(List<Comments> comments){
         return comments.stream().map(comment -> CommentsInfoDto.builder()
-                .commentsId(comment.getCommentsId())
+                .commentId(comment.getCommentsId())
                 .body(comment.getBody())
                 .user(userToUserInfoDto(comment.getUser()))
                 .createdAt(DateTimeFormatter.ofPattern("yyyy/MM/dd/HH:mm").format(comment.getCreatedAt()))

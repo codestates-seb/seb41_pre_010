@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class CommentsInfoDto {
-    private long commentsId;
+    private long commentId;
     private UserSimpleInfoDto user;
     private String body;
     private String createdAt;
