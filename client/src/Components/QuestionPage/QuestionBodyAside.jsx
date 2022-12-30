@@ -58,7 +58,10 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
             size={"30px"}
             color={bookMarkCheck ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              questionBookMark(questionData.questionId);
+              questionBookMark(
+                questionData.questionId,
+                session && session.userId
+              );
               setBookMarkCheck(!bookMarkCheck);
             }}
           />
