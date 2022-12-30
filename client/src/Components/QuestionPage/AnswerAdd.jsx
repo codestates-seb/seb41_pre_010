@@ -1,7 +1,7 @@
 import React from "react";
 import { addAnswer } from "../../API/Question/AddRequest";
 
-export default function AnswerAdd({ filterData, BlueButton }) {
+export default function AnswerAdd({ questionData, BlueButton }) {
   return (
     <div className="Your_Answer_Container">
       <h2>Your Answer</h2>
@@ -11,10 +11,10 @@ export default function AnswerAdd({ filterData, BlueButton }) {
           width={"140px"}
           onClick={() =>
             addAnswer(
-              filterData[0].questionId,
+              questionData.questionId,
               //현재 글의 user의 정보가 아닌 작성자의 user Id로 교체예정
-              filterData[0].user.userId,
-              filterData[0].body
+              questionData.user.userId,
+              questionData.body
             )
           }
         >

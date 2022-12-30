@@ -4,9 +4,9 @@ export default function Comment({ el, loading, session }) {
   return (
     <div className="Comment_Container">
       {el.comments.length !== 0
-        ? el.comments.map((comment) => {
+        ? el.comments.map((comment,index) => {
             return (
-              <div key={comment.commentId} className="Comment_Contents">
+              <div key={index} className="Comment_Contents">
                 <span>{comment.body} -</span>
                 <div>
                   <a href={`/users/mypage/:${comment.user.userId}`}>

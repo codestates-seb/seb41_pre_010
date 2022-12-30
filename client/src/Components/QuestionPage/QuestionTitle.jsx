@@ -2,7 +2,7 @@ import React from "react";
 import { TiPen } from "react-icons/ti";
 
 export default function QuestionTitle({
-  filterData,
+  questionData,
   StyledSpan,
   BlueButton,
   loading,
@@ -11,13 +11,13 @@ export default function QuestionTitle({
   return (
     <div className="Title_Container">
       <div className="Title_Contents">
-        <h1>{filterData[0].title}</h1>
+        <h1>{questionData.title}</h1>
       </div>
       <div className="Ask_Question_Button_Container">
         {loading ? (
-          <div>로딩중 입니다...</div>
+          <div></div>
         ) : session ? (
-          <BlueButton href={`/questions/:${filterData[0].questionId}/edit`}>
+          <BlueButton href={`/questions/:${questionData.questionId}/edit`}>
             Ask Question
           </BlueButton>
         ) : (
@@ -25,19 +25,17 @@ export default function QuestionTitle({
         )}
         <div className="Wright_Data_Info">
           <StyledSpan fontsize={"14px"}>
-            작성: {filterData[0].createdAt}
+            작성: {questionData.createdAt}
           </StyledSpan>
           <br></br>
           <div className="Modify_Data_Info">
             <StyledSpan fontsize={"14px"}>
-              수정: {filterData[0].modifiedAt}
+              수정: {questionData.modifiedAt}
             </StyledSpan>
             {loading ? (
-              <div>로딩중 입니다...</div>
-            ) : (session === filterData[0].user.userId) ? (
-              <a href={`/questions/:${filterData[0].questionId}/edit`}>
-                <TiPen />
-              </a>
+              <div />
+            ) : session === questionData.user.userId ? (
+              <TiPen />
             ) : null}
           </div>
         </div>

@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function QuestionBody({filterData}) {
+export default function QuestionBody({questionData}) {
   return (
     <div className="Main_Text_Content">
-      <span>{filterData[0].body}</span>
+      <span>{questionData.body}</span>
     </div>
   );
 }

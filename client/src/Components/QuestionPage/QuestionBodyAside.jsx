@@ -6,23 +6,23 @@ import {
 } from "../../API/Question/Vote";
 import { questionBookMark } from "../../API/Question/BookMark";
 
-export default function QuestionBodyAside({ filterData, loading, session }) {
-  const [voteUp, setVoteUp] = useState(filterData[0].voteUpCheck);
-  const [voteDown, setVoteDown] = useState(filterData[0].voteDownCheck);
+export default function QuestionBodyAside({ questionData, loading, session }) {
+  const [voteUp, setVoteUp] = useState(questionData.voteUpCheck);
+  const [voteDown, setVoteDown] = useState(questionData.voteDownCheck);
   const [bookMarkCheck, setBookMarkCheck] = useState(
-    filterData[0].bookMarkCheck
+    questionData.bookMarkCheck
   );
 
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">
         {loading ? (
-          <div>로딩중 입니다...</div>
+          <div></div>
         ) : session ? (
           <TiArrowSortedUp
             size={"35px"}
             color={
-              filterData[0].voteUpCheck
+              questionData.voteUpCheck
                 ? "rgb(224, 130, 37)"
                 : "hsl(210,8%,85%)"
             }
@@ -34,14 +34,14 @@ export default function QuestionBodyAside({ filterData, loading, session }) {
         ) : (
           <TiArrowSortedUp size={"35px"} color="hsl(210,8%,85%)" />
         )}
-        <span>{filterData[0].vote}</span>
+        <span>{questionData.vote}</span>
         {loading ? (
-          <div>로딩중 입니다...</div>
+          <div></div>
         ) : session ? (
           <TiArrowSortedDown
             size={"35px"}
             color={
-              filterData[0].voteDownCheck
+              questionData.voteDownCheck
                 ? "rgb(224, 130, 37)"
                 : "hsl(210,8%,85%)"
             }
@@ -54,12 +54,12 @@ export default function QuestionBodyAside({ filterData, loading, session }) {
           <TiArrowSortedDown size={"35px"} color="hsl(210,8%,85%)" />
         )}
         {loading ? (
-          <div>로딩중 입니다...</div>
+          <div></div>
         ) : session ? (
           <TiBookmark
             size={"30px"}
             color={
-              filterData[0].bookMarkCheck
+              questionData.bookMarkCheck
                 ? "rgb(224, 130, 37)"
                 : "hsl(210,8%,85%)"
             }

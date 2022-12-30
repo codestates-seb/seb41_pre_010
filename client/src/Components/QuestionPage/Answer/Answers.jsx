@@ -5,7 +5,7 @@ import Comment from "./Comment";
 import AddComment from "./AddComment";
 
 export default function Answers({
-  filterData,
+  questionData,
   answerIdx,
   activeClick,
   setCommentValue,
@@ -18,12 +18,12 @@ export default function Answers({
 }) {
   return (
     <>
-      {filterData[0].answers
-        ? filterData &&
-          filterData[0].answers.map((el, index) => {
+      {questionData.answers
+        ? questionData &&
+          questionData.answers.map((el, index) => {
             return (
               <div key={el.answerId} className="Answers_Container">
-                <h2>Answer{el.answerId}</h2>
+                <h2 >Answer{el.answerId}</h2>
                 <div>
                   <div className="Main_Text_Container">
                     <AnswerBodyAside
@@ -44,7 +44,7 @@ export default function Answers({
                   <div className="Contour_Line" />
                   <Comment el={el} loading={loading} session={session} />
                   {loading ? (
-                    <div>로딩중 입니다...</div>
+                    <div></div>
                   ) : session ? (
                     <AddComment
                       BlueButton={BlueButton}
@@ -55,7 +55,7 @@ export default function Answers({
                       activeClick={activeClick}
                       commentValue={commentValue}
                       setCommentValue={setCommentValue}
-                      filterData={filterData}
+                      questionData={questionData}
                       addCommentHandler={addCommentHandler}
                     />
                   ) : (

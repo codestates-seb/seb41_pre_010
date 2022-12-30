@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Input from "../Components/Input";
 import AnswerAdd from "../Components/QuestionPage/AnswerAdd.jsx";
 import QuestionTitle from "../Components/QuestionPage/QuestionTitle";
@@ -27,31 +28,29 @@ export default function Question() {
   const [answerIdx, setAnswerIdx] = useState(null);
   const [activeClick, setActiveClick] = useState(false);
   const [commentValue, setCommentValue] = useState("");
-
   const addCommentHandler = (idx) => {
     setAnswerIdx(() => idx);
     if (idx === answerIdx) {
       setActiveClick(!activeClick);
     }
   };
+  console.log(questionData)
   //실제 API 정보에서 수정 예정
-  useEffect(() => {
-    const questionData = async () => {
-      const result = await getQuestionData()
-      setQeustionData(result)
-    };
-    questionData()
-  },[]);
+  // useEffect(() => {
+  //   const questionData = async () => {
+  //     const result = await getQuestionData();
+  //     setQeustionData(result);
+  //   };
+  //   questionData();
+  // }, []);
 
-  const filterData = questionData;
-  console.log(session);
   return (
     <>
       <main>
         <div className="Question_Container">
           <div className="Question_Content_Container">
             <QuestionTitle
-              filterData={filterData}
+              questionData={questionData}
               StyledSpan={StyledSpan}
               BlueButton={BlueButton}
               loading={loading}
@@ -60,25 +59,23 @@ export default function Question() {
             <div className="Main_Text_Container">
               <aside className="Main_Text_Aside">
                 <QuestionBodyAside
-                  filterData={filterData}
+                  questionData={questionData}
                   loading={loading}
                   session={session}
                 />
               </aside>
-              <QuestionBody filterData={filterData} />
+              <QuestionBody questionData={questionData} />
             </div>
             <div className="Tag_Section">
-              <QuestionTag filterData={filterData} TagButton={TagButton} />
+              <QuestionTag questionData={questionData} TagButton={TagButton} />
             </div>
             <div className="Question_User_Profil_Container">
-              <QuestionUserProfil
-                filterData={filterData}
-              />
+              <QuestionUserProfil questionData={questionData} />
             </div>
-            {filterData[0].answers ? <div className="Contour_Line" /> : null}
+            {questionData.answers ? <div className="Contour_Line" /> : null}
             <Answers
               //추후 배열+spreed 연산자로 변경할 예정
-              filterData={filterData}
+              questionData={questionData}
               answerIdx={answerIdx}
               activeClick={activeClick}
               setCommentValue={setCommentValue}
@@ -91,7 +88,7 @@ export default function Question() {
             />
             <AnswerAdd
               BlueButton={BlueButton}
-              filterData={filterData}
+              questionData={questionData}
               loading={loading}
               session={session}
             />

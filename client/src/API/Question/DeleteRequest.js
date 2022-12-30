@@ -6,7 +6,7 @@ export const deleteQuestion = (questionId) => {
     .then((res) => {
       console.log(res);
     })
-    .catch(() => {
+    .catch((err) => {
       console.log(err);
     });
 };
@@ -17,7 +17,7 @@ export const deleteAnswer = (answerId) => {
     .then((res) => {
       console.log(res);
     })
-    .catch(() => {
+    .catch((err) => {
       console.log(err);
     });
 };
@@ -28,7 +28,7 @@ export const deleteComment = (commentId) => {
     .then((res) => {
       console.log(res);
     })
-    .catch(() => {
+    .catch((err) => {
       console.log(err);
     });
 };

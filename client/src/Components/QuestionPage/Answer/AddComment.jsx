@@ -10,7 +10,7 @@ export default function AddComment({
   activeClick,
   commentValue,
   setCommentValue,
-  filterData,
+  questionData,
   addCommentHandler,
 }) {
   return (
@@ -29,9 +29,9 @@ export default function AddComment({
             width={"117px"}
             onClick={() =>
               addComment(
-                filterData[0].questionId,
+                questionData.questionId,
                 //현재 로그인 되어있는 user의 ID로 변경예정
-                filterData[0].user.userId,
+                questionData.user.userId,
                 el.answerId,
                 commentValue
               )

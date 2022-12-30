@@ -2,7 +2,6 @@ import React from "react";
 import { TiPen } from "react-icons/ti";
 
 export default function AnswerUserProfile({ el, loading, session }) {
-  console.log(el.user.userId);
   return (
     <div className="Answer_User_Profil_Container">
       <div className="Answer_Contents">
@@ -14,7 +13,7 @@ export default function AnswerUserProfile({ el, loading, session }) {
           )}
           {loading ? (
             <div>로딩중 입니다...</div>
-          ) : session.userId === el.user.userId ? (
+          ) : (session.userId === el.user.userId) ? (
             <TiPen />
           ) : null}
         </div>
