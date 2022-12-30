@@ -1,6 +1,5 @@
-package com.backend.sever.jwt.event;
+package com.backend.exception.logicException;
 
-import com.backend.sever.jwt.dto.ExceptionCode;
 import lombok.Getter;
 
 public class LoginException extends RuntimeException {

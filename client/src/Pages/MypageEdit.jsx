@@ -19,14 +19,9 @@ const MypageEdit = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://3bdd-175-205-115-85.jp.ngrok.io/api/v1/users/1/userprofile`,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
-      )
+      .get(`/api/v1/users/1/userprofile`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res);
         setUserProfile(res.data);

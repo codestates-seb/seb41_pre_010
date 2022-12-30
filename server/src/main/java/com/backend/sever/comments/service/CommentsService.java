@@ -1,5 +1,7 @@
 package com.backend.sever.comments.service;
 
+import com.backend.exception.logicException.ExceptionCode;
+import com.backend.exception.logicException.LoginException;
 import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.answer.service.AnswerService;
 import com.backend.sever.comments.entity.Comments;
@@ -43,7 +45,7 @@ public class CommentsService {
     public Comments findVerifiedComments (long commentId){
         Optional<Comments> comments = commnetsRepository.findById(commentId);
 
-        Comments findComments = comments.orElseThrow(() -> new RuntimeException());
+        Comments findComments = comments.orElseThrow(() -> new LoginException(ExceptionCode.COMMENTS_NOT_FOUND));
 
         return findComments;
     }

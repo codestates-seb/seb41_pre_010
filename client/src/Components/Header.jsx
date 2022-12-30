@@ -72,7 +72,7 @@ const LoggedIn = ({ session }) => {
         height="38px"
         onClick={async () => {
           const url = "/api/v1/users/logout";
-          await axios
+          axios
             .post(url, {
               headers: {
                 withCredentials: true,
