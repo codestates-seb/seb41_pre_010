@@ -24,7 +24,7 @@ export default function AnswerAdd({
           />
         ) : (
           <div>
-            Login이 필요합니다 여기를{" "}
+            Login이 필요합니다 여기를
             <a className="Login_Href" href="/users/login">
               Click
             </a>
