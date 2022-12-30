@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserProfile from "../Components/UserProfile";
 import MyPageListRow from "../Components/MyPageListRow";
+import CustomTitle from "../Components/CustomTitle";
+
 import "./Styles/Mypage.css";
 
 const dummyDataProfile = {
@@ -119,6 +121,7 @@ const Mypage = () => {
 
   return (
     <>
+      <CustomTitle title={`User ${dummyDataProfile.displayName}`} />
       <main className="Mypage_Container">
         <UserProfile profile={dummyDataProfile} />
         <UserInfo myInfo={myInfo} />

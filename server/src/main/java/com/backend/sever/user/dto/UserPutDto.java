@@ -14,7 +14,5 @@ public class UserPutDto {
     private String title;
 
     @Nullable
-    private String ProfileImage;
-
-
+    private String profileImage;
 }

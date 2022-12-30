@@ -1,6 +1,6 @@
-package com.backend.sever.jwt.response;
+package com.backend.exception.response;
 
-import com.backend.sever.jwt.dto.ExceptionCode;
+import com.backend.exception.logicException.ExceptionCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

@@ -1,6 +1,6 @@
 package com.backend.sever.jwt.auth.handler;
 
-import com.backend.sever.jwt.response.ErrorResponse;
+import com.backend.exception.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

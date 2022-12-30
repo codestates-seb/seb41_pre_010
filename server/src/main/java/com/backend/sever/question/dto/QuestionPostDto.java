@@ -13,5 +13,6 @@ public class QuestionPostDto {
     private long userId;
     private String title;
     private String body;
+    private String bodyString;
     private List<Long> tags;
 }

@@ -14,5 +14,6 @@ public class QuestionResponseDto {
     private long questionId;
     private String title;
     private String body;
+    private String bodyString;
     private List<QuestionTagResponseDto> tags;
 }

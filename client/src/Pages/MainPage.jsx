@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import "./Styles/MainPage.css";
 import { BlueButton, WhiteButton, OrangeButton } from "../Components/Button";
 import MainPageQuestion from "../Components/MainPageQuestion";
+import CustomTitle from "../Components/CustomTitle";
 import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
 import calcPagination from "../Function/calcPagination";
+import { useSession } from "../CustomHook/SessionProvider";
 
 function MainPage() {
+  const { loading, session } = useSession();
   const [curPage, setCurPage] = useState(1);
   const [curPerPage, setCurPerPage] = useState(15);
   const [curTab, setCurTab] = useState("newest");
@@ -49,12 +52,26 @@ function MainPage() {
 
   return (
     <div className="MainPage_Container">
+      <CustomTitle title="Stack Overflow" />
       <main className="Questions_Container">
         <div className="Questions_Title_Container">
           <h1>모든 질문</h1>
-          <BlueButton width="80px" fontSize="0.9rem" href="/questions/ask">
-            질문하기
-          </BlueButton>
+          {loading ? (
+            <div className="MainHeader_Empty_Container"></div>
+          ) : session ? (
+            <BlueButton width="80px" fontSize="0.9rem" href="/questions/ask">
+              질문하기
+            </BlueButton>
+          ) : (
+            <WhiteButton
+              width="80px"
+              fontSize="0.9rem"
+              style={{ cursor: "default" }}
+              title="로그인 후 이용해주세요."
+            >
+              질문하기
+            </WhiteButton>
+          )}
         </div>
         <div className="Questions_SubTitle_Container">
           <h3>{totalQuestions.toLocaleString("ko-KR")} Questions</h3>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Styles/MypageEdit.css";
 import UserProfile from "../Components/UserProfile";
 import UserProfileEdit from "../Components/UserProfileEdit";
+import CustomTitle from "../Components/CustomTitle";
+
 import axios from "axios";
 
 const dummyDataProfile = {
@@ -17,14 +19,9 @@ const MypageEdit = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://3bdd-175-205-115-85.jp.ngrok.io/api/v1/users/1/userprofile`,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
-      )
+      .get(`/api/v1/users/1/userprofile`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res);
         setUserProfile(res.data);
@@ -34,6 +31,10 @@ const MypageEdit = () => {
 
   return (
     <>
+      <CustomTitle
+        title={`User - ${userProfile.displayName}`}
+        description={`User - ${userProfile.title ? userProfile.title : ""}`}
+      />
       <main className="Mypage_Container">
         <UserProfile profile={userProfile} />
         <UserProfileEdit profile={userProfile} />
