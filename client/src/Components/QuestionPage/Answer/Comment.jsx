@@ -5,24 +5,31 @@ import { editCommentRequest } from "../../../API/Question/EditComment";
 export default function Comment({ el, loading, session, questionData }) {
   const [commentIdx, setCommentIdx] = useState(null);
   const [commentCheck, setCommentCheck] = useState(false);
-  const [commentBody, setCommentBody] = useState("");
+  const [editCommentBody, seteditCommentBody] = useState("");
+  const [comments, setcomment]= useState(el.comments);
+
   const addCommentHandler = (idx) => {
     setCommentIdx(() => idx);
     if (idx === commentIdx) {
       setCommentCheck(!commentCheck);
     }
   };
+
+  const bodyResponseChange = (idx) => {
+    return comments[idx].body = editCommentBody
+  }
+
   return (
     <div className="Comment_Container">
-      {el.comments.length !== 0
-        ? el.comments.map((comment, index) => {
+      {comments.length !== 0
+        ? comments.map((comment, index) => {
             return (
               <div key={index} className="Comment_Contents">
                 {commentCheck && index === commentIdx ? (
                   <>
                     <Input
                       defaultValue={comment.body}
-                      onChange={(e) => setCommentBody(e.target.value)}
+                      onChange={(e) => seteditCommentBody(e.target.value)}
                     />
                   </>
                 ) : (
@@ -40,12 +47,13 @@ export default function Comment({ el, loading, session, questionData }) {
                       <TiPen
                         onClick={() => {
                           setCommentCheck(!commentCheck);
+                          bodyResponseChange(index)
                           editCommentRequest(
                             comment.commentId,
                             questionData.questionId,
                             el.answerId,
                             session && session.userId,
-                            commentBody
+                            editCommentBody
                           );
                         }}
                       />

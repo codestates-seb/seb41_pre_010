@@ -13,8 +13,6 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
     questionData.bookMarkCheck
   );
 
-  console.log(bookMarkCheck);
-
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">

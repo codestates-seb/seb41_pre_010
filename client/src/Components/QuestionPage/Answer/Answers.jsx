@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AnswerBodyAside from "./AnswerBodyAside";
 import AnswerUserProfile from "./AnswerUserProfile";
 import Comment from "./Comment";
@@ -32,6 +32,7 @@ export default function Answers({
                       index={index}
                       loading={loading}
                       session={session}
+                      questionData={questionData}
                     />
                     <AnswerBody el={el}/>
                     {/* <div className="Main_Text_Content">

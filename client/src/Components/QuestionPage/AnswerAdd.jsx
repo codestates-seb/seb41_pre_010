@@ -10,7 +10,6 @@ export default function AnswerAdd({
 }) {
   const [answerBodyHTML, setAnswerBodyHTML] = useState("");
   const [answerBody, setAnswerBody] = useState("");
-  console.log(answerBody)
 
   return (
     <div className="Your_Answer_Container">
