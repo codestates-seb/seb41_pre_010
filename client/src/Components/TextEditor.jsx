@@ -6,18 +6,20 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import Prism from "prismjs"; // prism 테마 추가
 
-function TextEditor({ setQuestionBodyHTML }) {
+function TextEditor({ setQuestionBodyHTML, setQuestionBodyMD }) {
   const editorRef = useRef();
-  const dataa = "string";
+  const initData = "abc";
 
   function onEditorBlur() {
+    const mdData = editorRef.current.getInstance().getMarkdown();
     const htmlData = editorRef.current.getInstance().getHTML();
+    setQuestionBodyMD(mdData);
     setQuestionBodyHTML(htmlData);
   }
 
   return (
     <Editor
-      initialValue={dataa}
+      initialValue={initData}
       previewStyle="vertical"
       height="500px"
       initialEditType="markdown"

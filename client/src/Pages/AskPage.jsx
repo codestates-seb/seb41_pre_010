@@ -5,6 +5,7 @@ import TextEditor from "../Components/TextEditor";
 import { useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
+import { TagBar } from "../Components/TagBar";
 
 const AskTitle = ({ setQuestionTitle }) => {
   function changeQuestionTitle(e) {
@@ -27,22 +28,47 @@ const AskTitle = ({ setQuestionTitle }) => {
 
 const AskPage = () => {
   const [questionTitle, setQuestionTitle] = useState("");
+  const [questionBodyMD, setQuestionBodyMD] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [tagsResponse, settagsResponse] = useState([]);
   const { session } = useSession();
 
   function submitQuestion() {
+    const tags = { tags: selected };
     const body = {
       userId: session.userId,
       title: questionTitle,
-      bodyHTML: questionBodyHTML,
-      bodyString: questionBodyHTML.replace(/<[^>]+>/g, ""),
+      body: questionBodyMD,
+      bodyString: questionBodyHTML.replace(/<[^>]+>/g, " "),
+      tags: tagsResponse,
     };
 
-    console.log(body);
     axios
-      .post("api/v1/questions", body)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .post("api/v1/tags", tags)
+      .then((res) => {
+        settagsResponse(res);
+      })
+      .then(() => {
+        axios
+          .post("api/v1/questions", body)
+          .then((res) => {
+            console.log(res);
+            console.log(body);
+          })
+          .catch((err) => console.log(err));
+      })
+      .finally(() => {
+        axios
+          .post("api/v1/questions", body)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log(err);
+            console.log(body);
+          });
+      });
   }
 
   return (
@@ -54,12 +80,14 @@ const AskPage = () => {
         <AskTitle setQuestionTitle={setQuestionTitle} />
         <div className="Body_Container">
           <label className="Title">Body</label>
-          <TextEditor setQuestionBodyHTML={setQuestionBodyHTML} />
+          <TextEditor
+            setQuestionBodyHTML={setQuestionBodyHTML}
+            setQuestionBodyMD={setQuestionBodyMD}
+          />
         </div>
         <div className="Tags_Container">
           <span className="Title">Tags</span>
-          <div className="Title">{}</div>
-          <input className="Tags_Input" />
+          <TagBar selected={selected} setSelected={setSelected} />
         </div>
         <div className="Buttons_Container">
           <BlueButton height="36px" onClick={submitQuestion}>
