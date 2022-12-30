@@ -26,8 +26,7 @@ export default function AnswerAdd({
           onClick={() =>
             addAnswer(
               questionData.questionId,
-              //현재 글의 user의 정보가 아닌 작성자의 user Id로 교체예정
-              session&&session.userId,
+              session && session.userId,
               answerBody
             )
           }

@@ -6,7 +6,7 @@ export default function Comment({ el, loading, session, questionData }) {
   const [commentIdx, setCommentIdx] = useState(null);
   const [commentCheck, setCommentCheck] = useState(false);
   const [editCommentBody, seteditCommentBody] = useState("");
-  const [comments, setcomment]= useState(el.comments);
+  const [comments, setcomment] = useState(el.comments);
 
   const addCommentHandler = (idx) => {
     setCommentIdx(() => idx);
@@ -16,8 +16,8 @@ export default function Comment({ el, loading, session, questionData }) {
   };
 
   const bodyResponseChange = (idx) => {
-    return comments[idx].body = editCommentBody
-  }
+    return (comments[idx].body = editCommentBody);
+  };
 
   return (
     <div className="Comment_Container">
@@ -47,7 +47,7 @@ export default function Comment({ el, loading, session, questionData }) {
                       <TiPen
                         onClick={() => {
                           setCommentCheck(!commentCheck);
-                          bodyResponseChange(index)
+                          bodyResponseChange(index);
                           editCommentRequest(
                             comment.commentId,
                             questionData.questionId,

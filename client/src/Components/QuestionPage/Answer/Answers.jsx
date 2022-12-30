@@ -24,7 +24,7 @@ export default function Answers({
           questionData.answers.map((el, index) => {
             return (
               <div key={el.answerId} className="Answers_Container">
-                <h2 >Answer{el.answerId}</h2>
+                <h2>Answer{el.answerId}</h2>
                 <div>
                   <div className="Main_Text_Container">
                     <AnswerBodyAside
@@ -34,10 +34,7 @@ export default function Answers({
                       session={session}
                       questionData={questionData}
                     />
-                    <AnswerBody el={el}/>
-                    {/* <div className="Main_Text_Content">
-                      <span>{el.body}</span>
-                    </div> */}
+                    <AnswerBody el={el} />
                   </div>
                   <AnswerUserProfile
                     el={el}
@@ -45,7 +42,12 @@ export default function Answers({
                     session={session}
                   />
                   <div className="Contour_Line" />
-                  <Comment el={el} loading={loading} session={session} questionData={questionData}/>
+                  <Comment
+                    el={el}
+                    loading={loading}
+                    session={session}
+                    questionData={questionData}
+                  />
                   {loading ? (
                     <div></div>
                   ) : session ? (

@@ -15,7 +15,6 @@ export default function AddComment({
 }) {
   return (
     <div className="Add_Comment">
-      {/* 추후 TextBox예정 */}
       {answerIdx === index && activeClick ? (
         <div className="Answer_Comment_Contents">
           <Input
@@ -30,7 +29,6 @@ export default function AddComment({
             onClick={() =>
               addComment(
                 questionData.questionId,
-                //현재 로그인 되어있는 user의 ID로 변경예정
                 questionData.user.userId,
                 el.answerId,
                 commentValue

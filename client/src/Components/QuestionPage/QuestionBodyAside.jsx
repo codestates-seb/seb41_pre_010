@@ -28,7 +28,7 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
                 questionData && questionData.questionId
               );
               setVoteUp(!voteUp);
-            }} // 추후 파라미터 session.userId, questionId
+            }}
           />
         ) : (
           <TiArrowSortedUp size={"35px"} color="hsl(210,8%,85%)" />
@@ -41,9 +41,12 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
             size={"35px"}
             color={voteDown ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              questionDownVoteRequest();
+              questionDownVoteRequest(
+                session && session.userId,
+                questionData && questionData.questionId
+              );
               setVoteDown(!voteDown);
-            }} // 추후 파라미터 session.userId, questionId
+            }}
           />
         ) : (
           <TiArrowSortedDown size={"35px"} color="hsl(210,8%,85%)" />
@@ -55,7 +58,7 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
             size={"30px"}
             color={bookMarkCheck ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              questionBookMark();
+              questionBookMark(questionData.questionId);
               setBookMarkCheck(!bookMarkCheck);
             }}
           />

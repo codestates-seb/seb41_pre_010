@@ -5,7 +5,6 @@ export default function AnswerUserProfile({
   el,
   loading,
   session,
-  setAnswerEditCheck,
 }) {
   return (
     <div className="Answer_User_Profil_Container">
@@ -18,8 +17,10 @@ export default function AnswerUserProfile({
           )}
           {loading ? (
             <div></div>
-          ) : (session.userId === el.user.userId) ? (
-            <a href="/answers/:answerId/edit"><TiPen /></a>
+          ) : session.userId === el.user.userId ? (
+            <a href="/answers/:answerId/edit">
+              <TiPen />
+            </a>
           ) : null}
         </div>
         <div>

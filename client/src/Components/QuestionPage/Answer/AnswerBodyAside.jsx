@@ -16,6 +16,7 @@ export default function AnswerBodyAside({
   const [voteDown, setVoteDown] = useState(el.voteDownCheck);
   const [bookMarkCheck, setBookMarkCheck] = useState(el.bookMarkCheck);
 
+  console.log(el.answerId);
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">
@@ -28,7 +29,7 @@ export default function AnswerBodyAside({
             onClick={() => {
               setVoteUp(!voteUp);
               answerUpVoteRequest(el.user.userId, questionData.questionId);
-            }} // 추후 파라미터 userId, questionId
+            }}
           />
         ) : (
           <TiArrowSortedUp size={"35px"} color="hsl(210,8%,85%)" />
@@ -41,9 +42,9 @@ export default function AnswerBodyAside({
             size={"35px"}
             color={voteDown ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              answerDownVoteRequest();
+              answerDownVoteRequest(el.user.userId, questionData.questionId);
               setVoteDown(!voteDown);
-            }} // 추후 파라미터 userId, questionId
+            }}
           />
         ) : (
           <TiArrowSortedDown size={"35px"} color="hsl(210,8%,85%)" />
@@ -55,8 +56,9 @@ export default function AnswerBodyAside({
             size={"30px"}
             color={bookMarkCheck ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              answerBookMark(); setBookMarkCheck(!bookMarkCheck);
-            }} //추후 파라미터 answerId, userId
+              answerBookMark(el.answerId, el.user.userId);
+              setBookMarkCheck(!bookMarkCheck);
+            }}
           />
         ) : (
           <TiBookmark size={"30px"} color="hsl(210,8%,85%)" />

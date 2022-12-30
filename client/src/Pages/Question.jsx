@@ -20,10 +20,8 @@ const StyledSpan = styled.span`
   color: ${(props) => props.color};
 `;
 
-//0번 데이터의 기준으로 작성 추후 데이터ID를 받을 예정
 export default function Question() {
   const { loading, session } = useSession();
-  //추후 useState기본값 null처리
   const [questionData, setQeustionData] = useState(questionDummyData);
   const [answerIdx, setAnswerIdx] = useState(null);
   const [activeClick, setActiveClick] = useState(false);
@@ -34,15 +32,14 @@ export default function Question() {
       setActiveClick(!activeClick);
     }
   };
-  
-  //실제 API 정보에서 수정 예정
-  // useEffect(() => {
-  //   const questionData = async () => {
-  //     const result = await getQuestionData();
-  //     setQeustionData(result);
-  //   };
-  //   questionData();
-  // }, []);
+
+  useEffect(() => {
+    const questionData = async () => {
+      const result = await getQuestionData();
+      setQeustionData(result);
+    };
+    questionData();
+  }, []);
 
   return (
     <>
@@ -74,7 +71,6 @@ export default function Question() {
             </div>
             {questionData.answers ? <div className="Contour_Line" /> : null}
             <Answers
-              //추후 배열+spreed 연산자로 변경할 예정
               questionData={questionData}
               answerIdx={answerIdx}
               activeClick={activeClick}

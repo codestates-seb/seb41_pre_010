@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function QuestionUserProfil({questionData}) {
+export default function QuestionUserProfil({ questionData }) {
   return (
     <div className="Question_User_Profil">
       <img
