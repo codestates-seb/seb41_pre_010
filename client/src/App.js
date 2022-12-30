@@ -7,10 +7,12 @@ import MainPage from "./Pages/MainPage";
 import Mypage from "./Pages/Mypage";
 import MypageEdit from "./Pages/MypageEdit";
 import EditPage from "./Pages/EditPage";
+import AskPage from "./Pages/AskPage";
 import Page404 from "./Pages/404Page";
 import Footer from "./Components/Footer";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import { SessionProvider } from "./CustomHook/SessionProvider";
+import SearchResultPage from "./Pages/SearchResultPage";
 function App() {
   return (
     <>
@@ -24,11 +26,12 @@ function App() {
             <Route path="/users/login" element={<Login />} />
             <Route path="/questions/:questionId/edit" element={<EditPage />} />
             <Route path={"/users/mypage/:userId"} element={<Mypage />} />
+            <Route path={"/questions/ask"} element={<AskPage />} />;
+            <Route path={"/questions/search"} element={<SearchResultPage />} />
             <Route
               path={"/users/mypage/edit/:userId"}
               element={<MypageEdit />}
             />
-            <Route path={"/search"} element={<></>} />
             <Route path={"/"} element={<MainPage />} />
             <Route path="*" element={<Page404 />} />
           </Routes>

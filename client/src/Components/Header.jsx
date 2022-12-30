@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate, redirect } from "react-router-dom";
 import { OrangeButton } from "./Button";
 import { useSession } from "../CustomHook/SessionProvider";
+import useImage from "../CustomHook/useImage";
 import axios from "axios";
 
 const Logo = () => {
@@ -26,7 +27,7 @@ const SearchInput = ({ navigate }) => {
   return (
     <form
       className="MainHeader_Input_Container"
-      action={"/search"}
+      action={"/questions/search"}
       role="search"
       method="GET"
     >
@@ -44,13 +45,14 @@ const SearchInput = ({ navigate }) => {
 };
 
 const LoggedIn = ({ session }) => {
+  const { image } = useImage(session.profileImage);
   return (
     <div className="MainHeader_UserInfo_Container">
       <div className="MainHeader_UserInfo_Profile">
         <Link to={`/users/mypage/${session.userId}`}>
           <img
             className="MainHeader_UserProfileImage"
-            src={session.profileImage}
+            src={image}
             alt="profileImage"
             width={40}
             height={40}
