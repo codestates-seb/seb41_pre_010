@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Input from "../Input";
+import ImageUpload from "./Image";
 import { BlueButton, BlueWhiteButton } from "../Button";
 
 const UserProfileEdit = (props) => {
@@ -64,12 +65,13 @@ const UserProfileEdit = (props) => {
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
           <img src={image} width={165} height={165} alt="test" />
-          <input
+          <ImageUpload />
+          {/* <input
             type="file"
             accept="image/*"
             name="profile_img"
             onChange={onChange}
-          />
+          /> */}
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
