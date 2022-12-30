@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import UserProfile from "../Components/UserProfile";
-import MyPageListRow from "../Components/MyPageListRow";
+import UserProfile from "../Components/UserProfile/UserProfile";
+import MyPageListRow from "../Components/UserProfile/MyPageListRow";
 import CustomTitle from "../Components/CustomTitle";
 
 import "./Styles/Mypage.css";

@@ -46,7 +46,7 @@ function MainPageQuestion(props) {
         </div>
         <div className="Main_Page_Question_UserInfo">
           <Link
-            to={`/users/${user.userId}/userprofile`}
+            to={`/users/mypage/${user.userId}`}
             className="Main_Page_Question_User_Profile_Img"
           >
             <img
@@ -56,7 +56,7 @@ function MainPageQuestion(props) {
             ></img>
           </Link>
           <Link
-            to={`/users/${user.userId}/userprofile`}
+            to={`/users/mypage/${user.userId}`}
             className="Main_Page_Question_UserName"
           >
             {user.displayName}

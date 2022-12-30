@@ -182,3 +182,8 @@ margin-right: 70px;
   opacity: .8;
   padding: 0 3px 2px;
 }
+
+.Login_Href{
+  color: rgb(10, 149, 255);
+  font-weight: bold;
+}

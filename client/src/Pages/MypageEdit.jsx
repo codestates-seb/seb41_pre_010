@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Styles/MypageEdit.css";
-import UserProfile from "../Components/UserProfile";
-import UserProfileEdit from "../Components/UserProfileEdit";
-import CustomTitle from "../Components/CustomTitle";
-import { useSession } from "../CustomHook/SessionProvider";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSession } from "../CustomHook/SessionProvider";
+import "./Styles/MypageEdit.css";
+import UserProfile from "../Components/UserProfile/UserProfile";
+import UserProfileEdit from "../Components/UserProfile/UserProfileEdit";
+import CustomTitle from "../Components/CustomTitle";
+import axios from "axios";
 
 const dummyDataProfile = {
   userId: 0,
@@ -16,17 +16,16 @@ const dummyDataProfile = {
 };
 
 const MypageEdit = () => {
-  const { session } = useSession();
+  const { loading, session } = useSession();
   const navigate = useNavigate();
   const { userId } = useParams();
+  const [userProfile, setUserProfile] = useState(dummyDataProfile);
 
   useEffect(() => {
     if (!session) {
       navigate("/questions");
     }
   });
-
-  const [userProfile, setUserProfile] = useState(dummyDataProfile);
 
   const myPageEditGetUserProfileUrl = `/api/v1/users/${userId}/userprofile`;
 
@@ -42,6 +41,11 @@ const MypageEdit = () => {
       .catch((err) => console.log(err));
   }, [myPageEditGetUserProfileUrl]);
 
+  if (loading) return;
+  if (!session || session.userId !== userId) {
+    window.location.reload();
+    navigate(`/users/mypage/${userId}`);
+  }
   return (
     <>
       <CustomTitle

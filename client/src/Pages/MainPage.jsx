@@ -18,7 +18,6 @@ function MainPage() {
   ];
   const PERPAGEARR = [15, 30, 50];
 
-  // 질분 페이지 Load
   const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
     curTab,
     curPage,
@@ -67,7 +66,7 @@ function MainPage() {
               width="80px"
               fontSize="0.9rem"
               style={{ cursor: "default" }}
-              title="로그인 후 이용해주세요."
+              href="/users/login"
             >
               질문하기
             </WhiteButton>
