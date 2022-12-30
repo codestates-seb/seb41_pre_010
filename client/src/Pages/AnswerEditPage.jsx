@@ -7,7 +7,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const AnswerEditPage = () => {
-  const [answerBodyMD, setAnswerBodyMD] = useState("뮤ㅠㅠ");
+  const [answerBodyMD, setAnswerBodyMD] = useState("null");
   const { session } = useSession();
   const { answerId } = useParams();
 
