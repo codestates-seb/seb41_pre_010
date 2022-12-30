@@ -29,6 +29,7 @@ function App() {
               element={<MypageEdit />}
             />
             <Route path={"/search"} element={<></>} />
+            <Route path={"/"} element={<MainPage />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
