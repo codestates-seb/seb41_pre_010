@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Input from "../Input";
-import ImageUpload from "./Image";
 import { BlueButton, BlueWhiteButton } from "../Button";
 import useImage from "../../CustomHook/useImage";
+import ImageModal from "./ImageModal";
 
 const UserProfileEdit = (props) => {
-  const { profileImage, displayName, title } = props.profile;
+  const { profileImage, displayName, title, userId } = props.profile;
   const { image, setImage } = useImage(profileImage);
   const [editDisplayName, setEditDisplayName] = useState(displayName);
   const [editTitle, setEditTitle] = useState(title);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // 모달창 노출
+  const showModal = () => {
+    setModalOpen(true);
+  };
 
   const onChange = async (e) => {
     const url = "http://13.125.80.84";
@@ -64,8 +70,15 @@ const UserProfileEdit = (props) => {
       <div className="MypageEdit_UserInfoEdit_Form_Container">
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
-          {/* <img src={image} width={165} height={165} alt="test" /> */}
-          <ImageUpload userProfileImage={image} />
+          <img src={image} width={165} height={165} alt="test" />
+          <button onClick={showModal}>모달 띄우기</button>
+          {modalOpen && (
+            <ImageModal
+              setModalOpen={setModalOpen}
+              userId={userId}
+              userProfileImage={image}
+            />
+          )}
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
