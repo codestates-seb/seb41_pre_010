@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Styles/MainPage.css";
 import { BlueButton, WhiteButton, OrangeButton } from "../Components/Button";
 import MainPageQuestion from "../Components/MainPageQuestion";
+import CustomTitle from "../Components/CustomTitle";
 import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
 import calcPagination from "../Function/calcPagination";
 import { useSession } from "../CustomHook/SessionProvider";
@@ -51,6 +52,7 @@ function MainPage() {
 
   return (
     <div className="MainPage_Container">
+      <CustomTitle title="Stack Overflow" />
       <main className="Questions_Container">
         <div className="Questions_Title_Container">
           <h1>모든 질문</h1>
