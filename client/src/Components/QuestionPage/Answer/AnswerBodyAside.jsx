@@ -7,7 +7,6 @@ import {
 import { answerBookMark } from "../../../API/Question/BookMark.js";
 
 export default function AnswerBodyAside({ el, loading, session }) {
-  console.log(el.bookmarkCheck)
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">
@@ -39,7 +38,7 @@ export default function AnswerBodyAside({ el, loading, session }) {
         ) : session ? (
           <TiBookmark
             size={"30px"}
-            color={el.bookmarkCheck ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
+            color={el.bookMarkCheck ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => answerBookMark()} //추후 파라미터 answerId, userId
           />
         ) : (

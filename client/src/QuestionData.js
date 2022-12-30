@@ -12,7 +12,7 @@ export const questionDummyData = {
   modifiedAt: "2022/12/30/14:52",
   voteUpCheck: false,
   voteDownCheck: false,
-  bookmarkCheck: true,
+  bookMarkCheck: true,
   tags: [],
   answers: [
     {
@@ -28,10 +28,10 @@ export const questionDummyData = {
       vote: 0,
       voteUpCheck: false,
       voteDownCheck: false,
-      bookmarkCheck: true,
+      bookMarkCheck: true,
       comments: [
         {
-          commentsId: 1,
+          commentId: 1,
           user: {
             userId: 1,
             displayName: "휴먼D",
@@ -42,7 +42,7 @@ export const questionDummyData = {
           modifiedAt: "2022/12/30/14:52",
         },
         {
-          commentsId: 2,
+          commentId: 2,
           user: {
             userId: 2,
             displayName: "휴먼A",
@@ -67,10 +67,10 @@ export const questionDummyData = {
       vote: 0,
       voteUpCheck: false,
       voteDownCheck: false,
-      bookmarkCheck: false,
+      bookMarkCheck: false,
       comments: [
         {
-          commentsId: 3,
+          commentId: 3,
           user: {
             userId: 3,
             displayName: "휴먼B",
@@ -81,7 +81,7 @@ export const questionDummyData = {
           modifiedAt: "2022/12/30/14:52",
         },
         {
-          commentsId: 4,
+          commentId: 4,
           user: {
             userId: 4,
             displayName: "휴먼C",
@@ -106,10 +106,10 @@ export const questionDummyData = {
       vote: 0,
       voteUpCheck: false,
       voteDownCheck: false,
-      bookmarkCheck: false,
+      bookMarkCheck: false,
       comments: [
         {
-          commentsId: 5,
+          commentId: 5,
           user: {
             userId: 5,
             displayName: "휴먼E",
@@ -120,7 +120,7 @@ export const questionDummyData = {
           modifiedAt: "2022/12/30/14:52",
         },
         {
-          commentsId: 6,
+          commentId: 6,
           user: {
             userId: 1,
             displayName: "휴먼D",

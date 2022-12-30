@@ -18,8 +18,8 @@ export default function AnswerUserProfile({
           )}
           {loading ? (
             <div></div>
-          ) : session.userId === el.user.userId ? (
-            <TiPen />
+          ) : (session.userId === el.user.userId) ? (
+            <a href="/answers/:answerId/edit"><TiPen /></a>
           ) : null}
         </div>
         <div>

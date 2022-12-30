@@ -10,7 +10,7 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
   const [voteUp, setVoteUp] = useState(questionData.voteUpCheck);
   const [voteDown, setVoteDown] = useState(questionData.voteDownCheck);
   const [bookMarkCheck, setBookMarkCheck] = useState(
-    questionData.bookmarkCheck
+    questionData.bookMarkCheck
   );
 
   console.log(bookMarkCheck);
