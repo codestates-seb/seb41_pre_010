@@ -4,13 +4,15 @@ import { BlueButton, WhiteButton, OrangeButton } from "../Components/Button";
 import MainPageQuestion from "../Components/MainPageQuestion";
 import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
 import calcPagination from "../Function/calcPagination";
+import { useSearchParams } from "react-router-dom";
 import { useSession } from "../CustomHook/SessionProvider";
 
-function MainPage() {
-  const { loading, session } = useSession();
+function SearchResultPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [curPage, setCurPage] = useState(1);
   const [curPerPage, setCurPerPage] = useState(15);
   const [curTab, setCurTab] = useState("newest");
+  const { loading, session } = useSession();
   const FILTERARR = [
     { enName: "newest", krName: "최신순" },
     { enName: "votes", krName: "추천순" },
@@ -21,7 +23,8 @@ function MainPage() {
   const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
     curTab,
     curPage,
-    curPerPage
+    curPerPage,
+    searchParams.get("q")
   );
 
   function changeCurTab(e) {
@@ -53,7 +56,7 @@ function MainPage() {
     <div className="MainPage_Container">
       <main className="Questions_Container">
         <div className="Questions_Title_Container">
-          <h1>모든 질문</h1>
+          <h1>검색 결과</h1>
           {loading ? (
             <div className="MainHeader_Empty_Container"></div>
           ) : session ? (
@@ -128,4 +131,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default SearchResultPage;
