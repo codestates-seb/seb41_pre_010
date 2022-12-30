@@ -10,7 +10,9 @@ import com.backend.sever.question.entity.Question;
 import com.backend.sever.question.repository.QuestionRepository;
 import com.backend.sever.user.entity.User;
 import com.backend.sever.user.service.UserService;
+import com.backend.sever.vote.entity.AnswerVote;
 import com.backend.sever.vote.entity.QuestionVote;
+import com.backend.sever.vote.repository.AnswerVoteRepository;
 import com.backend.sever.vote.repository.QuestionVoteRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +28,16 @@ public class QuestionService {
     private final UserService userService;
     private final BookmarkQuestionRepository bookmarkQuestionRepository;
     private final BookmarkAnswerRepository bookmarkAnswerRepository;
+    private final AnswerVoteRepository answerVoteRepository;
 
-    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService, BookmarkQuestionRepository bookmarkQuestionRepository, BookmarkAnswerRepository bookmarkAnswerRepository) {
+    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService, BookmarkQuestionRepository bookmarkQuestionRepository, BookmarkAnswerRepository bookmarkAnswerRepository, AnswerVoteRepository answerVoteRepository) {
         this.questionRepository = questionRepository;
         this.customBeanUtils = customBeanUtils;
         this.questionVoteRepository = questionVoteRepository;
         this.userService = userService;
         this.bookmarkQuestionRepository = bookmarkQuestionRepository;
         this.bookmarkAnswerRepository = bookmarkAnswerRepository;
+        this.answerVoteRepository = answerVoteRepository;
     }
 
     public Question createQuestion(Question question) {
@@ -109,7 +113,6 @@ public class QuestionService {
     }
 
     public List<Boolean> findAnswerBookmark (Question question, long userId) {
-        Long questionId = question.getQuestionId();
         List<Answer> answers = question.getAnswers();
         User user = userService.findUser(userId);
         List<Boolean> bookmarkCheck = new ArrayList<>();
@@ -124,6 +127,25 @@ public class QuestionService {
             }
         }
         return bookmarkCheck;
+    }
+
+    public List<Boolean> findAnswerVoteCheck(List<Answer> answers, User user) {
+        List<Boolean> answerVoteCheck = new ArrayList<>();
+        for (int i = 0; i < answers.size(); i++) {
+            Optional<AnswerVote> optionalAnswerVote = answerVoteRepository.findByAnswerAndUser(answers.get(i), user);
+            if (optionalAnswerVote.isPresent()) {
+                answerVoteCheck.add(optionalAnswerVote.get().isVoteUpCheck());
+                answerVoteCheck.add(optionalAnswerVote.get().isVoteDownCheck());
+            }else{
+                answerVoteCheck.add(false);
+                answerVoteCheck.add(false);
+            }
+        }
+        return answerVoteCheck;
+    }
+
+    public User findUser(long userId) {
+        return userService.findUser(userId);
     }
 
 }
