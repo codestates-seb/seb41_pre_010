@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 public class Tag {
     @Id
+    @Column(name = "TAGID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tagId;
 

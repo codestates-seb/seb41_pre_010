@@ -23,10 +23,11 @@ import java.util.List;
 @Entity
 public class Question {
     @Id
+    @Column(name = "QUESTIONID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
 
-    @Column(length = 50, nullable = false)
+    @Column(name = "QUESTION_TITLE", length = 50, nullable = false)
     private String title;
 
     @Column(length = 1500, nullable = false)
@@ -37,7 +38,6 @@ public class Question {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @LastModifiedDate
-    @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column(nullable = false)
