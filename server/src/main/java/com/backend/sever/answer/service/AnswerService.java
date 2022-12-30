@@ -1,5 +1,7 @@
 package com.backend.sever.answer.service;
 
+import com.backend.exception.logicException.ExceptionCode;
+import com.backend.exception.logicException.LoginException;
 import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.answer.repository.AnswerRepository;
 import com.backend.sever.config.CustomBeanUtils;
@@ -49,7 +51,7 @@ public class AnswerService {
 
         //임시로 런타임에러 발생
         return optionalAnswer.orElseThrow(() ->
-                new RuntimeException());
+                new LoginException(ExceptionCode.ANSWER_NOT_FOUND));
     }
 
     public void deleteAnswer(long answerId) {

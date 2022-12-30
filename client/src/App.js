@@ -27,12 +27,13 @@ function App() {
             <Route path="/users/login" element={<Login />} />
             <Route path="/questions/:questionId/edit" element={<EditPage />} />
             <Route path={"/users/mypage/:userId"} element={<Mypage />} />
+            <Route path={"/questions/ask"} element={<AskPage />} />;
+            <Route path={"/questions/search"} element={<SearchResultPage />} />
             <Route
               path={"/users/mypage/edit/:userId"}
               element={<MypageEdit />}
             />
-            <Route path={"/questions/ask"} element={<AskPage />} />;
-            <Route path={"/questions/search"} element={<SearchResultPage />} />
+            <Route path={"/"} element={<MainPage />} />
             <Route path="*" element={<Page404 />} />
             <Route
               path="/answers/:answerId/edit"

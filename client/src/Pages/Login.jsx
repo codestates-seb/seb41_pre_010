@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
-
+import CustomTitle from "../Components/CustomTitle";
+import { useSession } from "../CustomHook/SessionProvider";
 import "./Styles/Login.css";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { loading, session } = useSession();
   const [email, setEmail] = useState("");
   const [emailMessage, setEmailMessage] = useState("");
   const [password, setPassword] = useState("");
@@ -28,20 +30,24 @@ export default function Login() {
         password: password,
       })
       .then((res) => {
-        console.log("response:", res);
-        if (res.status === 200) {
-          navigate("/");
-        }
+        window.location.reload();
+        navigate("/");
       })
       .catch((e) => {
         if (e) {
-          console.log(e);
+          setPassword("");
+          setPasswordMessage("이메일이 없거나 일치하지않는 패스워드입니다.");
         }
       });
   };
-
+  if (loading) return;
+  if (session) return navigate("/");
   return (
     <>
+      <CustomTitle
+        title={"로그인 - Stack Overflow"}
+        description="로그인 페이지입니다."
+      />
       <main>
         <div className="Login_Container">
           <Logo />

@@ -1,8 +1,8 @@
 package com.backend.sever.user.service;
 
 import com.backend.sever.config.CustomBeanUtils;
-import com.backend.sever.jwt.dto.ExceptionCode;
-import com.backend.sever.jwt.event.LoginException;
+import com.backend.exception.logicException.ExceptionCode;
+import com.backend.exception.logicException.LoginException;
 import com.backend.sever.jwt.event.UserRegistrationApplicationEvent;
 import com.backend.sever.jwt.utils.CustomAuthorityUtils;
 import com.backend.sever.user.entity.User;
@@ -55,14 +55,13 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findById(userId);
 
         User findUser = optionalUser.orElseThrow(() ->
-                new RuntimeException());
+                new LoginException(ExceptionCode.USER_NOT_FOUND));
 
         return findUser;
     }
 
 
     // 회원 가입을 위한 createUser
-
     public User createUser(User user){
         verifyExistsEmail(user.getEmail());
 
@@ -73,7 +72,6 @@ public class UserService {
         user.setRoles(roles);
 
         User savedUser = userRepository.save(user);
-
 
         publisher.publishEvent(new UserRegistrationApplicationEvent(savedUser));
         return savedUser;
@@ -87,6 +85,4 @@ public class UserService {
 
         }
     }
-
-
 }

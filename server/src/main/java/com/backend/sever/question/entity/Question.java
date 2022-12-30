@@ -23,21 +23,24 @@ import java.util.List;
 @Entity
 public class Question {
     @Id
+    @Column(name = "QUESTIONID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
 
-    @Column(length = 50, nullable = false)
+    @Column(name = "QUESTION_TITLE", length = 50, nullable = false)
     private String title;
 
     @Column(length = 1500, nullable = false)
     private String body;
+
+    @Column(length = 500, nullable = false)
+    private String bodyString;
 
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @LastModifiedDate
-    @Column
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column(nullable = false)
@@ -59,7 +62,7 @@ public class Question {
     private List<Comments> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
-    private List<Answer> Answers = new ArrayList<>();
+    private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
     private List<BookmarkQuestion> bookmarksQuestions = new ArrayList<>();

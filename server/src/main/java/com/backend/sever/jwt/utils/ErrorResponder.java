@@ -1,6 +1,6 @@
 package com.backend.sever.jwt.utils;
 
-import com.backend.sever.jwt.response.ErrorResponse;
+import com.backend.exception.response.ErrorResponse;
 import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
