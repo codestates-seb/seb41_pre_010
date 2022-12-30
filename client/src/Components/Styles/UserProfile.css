@@ -43,3 +43,25 @@
   margin: 20px 10px;
   font-size: 0.8rem;
 }
+.UserInfo_Edit_Image {
+  width: 164px;
+  height: 164px;
+  border-radius: 4px;
+  padding: 0;
+  overflow: hidden;
+  display: block;
+}
+
+.Modal_Open_Button {
+  position: absolute;
+  top: 550px;
+  background: hsl(210, 8%, 35%);
+  border-radius: 0 0 3px 3px;
+  color: var(--white);
+  text-align: center;
+  padding: 8px 0;
+  width: 164px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+}

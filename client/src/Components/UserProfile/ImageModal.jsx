@@ -1,7 +1,7 @@
 import "../Styles/Image.css";
 import ImageUpload from "./Image";
 
-function ImageModal({ setModalOpen, userId, userProfileImage }) {
+function ImageModal({ setModalOpen, userId, userProfileImage, setImage }) {
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -9,7 +9,12 @@ function ImageModal({ setModalOpen, userId, userProfileImage }) {
   return (
     <div className="Image_Modal_Container">
       <div className="Image_Modal_Upload_Container">
-        <ImageUpload userId={userId} userProfileImage={userProfileImage} />
+        <ImageUpload
+          userId={userId}
+          userProfileImage={userProfileImage}
+          setModalOpen={setModalOpen}
+          setImage={setImage}
+        />
         <svg
           className="Image_Modal_Close"
           onClick={closeModal}
