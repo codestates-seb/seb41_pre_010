@@ -1,7 +1,8 @@
-const defaultImage = "";
-const defaultDescription = "";
+const defaultImage =
+  "https://stackoverflows3.s3.ap-northeast-2.amazonaws.com/1672364664612.png";
+const defaultDescription = "개발자가 배우고, 공유하고, 경력을 쌓는 곳";
 
-export default function CustomHead({
+export default function CustomTitle({
   author,
   title,
   description,
