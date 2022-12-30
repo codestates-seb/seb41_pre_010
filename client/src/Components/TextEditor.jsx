@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import "prismjs/themes/prism.css";
 import "@toast-ui/editor/dist/i18n/ko-kr";
@@ -9,9 +9,13 @@ import Prism from "prismjs";
 function TextEditor({
   setQuestionBodyHTML,
   setQuestionBodyMD,
-  initData = null,
+  initData = "내용을 입력해주세요.",
 }) {
   const editorRef = useRef();
+
+  useEffect(() => {
+    editorRef.current.getInstance().setMarkdown(initData);
+  }, [initData]);
 
   function onEditorBlur() {
     const mdData = editorRef.current.getInstance().getMarkdown();
@@ -22,9 +26,8 @@ function TextEditor({
 
   return (
     <Editor
-      initialValue={initData || "내용을 입력해주세요."}
       previewStyle="vertical"
-      height="500px"
+      height="auto"
       initialEditType="markdown"
       language="ko-KR"
       ref={editorRef}
