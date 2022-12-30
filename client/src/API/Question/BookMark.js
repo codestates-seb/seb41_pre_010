@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const questionBookMark = (questionId) => {
+export const questionBookMark = (questionId,userId) => {
   axios
     .put(
       `api/v1/bookmark/${questionId}/questions`,
