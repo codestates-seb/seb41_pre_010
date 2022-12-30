@@ -1,6 +1,9 @@
 package com.backend.sever.question.service;
 
+import com.backend.sever.answer.entity.Answer;
+import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.bookmark.entity.BookmarkQuestion;
+import com.backend.sever.bookmark.repository.BookmarkAnswerRepository;
 import com.backend.sever.bookmark.repository.BookmarkQuestionRepository;
 import com.backend.sever.config.CustomBeanUtils;
 import com.backend.sever.question.entity.Question;
@@ -22,13 +25,15 @@ public class QuestionService {
     private final QuestionVoteRepository questionVoteRepository;
     private final UserService userService;
     private final BookmarkQuestionRepository bookmarkQuestionRepository;
+    private final BookmarkAnswerRepository bookmarkAnswerRepository;
 
-    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService, BookmarkQuestionRepository bookmarkQuestionRepository) {
+    public QuestionService(QuestionRepository questionRepository, CustomBeanUtils<Question> customBeanUtils, QuestionVoteRepository questionVoteRepository, UserService userService, BookmarkQuestionRepository bookmarkQuestionRepository, BookmarkAnswerRepository bookmarkAnswerRepository) {
         this.questionRepository = questionRepository;
         this.customBeanUtils = customBeanUtils;
         this.questionVoteRepository = questionVoteRepository;
         this.userService = userService;
         this.bookmarkQuestionRepository = bookmarkQuestionRepository;
+        this.bookmarkAnswerRepository = bookmarkAnswerRepository;
     }
 
     public Question createQuestion(Question question) {
@@ -102,4 +107,23 @@ public class QuestionService {
         Optional<BookmarkQuestion> optionalBookmarkQuestion = bookmarkQuestionRepository.findByQuestionAndUser(question, user);
         return optionalBookmarkQuestion.map(BookmarkQuestion::isBookmarkCheck).orElse(false);
     }
+
+    public List<Boolean> findAnswerBookmark (Question question, long userId) {
+        Long questionId = question.getQuestionId();
+        List<Answer> answers = question.getAnswers();
+        User user = userService.findUser(userId);
+        List<Boolean> bookmarkCheck = new ArrayList<>();
+
+        for (int i = 0; i < answers.size(); i++) {
+            Optional<BookmarkAnswer> optionalBookmarkAnswer = bookmarkAnswerRepository.findByAnswerAndUser(answers.get(i), user);
+            if (optionalBookmarkAnswer.isPresent()) {
+                bookmarkCheck.add(optionalBookmarkAnswer.get().isBookmarkCheck());
+            }
+            else {
+                bookmarkCheck.add(false);
+            }
+        }
+        return bookmarkCheck;
+    }
+
 }

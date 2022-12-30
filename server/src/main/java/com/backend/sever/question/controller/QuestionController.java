@@ -46,6 +46,11 @@ public class QuestionController {
         response.setVoteUpCheck(check.get(0));
         response.setVoteDownCheck(check.get(1));
         response.setBookmarkCheck(questionService.findBookmarkCheck(questionId,userId));
+
+        List<Boolean> answerBookmark = questionService.findAnswerBookmark(question, userId);
+        for (int i = 0; i < response.getAnswers().size(); i++) {
+            response.getAnswers().get(i).setBookmarkCheck(answerBookmark.get(i));
+        }
         return new ResponseEntity(response,HttpStatus.OK);
     }
 
