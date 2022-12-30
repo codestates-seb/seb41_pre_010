@@ -1,7 +1,7 @@
 import React from "react";
-import "./Styles/UserProfile.css";
-import { WhiteButton } from "./Button";
-import useImage from "../CustomHook/useImage";
+import "../Styles/UserProfile.css";
+import { WhiteButton } from "../Button";
+import useImage from "../../CustomHook/useImage";
 
 const UserProfile = (props) => {
   const { profileImage, displayName, title } = props.profile;
