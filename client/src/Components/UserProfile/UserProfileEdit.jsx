@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Input from "./Input";
-import { BlueButton, BlueWhiteButton } from "./Button";
+import Input from "../Input";
+import { BlueButton, BlueWhiteButton } from "../Button";
 
 const UserProfileEdit = (props) => {
   const { profileImage, displayName, title } = props.profile;

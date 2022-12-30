@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Styles/MypageEdit.css";
-import UserProfile from "../Components/UserProfile";
-import UserProfileEdit from "../Components/UserProfileEdit";
+import UserProfile from "../Components/UserProfile/UserProfile";
+import UserProfileEdit from "../Components/UserProfile/UserProfileEdit";
 import axios from "axios";
 
 const dummyDataProfile = {
