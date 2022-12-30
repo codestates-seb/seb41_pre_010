@@ -14,6 +14,7 @@ public class QuestionInfo {
     private UserInfo user;
     private String title;
     private String body;
+    private String bodyString;
     private String createdAt;
     private String modifiedAt;
     private int vote;
