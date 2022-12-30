@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Styles/MypageEdit.css";
 import UserProfile from "../Components/UserProfile";
 import UserProfileEdit from "../Components/UserProfileEdit";
+import CustomTitle from "../Components/CustomTitle";
+
 import axios from "axios";
 
 const dummyDataProfile = {
@@ -34,6 +36,10 @@ const MypageEdit = () => {
 
   return (
     <>
+      <CustomTitle
+        title={`User - ${userProfile.displayName}`}
+        description={`User - ${userProfile.title ? userProfile.title : ""}`}
+      />
       <main className="Mypage_Container">
         <UserProfile profile={userProfile} />
         <UserProfileEdit profile={userProfile} />

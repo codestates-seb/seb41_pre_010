@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
+import CustomTitle from "../Components/CustomTitle";
 
 import "./Styles/Login.css";
 
@@ -42,6 +43,10 @@ export default function Login() {
 
   return (
     <>
+      <CustomTitle
+        title={"로그인 - Stack Overflow"}
+        description="로그인 페이지입니다."
+      />
       <main>
         <div className="Login_Container">
           <Logo />
