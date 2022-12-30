@@ -30,7 +30,7 @@ public class User {
 
     @Column
     private String profileImage;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String displayName;
 
     @Column(nullable = false, unique = true, updatable = false)
