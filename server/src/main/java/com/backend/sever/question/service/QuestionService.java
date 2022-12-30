@@ -20,6 +20,9 @@ public class QuestionService {
         this.customBeanUtils = customBeanUtils;
     }
     public Question createQuestion(Question question) {
+        if(questionRepository.countTag() == 0) {
+            throw new RuntimeException();
+        }
         return questionRepository.save(question);
     }
 
@@ -55,6 +58,7 @@ public class QuestionService {
         Question verifiedQuestion = verifyQuestion(questionRepository.findById(question.getQuestionId()));
         Optional.ofNullable(question.getTitle()).ifPresent(title -> verifiedQuestion.setTitle(title));
         Optional.ofNullable(question.getBody()).ifPresent(body -> verifiedQuestion.setBody(body));
+        Optional.ofNullable(question.getBodyString()).ifPresent(bodyString -> verifiedQuestion.setBodyString(bodyString));
 
         Optional<List<Long>> optionalQuestionTagIds = questionRepository.findQuestionTagIdByQuestionId(question.getQuestionId());
         List<Long> questionTagIds = optionalQuestionTagIds.orElseThrow(() -> new RuntimeException());
