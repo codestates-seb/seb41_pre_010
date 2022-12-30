@@ -18,6 +18,6 @@ public class AnswerInfoDto {
     private int vote;
     private boolean voteUpCheck;
     private boolean voteDownCheck;
-    private boolean bookmarkCheck;
+    private boolean bookMarkCheck;
     private List<CommentsInfoDto> comments;
 }

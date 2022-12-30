@@ -23,7 +23,7 @@ public class QuestionInfoResponseDto {
     private String modifiedAt;
     private boolean voteUpCheck;
     private boolean voteDownCheck;
-    private boolean bookmarkCheck;
+    private boolean bookMarkCheck;
     private List<QuestionTagResponseDto> tags;
     private List<AnswerInfoDto> answers;
 }
