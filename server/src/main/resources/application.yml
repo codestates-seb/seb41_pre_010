@@ -8,3 +8,21 @@ spring:
       path: /h2
   datasource:
     url: jdbc:h2:mem:test
+
+logging:
+  level:
+    org:
+      springframework:
+        orm:
+          jpa: DEBUG
+server:
+  servlet:
+    encoding:
+      force-response: true
+mail:
+  address:
+    admin: admin@gmail.com
+jwt:
+  key: ppp11112341111123411112341111123411111234pppppp11112341111123411112341111123411111234ppp
+  access-token-expiration-minutes: 550000
+  refresh-token-expiration-minutes: 420

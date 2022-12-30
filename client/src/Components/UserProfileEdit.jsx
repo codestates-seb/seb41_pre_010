@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import Input from "./Input";
 import { BlueButton, BlueWhiteButton } from "./Button";
+import useImage from "../CustomHook/useImage";
 
 const UserProfileEdit = (props) => {
   const { profileImage, displayName, title } = props.profile;
-
+  const { image, setImage } = useImage(profileImage);
   const [editDisplayName, setEditDisplayName] = useState(displayName);
   const [editTitle, setEditTitle] = useState(title);
 
@@ -40,7 +41,7 @@ const UserProfileEdit = (props) => {
       <div className="MypageEdit_UserInfoEdit_Form_Container">
         <div className="MypageEdit_UserInfoEdit_FormImage_Container">
           <div className="UserInfo_Edit_Subtitle">Profile image</div>
-          <img src={profileImage} width={165} height={165} alt="test" />
+          <img src={image} width={165} height={165} alt="test" />
         </div>
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>

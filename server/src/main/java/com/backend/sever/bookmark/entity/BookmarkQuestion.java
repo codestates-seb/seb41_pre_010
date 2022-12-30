@@ -19,8 +19,8 @@ public class BookmarkQuestion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookmarkId;
 
-    @Column(nullable = false)
-    private int bookmarkCount;
+    @Column
+    private boolean bookmarkCheck;
 
     @CreatedDate
     @Column(updatable = false)
