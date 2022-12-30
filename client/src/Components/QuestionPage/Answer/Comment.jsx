@@ -42,7 +42,7 @@ export default function Comment({ el, loading, session, questionData }) {
                   <span>{comment.createdAt}</span>
                   {loading ? (
                     <div></div>
-                  ) : !(session === comment.user.userId) ? (
+                  ) : (session === comment.user.userId) ? (
                     commentCheck ? (
                       <TiPen
                         onClick={() => {

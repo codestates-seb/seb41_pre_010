@@ -15,24 +15,44 @@ export default function AnswerAdd({
     <div className="Your_Answer_Container">
       <h2>Your Answer</h2>
       <div>
-        <TextEditor
-          setQuestionBodyHTML={setAnswerBodyHTML}
-          setQuestionBodyMD={setAnswerBody}
-        />
+        {loading ? (
+          <div></div>
+        ) : session ? (
+          <TextEditor
+            setQuestionBodyHTML={setAnswerBodyHTML}
+            setQuestionBodyMD={setAnswerBody}
+          />
+        ) : (
+          <div>
+            Login이 필요합니다 여기를{" "}
+            <a className="Login_Href" href="/users/login">
+              Click
+            </a>
+            하세요
+          </div>
+        )}
       </div>
       <div className="Submit_Clear_Container">
-        <BlueButton
-          width={"140px"}
-          onClick={() =>
-            addAnswer(
-              questionData.questionId,
-              session && session.userId,
-              answerBody
-            )
-          }
-        >
-          Post Yout Answer
-        </BlueButton>
+        {loading ? (
+          <div></div>
+        ) : session ? (
+          <BlueButton
+            width={"140px"}
+            onClick={() =>
+              addAnswer(
+                questionData.questionId,
+                session && session.userId,
+                answerBody
+              )
+            }
+          >
+            Post Yout Answer
+          </BlueButton>
+        ) : (
+          <BlueButton width={"140px"} href="/users/signup">
+            계정이 없으신가요?
+          </BlueButton>
+        )}
       </div>
     </div>
   );
