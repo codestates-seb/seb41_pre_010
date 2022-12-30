@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { Editor } from "@toast-ui/react-editor";
-import "prismjs/themes/prism.css";
-import "@toast-ui/editor/dist/i18n/ko-kr";
+// import "prismjs/themes/prism.css";
+// import "@toast-ui/editor/dist/i18n/ko-kr";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
-import Prism from "prismjs";
+// import Prism from "prismjs";
 
 function TextEditor({
   setQuestionBodyHTML,
@@ -32,7 +32,7 @@ function TextEditor({
       language="ko-KR"
       ref={editorRef}
       onBlur={onEditorBlur}
-      plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+      // plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
     />
   );
 }
