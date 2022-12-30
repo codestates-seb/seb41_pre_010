@@ -1,0 +1,82 @@
+.Mypage_Container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.Mypage_UserInfo_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Mypage_List_Container {
+  width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.Mypage_List_Row {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 470px;
+}
+
+.Mypage_Title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.Mypage_List_Content_Container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(234, 236, 237);
+  border-radius: 5px;
+  padding: 10px;
+  min-height: 170px;
+}
+
+.Mypage_Content_Container {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Mypage_Content_Votes {
+  font-size: 0.9rem;
+  color: rgb(131, 138, 146);
+}
+
+.Mypage_Content_Title {
+  color: rgb(0, 116, 204);
+  width: 300px;
+  font-weight: 500;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.Mypage_Content_Date {
+  font-size: 0.8rem;
+  color: rgb(131, 138, 146);
+}
+
+/* 
+.Mypage_Questions_Container {
+  min-width: auto;
+  width: 50%;
+  height: 100%;
+}
+
+.Mypage_Tag_Container {
+  width: 40%;
+}
+
+.Mypage_BookMark_List_Container {
+  width: 50%;
+  margin-left: 15px;
+} */

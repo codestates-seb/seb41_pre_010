@@ -1,0 +1,67 @@
+.MainPage_Container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.Questions_Container {
+  width: 1024px;
+  height: calc(100% - 338px);
+}
+
+.Questions_Title_Container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  height: 50px;
+}
+
+.Questions_SubTitle_Container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid rgb(234, 236, 237);
+}
+
+.Questions_Filter_Container {
+  display: flex;
+  width: 125px;
+  justify-content: space-between;
+}
+
+.Questions_List_Container {
+  width: 100%;
+}
+
+.Questions_Pagination_Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 100%;
+  height: 100px;
+}
+
+.Page_Number_Container {
+  display: flex;
+  align-items: center;
+}
+
+.Page_Number_Container > a {
+  margin: 2px;
+}
+
+.Per_Page_Container {
+  display: flex;
+  width: 170px;
+  justify-content: space-between;
+  align-items: center;
+}
