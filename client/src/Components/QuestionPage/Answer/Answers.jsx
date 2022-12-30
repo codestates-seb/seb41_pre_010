@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import AnswerBodyAside from "./AnswerBodyAside";
 import AnswerUserProfile from "./AnswerUserProfile";
 import Comment from "./Comment";
 import AddComment from "./AddComment";
+import AnswerBody from "./AnswerBody";
 
 export default function Answers({
   questionData,
@@ -16,6 +17,7 @@ export default function Answers({
   loading,
   session,
 }) {
+  const [answerEditCheck, setAnswerEditCheck] = useState(false);
   return (
     <>
       {questionData.answers
@@ -23,7 +25,7 @@ export default function Answers({
           questionData.answers.map((el, index) => {
             return (
               <div key={el.answerId} className="Answers_Container">
-                <h2 >Answer{el.answerId}</h2>
+                <h2>Answer{el.answerId}</h2>
                 <div>
                   <div className="Main_Text_Container">
                     <AnswerBodyAside
@@ -33,13 +35,14 @@ export default function Answers({
                       session={session}
                     />
                     <div className="Main_Text_Content">
-                      <span>{el.body}</span>
+                      <AnswerBody el={el} answerEditCheck={answerEditCheck} />
                     </div>
                   </div>
                   <AnswerUserProfile
                     el={el}
                     loading={loading}
                     session={session}
+                    setAnswerEditCheck={setAnswerEditCheck}
                   />
                   <div className="Contour_Line" />
                   <Comment el={el} loading={loading} session={session} />

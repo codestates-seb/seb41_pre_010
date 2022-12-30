@@ -10,8 +10,10 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
   const [voteUp, setVoteUp] = useState(questionData.voteUpCheck);
   const [voteDown, setVoteDown] = useState(questionData.voteDownCheck);
   const [bookMarkCheck, setBookMarkCheck] = useState(
-    questionData.bookMarkCheck
+    questionData.bookmarkCheck
   );
+
+  console.log(bookMarkCheck);
 
   return (
     <aside className="Main_Text_Aside">
@@ -21,13 +23,12 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
         ) : session ? (
           <TiArrowSortedUp
             size={"35px"}
-            color={
-              questionData.voteUpCheck
-                ? "rgb(224, 130, 37)"
-                : "hsl(210,8%,85%)"
-            }
+            color={voteUp ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              questionUpVoteRequest();
+              questionUpVoteRequest(
+                session && session.userId,
+                questionData && questionData.questionId
+              );
               setVoteUp(!voteUp);
             }} // 추후 파라미터 session.userId, questionId
           />
@@ -40,11 +41,7 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
         ) : session ? (
           <TiArrowSortedDown
             size={"35px"}
-            color={
-              questionData.voteDownCheck
-                ? "rgb(224, 130, 37)"
-                : "hsl(210,8%,85%)"
-            }
+            color={voteDown ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
               questionDownVoteRequest();
               setVoteDown(!voteDown);
@@ -58,11 +55,7 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
         ) : session ? (
           <TiBookmark
             size={"30px"}
-            color={
-              questionData.bookMarkCheck
-                ? "rgb(224, 130, 37)"
-                : "hsl(210,8%,85%)"
-            }
+            color={bookMarkCheck ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
               questionBookMark();
               setBookMarkCheck(!bookMarkCheck);

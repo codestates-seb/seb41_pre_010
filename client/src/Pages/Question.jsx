@@ -34,7 +34,7 @@ export default function Question() {
       setActiveClick(!activeClick);
     }
   };
-  console.log(questionData)
+  
   //실제 API 정보에서 수정 예정
   // useEffect(() => {
   //   const questionData = async () => {
