@@ -11,8 +11,8 @@ const AnswerEditPage = () => {
   const { session } = useSession();
   const { answerId } = useParams();
 
-  const answerEditGetUrl = `ttps://359b-112-144-75-111.jp.ngrok.io/api/v1/answers/${answerId}/edit`;
-  const answerEditPutUrl = `ttps://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/${answerId}`;
+  const answerEditGetUrl = `/api/v1/answers/${answerId}/edit`;
+  const answerEditPutUrl = `/api/v1/questions/${answerId}`;
 
   useEffect(() => {
     async function loadAnswerContents() {

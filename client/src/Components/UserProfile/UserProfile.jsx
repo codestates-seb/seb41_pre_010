@@ -28,7 +28,7 @@ const UserProfile = (props) => {
       </div>
       {loading ? (
         <></>
-      ) : session && session.userId === userId ? (
+      ) : session && session.userId === Number(userId) ? (
         <WhiteButton
           width="80px"
           height="40px"
