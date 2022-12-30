@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSession } from "../CustomHook/SessionProvider";
+
 import "./Styles/MypageEdit.css";
-import UserProfile from "../Components/UserProfile";
-import UserProfileEdit from "../Components/UserProfileEdit";
+import UserProfile from "../Components/UserProfile/UserProfile";
+import UserProfileEdit from "../Components/UserProfile/UserProfileEdit";
 import CustomTitle from "../Components/CustomTitle";
 import axios from "axios";
 
@@ -15,6 +18,9 @@ const dummyDataProfile = {
 
 const MypageEdit = () => {
   const [userProfile, setUserProfile] = useState(dummyDataProfile);
+  const { userId } = useParams();
+  const navigate = useNavigate();
+  const { loading, session } = useSession();
 
   useEffect(() => {
     axios
@@ -28,6 +34,11 @@ const MypageEdit = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  if (loading) return;
+  if (!session || session.userId !== userId) {
+    window.location.reload();
+    navigate(`/users/mypage/${userId}`);
+  }
   return (
     <>
       <CustomTitle
