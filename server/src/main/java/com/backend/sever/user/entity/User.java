@@ -28,7 +28,6 @@ public class User {
     private Long userId;
 
     @Column
-//    private String profileImage;
     private String profileImage;
     @Column(nullable = false, unique = true)
     private String displayName;

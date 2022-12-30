@@ -52,13 +52,13 @@ public class QuestionController {
         List<Boolean> check = questionService.findCheck(questionId, userId);
         response.setVoteUpCheck(check.get(0));
         response.setVoteDownCheck(check.get(1));
-        response.setBookmarkCheck(questionService.findBookmarkCheck(questionId,userId));
+        response.setBookMarkCheck(questionService.findBookmarkCheck(questionId,userId));
 
         List<Boolean> answerBookmark = questionService.findAnswerBookmark(question, userId);
         List<Boolean> answerVoteCheck = questionService.findAnswerVoteCheck(answers, user);
         int idx = 0;
         for (int i = 0; i < response.getAnswers().size(); i++) {
-            response.getAnswers().get(i).setBookmarkCheck(answerBookmark.get(i));
+            response.getAnswers().get(i).setBookMarkCheck(answerBookmark.get(i));
             response.getAnswers().get(i).setVoteUpCheck(answerVoteCheck.get(idx));
             response.getAnswers().get(i).setVoteDownCheck(answerVoteCheck.get(idx + 1));
             idx += 2;
