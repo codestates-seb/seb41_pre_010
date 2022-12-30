@@ -14,7 +14,7 @@ export default function Comment({ el, loading, session }) {
                   </a>
                   <span>{comment.createdAt}</span>
                   {loading ? (
-                    <div>로딩중 입니다...</div>
+                    <div></div>
                   ) : (session === comment.user.userId) ? (
                       <TiPen />
                   ) : null}

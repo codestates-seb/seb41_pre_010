@@ -17,6 +17,7 @@ export default function QuestionTitle({
         {loading ? (
           <div></div>
         ) : session ? (
+          //추후 링크 변경 예정
           <BlueButton href={`/questions/:${questionData.questionId}/edit`}>
             Ask Question
           </BlueButton>
@@ -34,8 +35,10 @@ export default function QuestionTitle({
             </StyledSpan>
             {loading ? (
               <div />
-            ) : session === questionData.user.userId ? (
-              <TiPen />
+            ) : (session === questionData.user.userId) ? (
+              <a href={`/questions/:${questionData.questionId}/edit`}>
+                <TiPen />
+              </a>
             ) : null}
           </div>
         </div>
