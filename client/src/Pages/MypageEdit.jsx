@@ -3,8 +3,9 @@ import "./Styles/MypageEdit.css";
 import UserProfile from "../Components/UserProfile";
 import UserProfileEdit from "../Components/UserProfileEdit";
 import CustomTitle from "../Components/CustomTitle";
-
+import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
 const dummyDataProfile = {
   userId: 0,
@@ -15,9 +16,19 @@ const dummyDataProfile = {
 };
 
 const MypageEdit = () => {
+  const { session } = useSession();
+  const navigate = useNavigate();
+  const { userId } = useParams();
+
+  useEffect(() => {
+    if (!session) {
+      navigate("/questions");
+    }
+  });
+
   const [userProfile, setUserProfile] = useState(dummyDataProfile);
 
-  const myPageEditGetUserProfileUrl = `/api/v1/users/1/userprofile`;
+  const myPageEditGetUserProfileUrl = `/api/v1/users/${userId}/userprofile`;
 
   useEffect(() => {
     axios
