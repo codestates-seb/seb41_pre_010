@@ -31,43 +31,33 @@ const AskPage = () => {
   const [questionBodyMD, setQuestionBodyMD] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
-  const [tagsResponse, settagsResponse] = useState([]);
   const { session } = useSession();
 
   function submitQuestion() {
     const tags = { tags: selected };
-    const body = {
-      userId: session.userId,
-      title: questionTitle,
-      body: questionBodyMD,
-      bodyString: questionBodyHTML.replace(/<[^>]+>/g, " "),
-      tags: tagsResponse,
-    };
 
     axios
-      .post("api/v1/tags", tags)
+      .post("https://359b-112-144-75-111.jp.ngrok.io/api/v1/tags", tags)
       .then((res) => {
-        settagsResponse(res);
-      })
-      .then(() => {
+        const body = {
+          userId: session.userId,
+          title: questionTitle,
+          body: questionBodyMD,
+          bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
+          tags: res.data.tags,
+        };
+
+        console.log(body);
         axios
-          .post("api/v1/questions", body)
+          .post(
+            "https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions",
+            body
+          )
           .then((res) => {
             console.log(res);
             console.log(body);
           })
           .catch((err) => console.log(err));
-      })
-      .finally(() => {
-        axios
-          .post("api/v1/questions", body)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-            console.log(body);
-          });
       });
   }
 
