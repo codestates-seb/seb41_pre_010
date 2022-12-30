@@ -33,6 +33,9 @@ public class Question {
     @Column(length = 1500, nullable = false)
     private String body;
 
+    @Column(length = 500, nullable = false)
+    private String bodyString;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
