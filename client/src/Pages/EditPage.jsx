@@ -41,7 +41,7 @@ const EditPage = () => {
     async function loadQuestionContents() {
       axios
         .get(
-          `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/1/edit`,
+          `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/${questionId}/edit`,
           {
             headers: {
               "ngrok-skip-browser-warning": "69420",
@@ -83,7 +83,7 @@ const EditPage = () => {
         };
         axios
           .put(
-            "https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/1",
+            `https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions/${questionId}`,
             body
           )
           .then((res) => {
