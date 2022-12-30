@@ -48,6 +48,7 @@ public interface QuestionMapper {
         Question question = new Question();
         question.setTitle(questionPutDto.getTitle());
         question.setBody(questionPutDto.getBody());
+        question.setBodyString(questionPutDto.getBodyString());
 
         List<QuestionTag> questionTags = questionPutDto.getTags().stream()
                 .map(questionTagId -> {

@@ -12,6 +12,7 @@ import java.util.List;
 public class QuestionPutDto {
     private String title;
     private String body;
+    private String bodyString;
     private List<Long> tags;
 
 }
