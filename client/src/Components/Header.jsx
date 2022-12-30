@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate, redirect } from "react-router-dom";
 import { OrangeButton } from "./Button";
 import { useSession } from "../CustomHook/SessionProvider";
-import useImage from "../CustomHook//useImage";
+import useImage from "../CustomHook/useImage";
 import axios from "axios";
 
 const Logo = () => {
