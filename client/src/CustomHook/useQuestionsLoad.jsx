@@ -17,11 +17,17 @@ function useQuestionsLoad(
       try {
         const response = await axios.get(
           searchValue
-            ? `api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pagesize=${pageSizeNumber}`
-            : `api/v1/questions/tab=${tabName}&page=${pageNumber}&pagesize=${pageSizeNumber}`
+            ? `ttps://e066-112-144-75-111.jp.ngrok.io/api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`
+            : `ttps://e066-112-144-75-111.jp.ngrok.io/api/v1/questions/search?tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "69420",
+            },
+          }
         );
         const { data } = response;
-        setQuestionsList(() => data.questionsList);
+        console.log(data);
+        setQuestionsList(() => data.questionInfos);
         setTotalPage(() => data.totalPages);
         setTotalQuestions(() => data.totalQuestions);
       } catch (err) {
