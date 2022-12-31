@@ -24,15 +24,10 @@ const StyledSpan = styled.span`
 export default function Question() {
   const { loading, session } = useSession();
   const [questionData, setQeustionData] = useState(questionDummyData);
-  const [answerIdx, setAnswerIdx] = useState(null);
   const [activeClick, setActiveClick] = useState(false);
   const [commentValue, setCommentValue] = useState("");
-  console.log(questionData)
-  const addCommentHandler = (idx) => {
-    setAnswerIdx(() => idx);
-    if (idx === answerIdx) {
+  const addCommentHandler = () => {
       setActiveClick(!activeClick);
-    }
   };
 
   // useEffect(() => {
@@ -71,10 +66,9 @@ export default function Question() {
             <div className="Question_User_Profil_Container">
               <QuestionUserProfil questionData={questionData} />
             </div>
-            {questionData.answers.length === 0 ? <div className="Contour_Line" /> : null}
+            {questionData && questionData.answers.length === 0 ? <div className="Contour_Line" /> : null}
             <Answers
               questionData={questionData}
-              answerIdx={answerIdx}
               activeClick={activeClick}
               setCommentValue={setCommentValue}
               commentValue={commentValue}

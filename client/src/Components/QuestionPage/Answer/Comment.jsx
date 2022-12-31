@@ -7,12 +7,10 @@ export default function Comment({ el, loading, session, questionData }) {
   const [commentCheck, setCommentCheck] = useState(false);
   const [editCommentBody, seteditCommentBody] = useState("");
   const [comments, setcomment] = useState(el.comments);
+  const [answerId, setAnswerId] = useState(el.answerId)
 
-  const addCommentHandler = (idx) => {
-    setCommentIdx(() => idx);
-    if (idx === commentIdx) {
-      setCommentCheck(!commentCheck);
-    }
+  const addCommentHandler = (answerId) => {
+
   };
 
   const bodyResponseChange = (idx) => {
@@ -58,7 +56,7 @@ export default function Comment({ el, loading, session, questionData }) {
                         }}
                       />
                     ) : (
-                      <TiPen onClick={() => addCommentHandler(index)} />
+                      <TiPen onClick={() => addCommentHandler()} />
                     )
                   ) : null}
                 </div>

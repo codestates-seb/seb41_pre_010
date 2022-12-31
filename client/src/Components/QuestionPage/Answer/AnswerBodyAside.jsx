@@ -15,8 +15,6 @@ export default function AnswerBodyAside({
   const [voteUp, setVoteUp] = useState(el.voteUpCheck);
   const [voteDown, setVoteDown] = useState(el.voteDownCheck);
   const [bookMarkCheck, setBookMarkCheck] = useState(el.bookMarkCheck);
-
-  console.log(el.answerId);
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">
