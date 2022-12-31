@@ -11,11 +11,11 @@ function TextEditor({
   setQuestionBodyHTML,
   setQuestionBodyMD,
   initData = "내용을 입력해주세요.",
+  userId,
 }) {
   const editorRef = useRef();
-  const url =
-    "http://ec2-13-125-80-84.ap-northeast-2.compute.amazonaws.com/api/v1/user/setting/profileimage";
-
+  const url = "/api/v1/questions/image";
+  const host = "http://ec2-13-125-80-84.ap-northeast-2.compute.amazonaws.com";
   useEffect(() => {
     editorRef.current.getInstance().setMarkdown(initData);
   }, [initData]);
@@ -30,9 +30,9 @@ function TextEditor({
     });
 
     axios
-      .post(url, {
+      .post(`${host}${url}`, {
         image: base64Image,
-        userId: 1,
+        userId,
       })
       .then((data) => {
         console.log(data);

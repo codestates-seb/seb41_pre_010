@@ -2,7 +2,7 @@ import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
 import TextEditor from "../Components/TextEditor";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
 import { TagBar } from "../Components/TagBar";
@@ -35,14 +35,6 @@ const AskPage = () => {
   const { session, loading } = useSession();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!loading) {
-      if (!session) {
-        navigate("/questions");
-      }
-    }
-  });
-
   const askPageTagsPostUrl = `/api/v1/tags`;
   const askPageQuestionPostUrl = `/api/v1/questions`;
 
@@ -70,7 +62,8 @@ const AskPage = () => {
         console.log(e);
       });
   }
-
+  if (loading) return;
+  if (!session) navigate("/questions");
   return (
     <div className="EditPage_Container">
       <div className="Edit_Container">
@@ -83,6 +76,7 @@ const AskPage = () => {
           <TextEditor
             setQuestionBodyHTML={setQuestionBodyHTML}
             setQuestionBodyMD={setQuestionBodyMD}
+            userId={session.userId}
           />
         </div>
         <div className="Tags_Container">
