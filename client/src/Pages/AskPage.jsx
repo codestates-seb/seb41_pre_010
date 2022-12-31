@@ -32,12 +32,14 @@ const AskPage = () => {
   const [questionBodyMD, setQuestionBodyMD] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
-  const { session } = useSession();
+  const { session, loading } = useSession();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!session) {
-      navigate("/questions");
+    if (!loading) {
+      if (!session) {
+        navigate("/questions");
+      }
     }
   });
 
@@ -46,24 +48,27 @@ const AskPage = () => {
 
   function submitQuestion() {
     const tags = { tags: selected };
+    axios
+      .post(askPageTagsPostUrl, tags, { withCredentials: true })
+      .then((res) => {
+        const body = {
+          userId: session.userId,
+          title: questionTitle,
+          body: questionBodyMD,
+          bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
+          tags: res.data.tags,
+        };
 
-    axios.post(askPageTagsPostUrl, tags).then((res) => {
-      const body = {
-        userId: session.userId,
-        title: questionTitle,
-        body: questionBodyMD,
-        bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
-        tags: res.data.tags,
-      };
-
-      axios
-        .post(askPageQuestionPostUrl, body)
-        .then((res) => {
-          console.log(res);
-          console.log(body);
-        })
-        .catch((err) => console.log(err));
-    });
+        axios
+          .post(askPageQuestionPostUrl, body, { withCredentials: true })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   return (

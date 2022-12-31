@@ -33,7 +33,9 @@ const UserProfileEdit = (props) => {
     };
 
     axios
-      .put(`/api/v1/users/1/userprofile`, newProfile)
+      .put(`/api/v1/users/${userId}/userprofile`, newProfile, {
+        withCredentials: true,
+      })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
@@ -63,6 +65,7 @@ const UserProfileEdit = (props) => {
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
           <Input
+            type="text"
             className="UserInfo_Edit_Input"
             value={editDisplayName}
             onChange={changeDisplayName}
@@ -71,6 +74,7 @@ const UserProfileEdit = (props) => {
         <div className="MypageEdit_UserInfoEdit_FormTitle_Container">
           <div className="UserInfo_Edit_Subtitle">Title</div>
           <Input
+            type="text"
             className="UserInfo_Edit_Input"
             value={editTitle}
             onChange={changeTitle}
