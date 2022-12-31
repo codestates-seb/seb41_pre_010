@@ -15,7 +15,7 @@ function TextEditor({
 }) {
   const editorRef = useRef();
   const url = "/api/v1/questions/image";
-  const host = "http://ec2-13-125-80-84.ap-northeast-2.compute.amazonaws.com";
+  const host = "http://13.125.80.84";
   useEffect(() => {
     editorRef.current.getInstance().setMarkdown(initData);
   }, [initData]);
