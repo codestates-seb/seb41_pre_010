@@ -2,7 +2,7 @@ import Input from "../Components/Input";
 import { BlueButton } from "../Components/Button";
 import "./Styles/EditPage.css";
 import TextEditor from "../Components/TextEditor";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
 import { TagBar } from "../Components/TagBar";
@@ -32,40 +32,38 @@ const AskPage = () => {
   const [questionBodyMD, setQuestionBodyMD] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
-  const { session } = useSession();
+  const { session, loading } = useSession();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!session) {
-      navigate("/questions");
-    }
-  });
 
   const askPageTagsPostUrl = `/api/v1/tags`;
   const askPageQuestionPostUrl = `/api/v1/questions`;
 
   function submitQuestion() {
     const tags = { tags: selected };
+    axios
+      .post(askPageTagsPostUrl, tags, { withCredentials: true })
+      .then((res) => {
+        const body = {
+          userId: session.userId,
+          title: questionTitle,
+          body: questionBodyMD,
+          bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
+          tags: res.data.tags,
+        };
 
-    axios.post(askPageTagsPostUrl, tags).then((res) => {
-      const body = {
-        userId: session.userId,
-        title: questionTitle,
-        body: questionBodyMD,
-        bodyString: questionBodyHTML.replace(/<[^>]+>/g, " ").trim(),
-        tags: res.data.tags,
-      };
-
-      axios
-        .post(askPageQuestionPostUrl, body)
-        .then((res) => {
-          console.log(res);
-          console.log(body);
-        })
-        .catch((err) => console.log(err));
-    });
+        axios
+          .post(askPageQuestionPostUrl, body, { withCredentials: true })
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
-
+  if (loading) return;
+  if (!session) navigate("/questions");
   return (
     <div className="EditPage_Container">
       <div className="Edit_Container">
@@ -78,6 +76,7 @@ const AskPage = () => {
           <TextEditor
             setQuestionBodyHTML={setQuestionBodyHTML}
             setQuestionBodyMD={setQuestionBodyMD}
+            userId={session.userId}
           />
         </div>
         <div className="Tags_Container">

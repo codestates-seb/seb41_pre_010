@@ -1,6 +1,6 @@
 import "./Styles/Header.css";
 import { useState } from "react";
-import { Link, useNavigate, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OrangeButton } from "./Button";
 import { useSession } from "../CustomHook/SessionProvider";
 import useImage from "../CustomHook/useImage";

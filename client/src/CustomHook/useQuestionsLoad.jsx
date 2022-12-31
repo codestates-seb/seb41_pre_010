@@ -19,12 +19,7 @@ function useQuestionsLoad(
     async function getQuestionList(tabName, pageNumber, pageSizeNumber) {
       try {
         const response = await axios.get(
-          searchValue ? getSearchValueUrl : getAllPagesUrl,
-          {
-            headers: {
-              "ngrok-skip-browser-warning": "69420",
-            },
-          }
+          searchValue ? getSearchValueUrl : getAllPagesUrl
         );
         const { data } = response;
         console.log(data);
