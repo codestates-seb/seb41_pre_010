@@ -32,24 +32,24 @@ const UserProfileEdit = (props) => {
       profile: image,
     };
 
-    const refreshTokenHost = "http://13.125.80.84";
-    axios
-      .post(
-        `${refreshTokenHost}/api/v1/user/token/refresh`,
-        {
-          userId,
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res);
-        // window.location.reload();
-      });
     axios
       .put(`/api/v1/users/${userId}/userprofile`, newProfile, {
         withCredentials: true,
       })
-      .then((res) => {})
+      .then((res) => {
+        const refreshTokenHost = "http://13.125.80.84";
+        axios
+          .post(
+            `${refreshTokenHost}/api/v1/user/token/refresh`,
+            {
+              userId,
+            },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            window.location.reload();
+          });
+      })
       .catch((err) => console.log(err));
   }
   return (
