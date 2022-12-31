@@ -32,25 +32,24 @@ const UserProfileEdit = (props) => {
       profile: image,
     };
 
+    const refreshTokenHost = "http://13.125.80.84";
+    axios
+      .post(
+        `${refreshTokenHost}/api/v1/user/token/refresh`,
+        {
+          userId,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res);
+        // window.location.reload();
+      });
     axios
       .put(`/api/v1/users/${userId}/userprofile`, newProfile, {
         withCredentials: true,
       })
-      .then((res) => {
-        const refreshTokenHost =
-          "http://ec2-13-125-80-84.ap-northeast-2.compute.amazonaws.com";
-        axios
-          .post(
-            `${refreshTokenHost}/api/v1/user/token/refresh`,
-            {},
-            {
-              withCredentials: true,
-            }
-          )
-          .then((res) => {
-            window.location.reload();
-          });
-      })
+      .then((res) => {})
       .catch((err) => console.log(err));
   }
   return (
