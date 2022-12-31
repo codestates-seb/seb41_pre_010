@@ -37,7 +37,7 @@ const UserProfileEdit = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        const refreshTokenHost = "http://13.125.80.84";
+        const refreshTokenHost = "http://43.201.92.36";
         axios
           .post(
             `${refreshTokenHost}/api/v1/user/token/refresh`,

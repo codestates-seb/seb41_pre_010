@@ -11,7 +11,7 @@ const ImageUpload = ({ userProfileImage, userId, setModalOpen, setImage }) => {
   const maxNumber = 1;
 
   const onSubmit = async () => {
-    const host = "http://ec2-13-125-80-84.ap-northeast-2.compute.amazonaws.com";
+    const host = "http://43.201.92.36";
     if (images.length === 0) return;
     const { data } = await axios
       .post(`${host}/api/v1/user/setting/profileimage`, {
