@@ -29,7 +29,7 @@ const UserProfileEdit = (props) => {
     const newProfile = {
       displayName: editDisplayName,
       title: editTitle,
-      profile: image,
+      profileImage: image,
     };
 
     axios
