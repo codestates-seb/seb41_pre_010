@@ -8,6 +8,8 @@ export default function QuestionTitle({
   loading,
   session,
 }) {
+  console.log(session && session.userId);
+  console.log(questionData && questionData.user.userId);
   return (
     <div className="Title_Container">
       <div className="Title_Contents">
@@ -18,7 +20,7 @@ export default function QuestionTitle({
           <div></div>
         ) : session ? (
           <BlueButton
-            href={`/questions/:${questionData && questionData.questionId}/edit`}
+            href={`/questions/${questionData && questionData.questionId}/edit`}
           >
             Ask Question
           </BlueButton>
@@ -36,10 +38,12 @@ export default function QuestionTitle({
             </StyledSpan>
             {loading ? (
               <div />
-            ) : session === questionData && questionData.user.userId ? (
+            ) : questionData &&
+              questionData.user.userId === session &&
+              session.userId ? (
               <a
-                href={`/questions/:${
-                  questionData && questionData.questionId
+                href={`/questions/${
+                  questionData && questionData.user.userId
                 }/edit`}
               >
                 <TiPen />
