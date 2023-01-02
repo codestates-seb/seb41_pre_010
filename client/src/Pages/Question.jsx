@@ -12,9 +12,7 @@ import Answers from "../Components/QuestionPage/Answer/Answers";
 import styled from "styled-components";
 import "./Styles/Question.css";
 import { useParams } from "react-router-dom";
-const QuestionBody = lazy(() =>
-  import("../Components/QuestionPage/QuestionBody")
-);
+import QuestionBody from "../Components/QuestionPage/QuestionBody";
 
 const StyledSpan = styled.span`
   font-size: ${(props) => props.fontsize};
@@ -63,9 +61,7 @@ export default function Question() {
                   session={session}
                 />
               </aside>
-              <Suspense fallback={<div> 로딩중... </div>}>
                 <QuestionBody questionData={questionData} />
-              </Suspense>
             </div>
             <div className="Tag_Section">
               <QuestionTag questionData={questionData} TagButton={TagButton} />

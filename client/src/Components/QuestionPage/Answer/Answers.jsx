@@ -67,6 +67,7 @@ export default function Answers({
                         }
                         addCommentHandler();
                       }}
+                      session={session}
                     />
                   ) : (
                     <div className="Add_Comment">

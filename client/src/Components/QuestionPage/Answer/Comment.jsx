@@ -6,6 +6,7 @@ export default function Comment({ el, loading, session, questionData }) {
   const [commentIdx, setCommentIdx] = useState(null);
   const [commentCheck, setCommentCheck] = useState(false);
   const [editCommentBody, seteditCommentBody] = useState("");
+
   const bodyResponseChange = (idx) => {
     return (el.comments[idx].body = editCommentBody);
   };
@@ -33,7 +34,7 @@ export default function Comment({ el, loading, session, questionData }) {
                   <span>{comment.createdAt}</span>
                   {loading ? (
                     <div></div>
-                  ) : session === comment.user.userId ? (
+                  ) : session.userId === comment.user.userId ? (
                     commentCheck ? (
                       <TiPen
                         onClick={() => {

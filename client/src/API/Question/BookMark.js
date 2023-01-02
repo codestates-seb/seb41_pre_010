@@ -4,7 +4,11 @@ export const questionBookMark = (questionId,userId) => {
   axios
     .put(
       `${url}api/v1/bookmark/${questionId}/questions`,
-      JSON.stringify({ userId: userId })
+      JSON.stringify({ userId: userId }),{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     )
     .then((res) => console.log(res));
 };
@@ -12,6 +16,10 @@ export const questionBookMark = (questionId,userId) => {
 export const answerBookMark = (answerId, userId) => {
   axios.put(
     `${url}api/v1/bookmark/${answerId}/answers`,
-    JSON.stringify({ userId: userId })
+    JSON.stringify({ userId: userId }),{
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
   );
 };
