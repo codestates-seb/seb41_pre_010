@@ -30,7 +30,7 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query(value = "SELECT questionid FROM question WHERE body LIKE %:keyword% OR question_title LIKE %:keyword%", nativeQuery =true)
     Set<Long> findQuestionIdByKeywordInQuestionTable(String keyword);
 
-    @Query(value = "SELECT question_id FROM question_Tag WHERE tag_id IN (SELECT tagid FROM tag WHERE tag_name LIKE %:keyword%)", nativeQuery =true)
+    @Query(value = "SELECT question_id FROM question_tag WHERE tag_id IN (SELECT tagid FROM tag WHERE tag_name LIKE %:keyword%)", nativeQuery =true)
     Set<Long> findQuestionIdByKeywordInTagTable(String keyword);
 
     @Query(value = "SELECT questionid FROM question WHERE user_id IN (SELECT userid FROM users WHERE display_name LIKE %:keyword%)", nativeQuery =true)
