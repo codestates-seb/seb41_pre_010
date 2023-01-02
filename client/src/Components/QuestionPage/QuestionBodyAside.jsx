@@ -18,8 +18,10 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
       case "default":
       case "down":
         setVoteCheck("up");
+        questionData.vote = questionData.vote + 1;
         break;
       case "up":
+        questionData.vote = questionData.vote - 1;
         setVoteCheck("default");
     }
   };
@@ -29,9 +31,11 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
       case "default":
       case "up":
         setVoteCheck("down");
+        questionData.vote = questionData.vote - 1;
         break;
       case "down":
         setVoteCheck("default");
+        questionData.vote = +1;
     }
   };
 
@@ -70,8 +74,6 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
                 session && session.userId,
                 questionData && questionData.questionId
               );
-              // setVoteDown(!voteDown);
-              // onClickDownVote();
               downVoteHandler();
             }}
           />

@@ -18,9 +18,11 @@ export default function AnswerBodyAside({
     switch (voteCheck) {
       case "default":
       case "down":
+        el.vote = el.vote + 1;
         setVoteCheck("up");
         break;
       case "up":
+        el.vote = el.vote - 1;
         setVoteCheck("default");
     }
   };
@@ -29,9 +31,11 @@ export default function AnswerBodyAside({
     switch (voteCheck) {
       case "default":
       case "up":
+        el.vote = el.vote - 1;
         setVoteCheck("down");
         break;
       case "down":
+        el.vote - el.vote + 1;
         setVoteCheck("default");
     }
   };

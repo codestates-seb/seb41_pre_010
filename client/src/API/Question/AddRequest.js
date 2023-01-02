@@ -15,9 +15,13 @@ export const addQuestion = (userId, title, body, tags) => {
 
 export const addAnswer = (questionId, userId, body) => {
   const request = { questionId: questionId, userId: userId, body: body };
-  console.log(`api/v1/answers${JSON.stringify(request)}`);
   axios
-    .post("api/v1/answers", JSON.stringify(request))
+    .post(`${url}api/v1/answers`, JSON.stringify(request),
+    {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
     .then((res) => {
       console.log(res);
     })
