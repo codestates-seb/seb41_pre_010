@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const url = "http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/"
 export const deleteQuestion = (questionId) => {
   axios
     .delete(`api/v1/questions/${questionId}`)

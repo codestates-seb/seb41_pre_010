@@ -10,7 +10,6 @@ export default function AnswerAdd({
 }) {
   const [answerBodyHTML, setAnswerBodyHTML] = useState("");
   const [answerBody, setAnswerBody] = useState("");
-
   return (
     <div className="Your_Answer_Container">
       <h2>Your Answer</h2>
@@ -40,7 +39,7 @@ export default function AnswerAdd({
             width={"140px"}
             onClick={() =>
               addAnswer(
-                questionData.questionId,
+                questionData && questionData.questionId,
                 session && session.userId,
                 answerBody
               )

@@ -12,11 +12,35 @@ export default function AnswerBodyAside({
   session,
   questionData,
 }) {
-  const [voteUp, setVoteUp] = useState(el.voteUpCheck);
-  const [voteDown, setVoteDown] = useState(el.voteDownCheck);
-  const [bookMarkCheck, setBookMarkCheck] = useState(el.bookMarkCheck);
+  const [voteCheck, setVoteCheck] = useState("default");
 
-  console.log(el.answerId);
+  const upVoteHandler = () => {
+    switch (voteCheck) {
+      case "default":
+      case "down":
+        el.vote = el.vote + 1;
+        setVoteCheck("up");
+        break;
+      case "up":
+        el.vote = el.vote - 1;
+        setVoteCheck("default");
+    }
+  };
+
+  const downVoteHandler = () => {
+    switch (voteCheck) {
+      case "default":
+      case "up":
+        el.vote = el.vote - 1;
+        setVoteCheck("down");
+        break;
+      case "down":
+        el.vote = el.vote + 1;
+        setVoteCheck("default");
+    }
+  };
+
+  const [bookMarkCheck, setBookMarkCheck] = useState(el.bookMarkCheck);
   return (
     <aside className="Main_Text_Aside">
       <div className="Vote_Icon_Container">
@@ -25,9 +49,9 @@ export default function AnswerBodyAside({
         ) : session ? (
           <TiArrowSortedUp
             size={"35px"}
-            color={voteUp ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
+            color={voteCheck === "up" ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
-              setVoteUp(!voteUp);
+              upVoteHandler();
               answerUpVoteRequest(el.user.userId, questionData.questionId);
             }}
           />
@@ -40,10 +64,12 @@ export default function AnswerBodyAside({
         ) : session ? (
           <TiArrowSortedDown
             size={"35px"}
-            color={voteDown ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
+            color={
+              voteCheck === "down" ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"
+            }
             onClick={() => {
               answerDownVoteRequest(el.user.userId, questionData.questionId);
-              setVoteDown(!voteDown);
+              downVoteHandler();
             }}
           />
         ) : (
