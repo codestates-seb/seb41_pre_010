@@ -1,8 +1,8 @@
 package com.backend.sever.user.service;
 
 import com.backend.sever.config.CustomBeanUtils;
-import com.backend.exception.logicException.ExceptionCode;
-import com.backend.exception.logicException.LoginException;
+import com.backend.sever.exception.logicException.ExceptionCode;
+import com.backend.sever.exception.logicException.LoginException;
 import com.backend.sever.jwt.event.UserRegistrationApplicationEvent;
 import com.backend.sever.jwt.utils.CustomAuthorityUtils;
 import com.backend.sever.user.entity.User;

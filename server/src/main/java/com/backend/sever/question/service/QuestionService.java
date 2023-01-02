@@ -1,7 +1,7 @@
 package com.backend.sever.question.service;
 
-import com.backend.exception.logicException.ExceptionCode;
-import com.backend.exception.logicException.LoginException;
+import com.backend.sever.exception.logicException.ExceptionCode;
+import com.backend.sever.exception.logicException.LoginException;
 import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.bookmark.entity.BookmarkAnswer;
 import com.backend.sever.bookmark.entity.BookmarkQuestion;

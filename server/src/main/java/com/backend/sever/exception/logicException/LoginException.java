@@ -1,4 +1,4 @@
-package com.backend.exception.logicException;
+package com.backend.sever.exception.logicException;
 
 import lombok.Getter;
 
