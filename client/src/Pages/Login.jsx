@@ -28,8 +28,8 @@ export default function Login() {
         password: password,
       })
       .then((res) => {
-        window.location.reload();
         navigate("/");
+        window.location.reload();
       })
       .catch((e) => {
         if (e) {

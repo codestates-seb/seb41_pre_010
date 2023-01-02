@@ -79,8 +79,8 @@ const LoggedIn = ({ session, navigate }) => {
               },
             })
             .then((data) => {
-              window.location.reload();
               navigate("/");
+              window.location.reload();
             })
             .catch((e) => {
               console.log(e);
