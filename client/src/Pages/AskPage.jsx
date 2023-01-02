@@ -54,7 +54,9 @@ const AskPage = () => {
         axios
           .post(askPageQuestionPostUrl, body, { withCredentials: true })
           .then((res) => {
-            console.log(res);
+            console.log(res.data);
+            const { questionId } = res.data;
+            navigate(`/questions/${questionId}`);
           })
           .catch((err) => console.log(err));
       })

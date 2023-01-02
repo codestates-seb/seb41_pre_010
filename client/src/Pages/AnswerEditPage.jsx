@@ -4,12 +4,14 @@ import TextEditor from "../Components/TextEditor";
 import { useEffect, useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AnswerEditPage = () => {
   const [answerBodyMD, setAnswerBodyMD] = useState("내용을 입력해주세요.");
+  const [questionId, setQuestionId] = useState(0);
   const { session } = useSession();
   const { answerId } = useParams();
+  const navigate = useNavigate();
 
   const answerEditGetUrl = `/api/v1/answers/${answerId}/edit`;
   const answerEditPutUrl = `/api/v1/questions/${answerId}`;
@@ -19,8 +21,9 @@ const AnswerEditPage = () => {
       axios
         .get(answerEditGetUrl)
         .then((res) => {
-          const { body } = res.data;
+          const { body, questionId } = res.data;
           setAnswerBodyMD(body);
+          setQuestionId(questionId);
         })
         .catch((err) => {
           console.log(err);
@@ -40,6 +43,7 @@ const AnswerEditPage = () => {
       .put(answerEditPutUrl, body)
       .then((res) => {
         console.log(res);
+        navigate(`/questions/${questionId}`);
       })
       .catch((err) => console.log(err));
   }
