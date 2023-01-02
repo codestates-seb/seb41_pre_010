@@ -21,8 +21,8 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
         questionData.vote = questionData.vote + 1;
         break;
       case "up":
-        questionData.vote = questionData.vote - 1;
         setVoteCheck("default");
+        questionData.vote = questionData.vote - 1;
     }
   };
 
