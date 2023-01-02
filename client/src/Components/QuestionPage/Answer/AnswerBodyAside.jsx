@@ -35,7 +35,7 @@ export default function AnswerBodyAside({
         setVoteCheck("down");
         break;
       case "down":
-        el.vote - el.vote + 1;
+        el.vote = el.vote + 1;
         setVoteCheck("default");
     }
   };
