@@ -14,7 +14,7 @@ export default function AnswerUserProfile({ el, loading, session }) {
           {loading ? (
             <div></div>
           ) : session && session.userId === el.user.userId ? (
-            <a href="/answers/:answerId/edit">
+            <a href={`/answers/${el.answerId}/edit`}>
               <TiPen />
             </a>
           ) : null}

@@ -1,6 +1,7 @@
 import React from "react";
 import { addComment } from "./API/Question/AddRequest";
 
+
 export default function AddComment({
   BlueButton,
   index,
@@ -11,6 +12,7 @@ export default function AddComment({
   questionData,
   addCommentHandler,
   showAddUi,
+  session
 }) {
   return (
     <div className="Add_Comment">
@@ -25,10 +27,11 @@ export default function AddComment({
           <BlueButton
             marginLft={"10px"}
             width={"117px"}
+            href={`/questions/${questionData&&questionData.questionId}`}
             onClick={() =>
               addComment(
                 questionData.questionId,
-                questionData.user.userId,
+                session&&session.userId,
                 el.answerId,
                 commentValue
               )

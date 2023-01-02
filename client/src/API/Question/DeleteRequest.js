@@ -2,7 +2,7 @@ import axios from "axios";
 const url = "http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/"
 export const deleteQuestion = (questionId) => {
   axios
-    .delete(`api/v1/questions/${questionId}`)
+    .delete(`${url}api/v1/questions/${questionId}`)
     .then((res) => {
       console.log(res);
     })
@@ -13,7 +13,7 @@ export const deleteQuestion = (questionId) => {
 
 export const deleteAnswer = (answerId) => {
   axios
-    .delete(`api/v1/answers/${answerId}`)
+    .delete(`${url}api/v1/answers/${answerId}`)
     .then((res) => {
       console.log(res);
     })
@@ -24,7 +24,7 @@ export const deleteAnswer = (answerId) => {
 
 export const deleteComment = (commentId) => {
   axios
-    .delete(`api/v1/comments/${commentId}`)
+    .delete(`${url}api/v1/comments/${commentId}`)
     .then((res) => {
       console.log(res);
     })

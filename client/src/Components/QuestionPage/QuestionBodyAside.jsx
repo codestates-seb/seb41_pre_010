@@ -35,7 +35,7 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
         break;
       case "down":
         setVoteCheck("default");
-        questionData.vote = +1;
+        questionData.vote = questionData.vote + 1;
     }
   };
 
@@ -53,7 +53,6 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
                 session && session.userId,
                 questionData && questionData.questionId
               );
-
               upVoteHandler();
             }}
           />

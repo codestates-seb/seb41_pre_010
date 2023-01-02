@@ -6,19 +6,15 @@ export default function Comment({ el, loading, session, questionData }) {
   const [commentIdx, setCommentIdx] = useState(null);
   const [commentCheck, setCommentCheck] = useState(false);
   const [editCommentBody, seteditCommentBody] = useState("");
-  const [comments, setcomment] = useState(el.comments);
-  const [answerId, setAnswerId] = useState(el.answerId);
-
-  const addCommentHandler = (answerId) => {};
 
   const bodyResponseChange = (idx) => {
-    return (comments[idx].body = editCommentBody);
+    return (el.comments[idx].body = editCommentBody);
   };
 
   return (
     <div className="Comment_Container">
-      {comments.length !== 0
-        ? comments.map((comment, index) => {
+      {el.comments.length !== 0
+        ? el.comments.map((comment, index) => {
             return (
               <div key={index} className="Comment_Contents">
                 {commentCheck && index === commentIdx ? (
@@ -32,13 +28,13 @@ export default function Comment({ el, loading, session, questionData }) {
                   <span>{comment.body} -</span>
                 )}
                 <div>
-                  <a href={`/users/mypage/:${comment.user.userId}`}>
+                  <a href={`/users/mypage/${comment.user.userId}`}>
                     {comment.user.displayName}
                   </a>
                   <span>{comment.createdAt}</span>
                   {loading ? (
                     <div></div>
-                  ) : session === comment.user.userId ? (
+                  ) : session.userId === comment.user.userId ? (
                     commentCheck ? (
                       <TiPen
                         onClick={() => {
@@ -54,7 +50,7 @@ export default function Comment({ el, loading, session, questionData }) {
                         }}
                       />
                     ) : (
-                      <TiPen onClick={() => addCommentHandler()} />
+                      <TiPen />
                     )
                   ) : null}
                 </div>
