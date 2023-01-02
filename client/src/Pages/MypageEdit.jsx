@@ -6,22 +6,38 @@ import UserProfile from "../Components/UserProfile/UserProfile";
 import UserProfileEdit from "../Components/UserProfile/UserProfileEdit";
 import CustomTitle from "../Components/CustomTitle";
 import axios from "axios";
+import Page404 from "./404Page";
 
-const UserProfileComponent = ({ session }) => {
-  const [userProfile, setUserProfile] = useState(session);
-  const myPageEditGetUserProfileUrl = `/api/v1/users/${session.userId}/userprofile`;
+const fetchUrl = (url) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.get(url);
+      resolve(data);
+    } catch (e) {
+      if (e) reject(e);
+    }
+  });
+};
+
+const UserProfileComponent = ({ userId }) => {
+  const [userProfile, setUserProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const myPageEditGetUserProfileUrl = `/api/v1/users/${userId}/userprofile`;
 
   useEffect(() => {
-    axios
-      .get(myPageEditGetUserProfileUrl, {
-        withCredentials: true,
+    fetchUrl(myPageEditGetUserProfileUrl)
+      .then((userProfileData) => {
+        setUserProfile(userProfileData);
+        setLoading(false);
       })
-      .then(({ data }) => {
-        setUserProfile(data);
-      })
-      .catch((err) => console.log(err));
+      .catch((e) => {
+        setLoading(false);
+      });
   }, [myPageEditGetUserProfileUrl]);
 
+  if (loading) return;
+  if (!userProfile) return <Page404 />;
   return (
     <>
       {userProfile && (
@@ -49,7 +65,7 @@ const MypageEdit = () => {
     navigate(`/users/mypage/${userId}`);
   }
 
-  return <>{session ? <UserProfileComponent session={session} /> : null}</>;
+  return <>{session ? <UserProfileComponent userId={userId} /> : null}</>;
 };
 
 export default MypageEdit;
