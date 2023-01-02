@@ -9,7 +9,7 @@ export default function QuestionUserProfil({ questionData }) {
         alt="userImage"
       />
       <a
-        href={`/users/mypage/:${questionData && questionData.user.userId}`}
+        href={`/users/mypage/${questionData && questionData.user.userId}`}
       >{`${questionData && questionData.user.displayName}`}</a>
     </div>
   );
