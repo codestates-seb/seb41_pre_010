@@ -21,8 +21,6 @@ export default function Login() {
     email.length !== 0;
 
   const onSubmit = (e) => {
-    e.preventDefault();
-
     const url = "/api/v1/users/login";
     axios
       .post(url, {
@@ -57,11 +55,13 @@ export default function Login() {
                 setEmail={setEmail}
                 setEmailMessage={setEmailMessage}
                 emailMessage={emailMessage}
+                onSubmit={onSubmit}
               />
               <PasswordComponent
                 setPassword={setPassword}
                 setPasswordMessage={setPasswordMessage}
                 passwordMessage={passwordMessage}
+                onSubmit={onSubmit}
               />
               <div className="Login_Button_Container">
                 <BlueButton
@@ -107,7 +107,12 @@ const Logo = () => {
   );
 };
 
-const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
+const EmailComponent = ({
+  setEmail,
+  setEmailMessage,
+  emailMessage,
+  onSubmit,
+}) => {
   const onChangeEmail = (e) => {
     const emailRegex =
       /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -123,6 +128,13 @@ const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
     }
   };
 
+  const onKeyPress = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      onSubmit();
+    }
+  };
+
   return (
     <div className="Login_Email_Container">
       <label htmlFor="Login_email" className="Login_Content_Title">
@@ -134,6 +146,7 @@ const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
         aria-label="Email Input"
         className="Login_Content_Input"
         onChange={onChangeEmail}
+        onKeyDown={onKeyPress}
       />
       <span className="Login_Message">{emailMessage}</span>
     </div>
@@ -144,6 +157,7 @@ const PasswordComponent = ({
   setPassword,
   setPasswordMessage,
   passwordMessage,
+  onSubmit,
 }) => {
   const onChangePassword = (e) => {
     const passwordCurrent = e.target.value;
@@ -153,6 +167,12 @@ const PasswordComponent = ({
       setPasswordMessage("비밀번호를 입력해주세요.");
     } else {
       setPasswordMessage("");
+    }
+  };
+
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onSubmit();
     }
   };
 
@@ -167,6 +187,7 @@ const PasswordComponent = ({
         aria-label="Password Input"
         className="Login_Content_Input"
         onChange={onChangePassword}
+        onKeyDown={onKeyPress}
       />
       <span className="Login_Message">{passwordMessage}</span>
     </div>
