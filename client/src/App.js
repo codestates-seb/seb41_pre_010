@@ -14,8 +14,20 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SessionProvider } from "./CustomHook/SessionProvider";
 import SearchResultPage from "./Pages/SearchResultPage";
 import AnswerEditPage from "./Pages/AnswerEditPage";
+import React, { useState } from "react";
+import useQuestionsLoad from "./CustomHook/useQuestionsLoad";
 
 function App() {
+  const [curPage, setCurPage] = useState(1);
+  const [curPerPage, setCurPerPage] = useState(15);
+  const [curTab, setCurTab] = useState("newest");
+
+  const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
+    curTab,
+    curPage,
+    curPerPage
+  );
+
   return (
     <>
       <SessionProvider>
@@ -23,7 +35,22 @@ function App() {
           <Header />
           <Routes>
             <Route path="/questions/:questionId" element={<Question />} />
-            <Route path="/questions" element={<MainPage />} />
+            <Route
+              path="/questions"
+              element={
+                <MainPage
+                  curPage={curPage}
+                  setCurPage={setCurPage}
+                  curPerPage={curPerPage}
+                  setCurPerPage={setCurPerPage}
+                  curTab={curTab}
+                  setCurTab={setCurTab}
+                  questionsList={questionsList}
+                  totalPages={totalPages}
+                  totalQuestions={totalQuestions}
+                />
+              }
+            />
             <Route path="/users/signup" element={<SignUp />} />
             <Route path="/users/login" element={<Login />} />
             <Route path="/questions/:questionId/edit" element={<EditPage />} />

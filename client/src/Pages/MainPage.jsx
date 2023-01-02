@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Styles/MainPage.css";
 import { BlueButton, WhiteButton, OrangeButton } from "../Components/Button";
 import MainPageQuestion from "../Components/MainPageQuestion";
 import CustomTitle from "../Components/CustomTitle";
-import useQuestionsLoad from "../CustomHook/useQuestionsLoad";
 import calcPagination from "../Function/calcPagination";
 import { useSession } from "../CustomHook/SessionProvider";
 
-function MainPage() {
+function MainPage({
+  curPage,
+  setCurPage,
+  curPerPage,
+  setCurPerPage,
+  curTab,
+  setCurTab,
+  questionsList,
+  totalPages,
+  totalQuestions,
+}) {
   const { loading, session } = useSession();
-  const [curPage, setCurPage] = useState(1);
-  const [curPerPage, setCurPerPage] = useState(15);
-  const [curTab, setCurTab] = useState("newest");
+
   const FILTERARR = [
     { enName: "newest", krName: "최신순" },
     { enName: "votes", krName: "추천순" },
   ];
   const PERPAGEARR = [15, 30, 50];
-
-  const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
-    curTab,
-    curPage,
-    curPerPage
-  );
 
   function changeCurTab(e) {
     setCurTab(() => e.target.id);
