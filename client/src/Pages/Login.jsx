@@ -129,7 +129,6 @@ const EmailComponent = ({
   };
 
   const onKeyPress = (e) => {
-    e.preventDefault();
     if (e.key === "Enter") {
       onSubmit();
     }

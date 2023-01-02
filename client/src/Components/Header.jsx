@@ -44,7 +44,7 @@ const SearchInput = ({ navigate }) => {
   );
 };
 
-const LoggedIn = ({ session }) => {
+const LoggedIn = ({ session, navigate }) => {
   const { image } = useImage(session.profileImage);
   return (
     <div className="MainHeader_UserInfo_Container">
@@ -80,6 +80,7 @@ const LoggedIn = ({ session }) => {
             })
             .then((data) => {
               window.location.reload();
+              navigate("/");
             })
             .catch((e) => {
               console.log(e);
@@ -127,7 +128,7 @@ const Header = () => {
           {loading ? (
             <div className="MainHeader_Empty_Container"></div>
           ) : session ? (
-            <LoggedIn session={session} />
+            <LoggedIn session={session} navigate={navigate} />
           ) : (
             <LoginRequired navigate={navigate} />
           )}
