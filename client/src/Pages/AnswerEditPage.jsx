@@ -17,11 +17,7 @@ const AnswerEditPage = () => {
   useEffect(() => {
     async function loadAnswerContents() {
       axios
-        .get(answerEditGetUrl, {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        })
+        .get(answerEditGetUrl)
         .then((res) => {
           const { body } = res.data;
           setAnswerBodyMD(body);
@@ -44,7 +40,6 @@ const AnswerEditPage = () => {
       .put(answerEditPutUrl, body)
       .then((res) => {
         console.log(res);
-        console.log(body);
       })
       .catch((err) => console.log(err));
   }

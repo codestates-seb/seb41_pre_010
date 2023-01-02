@@ -35,7 +35,6 @@ function TextEditor({
         userId,
       })
       .then((data) => {
-        console.log(data);
         callback(data.data.url, "alt");
       });
     return false;

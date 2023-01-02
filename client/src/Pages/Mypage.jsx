@@ -86,14 +86,6 @@ const FirstRowContainer = ({ questions, answers }) => {
 const SecondRowContainer = ({ bookmarkQuestions, bookmarkAnswers }) => {
   return (
     <div className="Mypage_List_Container">
-      {/* <div className="Mypage_Tag_Container">
-        <div className="Mypage_Title">Top Tags</div>
-        <div className="Mypage_Tag_ListContents">
-          {dummyDataInfo[3].tag.map((el) => {
-            return <ul key={el.tagId}>{<li>{el.tagName}</li>}</ul>;
-          })}
-        </div>
-      </div> */}
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Bookmark (Questions)</div>
         {bookmarkQuestions.length > 0 && (
