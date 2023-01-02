@@ -21,6 +21,7 @@ function App() {
   const [curPage, setCurPage] = useState(1);
   const [curPerPage, setCurPerPage] = useState(15);
   const [curTab, setCurTab] = useState("newest");
+  const [questionId, setQuestionId] = useState(null);
 
   const { questionsList, totalPages, totalQuestions } = useQuestionsLoad(
     curTab,
@@ -36,7 +37,10 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/questions/:questionId" element={<Question />} />
+          <Route
+            path="/questions/:questionId"
+            element={<Question/>}
+          />
           <Route
             path="/questions"
             element={
@@ -50,6 +54,7 @@ function App() {
                 questionsList={questionsList}
                 totalPages={totalPages}
                 totalQuestions={totalQuestions}
+                setQuestionId={setQuestionId}
               />
             }
           />

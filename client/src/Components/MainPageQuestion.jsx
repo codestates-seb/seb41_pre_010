@@ -14,7 +14,10 @@ function MainPageQuestion(props) {
     title,
     user,
     vote,
+    setQuestionId
   } = props.el;
+
+  
 
   return (
     <div className="Main_Page_Question_Container">
@@ -30,6 +33,8 @@ function MainPageQuestion(props) {
         <Link
           className="Main_Page_Question_Title"
           to={`/questions/${questionId}`}
+          onClick={()=> {
+            setQuestionId(questionId)}}
         >
           {title}
         </Link>

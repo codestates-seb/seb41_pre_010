@@ -16,6 +16,7 @@ function MainPage({
   questionsList,
   totalPages,
   totalQuestions,
+  setQuestionId,
 }) {
   const { loading, session } = useSession();
 
@@ -103,7 +104,13 @@ function MainPage({
         </div>
         <div className="Questions_List_Container">
           {questionsList.map((el) => {
-            return <MainPageQuestion key={el.questionId} el={el} />;
+            return (
+              <MainPageQuestion
+                key={el.questionId}
+                el={el}
+                setQuestionId={setQuestionId}
+              />
+            );
           })}
         </div>
         <div className="Questions_Pagination_Container">

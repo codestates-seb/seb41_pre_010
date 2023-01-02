@@ -14,7 +14,7 @@ export const editCommentRequest = (
     body: body,
   };
 
-  axios.put(`api/v1/comments/${commentId}`,request).then((res)=> {
+  axios.put(`${url}api/v1/comments/${commentId}`,request).then((res)=> {
     console.log(res)
   }).catch((err)=>{
     console.log(err)

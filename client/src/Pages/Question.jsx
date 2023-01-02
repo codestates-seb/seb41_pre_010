@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import Input from "../Components/Input";
 import AnswerAdd from "../Components/QuestionPage/AnswerAdd.jsx";
 import QuestionTitle from "../Components/QuestionPage/QuestionTitle";
 import QuestionBodyAside from "../Components/QuestionPage/QuestionBodyAside";
-import QuestionBody from "../Components/QuestionPage/QuestionBody";
 import QuestionTag from "../Components/QuestionPage/QuestionTag";
 import QuestionUserProfil from "../Components/QuestionPage/QuestionUserProfil";
-import { questionDummyData } from "../QuestionData";
 import { getQuestionData } from "../API/Question/QuestionInfo";
 import { BlueButton, TagButton } from "../Components/Button";
 import { useSession } from "../CustomHook/SessionProvider";
 import Answers from "../Components/QuestionPage/Answer/Answers";
 import styled from "styled-components";
 import "./Styles/Question.css";
+import { useParams } from "react-router-dom";
+const QuestionBody = lazy(() =>
+  import("../Components/QuestionPage/QuestionBody")
+);
 
 const StyledSpan = styled.span`
   font-size: ${(props) => props.fontsize};
@@ -29,13 +30,18 @@ export default function Question() {
     setActiveClick(!activeClick);
   };
 
+  const { questionId } = useParams();
+
   useEffect(() => {
     const questionData = async () => {
-      const result = await getQuestionData(1, 1);
+      const result = await getQuestionData(
+        questionId,
+        session && session.userId
+      );
       setQeustionData(result);
     };
     questionData();
-  }, []);
+  }, [questionId]);
 
   return (
     <>
@@ -57,7 +63,9 @@ export default function Question() {
                   session={session}
                 />
               </aside>
-              <QuestionBody questionData={questionData} />
+              <Suspense fallback={<div> 로딩중... </div>}>
+                <QuestionBody questionData={questionData} />
+              </Suspense>
             </div>
             <div className="Tag_Section">
               <QuestionTag questionData={questionData} TagButton={TagButton} />
@@ -65,7 +73,7 @@ export default function Question() {
             <div className="Question_User_Profil_Container">
               <QuestionUserProfil questionData={questionData} />
             </div>
-            {questionData && questionData.answers.length === 0 ? (
+            {questionData && questionData.answers.length !== 0 ? (
               <div className="Contour_Line" />
             ) : null}
             <Answers

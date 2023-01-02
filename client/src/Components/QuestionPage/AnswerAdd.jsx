@@ -39,8 +39,8 @@ export default function AnswerAdd({
             width={"140px"}
             onClick={() =>
               addAnswer(
-                questionData && questionData.questionId,
                 session && session.userId,
+                questionData && questionData.questionId,
                 answerBody
               )
             }

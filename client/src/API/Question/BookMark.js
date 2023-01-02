@@ -3,7 +3,7 @@ const url = "http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/"
 export const questionBookMark = (questionId,userId) => {
   axios
     .put(
-      `api/v1/bookmark/${questionId}/questions`,
+      `${url}api/v1/bookmark/${questionId}/questions`,
       JSON.stringify({ userId: userId })
     )
     .then((res) => console.log(res));
@@ -11,7 +11,7 @@ export const questionBookMark = (questionId,userId) => {
 
 export const answerBookMark = (answerId, userId) => {
   axios.put(
-    `api/v1/bookmark/${answerId}/answers`,
+    `${url}api/v1/bookmark/${answerId}/answers`,
     JSON.stringify({ userId: userId })
   );
 };
