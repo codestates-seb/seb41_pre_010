@@ -14,7 +14,7 @@ const AnswerEditPage = () => {
   const navigate = useNavigate();
 
   const answerEditGetUrl = `/api/v1/answers/${answerId}/edit`;
-  const answerEditPutUrl = `/api/v1/questions/${answerId}`;
+  const answerEditPutUrl = `/api/v1/answers/${answerId}`;
 
   useEffect(() => {
     async function loadAnswerContents() {
@@ -35,6 +35,7 @@ const AnswerEditPage = () => {
 
   function submitEditQuestion() {
     const body = {
+      questionId: questionId,
       userId: session.userId,
       body: answerBodyMD,
     };
