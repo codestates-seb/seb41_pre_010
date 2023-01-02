@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("api/v1/comments")
 public class CommentsController {
