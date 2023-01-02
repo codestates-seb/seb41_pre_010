@@ -1,11 +1,7 @@
 import React from "react";
 import { TiPen } from "react-icons/ti";
 
-export default function AnswerUserProfile({
-  el,
-  loading,
-  session,
-}) {
+export default function AnswerUserProfile({ el, loading, session }) {
   return (
     <div className="Answer_User_Profil_Container">
       <div className="Answer_Contents">
@@ -18,7 +14,7 @@ export default function AnswerUserProfile({
           {loading ? (
             <div></div>
           ) : session && session.userId === el.user.userId ? (
-            <a href="/answers/:answerId/edit">
+            <a href={`/answers/${el.answerId}/edit`}>
               <TiPen />
             </a>
           ) : null}

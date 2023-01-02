@@ -2,10 +2,7 @@ package com.backend.sever.question.mapper;
 
 import com.backend.sever.answer.entity.Answer;
 import com.backend.sever.comments.entity.Comments;
-import com.backend.sever.question.dto.QuestionInfoResponseDto;
-import com.backend.sever.question.dto.QuestionPostDto;
-import com.backend.sever.question.dto.QuestionPutDto;
-import com.backend.sever.question.dto.QuestionResponseDto;
+import com.backend.sever.question.dto.*;
 import com.backend.sever.question.dto.questionInfodtos.AnswerInfoDto;
 import com.backend.sever.question.dto.questionInfodtos.CommentsInfoDto;
 import com.backend.sever.question.dto.questionInfodtos.UserSimpleInfoDto;
@@ -85,6 +82,12 @@ public interface QuestionMapper {
         questionResponseDto.setTags(questionTagsToQuestionTagResponseDtos(questionTags));
 
         return questionResponseDto;
+    }
+
+    default QuestionIdResponseDto questionToQuestionIdDto(Question question) {
+        QuestionIdResponseDto questionIdResponseDto = new QuestionIdResponseDto();
+        questionIdResponseDto.setQuestionId(question.getQuestionId());
+        return questionIdResponseDto;
     }
 
     default PageResponseDto questionInfosToPageResponseDto(Page<Question> questionPages) {

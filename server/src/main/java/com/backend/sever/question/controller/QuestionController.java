@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.List;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("api/v1/questions")
 public class QuestionController {
@@ -34,7 +34,7 @@ public class QuestionController {
     public ResponseEntity postQuestion(@RequestBody QuestionPostDto questionPostDto) {
         Question question = questionService.createQuestion(mapper.questionPostDtoToQuestion(questionPostDto));
 
-        return new ResponseEntity<> (HttpStatus.OK);
+        return new ResponseEntity<> (mapper.questionToQuestionIdDto(question), HttpStatus.OK);
     }
 
     @GetMapping("/{question-id}/edit")

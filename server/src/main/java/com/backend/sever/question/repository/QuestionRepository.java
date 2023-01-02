@@ -13,27 +13,27 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
-    @Query(value = "SELECT COUNT(TAGID) FROM TAG", nativeQuery =true)
+    @Query(value = "SELECT COUNT(tagid) FROM tag", nativeQuery =true)
     long countTag();
 
-    @Query(value = "SELECT QUESTION_TAG_ID FROM QUESTION_TAG WHERE QUESTION_ID = :questionId", nativeQuery =true)
+    @Query(value = "SELECT question_tag_id FROM question_tag WHERE question_id = :questionId", nativeQuery =true)
     Optional<List<Long>> findQuestionTagIdByQuestionId(Long questionId);
 
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM QUESTION_TAG WHERE QUESTION_TAG_ID = :questionTagId", nativeQuery =true)
+    @Query(value = "DELETE FROM question_tag WHERE question_tag_id = :questionTagId", nativeQuery =true)
     void deleteQuestionTagIdById(Long questionTagId);
 
-    @Query(value = "SELECT * FROM QUESTION WHERE QUESTIONID IN :questionId", nativeQuery =true)
+    @Query(value = "SELECT * FROM question WHERE questionid IN :questionId", nativeQuery =true)
     Page<Question> makePageByQuestionId(Set<Long> questionId, Pageable pageable);
 
-    @Query(value = "SELECT QUESTIONID FROM QUESTION WHERE BODY LIKE %:keyword% OR QUESTION_TITLE LIKE %:keyword%", nativeQuery =true)
+    @Query(value = "SELECT questionid FROM question WHERE body LIKE %:keyword% OR question_title LIKE %:keyword%", nativeQuery =true)
     Set<Long> findQuestionIdByKeywordInQuestionTable(String keyword);
 
-    @Query(value = "SELECT QUESTION_ID FROM QUESTION_TAG WHERE TAG_ID IN (SELECT TAGID FROM TAG WHERE TAG_NAME LIKE %:keyword%)", nativeQuery =true)
+    @Query(value = "SELECT question_id FROM question_tag WHERE tag_id IN (SELECT tagid FROM tag WHERE tag_name LIKE %:keyword%)", nativeQuery =true)
     Set<Long> findQuestionIdByKeywordInTagTable(String keyword);
 
-    @Query(value = "SELECT QUESTIONID FROM QUESTION WHERE USER_ID IN (SELECT USERID FROM USERS WHERE DISPLAY_NAME LIKE %:keyword%)", nativeQuery =true)
+    @Query(value = "SELECT questionid FROM question WHERE user_id IN (SELECT userid FROM users WHERE display_name LIKE %:keyword%)", nativeQuery =true)
     Set<Long> findQuestionIdByKeywordInUserTable(String keyword);
 
 }

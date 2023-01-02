@@ -10,7 +10,9 @@ export default function AnswerAdd({
 }) {
   const [answerBodyHTML, setAnswerBodyHTML] = useState("");
   const [answerBody, setAnswerBody] = useState("");
-
+  console.log(session && session.userId);
+  console.log(questionData && questionData.questionId);
+  console.log(answerBody);
   return (
     <div className="Your_Answer_Container">
       <h2>Your Answer</h2>
@@ -38,13 +40,14 @@ export default function AnswerAdd({
         ) : session ? (
           <BlueButton
             width={"140px"}
-            onClick={() =>
+            onClick={() => {
               addAnswer(
-                questionData.questionId,
+                questionData && questionData.questionId,
                 session && session.userId,
                 answerBody
-              )
-            }
+              );
+            }}
+            href={`/questions/${questionData && questionData.questionId}`}
           >
             Post Yout Answer
           </BlueButton>

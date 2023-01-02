@@ -1,6 +1,6 @@
 import "./Styles/Header.css";
 import { useState } from "react";
-import { Link, useNavigate, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OrangeButton } from "./Button";
 import { useSession } from "../CustomHook/SessionProvider";
 import useImage from "../CustomHook/useImage";
@@ -44,7 +44,7 @@ const SearchInput = ({ navigate }) => {
   );
 };
 
-const LoggedIn = ({ session }) => {
+const LoggedIn = ({ session, navigate }) => {
   const { image } = useImage(session.profileImage);
   return (
     <div className="MainHeader_UserInfo_Container">
@@ -79,6 +79,7 @@ const LoggedIn = ({ session }) => {
               },
             })
             .then((data) => {
+              navigate("/");
               window.location.reload();
             })
             .catch((e) => {
@@ -127,7 +128,7 @@ const Header = () => {
           {loading ? (
             <div className="MainHeader_Empty_Container"></div>
           ) : session ? (
-            <LoggedIn session={session} />
+            <LoggedIn session={session} navigate={navigate} />
           ) : (
             <LoginRequired navigate={navigate} />
           )}

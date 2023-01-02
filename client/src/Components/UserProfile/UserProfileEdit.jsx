@@ -29,12 +29,27 @@ const UserProfileEdit = (props) => {
     const newProfile = {
       displayName: editDisplayName,
       title: editTitle,
-      profile: image,
+      profileImage: image,
     };
 
     axios
-      .put(`/api/v1/users/1/userprofile`, newProfile)
-      .then((res) => console.log(res))
+      .put(`/api/v1/users/${userId}/userprofile`, newProfile, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const refreshTokenHost = "http://43.201.92.36";
+        axios
+          .post(
+            `${refreshTokenHost}/api/v1/user/token/refresh`,
+            {
+              userId,
+            },
+            { withCredentials: true }
+          )
+          .then((res) => {
+            window.location.reload();
+          });
+      })
       .catch((err) => console.log(err));
   }
   return (
@@ -63,6 +78,7 @@ const UserProfileEdit = (props) => {
         <div className="MypageEdit_UserInfoEdit_FormName_Container">
           <div className="UserInfo_Edit_Subtitle">Display name</div>
           <Input
+            type="text"
             className="UserInfo_Edit_Input"
             value={editDisplayName}
             onChange={changeDisplayName}
@@ -71,8 +87,9 @@ const UserProfileEdit = (props) => {
         <div className="MypageEdit_UserInfoEdit_FormTitle_Container">
           <div className="UserInfo_Edit_Subtitle">Title</div>
           <Input
+            type="text"
             className="UserInfo_Edit_Input"
-            value={editTitle}
+            value={editTitle ? editTitle : ""}
             onChange={changeTitle}
           />
         </div>
@@ -83,7 +100,7 @@ const UserProfileEdit = (props) => {
           <BlueWhiteButton
             width="90px"
             height="35px"
-            href={"/users/mypage/:userId"}
+            href={`/users/mypage/${userId}`}
           >
             취소
           </BlueWhiteButton>

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
