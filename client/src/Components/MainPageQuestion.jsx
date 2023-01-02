@@ -15,6 +15,7 @@ function MainPageQuestion(props) {
     user,
     vote,
   } = props.el;
+
   return (
     <div className="Main_Page_Question_Container">
       <div className="Main_Page_Question_Info">
@@ -36,10 +37,10 @@ function MainPageQuestion(props) {
           {body.length > 80 ? body.slice(0, 80) + "..." : body}
         </div>
         <div className="Main_Page_Question_Tag">
-          {tags.map((tag) => {
+          {tags.map((tag, idx) => {
             return (
-              <TagButton fontSize="0.5rem" key={tag.tagId}>
-                {tag.tagName}
+              <TagButton fontSize="0.5rem" key={idx}>
+                {tag}
               </TagButton>
             );
           })}

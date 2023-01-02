@@ -14,7 +14,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SessionProvider } from "./CustomHook/SessionProvider";
 import SearchResultPage from "./Pages/SearchResultPage";
 import AnswerEditPage from "./Pages/AnswerEditPage";
+import { useState } from "react";
+
 function App() {
+  const [questionsList, setQuestionsList] = useState([]);
+
   return (
     <>
       <SessionProvider>
@@ -22,7 +26,15 @@ function App() {
           <Header />
           <Routes>
             <Route path="/questions/:questionId" element={<Question />} />
-            <Route path="/questions" element={<MainPage />} />
+            <Route
+              path="/questions"
+              element={
+                <MainPage
+                  questionsList={questionsList}
+                  setQuestionsList={setQuestionsList}
+                />
+              }
+            />
             <Route path="/users/signup" element={<SignUp />} />
             <Route path="/users/login" element={<Login />} />
             <Route path="/questions/:questionId/edit" element={<EditPage />} />

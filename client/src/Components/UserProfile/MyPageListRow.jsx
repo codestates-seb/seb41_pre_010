@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function MyPageListRow(props) {
   const name = Object.keys(props)[0];
-  const listData = props[name][name];
+  const listData = props[name];
 
   return (
     <div className="Mypage_List_Content_Container">

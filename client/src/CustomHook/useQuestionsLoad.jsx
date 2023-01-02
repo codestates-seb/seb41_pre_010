@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { dummyData } from "../DummyData";
 
 function useQuestionsLoad(
   tabName,
@@ -8,9 +7,9 @@ function useQuestionsLoad(
   pageSizeNumber,
   searchValue = null
 ) {
-  const [questionsList, setQuestionsList] = useState(dummyData);
-  const [totalPages, setTotalPage] = useState(100);
-  const [totalQuestions, setTotalQuestions] = useState(23338049);
+  const [questionsList, setQuestionsList] = useState([]);
+  const [totalPages, setTotalPage] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
 
   const getSearchValueUrl = `/api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
   const getAllPagesUrl = `/api/v1/questions/search?tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
@@ -22,17 +21,11 @@ function useQuestionsLoad(
           searchValue ? getSearchValueUrl : getAllPagesUrl
         );
         const { data } = response;
-        console.log(data);
         setQuestionsList(() => data.questionInfos);
         setTotalPage(() => data.totalPages);
         setTotalQuestions(() => data.totalQuestions);
       } catch (err) {
         console.log("failed to fetch!");
-        setTotalPage(2000);
-      } finally {
-        setQuestionsList(() => dummyData);
-        setTotalPage(() => 100);
-        setTotalQuestions(() => 20000);
       }
     }
 

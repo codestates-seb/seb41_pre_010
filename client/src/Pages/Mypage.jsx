@@ -73,11 +73,11 @@ const FirstRowContainer = ({ questions, answers }) => {
     <div className="Mypage_List_Container">
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Questions</div>
-        {questions.length > 0 && <MyPageListRow question={questions} />}
+        {questions && <MyPageListRow question={questions} />}
       </div>
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Answers</div>
-        {questions.length > 0 && <MyPageListRow answer={answers} />}
+        {answers && <MyPageListRow answer={answers} />}
       </div>
     </div>
   );
