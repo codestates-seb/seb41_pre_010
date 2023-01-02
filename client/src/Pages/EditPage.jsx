@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
 import { TagBar } from "../Components/TagBar";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const EditTitle = ({ setQuestionTitle, questionTitle }) => {
   function changeQuestionTitle(e) {
@@ -36,6 +36,7 @@ const EditPage = () => {
   const { session } = useSession();
 
   const { questionId } = useParams();
+  const navigate = useNavigate();
 
   const editPageGetQuestionUrl = `/api/v1/questions/${questionId}/edit`;
   const editPagePostTagsUrl = `/api/v1/tags`;
@@ -44,11 +45,7 @@ const EditPage = () => {
   useEffect(() => {
     async function loadQuestionContents() {
       axios
-        .get(editPageGetQuestionUrl, {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        })
+        .get(editPageGetQuestionUrl)
         .then((res) => {
           const { title, body, tags } = res.data;
           const tagNameArr = [];
@@ -84,7 +81,7 @@ const EditPage = () => {
         .put(editPagePutQuestionUrl, body)
         .then((res) => {
           console.log(res);
-          console.log(body);
+          navigate(`/questions/${questionId}`);
         })
         .catch((err) => console.log(err));
     });

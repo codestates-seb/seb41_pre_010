@@ -9,7 +9,7 @@ function useQuestionsLoad(
   searchValue = null
 ) {
   const [questionsList, setQuestionsList] = useState(dummyData);
-  const [totalPages, setTotalPage] = useState(0);
+  const [totalPages, setTotalPage] = useState(100);
   const [totalQuestions, setTotalQuestions] = useState(23338049);
 
   const getSearchValueUrl = `/api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
@@ -29,6 +29,10 @@ function useQuestionsLoad(
       } catch (err) {
         console.log("failed to fetch!");
         setTotalPage(2000);
+      } finally {
+        setQuestionsList(() => dummyData);
+        setTotalPage(() => 100);
+        setTotalQuestions(() => 20000);
       }
     }
 

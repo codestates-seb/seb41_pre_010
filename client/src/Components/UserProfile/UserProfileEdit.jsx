@@ -89,7 +89,7 @@ const UserProfileEdit = (props) => {
           <Input
             type="text"
             className="UserInfo_Edit_Input"
-            value={editTitle}
+            value={editTitle ? editTitle : ""}
             onChange={changeTitle}
           />
         </div>
@@ -100,7 +100,7 @@ const UserProfileEdit = (props) => {
           <BlueWhiteButton
             width="90px"
             height="35px"
-            href={"/users/mypage/:userId"}
+            href={`/users/mypage/${userId}`}
           >
             취소
           </BlueWhiteButton>

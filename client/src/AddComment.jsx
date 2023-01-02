@@ -1,21 +1,20 @@
 import React from "react";
-import { addComment } from "../../../API/Question/AddRequest";
+import { addComment } from "./API/Question/AddRequest";
 
 export default function AddComment({
   BlueButton,
-  answerIdx,
   index,
   Input,
   el,
-  activeClick,
   commentValue,
   setCommentValue,
   questionData,
   addCommentHandler,
+  showAddUi,
 }) {
   return (
     <div className="Add_Comment">
-      {answerIdx === index && activeClick ? (
+      {showAddUi ? (
         <div className="Answer_Comment_Contents">
           <Input
             width={"80%"}

@@ -1,11 +1,7 @@
 import React from "react";
 import { TiPen } from "react-icons/ti";
 
-export default function AnswerUserProfile({
-  el,
-  loading,
-  session,
-}) {
+export default function AnswerUserProfile({ el, loading, session }) {
   return (
     <div className="Answer_User_Profil_Container">
       <div className="Answer_Contents">
