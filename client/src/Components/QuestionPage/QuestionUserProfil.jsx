@@ -5,11 +5,11 @@ export default function QuestionUserProfil({ questionData }) {
     <div className="Question_User_Profil">
       <img
         className="Question_User_Image"
-        src={`${questionData.user.profileImage}`}
+        src={`${questionData && questionData.user.profileImage}`}
       />
       <a
-        href={`/users/mypage/:${questionData.user.userId}`}
-      >{`${questionData.user.displayName}`}</a>
+        href={`/users/mypage/:${questionData && questionData.user.userId}`}
+      >{`${questionData && questionData.user.displayName}`}</a>
     </div>
   );
 }

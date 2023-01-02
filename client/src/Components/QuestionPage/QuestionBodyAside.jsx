@@ -7,11 +7,33 @@ import {
 import { questionBookMark } from "../../API/Question/BookMark";
 
 export default function QuestionBodyAside({ questionData, loading, session }) {
-  const [voteUp, setVoteUp] = useState(questionData.voteUpCheck);
-  const [voteDown, setVoteDown] = useState(questionData.voteDownCheck);
   const [bookMarkCheck, setBookMarkCheck] = useState(
-    questionData.bookMarkCheck
+    questionData && questionData.bookMarkCheck
   );
+
+  const [voteCheck, setVoteCheck] = useState("default");
+
+  const upVoteHandler = () => {
+    switch (voteCheck) {
+      case "default":
+      case "down":
+        setVoteCheck("up");
+        break;
+      case "up":
+        setVoteCheck("default");
+    }
+  };
+
+  const downVoteHandler = () => {
+    switch (voteCheck) {
+      case "default":
+      case "up":
+        setVoteCheck("down");
+        break;
+      case "down":
+        setVoteCheck("default");
+    }
+  };
 
   return (
     <aside className="Main_Text_Aside">
@@ -21,31 +43,36 @@ export default function QuestionBodyAside({ questionData, loading, session }) {
         ) : session ? (
           <TiArrowSortedUp
             size={"35px"}
-            color={voteUp ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
+            color={voteCheck === "up" ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
             onClick={() => {
               questionUpVoteRequest(
                 session && session.userId,
                 questionData && questionData.questionId
               );
-              setVoteUp(!voteUp);
+
+              upVoteHandler();
             }}
           />
         ) : (
           <TiArrowSortedUp size={"35px"} color="hsl(210,8%,85%)" />
         )}
-        <span>{questionData.vote}</span>
+        <span>{questionData && questionData.vote}</span>
         {loading ? (
           <div></div>
         ) : session ? (
           <TiArrowSortedDown
             size={"35px"}
-            color={voteDown ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"}
+            color={
+              voteCheck === "down" ? "rgb(224, 130, 37)" : "hsl(210,8%,85%)"
+            }
             onClick={() => {
               questionDownVoteRequest(
                 session && session.userId,
                 questionData && questionData.questionId
               );
-              setVoteDown(!voteDown);
+              // setVoteDown(!voteDown);
+              // onClickDownVote();
+              downVoteHandler();
             }}
           />
         ) : (

@@ -37,7 +37,7 @@ const AskPage = () => {
     const tags = { tags: selected };
 
     axios
-      .post("https://359b-112-144-75-111.jp.ngrok.io/api/v1/tags", tags)
+      .post("http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/api/v1/tags", tags)
       .then((res) => {
         const body = {
           userId: session.userId,
@@ -50,7 +50,7 @@ const AskPage = () => {
         console.log(body);
         axios
           .post(
-            "https://359b-112-144-75-111.jp.ngrok.io/api/v1/questions",
+            "http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/api/v1/questions",
             body
           )
           .then((res) => {

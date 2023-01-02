@@ -18,7 +18,7 @@ export default function Answers({
   const [answerId, setAnswerId] = useState(null);
   return (
     <>
-      {questionData.answers
+      {questionData && questionData.answers
         ? questionData &&
           questionData.answers.map((el, index) => {
             return (

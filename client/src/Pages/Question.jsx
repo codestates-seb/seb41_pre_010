@@ -20,23 +20,23 @@ const StyledSpan = styled.span`
   color: ${(props) => props.color};
 `;
 
-
 export default function Question() {
   const { loading, session } = useSession();
-  const [questionData, setQeustionData] = useState(questionDummyData);
+  const [questionData, setQeustionData] = useState(null);
   const [activeClick, setActiveClick] = useState(false);
   const [commentValue, setCommentValue] = useState("");
+  console.log(questionData);
   const addCommentHandler = () => {
-      setActiveClick(!activeClick);
+    setActiveClick(!activeClick);
   };
 
-  // useEffect(() => {
-  //   const questionData = async () => {
-  //     const result = await getQuestionData();
-  //     setQeustionData(result);
-  //   };
-  //   questionData();
-  // }, []);
+  useEffect(() => {
+    const questionData = async () => {
+      const result = await getQuestionData(1, 1);
+      setQeustionData(result);
+    };
+    questionData();
+  }, []);
 
   return (
     <>
@@ -66,7 +66,9 @@ export default function Question() {
             <div className="Question_User_Profil_Container">
               <QuestionUserProfil questionData={questionData} />
             </div>
-            {questionData && questionData.answers.length === 0 ? <div className="Contour_Line" /> : null}
+            {questionData && questionData.answers.length === 0 ? (
+              <div className="Contour_Line" />
+            ) : null}
             <Answers
               questionData={questionData}
               activeClick={activeClick}
