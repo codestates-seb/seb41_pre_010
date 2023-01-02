@@ -28,8 +28,8 @@ export default function Login() {
         password: password,
       })
       .then((res) => {
-        window.location.reload();
         navigate("/");
+        window.location.reload();
       })
       .catch((e) => {
         if (e) {
@@ -129,7 +129,6 @@ const EmailComponent = ({
   };
 
   const onKeyPress = (e) => {
-    e.preventDefault();
     if (e.key === "Enter") {
       onSubmit();
     }
