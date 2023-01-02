@@ -84,7 +84,11 @@ public interface QuestionMapper {
         return questionResponseDto;
     }
 
-    QuestionIdResponseDto questionToQuestionIdDto(Question question);
+    default QuestionIdResponseDto questionToQuestionIdDto(Question question) {
+        QuestionIdResponseDto questionIdResponseDto = new QuestionIdResponseDto();
+        questionIdResponseDto.setQuestionId(question.getQuestionId());
+        return questionIdResponseDto;
+    }
 
     default PageResponseDto questionInfosToPageResponseDto(Page<Question> questionPages) {
         PageResponseDto pageResponseDto = new PageResponseDto();
