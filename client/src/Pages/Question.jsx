@@ -25,7 +25,6 @@ export default function Question() {
   const [questionData, setQeustionData] = useState(null);
   const [activeClick, setActiveClick] = useState(false);
   const [commentValue, setCommentValue] = useState("");
-  console.log(questionData);
   const addCommentHandler = () => {
     setActiveClick(!activeClick);
   };

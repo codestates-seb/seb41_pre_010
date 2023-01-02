@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "./Styles/Footer.css";
+import { useSession } from "../CustomHook/SessionProvider";
 
 const FooterLink = styled.a`
   text-decoration-line: none;
@@ -16,6 +17,7 @@ const FooterSpan = styled.span`
 `;
 
 export default function Footer() {
+  const { loading } = useSession();
   const projectMember = [
     {
       memberName: "임경인",
@@ -57,33 +59,35 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="Main_Footer">
-        <div className="Project_Member_Container">
-          {projectMember.map((el) => {
-            return (
-              <div key={el.memberName} className="Project_Member_Info">
-                <FooterSpan
-                  fontsize
-                  marginLft={"2px"}
-                  color={"hsl(210, 8%, 65%)"}
-                  fontWeight={"bold"}
-                >
-                  {el.memberName}
-                </FooterSpan>
-                <div className="Member_Contour_Line" />
-                <FooterLink href={el.blogURL}>
-                  <FooterSpan>📓 Blog</FooterSpan>
-                </FooterLink>
-                <FooterLink href={el.gitURL}>
-                  <FooterSpan>🧑‍💻 GitHub</FooterSpan>
-                </FooterLink>
-                <FooterSpan marginLft={"2px"}>📧 Email</FooterSpan>
-                <FooterSpan marginLft={"2px"}>☁️ {el.emailAdress}</FooterSpan>
-              </div>
-            );
-          })}
-        </div>
-      </footer>
+      {!loading && (
+        <footer className="Main_Footer">
+          <div className="Project_Member_Container">
+            {projectMember.map((el) => {
+              return (
+                <div key={el.memberName} className="Project_Member_Info">
+                  <FooterSpan
+                    fontsize
+                    marginLft={"2px"}
+                    color={"hsl(210, 8%, 65%)"}
+                    fontWeight={"bold"}
+                  >
+                    {el.memberName}
+                  </FooterSpan>
+                  <div className="Member_Contour_Line" />
+                  <FooterLink href={el.blogURL}>
+                    <FooterSpan>📓 Blog</FooterSpan>
+                  </FooterLink>
+                  <FooterLink href={el.gitURL}>
+                    <FooterSpan>🧑‍💻 GitHub</FooterSpan>
+                  </FooterLink>
+                  <FooterSpan marginLft={"2px"}>📧 Email</FooterSpan>
+                  <FooterSpan marginLft={"2px"}>☁️ {el.emailAdress}</FooterSpan>
+                </div>
+              );
+            })}
+          </div>
+        </footer>
+      )}
     </>
   );
 }

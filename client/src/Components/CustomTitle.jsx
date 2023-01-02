@@ -16,7 +16,7 @@ export default function CustomTitle({
     htmlTitle.innerText = title;
   };
 
-  useEffect(updateTitle, [mountTitle]);
+  useEffect(updateTitle, [mountTitle, title]);
 
   return (
     <>

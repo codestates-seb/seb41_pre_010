@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useSession } from "../CustomHook/SessionProvider";
 import axios from "axios";
 import { TagBar } from "../Components/TagBar";
+import { useNavigate } from "react-router-dom";
 
 const AskTitle = ({ setQuestionTitle }) => {
   function changeQuestionTitle(e) {
@@ -31,13 +32,16 @@ const AskPage = () => {
   const [questionBodyMD, setQuestionBodyMD] = useState("");
   const [questionBodyHTML, setQuestionBodyHTML] = useState("");
   const [selected, setSelected] = useState([]);
-  const { session } = useSession();
+  const { session, loading } = useSession();
+  const navigate = useNavigate();
+
+  const askPageTagsPostUrl = `/api/v1/tags`;
+  const askPageQuestionPostUrl = `/api/v1/questions`;
 
   function submitQuestion() {
     const tags = { tags: selected };
-
     axios
-      .post("http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/api/v1/tags", tags)
+      .post(askPageTagsPostUrl, tags, { withCredentials: true })
       .then((res) => {
         const body = {
           userId: session.userId,
@@ -47,20 +51,19 @@ const AskPage = () => {
           tags: res.data.tags,
         };
 
-        console.log(body);
         axios
-          .post(
-            "http://ec2-43-201-0-232.ap-northeast-2.compute.amazonaws.com:8080/api/v1/questions",
-            body
-          )
+          .post(askPageQuestionPostUrl, body, { withCredentials: true })
           .then((res) => {
             console.log(res);
-            console.log(body);
           })
           .catch((err) => console.log(err));
+      })
+      .catch((e) => {
+        console.log(e);
       });
   }
-
+  if (loading) return;
+  if (!session) navigate("/questions");
   return (
     <div className="EditPage_Container">
       <div className="Edit_Container">
@@ -73,6 +76,7 @@ const AskPage = () => {
           <TextEditor
             setQuestionBodyHTML={setQuestionBodyHTML}
             setQuestionBodyMD={setQuestionBodyMD}
+            userId={session.userId}
           />
         </div>
         <div className="Tags_Container">

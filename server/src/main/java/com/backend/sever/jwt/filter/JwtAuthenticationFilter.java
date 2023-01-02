@@ -83,6 +83,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.addCookie(cookie_2);
         response.setStatus(200);
 
+
+//        response.setHeader("Authorization", accessToken);
+//        response.setHeader("Refresh", refreshToken);
+
         this.getSuccessHandler().onAuthenticationSuccess(request,response,authResult);
 
     }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TiArrowSortedUp, TiArrowSortedDown, TiBookmark } from "react-icons/ti";
 import {
   questionUpVoteRequest,

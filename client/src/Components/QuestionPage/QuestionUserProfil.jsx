@@ -6,6 +6,7 @@ export default function QuestionUserProfil({ questionData }) {
       <img
         className="Question_User_Image"
         src={`${questionData && questionData.user.profileImage}`}
+        alt="userImage"
       />
       <a
         href={`/users/mypage/:${questionData && questionData.user.userId}`}

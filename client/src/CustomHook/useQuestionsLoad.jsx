@@ -13,18 +13,13 @@ function useQuestionsLoad(
   const [totalQuestions, setTotalQuestions] = useState(23338049);
 
   const getSearchValueUrl = `/api/v1/questions/search?q=${searchValue}&tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
-  const getAllPagesUrl = `ttps://e066-112-144-75-111.jp.ngrok.io/api/v1/questions/search?tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
+  const getAllPagesUrl = `/api/v1/questions/search?tab=${tabName}&page=${pageNumber}&pageSize=${pageSizeNumber}`;
 
   useEffect(() => {
     async function getQuestionList(tabName, pageNumber, pageSizeNumber) {
       try {
         const response = await axios.get(
-          searchValue ? getSearchValueUrl : getAllPagesUrl,
-          {
-            headers: {
-              "ngrok-skip-browser-warning": "69420",
-            },
-          }
+          searchValue ? getSearchValueUrl : getAllPagesUrl
         );
         const { data } = response;
         console.log(data);

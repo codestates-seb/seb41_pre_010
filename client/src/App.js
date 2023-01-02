@@ -10,9 +10,10 @@ import EditPage from "./Pages/EditPage";
 import AskPage from "./Pages/AskPage";
 import Page404 from "./Pages/404Page";
 import Footer from "./Components/Footer";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { SessionProvider } from "./CustomHook/SessionProvider";
 import SearchResultPage from "./Pages/SearchResultPage";
+import AnswerEditPage from "./Pages/AnswerEditPage";
 function App() {
   return (
     <>
@@ -34,6 +35,10 @@ function App() {
             />
             <Route path={"/"} element={<MainPage />} />
             <Route path="*" element={<Page404 />} />
+            <Route
+              path="/answers/:answerId/edit"
+              element={<AnswerEditPage />}
+            />
           </Routes>
         </BrowserRouter>
         <Footer />

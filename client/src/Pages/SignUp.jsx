@@ -50,13 +50,15 @@ export default function SignUp() {
             window.location.reload();
           })
           .catch((e) => {
+            console.log(e);
             window.location.reload();
           });
       })
       .catch((e) => {
+        console.log(e);
         if (e) {
           setEmail("");
-          setEmailMessage("중복된 이메일입니다.");
+          setEmailMessage("중복된 이메일 주소입니다.");
         }
       });
   };
