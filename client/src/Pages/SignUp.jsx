@@ -27,7 +27,6 @@ export default function SignUp() {
 
   const signUpUrl = "/api/v1/users/signup";
   const onSubmit = async (e) => {
-    e.preventDefault();
     axios
       .post(signUpUrl, {
         displayName: displayName,
@@ -84,11 +83,13 @@ export default function SignUp() {
                 setEmail={setEmail}
                 setEmailMessage={setEmailMessage}
                 emailMessage={emailMessage}
+                onSubmit={onSubmit}
               />
               <PasswordComponent
                 setPassword={setPassword}
                 setPasswordMessage={setPasswordMessage}
                 passwordMessage={passwordMessage}
+                onSubmit={onSubmit}
               />
               <div className="SignUp_Button_Container">
                 <BlueButton
@@ -161,7 +162,12 @@ const DisplayNameComponent = ({ setName, setNameMessage, nameMessage }) => {
   );
 };
 
-const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
+const EmailComponent = ({
+  setEmail,
+  setEmailMessage,
+  emailMessage,
+  onSubmit,
+}) => {
   const onChangeEmail = (e) => {
     const emailRegex =
       /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -177,6 +183,13 @@ const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
     }
   };
 
+  const onKeyPress = (e) => {
+    e.preventDefault();
+    if (e.key === "Enter") {
+      onSubmit();
+    }
+  };
+
   return (
     <div className="SignUp_Email_Container">
       <label htmlFor="SignUp_email" className="SignUp_Content_Title">
@@ -188,6 +201,7 @@ const EmailComponent = ({ setEmail, setEmailMessage, emailMessage }) => {
         aria-label="Email Input"
         className="SignUp_Content_Input"
         onChange={onChangeEmail}
+        onKeyDown={onKeyPress}
       />
       <span className="SignUp_Message">{emailMessage}</span>
     </div>
@@ -198,6 +212,7 @@ const PasswordComponent = ({
   setPassword,
   setPasswordMessage,
   passwordMessage,
+  onSubmit,
 }) => {
   const onChangePassword = (e) => {
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,25}$/;
@@ -217,6 +232,12 @@ const PasswordComponent = ({
     }
   };
 
+  const onKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onSubmit();
+    }
+  };
+
   return (
     <div className="SignUp_Password_Container">
       <label htmlFor="SignUp_Password" className="SignUp_Content_Title">
@@ -228,6 +249,7 @@ const PasswordComponent = ({
         aria-label="Password Input"
         className="SignUp_Content_Input"
         onChange={onChangePassword}
+        onKeyDown={onKeyPress}
       />
       <span className="SignUp_Message">{passwordMessage}</span>
     </div>
