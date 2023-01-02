@@ -7,6 +7,7 @@ import Page404 from "./404Page";
 
 import "./Styles/Mypage.css";
 import { useParams } from "react-router-dom";
+import MyPageListSecondRow from "../Components/UserProfile/MyPageListSecondRow";
 
 const fetchUrl = (url) => {
   return new Promise(async (resolve, reject) => {
@@ -20,9 +21,16 @@ const fetchUrl = (url) => {
 };
 
 const Mypage = () => {
+  const myInfoDefaultState = {
+    questions: [],
+    answers: [],
+    bookmarkQuestions: [],
+    bookmarkAnswers: [],
+  };
+
   const { userId } = useParams();
-  const [myInfo, setMyInfo] = useState(null);
-  const [userProfile, setUserProfile] = useState(null);
+  const [myInfo, setMyInfo] = useState(myInfoDefaultState);
+  const [userProfile, setUserProfile] = useState([]);
   const [loading, setLoading] = useState(true);
   const myPageGetUserInfoUrl = `/api/v1/users/${userId}/userinfo`;
   const myPageEditGetUserProfileUrl = `/api/v1/users/${userId}/userprofile`;
@@ -56,10 +64,12 @@ const Mypage = () => {
 };
 
 const UserInfo = ({ myInfo }) => {
+  console.log("myinfo", myInfo);
   const { questions, answers, bookmarkQuestions, bookmarkAnswers } = myInfo;
+
   return (
     <div className="Mypage_UserInfo_Container">
-      <FirstRowContainer questions={questions} answer={answers} />
+      <FirstRowContainer questions={questions} answers={answers} />
       <SecondRowContainer
         bookmarkQuestions={bookmarkQuestions}
         bookmarkAnswers={bookmarkAnswers}
@@ -73,11 +83,11 @@ const FirstRowContainer = ({ questions, answers }) => {
     <div className="Mypage_List_Container">
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Questions</div>
-        {questions && <MyPageListRow question={questions} />}
+        {questions && <MyPageListSecondRow questions={questions} />}
       </div>
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Answers</div>
-        {answers && <MyPageListRow answer={answers} />}
+        {answers && <MyPageListSecondRow answers={answers} />}
       </div>
     </div>
   );
@@ -88,15 +98,11 @@ const SecondRowContainer = ({ bookmarkQuestions, bookmarkAnswers }) => {
     <div className="Mypage_List_Container">
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Bookmark (Questions)</div>
-        {bookmarkQuestions.length > 0 && (
-          <MyPageListRow question={bookmarkQuestions} />
-        )}
+        {bookmarkQuestions && <MyPageListRow questions={bookmarkQuestions} />}
       </div>
       <div className="Mypage_List_Row">
         <div className="Mypage_Title">Bookmark (Answers)</div>
-        {bookmarkAnswers.length > 0 && (
-          <MyPageListRow answer={bookmarkAnswers} />
-        )}
+        {bookmarkAnswers && <MyPageListRow answers={bookmarkAnswers} />}
       </div>
     </div>
   );
